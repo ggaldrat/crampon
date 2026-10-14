@@ -17,7 +17,12 @@ const config = {
     //nodeModulesPaths: [...localPackagePaths], // update to resolver
     assetExts: assetExts.filter(ext => ext !== 'svg'),
     sourceExts: [...sourceExts, 'svg'],
+    // Crampon : node_modules est un lien symbolique vers /data (la partition
+    // racine, 20 Go, est trop petite pour les 4+ Go de deps RN/natives).
+    // Metro ne suit pas les symlinks hors-projet sans ce flag explicite.
+    unstable_enableSymlinks: true,
   },
+  watchFolders: ['/data/crampon-build/node_modules'],
   transformer: {
     babelTransformerPath: require.resolve(
       'react-native-svg-transformer/react-native',
