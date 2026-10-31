@@ -12,7 +12,6 @@ import {ErrorState} from '../utils/errors';
 import {
   INITIAL_ONBOARDING_STATE,
   type OnboardingState,
-  type OnboardingStep,
   type TopicKey,
 } from './onboarding/types';
 
@@ -186,12 +185,6 @@ export class UIStore {
   setBenchmarkShareDialogPreference(shouldShow: boolean) {
     runInAction(() => {
       this.benchmarkShareDialog.shouldShow = shouldShow;
-    });
-  }
-
-  setOnboardingStep(step: OnboardingStep) {
-    runInAction(() => {
-      this.onboardingState.currentStep = step;
     });
   }
 

@@ -39,7 +39,6 @@ it('renders hydration splash while UIStore is not hydrated', () => {
   // present after PaperProvider + NavigationContainer mount, are the
   // proxy: they should be absent.
   expect(result.queryByTestId('hydration-splash')).not.toBeNull();
-  expect(result.queryByText('Models')).toBeNull();
   expect(result.queryByText('Settings')).toBeNull();
   // The hold is neutral: it carries no branding text. Re-introducing the
   // old PocketPal/LLM Ventures labels would fail these assertions.
@@ -52,7 +51,7 @@ it('mounts the app once UIStore hydration completes', () => {
   __setHydrated(false);
   const result = render(<App />);
   expect(result.queryByTestId('hydration-splash')).not.toBeNull();
-  expect(result.queryByText('Models')).toBeNull();
+  expect(result.queryByText('Settings')).toBeNull();
 
   // Hydration completes. The observable flag flips inside MobX action;
   // the observer-wrapped gate re-renders and falls through to the app.
@@ -62,5 +61,5 @@ it('mounts the app once UIStore hydration completes', () => {
 
   // Splash gone, post-hydration tree mounted (drawer titles present).
   expect(result.queryByTestId('hydration-splash')).toBeNull();
-  expect(result.queryByText('Models')).not.toBeNull();
+  expect(result.queryByText('Settings')).not.toBeNull();
 });

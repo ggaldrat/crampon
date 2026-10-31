@@ -20,13 +20,10 @@ export const ROUTES = {
 
   // Onboarding stack routes (mounted via OnboardingStack when
   // uiStore.hasCompletedOnboarding is false; see App.tsx SwitchPoint).
+  // Splash goes straight to the single auto-setup screen — no chrome,
+  // no skip button, no marketing carousel or topic/pal picker.
   ONBOARDING: {
     SPLASH: 'OnboardingSplash',
-    STEP_1: 'Onboarding1',
-    STEP_2: 'Onboarding2',
-    STEP_3: 'Onboarding3',
-    STEP_4: 'Onboarding4',
-    STEP_5: 'Onboarding5',
     STEP_6: 'Onboarding6',
   } as const,
 } as const;

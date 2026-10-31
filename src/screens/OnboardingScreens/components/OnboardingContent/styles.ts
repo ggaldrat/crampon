@@ -5,17 +5,15 @@ import type {Theme} from '../../../../utils/types';
 export const createStyles = (theme: Theme) =>
   StyleSheet.create({
     root: {
-      width: '100%',
       alignItems: 'center',
-      gap: theme.spacing.s,
+      gap: theme.spacing.m,
     },
     eyebrow: {
-      ...theme.typography.bodyM,
+      ...theme.typography.captionM,
       color: theme.colors.onSurfaceVariant,
       textAlign: 'center',
     },
     bodyWrap: {
-      width: '100%',
       alignItems: 'center',
     },
   });

@@ -4,26 +4,19 @@ import type {Theme} from '../../../utils/types';
 
 export const createStyles = (theme: Theme) =>
   StyleSheet.create({
-    header: {
+    statusWrap: {
+      width: 260,
       alignItems: 'center',
-      gap: theme.spacing.sm,
-      paddingHorizontal: theme.spacing.m,
+      gap: theme.spacing.m,
     },
-    palBody: {
+    status: {
       ...theme.typography.bodyS,
       color: theme.colors.onSurfaceVariant,
       textAlign: 'center',
-      width: 335,
     },
-    subtitle: {
-      ...theme.typography.bodyS,
-      color: theme.colors.onSurfaceVariant,
-      textAlign: 'center',
-      marginTop: theme.spacing.ml,
-      marginBottom: theme.spacing.s,
-    },
-    options: {
-      width: 335,
-      alignSelf: 'center',
+    progressBar: {
+      width: '100%',
+      height: 6,
+      borderRadius: 3,
     },
   });

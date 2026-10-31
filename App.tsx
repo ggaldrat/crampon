@@ -26,7 +26,6 @@ import {ROUTES} from './src/utils/navigationConstants';
 import {
   SidebarContent,
   ModelsHeaderRight,
-  PalHeaderRight,
   HeaderLeft,
   AppWithMigration,
   TTSSetupSheet,
@@ -43,13 +42,11 @@ import {
   ChatScreen,
   ModelsScreen,
   SettingsScreen,
-  BenchmarkScreen,
   AboutScreen,
 
   // Dev tools screen. Only available in debug mode.
   DevToolsScreen,
 } from './src/screens';
-import PalsScreen from './src/screens/PalsScreen';
 import {OnboardingStack} from './src/screens/OnboardingScreens';
 
 // Check if app is in debug mode
@@ -69,7 +66,8 @@ const DeepLinkHandler = () => {
   return null;
 };
 
-// Branches between the OnboardingStack (first-launch flow) and the main
+// Branches between the OnboardingStack (first-launch flow — a single
+// full-screen auto-setup step, no picker, no chrome) and the main
 // Drawer.Navigator. Both children mount under the same provider tree —
 // switching does NOT remount providers above this point.
 //
@@ -148,15 +146,14 @@ const App = observer(() => {
                               headerShown: false,
                             }}
                           />
-                          <Drawer.Screen
-                            name={ROUTES.PALS}
-                            component={gestureHandlerRootHOC(PalsScreen)}
-                            options={{
-                              headerRight: () => <PalHeaderRight />,
-                              headerStyle: styles.headerWithoutDivider,
-                              title: currentL10n.screenTitles.pals,
-                            }}
-                          />
+                          {/*
+                      Not in the sidebar menu (removed from
+                      SidebarContent) — stays mounted and reachable by
+                      direct navigation only, as the recovery path for
+                      DownloadBanner / ModelNotAvailable when the
+                      onboarding auto-download fails or the user wants
+                      a different model.
+                    */}
                           <Drawer.Screen
                             name={ROUTES.MODELS}
                             component={gestureHandlerRootHOC(ModelsScreen)}
@@ -164,14 +161,7 @@ const App = observer(() => {
                               headerRight: () => <ModelsHeaderRight />,
                               headerStyle: styles.headerWithoutDivider,
                               title: currentL10n.screenTitles.models,
-                            }}
-                          />
-                          <Drawer.Screen
-                            name={ROUTES.BENCHMARK}
-                            component={gestureHandlerRootHOC(BenchmarkScreen)}
-                            options={{
-                              headerStyle: styles.headerWithoutDivider,
-                              title: currentL10n.screenTitles.benchmark,
+                              drawerItemStyle: {display: 'none'},
                             }}
                           />
                           <Drawer.Screen

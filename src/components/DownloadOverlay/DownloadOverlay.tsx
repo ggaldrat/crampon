@@ -15,6 +15,10 @@ import {useTheme} from '../../hooks';
  * self-hides when there's no non-dismissed active download. Multi-download
  * UI lives on the Models screen — the banner sends users there via its
  * body-tap and surfaces a `+N` badge to telegraph what's behind.
+ *
+ * Hidden entirely while onboarding is in progress — Onboarding6Screen is
+ * the sole download indicator during the first-launch auto-setup, and a
+ * second progress surface stacked on top of it would be redundant.
  */
 export const DownloadOverlay: React.FC = observer(() => {
   const insets = useSafeAreaInsets();
@@ -39,6 +43,10 @@ export const DownloadOverlay: React.FC = observer(() => {
       {fireImmediately: true},
     );
   }, []);
+
+  if (!uiStore.hasCompletedOnboarding) {
+    return null;
+  }
 
   return (
     <View pointerEvents="box-none" style={styles.root}>

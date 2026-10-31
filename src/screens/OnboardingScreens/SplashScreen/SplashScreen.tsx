@@ -11,9 +11,10 @@ import {createStyles} from './styles';
 const SPLASH_MIN_DWELL_MS = 600;
 
 /**
- * Brand splash — post-hydration, pre-Onboarding-1. Renders the
- * 112×112 mark from Figma `884:28352` then transitions after
- * `SPLASH_MIN_DWELL_MS`.
+ * Brand splash — post-hydration, pre-auto-setup. Renders the
+ * 112×112 mark then transitions after `SPLASH_MIN_DWELL_MS` straight
+ * into the single full-screen setup screen (no marketing carousel, no
+ * topic picker, no chrome).
  */
 export const SplashScreen: React.FC = () => {
   const navigation = useNavigation<any>();
@@ -23,7 +24,7 @@ export const SplashScreen: React.FC = () => {
 
   React.useEffect(() => {
     const t = setTimeout(() => {
-      navigation.replace(ROUTES.ONBOARDING.STEP_1);
+      navigation.replace(ROUTES.ONBOARDING.STEP_6);
     }, SPLASH_MIN_DWELL_MS);
     return () => clearTimeout(t);
   }, [navigation]);

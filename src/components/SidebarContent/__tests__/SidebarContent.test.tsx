@@ -54,10 +54,13 @@ describe('SidebarContent Component', () => {
   it('navigates to Chat screen when a session is pressed', async () => {
     const {getByText, queryByText} = render(<TestNavigator />);
 
-    // Navigate to a differnet page (as the default is chat screen)
-    fireEvent.press(getByText('Models'));
+    // Navigate to a different page (as the default is chat screen). Models
+    // is no longer a sidebar item (it stays mounted in the real app for
+    // DownloadBanner / ModelNotAvailable recovery, but isn't offered here),
+    // so Settings is the detour.
+    fireEvent.press(getByText('Settings'));
     expect(queryByText('Chat Screen')).toBeNull();
-    expect(getByText('Models Screen')).toBeTruthy();
+    expect(getByText('Settings Screen')).toBeTruthy();
 
     // Pressing a session should navigate to the Chat screen
     fireEvent.press(getByText('Session 1'));
@@ -69,15 +72,15 @@ describe('SidebarContent Component', () => {
   it('navigates to correct screen from drawer items', () => {
     const {getByText, queryByText} = render(<TestNavigator />);
 
-    // Ensure the Models screen is rendered by pressing the 'Models' drawer item
-    fireEvent.press(getByText('Models'));
-    expect(getByText('Models Screen')).toBeTruthy();
-    expect(queryByText('Chat Screen')).toBeNull();
-
     // Ensure the Settings screen is rendered by pressing the 'Settings' drawer item
     fireEvent.press(getByText('Settings'));
     expect(getByText('Settings Screen')).toBeTruthy();
-    expect(queryByText('Models Screen')).toBeNull();
+    expect(queryByText('Chat Screen')).toBeNull();
+
+    // Ensure the Chat screen is rendered by pressing the 'Chat' drawer item
+    fireEvent.press(getByText('Chat'));
+    expect(getByText('Chat Screen')).toBeTruthy();
+    expect(queryByText('Settings Screen')).toBeNull();
   });
 
   describe('Selection Mode', () => {

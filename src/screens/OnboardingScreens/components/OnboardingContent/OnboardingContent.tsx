@@ -6,19 +6,17 @@ import {useTheme} from '../../../../hooks';
 import {createStyles} from './styles';
 
 export type OnboardingContentProps = {
-  /** Small top eyebrow ("Welcome to Pocket Pal" / "The idea" / …). */
+  /** Small top eyebrow label. */
   eyebrow?: string;
   /** Main title — typically wrapped in `ItalicAccentTitle`. */
   title: React.ReactNode;
-  /** Body copy — typically `<HighlightText>` or a `<Text>` tree. */
+  /** Body copy — typically a `<Text>` tree. */
   body?: React.ReactNode;
 };
 
 /**
- * "Contenet" block (Figma typo preserved as a node name) — the
- * eyebrow + title + body sandwich centered between the illustration
- * and the bottom bar on screens 1–4. Eyebrow uses `body/md` in
- * `onSurfaceVariant`. Title + body are passed in by the caller.
+ * Eyebrow + title + body block, centered between the illustration and
+ * the bottom of the onboarding screen.
  */
 export const OnboardingContent: React.FC<OnboardingContentProps> = ({
   eyebrow,

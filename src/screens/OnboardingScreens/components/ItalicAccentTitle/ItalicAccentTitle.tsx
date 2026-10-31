@@ -1,6 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Text} from 'react-native-paper';
+import {View, Text} from 'react-native';
 
 import {useTheme} from '../../../../hooks';
 import {createStyles} from './styles';
@@ -10,11 +9,7 @@ export type ItalicAccentTitleProps = {
   title: string;
   /**
    * Substring rendered in Fraunces-Italic. When omitted the entire
-   * title renders italic (screen 6 "Pip"). On non-Latin locales the
-   * Fraunces family swaps to Inter via the `typographyForLocale`
-   * fallback; we mirror that by switching the italic-run family to
-   * Inter-Medium + `fontStyle:'italic'` when the base title is
-   * already on Inter.
+   * title renders italic.
    */
   accent?: string;
   align?: 'left' | 'center';
@@ -22,9 +17,8 @@ export type ItalicAccentTitleProps = {
 
 /**
  * Splits a title string into a plain run and a Fraunces-italic accent
- * run. When `accent` is omitted (or missing) the whole title renders
- * italic. `title` may contain `\n` — each line renders as its own
- * Text so they center independently of each other's widths.
+ * run. `title` may contain `\n` — each line renders as its own Text so
+ * they center independently of each other's widths.
  */
 export const ItalicAccentTitle: React.FC<ItalicAccentTitleProps> = ({
   title,
@@ -34,22 +28,13 @@ export const ItalicAccentTitle: React.FC<ItalicAccentTitleProps> = ({
   const theme = useTheme();
   const styles = createStyles(theme, align);
   const lines = title.split('\n');
-  const accentLineIdx = accent
-    ? lines.findIndex(line => line.includes(accent))
-    : -1;
+
   return (
-    <View style={styles.root}>
+    <View>
       {lines.map((line, i) => {
-        if (!accent) {
+        if (!accent || !line.includes(accent)) {
           return (
-            <Text key={i} style={[styles.title, styles.italic]}>
-              {line}
-            </Text>
-          );
-        }
-        if (i !== accentLineIdx) {
-          return (
-            <Text key={i} style={styles.title}>
+            <Text key={i} style={[styles.line, styles.plain]}>
               {line}
             </Text>
           );
@@ -58,10 +43,10 @@ export const ItalicAccentTitle: React.FC<ItalicAccentTitleProps> = ({
         const before = line.slice(0, idx);
         const after = line.slice(idx + accent.length);
         return (
-          <Text key={i} style={styles.title}>
-            {before}
-            <Text style={styles.italic}>{accent}</Text>
-            {after}
+          <Text key={i} style={styles.line}>
+            {before ? <Text style={styles.plain}>{before}</Text> : null}
+            <Text style={styles.accent}>{accent}</Text>
+            {after ? <Text style={styles.plain}>{after}</Text> : null}
           </Text>
         );
       })}

@@ -105,15 +105,9 @@ describe('UIStore', () => {
       expect(uiStore.hasCompletedOnboarding).toBe(false);
       expect(uiStore.onboardingTopicsSnapshot).toEqual([]);
       expect(uiStore.onboardingState).toEqual({
-        currentStep: 1,
         selectedTopic: null,
         selectedModelId: null,
       });
-    });
-
-    it('setOnboardingStep updates currentStep', () => {
-      uiStore.setOnboardingStep(3);
-      expect(uiStore.onboardingState.currentStep).toBe(3);
     });
 
     it('setOnboardingTopic overwrites the single selection', () => {
@@ -133,7 +127,6 @@ describe('UIStore', () => {
     });
 
     it('completeOnboarding flips the flag, derives snapshot, resets state', () => {
-      uiStore.setOnboardingStep(5);
       uiStore.setOnboardingTopic('coding');
       uiStore.setOnboardingModelId('model-a');
       uiStore.completeOnboarding({
@@ -143,7 +136,6 @@ describe('UIStore', () => {
       expect(uiStore.hasCompletedOnboarding).toBe(true);
       expect(uiStore.onboardingTopicsSnapshot).toEqual(['coding']);
       expect(uiStore.onboardingState).toEqual({
-        currentStep: 1,
         selectedTopic: null,
         selectedModelId: null,
       });
@@ -161,7 +153,6 @@ describe('UIStore', () => {
       expect(uiStore.hasCompletedOnboarding).toBe(false);
       expect(uiStore.onboardingTopicsSnapshot).toEqual([]);
       expect(uiStore.onboardingState).toEqual({
-        currentStep: 1,
         selectedTopic: null,
         selectedModelId: null,
       });
@@ -175,7 +166,6 @@ describe('UIStore', () => {
       // doesn't wipe the user's existing topic preference.
       expect(uiStore.onboardingTopicsSnapshot).toEqual(['coding']);
       expect(uiStore.onboardingState).toEqual({
-        currentStep: 1,
         selectedTopic: null,
         selectedModelId: null,
       });

@@ -1623,6 +1623,11 @@
       }
     },
     "screen6": {
+      "loadingTitle": "Setting up\nyour assistant",
+      "preparingStatus": "Picking the best model for your phone…",
+      "downloadingStatus": "Downloading… {{progress}}%",
+      "activatingStatus": "Starting up…",
+      "readyStatus": "Ready!",
       "cta": "Download {{name}}",
       "ctaTemplate": "Download {{name}} ({{size}})",
       "useTemplate": "Use {{name}}",

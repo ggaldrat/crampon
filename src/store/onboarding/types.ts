@@ -1,16 +1,17 @@
 /**
- * Onboarding types — closed union of topic keys shown on the topic chip
- * grid and the in-memory state shape for the onboarding flow.
+ * Onboarding types — closed union of topic keys and the in-memory state
+ * shape for the (now screen-less, zero-click) onboarding flow.
  *
  * `OnboardingState` lives inside `UIStore` (single store; per-session,
  * not persisted) — see `UIStore.onboardingState`. `hasCompletedOnboarding`
  * and `onboardingTopicsSnapshot` are persisted there too.
  *
- * The `else` chip is rendered in the 6th grid slot as a non-interactive
- * outlined card — it advertises the no-preference path without competing
- * with the real topic chips for taps. Users still reach that path via the
- * top-right Skip button. `else` is also the fallback index into
- * `TOPIC_TO_PAL` for `resolvePalForTopic(null)`.
+ * There is no onboarding screen or topic-picker any more —
+ * `useAutoModelSetup` runs silently on first launch and
+ * `selectedTopic` stays `null` for the life of the app, which
+ * `resolvePalForTopic(null)` resolves to the `else`/Pip entry's model
+ * list (data only — no Pal is ever created from it). The `TopicKey`
+ * union and `TOPIC_TO_PAL` map are kept for that resolver.
  */
 
 export type TopicKey =
@@ -30,16 +31,12 @@ export const TOPIC_KEYS: readonly TopicKey[] = [
   'else',
 ] as const;
 
-export type OnboardingStep = 1 | 2 | 3 | 4 | 5 | 6;
-
 export interface OnboardingState {
-  currentStep: OnboardingStep;
   selectedTopic: TopicKey | null;
   selectedModelId: string | null;
 }
 
 export const INITIAL_ONBOARDING_STATE: OnboardingState = {
-  currentStep: 1,
   selectedTopic: null,
   selectedModelId: null,
 };

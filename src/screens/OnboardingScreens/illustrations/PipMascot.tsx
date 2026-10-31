@@ -14,7 +14,8 @@ const MASCOT_BG = '#CED5D3'; // Color/green/subtle
 const MASCOT_BORDER = '#FAFAFA'; // Color/primary/foreground
 
 /**
- * Screen 6 illustration — the recommended-pal "Pip" mascot. A
+ * Onboarding illustration — a friendly rounded-card mascot used as a
+ * generic "the app is working" visual on the auto-setup screen. A
  * 66×62 rounded card (green-subtle bg, 3px white border) with a
  * friendly cartoon face inside: two black eye dots, a curved
  * eyebrow stroke, and a tiny "ping" speech notch at the bottom.
@@ -58,7 +59,6 @@ export const PipMascot: React.FC<PipMascotProps> = ({width = 66}) => {
           width={5}
           height={2.7}
           rx={1.4}
-          ry={1.4}
           fill={theme.colors.onBackground}
         />
       </G>
