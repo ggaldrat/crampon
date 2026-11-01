@@ -104,13 +104,6 @@
     "importButton": "Import",
     "importSuccess": "{{count}} Chats erfolgreich importiert.",
     "importError": "Import von Chats fehlgeschlagen. Bitte Dateiformat überprüfen.",
-    "apiSettingsTitle": "Einstellungen API",
-    "huggingFaceTokenLabel": "Hugging Face Token",
-    "tokenIsSetDescription": "Token gesetzt. Nötig um geschützte Modelle zu nutzen.",
-    "setTokenDescription": "Token einfügen um geschützte Modelle zu nutzen.",
-    "setTokenButton": "Token einfügen",
-    "useHfTokenLabel": "HF Token nutzen",
-    "useHfTokenDescription": "Aktivieren, um Token für API-Abfragen zu verwenden. Deaktivieren, wenn Token Authentifizierungsprobleme verursacht.",
     "cacheStorageTitle": "Cache & Speicher",
     "clearPalCaches": "Verknüpfungscache löschen",
     "clearPalCachesDescription": "Daten im Cache löschen um Verknüpfungen zu beschleunigen. Beeinflusst weder Deine Pals noch den Chat Verlauf.",
@@ -647,27 +640,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Download gescheitert",
       "downloadFailedMessage": "Download des Modells gescheitert: {{messing}}",
-      "unauthorizedTitle": "Authentifizierung gescheitert",
-      "unauthorizedMessage": "Ihr Hugging Face-Token scheint ungültig oder abgelaufen zu sein. Bitte aktualisieren Sie Ihren Token in den Einstellungen.",
-      "forbiddenTitle": "Zugang verweigert",
-      "forbiddenMessage": "Sie haben keine Berechtigung, auf dieses Modell zuzugreifen. Bitte beachten Sie:",
-      "forbiddenSteps": [
-        "Ihr Token hat \"lesen\" Erlaubnis",
-        "Sie beantragten und erhielten Zugang zu diesem Modell",
-        "Der Modellinhaber genehmigte Ihre Zugangsanfrage"
-      ],
-      "getTokenTitle": "Holen Sie sich ein Hugging Face Token",
-      "getTokenMessage": "Dieses Modell erfordert ein Hugging Face Token zum downloaden.",
-      "getTokenSteps": [
-        "Gehen Sie zu huggingface.co und melden sie sich an",
-        "Gehen Sie zu Einstellungen > Zugriff Tokens",
-        "Erstellen Sie ein neues Token mit \"lesen\" Zugriff",
-        "Kopieren Sie das Token und fügen Sie es in das Tokenfeld ein"
-      ],
-      "tokenDisabledTitle": "Token ist deaktiviert",
-      "tokenDisabledMessage": "Sie haben ein Hugging Face-Token-Set, aber es ist derzeit deaktiviert. Dieses Modell erfordert ein Token zum downloaden. Aktiviere dein Token, um fortzufahren.",
-      "enableAndRetry": "Aktivieren und erneut versuchen",
-      "goToSettings": "Gehen Sie zu Einstellungen",
       "tryAgain": "Erneut versuchen",
       "viewOnHuggingFace": "Modell auf HF anzeigen ↗"
     },
@@ -683,34 +655,6 @@
       "exportAllSessions": "Alle Sitzungen exportieren",
       "exportChatSession": "Chat-Sitzung exportieren",
       "importSessions": "Importiere Sitzungen"
-    },
-    "hfTokenSheet": {
-      "title": "Hugging Face Token",
-      "description": "Erforderlich für den Zugriff auf gated Modelle",
-      "inputLabel": "Persönlicher Zugriff Token",
-      "inputPlaceholder": "Fügen Sie Ihr Token hier ein",
-      "save": "Token speichern",
-      "saved": "Token erfolgreich gespeichert",
-      "reset": "Token zurücksetzen",
-      "resetSuccess": "Token erfolgreich entfernt",
-      "instructions": "Wie man ein Token bekommt:",
-      "instructionsSteps": [
-        "Gehen Sie zu huggingface.co und melden sie sich an",
-        "Gehen Sie zu Einstellungen > Zugriff Tokens",
-        "Erstellen Sie ein neues Token mit \"lesen\" Zugriff",
-        "Kopieren Sie das Token und fügen Sie es unten ein"
-      ],
-      "getTokenLink": "Holen Sie sich ein Token von huggingface.co ↗",
-      "error": {
-        "saving": "Token speichern gescheitert",
-        "missing": "Hugging Face Token erforderlich",
-        "invalid": "Falscher oder abgelaufener Token",
-        "gatedModelAccess": "Zugang zu diesem gated Modell wurde verweigert"
-      },
-      "gatedModelIndicator": "Token erforderlich",
-      "tokenRequired": "Dieses Modell erfordert einen Hugging Face Zugriffstoken",
-      "searchErrorHint": "Ihr Hugging Face API Token ist ungültig oder abgelaufen. Um weiter zu suchen, entfernen Sie bitte entweder den Token oder deaktivieren Sie die Token-Authentifizierung in Einstellungen.",
-      "disableAndRetry": "Token deaktivieren und wiederholen"
     },
     "modelSettingsSheet": {
       "modelSettings": "Modelleinstellungen",

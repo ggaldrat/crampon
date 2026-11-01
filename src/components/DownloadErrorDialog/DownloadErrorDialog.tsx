@@ -9,19 +9,12 @@ import {L10nContext} from '../../utils';
 import {t} from '../../locales';
 import {ErrorState} from '../../utils/errors';
 import {createStyles} from './styles';
-import {CheckCircleIcon} from '../../assets/icons';
-import {hfStore} from '../../store';
-
-const CheckIcon = ({color}: {color: string}) => (
-  <CheckCircleIcon width={16} height={16} stroke={color} />
-);
 
 interface DownloadErrorDialogProps {
   visible: boolean;
   onDismiss: () => void;
   error: ErrorState | null;
   model?: Model;
-  onGoToSettings?: () => void;
   onTryAgain?: () => void;
 }
 
@@ -30,124 +23,36 @@ export const DownloadErrorDialog: React.FC<DownloadErrorDialogProps> = ({
   onDismiss,
   error,
   model,
-  onGoToSettings,
   onTryAgain,
 }) => {
   const theme = useTheme();
   const l10n = React.useContext(L10nContext);
   const alerts = l10n.components.downloadErrorDialog;
 
-  // Check if this is the case where token exists but is disabled
-  const isTokenDisabledWhenAuthError =
-    error?.code === 'authentication' &&
-    hfStore.isTokenPresent &&
-    !hfStore.useHfToken;
-
-  const isTokenPresentWhenAuthError =
-    error?.code === 'authentication' &&
-    hfStore.isTokenPresent &&
-    hfStore.useHfToken;
-
   const notEnoughSpace = error?.code === 'storage';
 
-  const getErrorType = ():
-    | 'unauthorized'
-    | 'forbidden'
-    | 'noToken'
-    | 'other' => {
-    if (!error) {
-      return 'other';
-    }
+  // Without a Hugging Face account, gated or private repos cannot be fetched.
+  const isRestricted =
+    error?.code === 'authentication' ||
+    error?.code === 'authorization' ||
+    error?.code === 'server';
 
-    if (error.code === 'authentication') {
-      if (error.message?.includes('Token is missing')) {
-        return 'noToken';
-      }
-      return 'unauthorized';
-    } else if (error.code === 'authorization') {
-      return 'forbidden';
-    } else if (error.code === 'server') {
-      return 'forbidden';
-    }
-    return 'other';
-  };
-
-  const errorType = getErrorType();
-
-  const getDialogTitle = () => {
-    if (isTokenDisabledWhenAuthError) {
-      return alerts.tokenDisabledTitle;
-    }
-
-    if (isTokenPresentWhenAuthError) {
-      return alerts.unauthorizedTitle;
-    }
-
-    switch (errorType) {
-      case 'unauthorized':
-        return alerts.unauthorizedTitle;
-      case 'forbidden':
-        return alerts.forbiddenTitle;
-      case 'noToken':
-        return alerts.getTokenTitle;
-      default:
-        return alerts.downloadFailedTitle;
-    }
-  };
+  const getDialogTitle = () =>
+    isRestricted ? alerts.restrictedTitle : alerts.downloadFailedTitle;
 
   const getDialogMessage = () => {
-    if (isTokenDisabledWhenAuthError) {
-      return alerts.tokenDisabledMessage;
+    if (isRestricted) {
+      return alerts.restrictedMessage;
     }
-
-    if (isTokenPresentWhenAuthError) {
-      return alerts.unauthorizedMessage;
-    }
-
-    switch (errorType) {
-      case 'unauthorized':
-        return alerts.unauthorizedMessage;
-      case 'forbidden':
-        return alerts.forbiddenMessage;
-      case 'noToken':
-        return alerts.getTokenMessage;
-      default:
-        return !error?.message
-          ? t(alerts.downloadFailedMessage, {message: ''})
-          : undefined;
-    }
-  };
-
-  const getSteps = () => {
-    if (isTokenDisabledWhenAuthError) {
-      return [];
-    }
-
-    if (isTokenPresentWhenAuthError) {
-      return [];
-    }
-
-    switch (errorType) {
-      case 'forbidden':
-        return alerts.forbiddenSteps;
-      case 'noToken':
-        return alerts.getTokenSteps;
-      default:
-        return [];
-    }
-  };
-
-  const handleEnableToken = () => {
-    hfStore.setUseHfToken(true);
-    if (onTryAgain) {
-      onTryAgain();
-    }
+    return !error?.message
+      ? t(alerts.downloadFailedMessage, {message: ''})
+      : undefined;
   };
 
   const getActions = () => {
     const actions: DialogAction[] = [];
 
-    if (model?.hfUrl && !isTokenDisabledWhenAuthError && !notEnoughSpace) {
+    if (model?.hfUrl && !notEnoughSpace) {
       actions.push({
         label: alerts.viewOnHuggingFace,
         onPress: () => {
@@ -157,11 +62,7 @@ export const DownloadErrorDialog: React.FC<DownloadErrorDialogProps> = ({
       });
     }
 
-    if (
-      isTokenDisabledWhenAuthError ||
-      isTokenPresentWhenAuthError ||
-      notEnoughSpace
-    ) {
+    if (isRestricted || notEnoughSpace) {
       actions.push({
         label: l10n.common.dismiss,
         onPress: () => {
@@ -171,24 +72,7 @@ export const DownloadErrorDialog: React.FC<DownloadErrorDialogProps> = ({
       });
     }
 
-    if (isTokenDisabledWhenAuthError) {
-      actions.push({
-        label: alerts.enableAndRetry,
-        onPress: handleEnableToken,
-        mode: 'contained' as const,
-      });
-    } else if (
-      ['unauthorized', 'forbidden', 'noToken'].includes(errorType) &&
-      onGoToSettings
-    ) {
-      actions.push({
-        label: alerts.goToSettings,
-        onPress: onGoToSettings,
-        mode: 'text' as const,
-      });
-    }
-
-    if (!isTokenDisabledWhenAuthError && onTryAgain) {
+    if (!isRestricted && onTryAgain) {
       actions.push({
         label: alerts.tryAgain,
         onPress: onTryAgain,
@@ -199,7 +83,6 @@ export const DownloadErrorDialog: React.FC<DownloadErrorDialogProps> = ({
     return actions;
   };
 
-  const steps = getSteps();
   const message = getDialogMessage();
   const styles = createStyles(theme);
 
@@ -215,22 +98,7 @@ export const DownloadErrorDialog: React.FC<DownloadErrorDialogProps> = ({
         <View>
           {message && <Text variant="bodyMedium">{message}</Text>}
 
-          {steps.length > 0 && (
-            <View style={styles.stepsContainer}>
-              {steps.map((step, index) => (
-                <View key={index} style={styles.stepItem}>
-                  <View style={styles.stepRow}>
-                    <CheckIcon color={theme.colors.primary} />
-                    <View style={styles.textContainer}>
-                      <Text style={styles.stepText}>{step}</Text>
-                    </View>
-                  </View>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {errorType === 'other' && error?.message && (
+          {!isRestricted && error?.message && (
             <View style={styles.errorDetails}>
               <Text style={styles.errorText} testID="error-message-text">
                 {error.message}

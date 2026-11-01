@@ -24,7 +24,6 @@ export * from './RouterLoadStatus';
 export * from './FileMessage';
 export * from './HeaderRight';
 export * from './HeaderLeft';
-export * from './HFTokenSheet';
 export * from './SearchProviderKeySheet';
 export * from './IncreaseContextSheet';
 export * from './GreetingBubble';

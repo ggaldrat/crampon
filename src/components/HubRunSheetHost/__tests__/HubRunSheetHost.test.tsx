@@ -99,7 +99,7 @@ describe('HubRunSheetHost', () => {
       expect(getByTestId('details-view')).toBeTruthy();
     });
     expect(getByTestId('details-view')).toHaveTextContent('author/model');
-    expect(mockResolveRepo).toHaveBeenCalledWith('author/model', undefined);
+    expect(mockResolveRepo).toHaveBeenCalledWith('author/model');
   });
 
   it('enriches resolved siblings with canFitInStorage before DetailsView', async () => {

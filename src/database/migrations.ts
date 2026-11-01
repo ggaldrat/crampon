@@ -2,6 +2,7 @@ import {
   schemaMigrations,
   createTable,
   addColumns,
+  unsafeExecuteSql,
 } from '@nozbe/watermelondb/Schema/migrations';
 
 export default schemaMigrations({
@@ -151,6 +152,15 @@ export default schemaMigrations({
           table: 'chat_sessions',
           columns: [{name: 'pinned', type: 'boolean'}],
         }),
+      ],
+    },
+    // Migration to version 9: Crampon drops the PalsHub marketplace tables
+    {
+      toVersion: 9,
+      steps: [
+        unsafeExecuteSql(
+          'DROP TABLE IF EXISTS cached_pals; DROP TABLE IF EXISTS user_library; DROP TABLE IF EXISTS sync_status;',
+        ),
       ],
     },
   ],

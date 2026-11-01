@@ -65,6 +65,7 @@
     "autoOffloadLoadDescription": "Décharger le modèle quand l'application est en arrière-plan.",
     "autoNavigateToChat": "Navigation auto vers le chat",
     "autoNavigateToChatDescription": "Naviguer vers le chat quand le chargement commence.",
+    "engineSettings": "Réglages du moteur (avancé)",
     "appSettings": "Paramètres de l'application",
     "language": "Langue",
     "darkMode": "Mode sombre",
@@ -79,13 +80,6 @@
     "importButton": "Importer",
     "importSuccess": "{{count}} session(s) de chat importée(s) avec succès.",
     "importError": "Échec de l'importation des sessions de chat. Veuillez vérifier le format du fichier.",
-    "apiSettingsTitle": "Paramètres API",
-    "huggingFaceTokenLabel": "Token Hugging Face",
-    "tokenIsSetDescription": "Token configuré. Nécessaire pour accéder aux modèles restreints.",
-    "setTokenDescription": "Configurez un token pour accéder aux modèles restreints de Hugging Face.",
-    "setTokenButton": "Configurer le token",
-    "useHfTokenLabel": "Utiliser le token HF",
-    "useHfTokenDescription": "Activez pour utiliser le token pour les requêtes API. Désactivez si le token cause des problèmes d'authentification.",
     "openCL": "OpenCL (expérimental)",
     "openCLDescription": "Acceleration GPU pour Adreno GPUs. prompt plus rapide, generation ne sera pas toujours plus rapide.",
     "openCLNotAvailable": "OpenCL n'es pas disponible sur cet appareil. Nécessite un GPU adreno avec i8mm et dotprod CPU.",
@@ -180,7 +174,8 @@
       "modelUpdatedShort": "il y a {{time}}",
       "modelUpdatedJustNowLong": "Mis à jour à l'instant",
       "modelUpdatedJustNowShort": "à l'instant",
-      "errorOccurred": "Impossible de charger les modèles. Veuillez réessayer."
+      "errorOccurred": "Impossible de charger les modèles. Veuillez réessayer.",
+      "gatedModelIndicator": "Accès restreint"
     },
     "modelCard": {
       "alerts": {
@@ -396,29 +391,10 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Échec du téléchargement",
       "downloadFailedMessage": "Échec du téléchargement du modèle : {{message}}",
-      "unauthorizedTitle": "Échec d'authentification",
-      "unauthorizedMessage": "Votre token Hugging Face semble invalide ou expiré. Veuillez mettre à jour votre token dans les paramètres.",
-      "forbiddenTitle": "Accès refusé",
-      "forbiddenMessage": "Vous n'avez pas la permission d'accéder à ce modèle. Veuillez vous assurer que :",
-      "forbiddenSteps": [
-        "Votre token a une permission de \"lecture\"",
-        "Vous avez demandé et obtenu l'accès à ce modèle",
-        "Le propriétaire du modèle a approuvé votre demande d'accès"
-      ],
-      "getTokenTitle": "Obtenir un token Hugging Face",
-      "getTokenMessage": "Ce modèle nécessite un token Hugging Face pour être téléchargé.",
-      "getTokenSteps": [
-        "Allez sur huggingface.co et connectez-vous",
-        "Naviguez vers Paramètres > Tokens d'accès",
-        "Créez un nouveau token avec accès \"lecture\"",
-        "Copiez le token et collez-le dans le champ correspondant"
-      ],
-      "tokenDisabledTitle": "Token désactivé",
-      "tokenDisabledMessage": "Vous avez configuré un token Hugging Face, mais il est actuellement désactivé. Ce modèle nécessite un token pour être téléchargé. Activez votre token pour continuer.",
-      "enableAndRetry": "Activer et réessayer",
-      "goToSettings": "Aller aux paramètres",
       "tryAgain": "Réessayer",
-      "viewOnHuggingFace": "Voir le modèle sur HF ↗"
+      "viewOnHuggingFace": "Voir le modèle sur HF ↗",
+      "restrictedTitle": "Modèle restreint",
+      "restrictedMessage": "L'éditeur de ce modèle en restreint l'accès sur Hugging Face : Crampon ne peut pas le télécharger. Choisissez un autre modèle."
     },
     "headerRight": {
       "deleteChatTitle": "Supprimer la discussion",
@@ -432,34 +408,6 @@
       "exportAllSessions": "Exporter toutes les sessions",
       "exportChatSession": "Exporter la session de discussion",
       "importSessions": "Importer des sessions"
-    },
-    "hfTokenSheet": {
-      "title": "Token Hugging Face",
-      "description": "Nécessaire pour accéder aux modèles restreints",
-      "inputLabel": "Token d'accès personnel",
-      "inputPlaceholder": "Collez votre token ici",
-      "save": "Enregistrer le token",
-      "saved": "Token enregistré avec succès",
-      "reset": "Réinitialiser le token",
-      "resetSuccess": "Token supprimé avec succès",
-      "instructions": "Comment obtenir un token :",
-      "instructionsSteps": [
-        "Allez sur huggingface.co et connectez-vous",
-        "Naviguez vers Paramètres > Tokens d'accès",
-        "Créez un nouveau token avec accès \"lecture\"",
-        "Copiez le token et collez-le ci-dessous"
-      ],
-      "getTokenLink": "Obtenir un token depuis huggingface.co ↗",
-      "error": {
-        "saving": "Erreur d'enregistrement du token",
-        "missing": "Token Hugging Face requis",
-        "invalid": "Token invalide ou expiré",
-        "gatedModelAccess": "L'accès à ce modèle restreint a été refusé"
-      },
-      "gatedModelIndicator": "Nécessite un token",
-      "tokenRequired": "Ce modèle nécessite un token d'accès Hugging Face",
-      "searchErrorHint": "Votre token API Hugging Face est invalide ou expiré. Pour continuer la recherche, veuillez soit supprimer le token, soit désactiver l'authentification par token dans les Paramètres.",
-      "disableAndRetry": "Désactiver le token et réessayer"
     },
     "modelSettingsSheet": {
       "modelSettings": "Paramètres du modèle",

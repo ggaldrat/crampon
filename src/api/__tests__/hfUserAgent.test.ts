@@ -92,20 +92,4 @@ describe('hf.ts attribution User-Agent', () => {
       }),
     );
   });
-
-  it('keeps Authorization alongside the UA when a token is supplied', async () => {
-    mockedAxios.get.mockResolvedValueOnce({data: [], headers: {}});
-
-    await fetchModels({search: 'x', authToken: 'hf_abc'});
-
-    expect(mockedAxios.get).toHaveBeenCalledWith(
-      expect.any(String),
-      expect.objectContaining({
-        headers: expect.objectContaining({
-          'User-Agent': EXPECTED_UA,
-          Authorization: 'Bearer hf_abc',
-        }),
-      }),
-    );
-  });
 });

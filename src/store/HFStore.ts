@@ -1,7 +1,4 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {makePersistable} from 'mobx-persist-store';
-import * as Keychain from 'react-native-keychain';
 
 import {fetchGGUFSpecs, fetchModelFilesDetails, fetchModels} from '../api/hf';
 
@@ -10,9 +7,6 @@ import {processHFSearchResults} from '../utils/hf';
 import {ErrorState, createErrorState} from '../utils/errors';
 
 import {HuggingFaceModel} from '../utils/types';
-
-// Service name for keychain storage
-const HF_TOKEN_SERVICE = 'hf_token_service';
 
 // Filter types for enhanced search
 export type SortOption = 'relevance' | 'downloads' | 'lastModified' | 'likes';
@@ -34,8 +28,6 @@ class HFStore {
   queryFilter = 'gguf,conversational';
   queryFull = true;
   queryConfig = true;
-  hfToken: string | null = null;
-  useHfToken: boolean = true; // Only applies when token is set
 
   // search filters
   searchFilters: SearchFilters = {
@@ -45,80 +37,6 @@ class HFStore {
 
   constructor() {
     makeAutoObservable(this);
-
-    makePersistable(this, {
-      name: 'HFStore',
-      properties: ['useHfToken'],
-      storage: AsyncStorage,
-    });
-
-    // Load token from secure storage on initialization
-    this.loadTokenFromSecureStorage();
-  }
-
-  // Load token from secure storage
-  private async loadTokenFromSecureStorage() {
-    try {
-      const credentials = await Keychain.getGenericPassword({
-        service: HF_TOKEN_SERVICE,
-      });
-
-      if (credentials) {
-        runInAction(() => {
-          this.hfToken = credentials.password;
-        });
-      }
-    } catch (error) {
-      console.error('Failed to load token from secure storage:', error);
-    }
-  }
-
-  get isTokenPresent(): boolean {
-    return !!this.hfToken && this.hfToken.trim().length > 0;
-  }
-
-  get shouldUseToken(): boolean {
-    return this.isTokenPresent && this.useHfToken;
-  }
-
-  setUseHfToken(useToken: boolean) {
-    runInAction(() => {
-      this.useHfToken = useToken;
-    });
-  }
-
-  async setToken(token: string) {
-    try {
-      // Save token in secure storage
-      await Keychain.setGenericPassword('hf_token', token, {
-        service: HF_TOKEN_SERVICE,
-      });
-
-      runInAction(() => {
-        this.hfToken = token;
-      });
-      return true;
-    } catch (error) {
-      console.error('Failed to save HF token:', error);
-      return false;
-    }
-  }
-
-  async clearToken() {
-    try {
-      // Remove token from secure storage
-      await Keychain.resetGenericPassword({
-        service: HF_TOKEN_SERVICE,
-      });
-
-      runInAction(() => {
-        this.hfToken = null;
-      });
-      return true;
-    } catch (error) {
-      console.error('Failed to clear HF token:', error);
-      return false;
-    }
   }
 
   setSearchQuery(query: string) {
@@ -163,8 +81,7 @@ class HFStore {
   // such as number of parameters, context length, chat template, etc.
   async fetchAndSetGGUFSpecs(modelId: string) {
     try {
-      const authToken = this.shouldUseToken ? this.hfToken : null;
-      const specs = await fetchGGUFSpecs(modelId, authToken);
+      const specs = await fetchGGUFSpecs(modelId);
       const model = this.models.find(m => m.id === modelId);
       if (model) {
         runInAction(() => {
@@ -205,8 +122,7 @@ class HFStore {
   async fetchModelFileDetails(modelId: string) {
     try {
       console.log('Fetching model file details for', modelId);
-      const authToken = this.shouldUseToken ? this.hfToken : null;
-      const fileDetails = await fetchModelFilesDetails(modelId, authToken);
+      const fileDetails = await fetchModelFilesDetails(modelId);
       const model = this.models.find(m => m.id === modelId);
 
       if (!model) {
@@ -302,7 +218,6 @@ class HFStore {
     this.lastFetchMoreAttempt = 0;
 
     try {
-      const authToken = this.shouldUseToken ? this.hfToken : null;
       const sortParams = this.getSortParams();
 
       const {models, nextLink} = await fetchModels({
@@ -314,7 +229,6 @@ class HFStore {
         filter: this.buildFilterString(),
         full: this.queryFull,
         config: this.queryConfig,
-        authToken: authToken,
       });
 
       let processedModels = processHFSearchResults(models);
@@ -367,10 +281,8 @@ class HFStore {
     this.error = null;
 
     try {
-      const authToken = this.shouldUseToken ? this.hfToken : null;
       const {models, nextLink} = await fetchModels({
         nextPageUrl: this.nextPageLink,
-        authToken: authToken,
       });
 
       let processedModels = processHFSearchResults(models);

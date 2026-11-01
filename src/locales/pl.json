@@ -70,13 +70,6 @@
     "importButton": "Importuj",
     "importSuccess": "Pomyślnie zaimportowano sesje czatu: {{count}}.",
     "importError": "Nie udało się zaimportować sesji czatu. Sprawdź format pliku.",
-    "apiSettingsTitle": "Ustawienia API",
-    "huggingFaceTokenLabel": "Token Hugging Face",
-    "tokenIsSetDescription": "Token został ustawiony. Wymagany do uzyskania dostępu do modeli z ograniczeniami dostępu.",
-    "setTokenDescription": "Ustaw token, aby uzyskać dostęp do modeli z ograniczeniami dostępu z serwisu Hugging Face.",
-    "setTokenButton": "Ustaw Token",
-    "useHfTokenLabel": "Użyj Tokenu HF",
-    "useHfTokenDescription": "Włącz obsługę tokenu w żądaniach API. Wyłącz tę opcję, jeśli token powoduje problemy z uwierzytelnianiem.",
     "cacheStorageTitle": "Pamięć podręczna i Pamięć masowa",
     "clearPalCaches": "Wyczyść Pamięć Podręczną Skrótów",
     "clearPalCachesDescription": "Usuwa dane z pamięci podręcznej służące do przyspieszenia działania Skrótów. Nie wpłynie to na Twoich Kumpli ani historię czatu.",
@@ -205,13 +198,7 @@
     "speculativeDraftValueCacheType": "Typ pamięci podręcznej wartości modelu roboczego",
     "speculativeDraftNGpuLayers": "Warstwy GPU modelu roboczego",
     "speculativeDraftNGpuLayersDescription": "Liczba warstw modelu roboczego przenoszonych do GPU.",
-    "speculativeDraftCacheTypeInactiveDescription": "Zacznie obowiązywać po uruchomieniu dekodowania spekulatywnego.",
-    "purchases": {
-      "title": "Zakupy",
-      "statusOwned": "Kupione",
-      "statusUnlocking": "Odblokowywanie",
-      "link": "Zaloguj się, aby korzystać z zakupów na innych urządzeniach"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "Zacznie obowiązywać po uruchomieniu dekodowania spekulatywnego."
   },
   "models": {
     "labels": {
@@ -691,27 +678,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Błąd Pobierania",
       "downloadFailedMessage": "Nie udało się pobrać modelu: {{message}}",
-      "unauthorizedTitle": "Błąd Autoryzacji",
-      "unauthorizedMessage": "Wygląda na to, że Twój token Hugging Face jest nieprawidłowy lub stracił ważność. Zaktualizuj token w ustawieniach.",
-      "forbiddenTitle": "Odmowa Dostępu",
-      "forbiddenMessage": "Nie masz uprawnień dostępu do tego modelu. Upewnij się, że:",
-      "forbiddenSteps": [
-        "Twój token ma uprawnienie „odczytu”",
-        "Złożyłeś wniosek o dostęp do tego modelu i uzyskałeś go",
-        "Właściciel modelu zatwierdził Twoją prośbę o dostęp"
-      ],
-      "getTokenTitle": "Zdobądź token Hugging Face",
-      "getTokenMessage": "Aby pobrać ten model, potrzebny jest token serwisu Hugging Face.",
-      "getTokenSteps": [
-        "Wejdź na stronę huggingface.co i zaloguj się",
-        "Przejdź do sekcji Ustawienia > Tokeny Dostępu",
-        "Utwórz nowy token z uprawnieniami do odczytu",
-        "Skopiuj token i wklej go w przeznaczonym polu"
-      ],
-      "tokenDisabledTitle": "Token jest Wyłączony",
-      "tokenDisabledMessage": "Masz ustawiony token Hugging Face, ale jest on obecnie wyłączony. Ten model wymaga tokenu do pobrania. Włącz swój token, aby kontynuować.",
-      "enableAndRetry": "Włącz i Spróbuj ponownie",
-      "goToSettings": "Nawiguj do Ustawień",
       "tryAgain": "Spróbuj ponownie",
       "viewOnHuggingFace": "Zobacz Model na HF ↗"
     },
@@ -728,34 +694,6 @@
       "exportChatSession": "Eksportuj sesję czatu",
       "importSessions": "Importuj sesje",
       "exportCurrentSessionMarkdown": "Eksportuj jako Markdown"
-    },
-    "hfTokenSheet": {
-      "title": "Token Hugging Face",
-      "description": "Wymagane do uzyskania modeli z ograniczeniami dostępu",
-      "inputLabel": "Osobisty Token Dostępu",
-      "inputPlaceholder": "Wklej tutaj swój token",
-      "save": "Zapisz Token",
-      "saved": "Token pomyślnie zapisany",
-      "reset": "Zresetuj Token",
-      "resetSuccess": "Token pomyślnie usunięty",
-      "instructions": "Jak uzyskać token:",
-      "instructionsSteps": [
-        "Wejdź na stronę huggingface.co i zaloguj się",
-        "Przejdź do sekcji Ustawienia > Tokeny Dostępu",
-        "Utwórz nowy token z uprawnieniem „odczytu”",
-        "Skopiuj token i wklej go poniżej"
-      ],
-      "getTokenLink": "Uzyskaj token ze strony huggingface.co ↗",
-      "error": {
-        "saving": "Wystąpił błąd podczas zapisywania tokenu",
-        "missing": "Wymagany token Hugging Face",
-        "invalid": "Nieprawidłowy lub wygasły token",
-        "gatedModelAccess": "Odmówiono dostępu do tego zastrzeżonego modelu"
-      },
-      "gatedModelIndicator": "Wymaga Tokenu",
-      "tokenRequired": "Ten model wymaga tokenu dostępu do serwisu Hugging Face",
-      "searchErrorHint": "Twój token API serwisu Hugging Face jest nieprawidłowy lub stracił ważność. Aby kontynuować wyszukiwanie, usuń token lub wyłącz uwierzytelnianie za pomocą tokenu w sekcji Ustawienia.",
-      "disableAndRetry": "Wyłącz Token i Spróbuj ponownie"
     },
     "modelSettingsSheet": {
       "modelSettings": "Ustawienia Modelu",
@@ -1040,17 +978,7 @@
     "missingModel": "Brakujący Model",
     "missingModelMessage": "Domyślny model \"{{modelName}}\" dla tego Kumpla nie jest dostępny. Pobierz go w arkuszu edycji lub wybierz inny model.",
     "search": "Szukaj",
-    "profile": "Profil",
-    "signIn": "Zaloguj Się",
     "addPal": "Dodaj Kumpla",
-    "signInToAccessLibrary": "Zaloguj się, aby uzyskać dostęp do swojej biblioteki na stronie palshub.ai",
-    "signOut": "Wyloguj Się",
-    "signOutConfirmation": "Czy na pewno chcesz się wylogować?",
-    "signOutError": "Nie udało się wylogować. Spróbuj ponownie.",
-    "account": "Konto",
-    "signInToPalsHub": "Zaloguj Się do Serwisu PalsHub",
-    "signInDescription": "Uzyskaj dostęp do swojej biblioteki, twórz prywatnych Kumpli i synchronizuj dane między urządzeniami",
-    "searchAllPals": "Szukaj wśród Kumpli...",
     "deletePalConfirmation": "Czy na pewno chcesz usunąć \"{{palName}}\"?",
     "filters": {
       "all": "Wszystko",
@@ -1067,31 +995,6 @@
       "download": "Pobierz",
       "getFree": "Pobierz za darmo"
     },
-    "sortOptions": {
-      "newest": "Najnowsze",
-      "oldest": "Najstarsze",
-      "rating": "Najwyżej Oceniane",
-      "popular": "Najbardziej Popularne"
-    },
-    "palDetailSheet": {
-      "by": "przez",
-      "unknown": "Nieznane",
-      "rating": "Ocena",
-      "reviews": "Opinie",
-      "created": "Utworzono",
-      "description": "Opis",
-      "noDescriptionAvailable": "Brak dostępnego opisu.",
-      "categories": "Kategorie",
-      "tags": "Tagi",
-      "systemPrompt": "Prompt Systemowy",
-      "downloaded": "Pobrane",
-      "success": "Sukces",
-      "palAddedToCollection": "Kumpel został dodany do twojej kolekcji!",
-      "error": "Błąd",
-      "failedToLoadDetails": "Nie udało się załadować szczegółów Kumpla",
-      "failedToDownload": "Nie udało się pobrać Kumpla",
-      "notAvailable": "nie dot."
-    },
     "sectionTitles": {
       "myPalsLocal": "Moi Kumple (lokalni)",
       "myLibrary": "Moja Biblioteka (palshub.ai)",
@@ -1100,48 +1003,7 @@
     "systemPrompt": "Prompt Systemowy",
     "videoAnalysis": "Analiza Wideo",
     "videoAnalysisDescription": "Jest to asystent oparty na sztucznej inteligencji, który na bieżąco komentuje strumienie wideo z kamery Twojego urządzenia.",
-    "world": "Świat",
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "Otwórz",
-      "install": "Zainstaluj",
-      "pending": "Oczekuje",
-      "unlocking": "Odblokowywanie",
-      "retry": "Ponów",
-      "supportCode": "Kod pomocy technicznej: {{code}}",
-      "noLongerAvailable": "Ten Kumpel nie jest już dostępny. Możesz {{refundLink}}.",
-      "refundLink": "poprosić Apple o zwrot pieniędzy",
-      "notCompleted": "Nie udało się zrealizować tego zakupu. Google zwróci Ci pieniądze.",
-      "withdrawnRefunding": "Ten Kumpel został wycofany. Skontaktuj się z pomocą techniczną, aby otrzymać zwrot pieniędzy.",
-      "invalid": "Nie udało się zweryfikować tego zakupu.",
-      "heldInvalid": "Nie udało się odblokować tego zakupu. Skontaktuj się z pomocą techniczną, podając ten kod.",
-      "recommendedModel": "Zalecany model",
-      "sampleExchange": "Przykładowa rozmowa",
-      "signInLine": "Masz go już? Zaloguj się",
-      "licenseNotice": "Kupujesz licencję na korzystanie z tego Kumpla.",
-      "termsOfSale": "Warunki sprzedaży",
-      "appleMediaTerms": "Warunki dotyczące usług multimedialnych Apple",
-      "linkPrompt": "Zaloguj się, aby korzystać z niego także na innych urządzeniach",
-      "linkSignIn": "Zaloguj się",
-      "dismiss": "Nie teraz",
-      "linkConflict": "Te zakupy są powiązane z innym kontem.",
-      "restorePurchases": "Przywróć zakupy",
-      "badgePending": "Oczekuje",
-      "badgeUnlocking": "Odblokowywanie",
-      "badgeUpdate": "Dostępna aktualizacja",
-      "updatePrompt": "Dostępna jest nowa wersja od twórcy.",
-      "updatePromptWithNote": "Dostępna jest nowa wersja od twórcy: {{note}}.",
-      "updateButton": "Zaktualizuj",
-      "updateConfirmText": "Zastąpi to Twoje zmiany w częściach, które zmienił twórca.",
-      "updateConfirm": "Zaktualizuj",
-      "updateCancel": "Anuluj",
-      "modelStep": {
-        "download": "Pobierz · {{size}}",
-        "startChat": "Rozpocznij czat",
-        "needsMemory": "Najmniejszy model tego Kumpla wymaga urządzenia z co najmniej {{size}} pamięci.",
-        "noModelFits": "To urządzenie nie ma wystarczającej ilości pamięci dla tego Kumpla."
-      }
-    }
+    "world": "Świat"
   },
   "validation": {
     "nameRequired": "Nazwa jest wymagana",

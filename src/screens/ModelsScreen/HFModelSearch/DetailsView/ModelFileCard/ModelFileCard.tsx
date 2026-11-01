@@ -331,7 +331,7 @@ export const ModelFileCard: FC<ModelFileCardProps> = observer(
                       style={styles.warningIcon}
                     />
                     <Text style={styles.gatedText}>
-                      {l10n.components.hfTokenSheet.gatedModelIndicator}
+                      {l10n.models.search.gatedModelIndicator}
                     </Text>
                   </View>
                 )}

@@ -108,13 +108,6 @@
     "importButton": "Імпорт",
     "importSuccess": "Успішно імпортовано {{count}} сеансів чату.",
     "importError": "Не вдалося імпортувати сесії чату. Перевірте формат файлу.",
-    "apiSettingsTitle": "Налаштування API",
-    "huggingFaceTokenLabel": "Токен Hugging Face",
-    "tokenIsSetDescription": "Токен встановлено. Необхідний для доступу до моделей із обмеженим доступом.",
-    "setTokenDescription": "Встановіть токен для доступу до моделей з обмеженим доступом від Hugging Face.",
-    "setTokenButton": "Встановити токен",
-    "useHfTokenLabel": "Використовуйте токен HF",
-    "useHfTokenDescription": "Увімкнути використання токена для запитів до API. Вимкнути, якщо токен спричиняє проблеми з автентифікацією.",
     "cacheStorageTitle": "Кеш і пам'ять",
     "clearPalCaches": "Очистити кеш ярликів",
     "clearPalCachesDescription": "Очищає кешовані дані, які використовуються для прискорення роботи ярликів. Це не вплине на ваших друзів або історію чату.",
@@ -205,13 +198,7 @@
     "speculativeDraftValueCacheType": "Тип кешу значень чернетки",
     "speculativeDraftNGpuLayers": "Шари GPU для чернетки",
     "speculativeDraftNGpuLayersDescription": "Кількість шарів моделі-чернетки, які буде вивантажено на GPU.",
-    "speculativeDraftCacheTypeInactiveDescription": "Застосовується, щойно запрацює спекулятивне декодування.",
-    "purchases": {
-      "title": "Покупки",
-      "statusOwned": "Придбано",
-      "statusUnlocking": "Розблокування",
-      "link": "Увійдіть, щоб користуватися на інших пристроях"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "Застосовується, щойно запрацює спекулятивне декодування."
   },
   "memory": {
     "shortWarning": "Попередження про пам'ять",
@@ -732,27 +719,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Завантаження не вдалося",
       "downloadFailedMessage": "Не вдалося завантажити модель: {{message}}",
-      "unauthorizedTitle": "Помилка автентифікації",
-      "unauthorizedMessage": "Ваш токен Hugging Face, схоже, є недійсним або термін його дії закінчився. Будь ласка, оновіть токен у налаштуваннях.",
-      "forbiddenTitle": "Доступ заборонено",
-      "forbiddenMessage": "У вас немає дозволу на доступ до цієї моделі. Переконайтеся, що:",
-      "forbiddenSteps": [
-        "Ваш токен має право на «читання»",
-        "Ви подали запит на доступ до цієї моделі, і вам його надали",
-        "Власник моделі схвалив ваш запит на доступ"
-      ],
-      "getTokenTitle": "Отримати токен Hugging Face",
-      "getTokenMessage": "Для завантаження цієї моделі потрібен токен Hugging Face.",
-      "getTokenSteps": [
-        "Перейдіть на сайт huggingface.co та увійдіть у систему",
-        "Перейдіть до розділу «Налаштування» > «Токени доступу»",
-        "Створити новий токен із правом доступу «читати»",
-        "Скопіюйте токен і вставте його в поле для токена"
-      ],
-      "tokenDisabledTitle": "Токен вимкнено",
-      "tokenDisabledMessage": "У вас є набір токенів Hugging Face, але наразі він вимкнений. Для завантаження цієї моделі потрібен токен. Увімкніть свій токен, щоб продовжити.",
-      "enableAndRetry": "Увімкнути та спробувати ще раз",
-      "goToSettings": "Перейти до налаштувань",
       "tryAgain": "Спробувати ще Рфаз",
       "viewOnHuggingFace": "Переглянути модель на HF ↗"
     },
@@ -769,34 +735,6 @@
       "exportChatSession": "Експортувати сеанс чату",
       "importSessions": "Імпортувати сесії",
       "exportCurrentSessionMarkdown": "Експортувати як Markdown"
-    },
-    "hfTokenSheet": {
-      "title": "Токен Hugging Face",
-      "description": "Необхідно для доступу до закритих моделей",
-      "inputLabel": "Особистий токен доступу",
-      "inputPlaceholder": "Вставте свій токен тут",
-      "save": "Зберегти токен",
-      "saved": "Токен успішно збережено",
-      "reset": "Скинути токен",
-      "resetSuccess": "Токен успішно вилучено",
-      "instructions": "Як отримати токен:",
-      "instructionsSteps": [
-        "Перейдіть на сайт huggingface.co та увійдіть у систему",
-        "Перейдіть до розділу «Налаштування» > «Токени доступу»",
-        "Створити новий токен із правом доступу «читати»",
-        "Скопіюйте токен і вставте його нижче"
-      ],
-      "getTokenLink": "Отримати токен на сайті huggingface.co ↗",
-      "error": {
-        "saving": "Помилка під час збереження токена",
-        "missing": "Потрібен токен Hugging Face",
-        "invalid": "Недійсний або прострочений токен",
-        "gatedModelAccess": "Доступ до цієї закритої моделі було відхилено"
-      },
-      "gatedModelIndicator": "Потрібен токен",
-      "tokenRequired": "Для цієї моделі потрібен токен доступу до Hugging Face",
-      "searchErrorHint": "Ваш токен API Hugging Face є недійсним або термін його дії закінчився. Щоб продовжити пошук, видаліть цей токен або вимкніть аутентифікацію за допомогою токена в налаштуваннях.",
-      "disableAndRetry": "Вимкнути токен і спробувати ще раз"
     },
     "modelSettingsSheet": {
       "modelSettings": "Налаштування Моделі",
@@ -1075,17 +1013,7 @@
     "missingModel": "Відсутня модель",
     "missingModelMessage": "Стандартна модель «{{modelName}}» для цього палетки недоступна. Завантажте її у вікні редагування або виберіть іншу модель.",
     "search": "Пошук",
-    "profile": "Профіль",
-    "signIn": "Увійти",
     "addPal": "Додати Pal",
-    "signInToAccessLibrary": "Увійдіть, щоб отримати доступ до своєї бібліотеки на сайті palshub.ai",
-    "signOut": "Вийти",
-    "signOutConfirmation": "Ви впевнені, що хочете вийти з системи?",
-    "signOutError": "Вихід не вдався. Спробуйте ще раз.",
-    "account": "Обліковий запис",
-    "signInToPalsHub": "Увійти в PalsHub",
-    "signInDescription": "Отримуйте доступ до своєї бібліотеки, створюйте приватні списки друзів та синхронізуйте дані між пристроями",
-    "searchAllPals": "Переглянути всіх Pal...",
     "deletePalConfirmation": "Ви впевнені, що хочете видалити «{{palName}}»?",
     "filters": {
       "all": "Всі",
@@ -1101,72 +1029,6 @@
       "private": "Приватне",
       "download": "Завантажити",
       "getFree": "Отримати Безкоштовно"
-    },
-    "sortOptions": {
-      "newest": "Новійша",
-      "oldest": "Старіша",
-      "rating": "Найкращі за оцінками",
-      "popular": "Найпопулярніші"
-    },
-    "palDetailSheet": {
-      "by": "від",
-      "unknown": "Невідомо",
-      "rating": "Оцінка",
-      "reviews": "Відгуки",
-      "created": "Створено",
-      "description": "Опис",
-      "noDescriptionAvailable": "Опис відсутній.",
-      "categories": "Категорії",
-      "tags": "Теги",
-      "systemPrompt": "Системне повідомлення",
-      "downloaded": "Завантажено",
-      "success": "Успіх",
-      "palAddedToCollection": "Pal додано до вашої колекції!",
-      "error": "Помилка",
-      "failedToLoadDetails": "Не вдалося завантажити інформацію про Pal",
-      "failedToDownload": "Не вдалося завантажити pal",
-      "notAvailable": "Н/Д"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "Відкрити",
-      "install": "Встановити",
-      "pending": "В очікуванні",
-      "unlocking": "Розблокування",
-      "retry": "Повторити",
-      "supportCode": "Код підтримки: {{code}}",
-      "noLongerAvailable": "Цей Pal більше недоступний. Ви можете {{refundLink}}.",
-      "refundLink": "попросити в Apple повернення коштів",
-      "notCompleted": "Не вдалося завершити цю покупку. Google поверне вам кошти.",
-      "withdrawnRefunding": "Цей Pal знято з продажу. Зверніться до підтримки щодо повернення коштів.",
-      "invalid": "Не вдалося підтвердити цю покупку.",
-      "heldInvalid": "Не вдалося розблокувати цю покупку. Зверніться до підтримки й назвіть цей код.",
-      "recommendedModel": "Рекомендована модель",
-      "sampleExchange": "Приклад розмови",
-      "signInLine": "Вже придбали? Увійдіть",
-      "licenseNotice": "Ви купуєте ліцензію на використання цього Pal.",
-      "termsOfSale": "Умови продажу",
-      "appleMediaTerms": "Умови медійних сервісів Apple",
-      "linkPrompt": "Увійдіть, щоб користуватися ним і на інших своїх пристроях",
-      "linkSignIn": "Увійти",
-      "dismiss": "Не зараз",
-      "linkConflict": "Ці покупки прив'язані до іншого облікового запису.",
-      "restorePurchases": "Відновити покупки",
-      "badgePending": "В очікуванні",
-      "badgeUnlocking": "Розблокування",
-      "badgeUpdate": "Доступне оновлення",
-      "updatePrompt": "Доступна нова версія від автора.",
-      "updatePromptWithNote": "Доступна нова версія від автора: {{note}}.",
-      "updateButton": "Оновити",
-      "updateConfirmText": "Ваші зміни в частинах, які змінив автор, буде замінено.",
-      "updateConfirm": "Оновити",
-      "updateCancel": "Скасувати",
-      "modelStep": {
-        "download": "Завантажити · {{size}}",
-        "startChat": "Почати чат",
-        "needsMemory": "Для найменшої моделі цього Pal потрібен пристрій з обсягом пам'яті не менше {{size}}.",
-        "noModelFits": "Цьому пристрою не вистачає пам'яті для цього Pal."
-      }
     }
   },
   "validation": {

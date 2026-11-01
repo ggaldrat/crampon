@@ -7,9 +7,6 @@ import {
   Message,
   CompletionSetting,
   GlobalSetting,
-  CachedPal,
-  UserLibrary,
-  SyncStatus,
   LocalPal,
 } from './models';
 
@@ -30,20 +27,8 @@ export const database = new Database({
     Message,
     CompletionSetting,
     GlobalSetting,
-    CachedPal,
-    UserLibrary,
-    SyncStatus,
     LocalPal,
   ],
 });
 
-export {
-  ChatSession,
-  Message,
-  CompletionSetting,
-  GlobalSetting,
-  CachedPal,
-  UserLibrary,
-  SyncStatus,
-  LocalPal,
-};
+export {ChatSession, Message, CompletionSetting, GlobalSetting, LocalPal};

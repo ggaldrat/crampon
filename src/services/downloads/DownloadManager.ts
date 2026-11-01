@@ -32,21 +32,6 @@ export class DownloadCancelledError extends Error {
   }
 }
 
-// The HF auth token must never leave huggingface.co. Download URLs are pinned to
-// HF at parse time, but this is a defense-in-depth gate so a token can never be
-// attached for any other host even if a non-HF URL ever reaches here.
-const isHuggingFaceUrl = (url: string | undefined): boolean => {
-  if (!url) {
-    return false;
-  }
-  try {
-    const parsed = new URL(url);
-    return parsed.protocol === 'https:' && parsed.host === 'huggingface.co';
-  } catch {
-    return false;
-  }
-};
-
 export class DownloadManager {
   private downloadJobs: DownloadMap;
   private callbacks: DownloadEventCallbacks = {};
@@ -252,11 +237,7 @@ export class DownloadManager {
     return progress;
   }
 
-  async startDownload(
-    model: Model,
-    destinationPath: string,
-    authToken?: string | null,
-  ): Promise<void> {
+  async startDownload(model: Model, destinationPath: string): Promise<void> {
     console.log(`${TAG}: Starting download for model:`, {
       modelId: model.id,
       destination: destinationPath,
@@ -267,11 +248,6 @@ export class DownloadManager {
       console.log(`${TAG}: Download already in progress for model:`, model.id);
       return;
     }
-
-    // Only send the HF auth token to huggingface.co.
-    const effectiveAuthToken = isHuggingFaceUrl(model.downloadUrl)
-      ? authToken
-      : null;
 
     if (!model.downloadUrl) {
       console.error(`${TAG}: Model has no download URL`);
@@ -300,20 +276,15 @@ export class DownloadManager {
     }
 
     if (Platform.OS === 'ios') {
-      await this.startIOSDownload(model, destinationPath, effectiveAuthToken);
+      await this.startIOSDownload(model, destinationPath);
     } else {
-      await this.startAndroidDownload(
-        model,
-        destinationPath,
-        effectiveAuthToken,
-      );
+      await this.startAndroidDownload(model, destinationPath);
     }
   }
 
   private async startIOSDownload(
     model: Model,
     destinationPath: string,
-    authToken?: string | null,
   ): Promise<void> {
     try {
       const downloadJob: DownloadJob = {
@@ -342,7 +313,6 @@ export class DownloadManager {
         progressInterval: 800,
         headers: {
           'User-Agent': hfUserAgent(),
-          ...(authToken ? {Authorization: `Bearer ${authToken}`} : {}),
         },
         begin: res => {
           console.log(`${TAG}: Download started for ID: ${model.id}`, {
@@ -472,7 +442,6 @@ export class DownloadManager {
   private async startAndroidDownload(
     model: Model,
     destinationPath: string,
-    authToken?: string | null,
   ): Promise<void> {
     try {
       console.log(`${TAG}: Starting Android download for model:`, {
@@ -498,7 +467,6 @@ export class DownloadManager {
         networkType: 'ANY',
         priority: 1,
         progressInterval: 1000,
-        ...(authToken ? {authToken} : {}),
       };
       await ensureNotificationPermission();
       const response: DownloadResponse =

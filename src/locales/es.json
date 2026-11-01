@@ -176,13 +176,6 @@
     "speculativeNotMTPCapable": "El modelo activo no es compatible con la decodificación especulativa y no hay un modelo borrador compatible emparejado, por lo que esta opción permanece desactivada sin efecto. Se aplicará automáticamente a los modelos compatibles.",
     "speculativeDraftModel": "Modelo Borrador",
     "speculativeDraftModelDescription": "Genera tokens borrador para el modelo activo.",
-    "apiSettingsTitle": "Ajustes de API",
-    "huggingFaceTokenLabel": "Token de acceso de Hugging Face",
-    "tokenIsSetDescription": "El token está configurado. Se requiere para acceder a modelos de acceso restringido.",
-    "setTokenDescription": "Configura un token para acceder a modelos de acceso restringido de Hugging Face.",
-    "setTokenButton": "Configurar token",
-    "useHfTokenLabel": "Usar token de HF",
-    "useHfTokenDescription": "Actívalo para usar el token en las solicitudes de API. Desactívalo si el token causa problemas de autenticación.",
     "cacheStorageTitle": "Caché y Almacenamiento",
     "clearPalCaches": "Borrar caché de atajos",
     "clearPalCachesDescription": "Borra los datos en caché utilizados para acelerar los atajos. Esto no afectará a tus Pals ni al historial de chat.",
@@ -205,13 +198,7 @@
     "apiKeyDescription": "Se almacena de forma segura en el dispositivo.",
     "remoteModel": "Remoto",
     "remotePrivacyNotice": "Los mensajes enviados a servidores remotos salen de tu dispositivo. Conéctate solo a servidores de confianza.",
-    "remoteIndicator": "Remoto",
-    "purchases": {
-      "title": "Compras",
-      "statusOwned": "Comprado",
-      "statusUnlocking": "Desbloqueando",
-      "link": "Inicia sesión para usarlo en otros dispositivos"
-    }
+    "remoteIndicator": "Remoto"
   },
   "memory": {
     "shortWarning": "Advertencia de memoria",
@@ -771,27 +758,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Error de descarga",
       "downloadFailedMessage": "No se pudo descargar el modelo: {{message}}",
-      "unauthorizedTitle": "Error de autenticación",
-      "unauthorizedMessage": "Tu token de Hugging Face parece no ser válido o ha expirado. Por favor, actualiza tu token en los ajustes.",
-      "forbiddenTitle": "Acceso denegado",
-      "forbiddenMessage": "No tienes permiso para acceder a este modelo. Asegúrate de:",
-      "forbiddenSteps": [
-        "Que tu token tenga permisos de lectura (\"read\")",
-        "Que hayas solicitado y se te haya concedido acceso a este modelo",
-        "Que el propietario del modelo haya aprobado tu solicitud de acceso"
-      ],
-      "getTokenTitle": "Obtener token de Hugging Face",
-      "getTokenMessage": "Este modelo requiere un token de Hugging Face para descargarse.",
-      "getTokenSteps": [
-        "Entra en huggingface.co e inicia sesión",
-        "Ve a Ajustes > Tokens de acceso",
-        "Crea un token nuevo con permisos de lectura (\"read\")",
-        "Copia el token y pégalo en el campo de tokens"
-      ],
-      "tokenDisabledTitle": "El token está desactivado",
-      "tokenDisabledMessage": "Tienes configurado un token de Hugging Face, pero actualmente está desactivado. Este modelo requiere un token para descargarse. Activa tu token para continuar.",
-      "enableAndRetry": "Activar y reintentar",
-      "goToSettings": "Ir a ajustes",
       "tryAgain": "Volver a intentar",
       "viewOnHuggingFace": "Ver modelo en HF ↗"
     },
@@ -808,34 +774,6 @@
       "exportAllSessions": "Exportar todas las sesiones",
       "exportChatSession": "Exportar sesión de chat",
       "importSessions": "Importar sesiones"
-    },
-    "hfTokenSheet": {
-      "title": "Token de Hugging Face",
-      "description": "Necesario para acceder a modelos restringidos",
-      "inputLabel": "Token de acceso personal",
-      "inputPlaceholder": "Pega tu token aquí",
-      "save": "Guardar token",
-      "saved": "Token guardado con éxito",
-      "reset": "Restablecer token",
-      "resetSuccess": "Token eliminado con éxito",
-      "instructions": "Cómo obtener un token:",
-      "instructionsSteps": [
-        "Ve a huggingface.co e inicia sesión",
-        "Ve a Configuración > Tokens de acceso",
-        "Crea un nuevo token con acceso de lectura (\"read\")",
-        "Copia el token y pégalo abajo"
-      ],
-      "getTokenLink": "Obtener un token en huggingface.co ↗",
-      "error": {
-        "saving": "Error al guardar el token",
-        "missing": "Se requiere un token de Hugging Face",
-        "invalid": "Token inválido o caducado",
-        "gatedModelAccess": "Se denegó el acceso a este modelo restringido"
-      },
-      "gatedModelIndicator": "Requiere Token",
-      "tokenRequired": "Este modelo requiere un token de acceso de Hugging Face",
-      "searchErrorHint": "Tu token de API de Hugging Face no es válido o ha caducado. Para seguir buscando, por favor elimina el token o desactiva la autenticación por token en los Ajustes.",
-      "disableAndRetry": "Desactivar token y reintentar"
     },
     "modelSettingsSheet": {
       "modelSettings": "Ajustes del modelo",
@@ -1075,17 +1013,7 @@
     "missingModel": "Modelo no encontrado",
     "missingModelMessage": "El modelo predeterminado \"{{modelName}}\" para este Pal (amigo) no está disponible. Descárgalo en la pantalla de edición o selecciona otro modelo.",
     "search": "Buscar",
-    "profile": "Perfil",
-    "signIn": "Iniciar sesión",
     "addPal": "Agregar amigo (Pal)",
-    "signInToAccessLibrary": "Inicia sesión para acceder a tu biblioteca desde palshub.ai",
-    "signOut": "Cerrar sesión",
-    "signOutConfirmation": "¿Seguro que quieres cerrar sesión?",
-    "signOutError": "Error al cerrar sesión. Por favor, inténtalo de nuevo.",
-    "account": "Cuenta",
-    "signInToPalsHub": "Iniciar sesión en PalsHub",
-    "signInDescription": "Accede a tu biblioteca, crea amigos privados y sincroniza entre dispositivos",
-    "searchAllPals": "Buscar en todos los amigos (Pals)...",
     "deletePalConfirmation": "¿Seguro que quieres eliminar a \"{{palName}}\"?",
     "filters": {
       "all": "Todos",
@@ -1101,72 +1029,6 @@
       "private": "Privado",
       "download": "Descargar",
       "getFree": "Obtener gratis"
-    },
-    "sortOptions": {
-      "newest": "Más recientes",
-      "oldest": "Más antiguos",
-      "rating": "Mejor valorados",
-      "popular": "Más populares"
-    },
-    "palDetailSheet": {
-      "by": "por",
-      "unknown": "Desconocido",
-      "rating": "Valoración",
-      "reviews": "Reseñas",
-      "created": "Creado",
-      "description": "Descripción",
-      "noDescriptionAvailable": "No hay descripción disponible.",
-      "categories": "Categorías",
-      "tags": "Etiquetas",
-      "systemPrompt": "Instrucción del sistema",
-      "downloaded": "Descargado",
-      "success": "Éxito",
-      "palAddedToCollection": "¡El Pal (amigo) se ha añadido a tu colección!",
-      "error": "Error",
-      "failedToLoadDetails": "Error al cargar los detalles del Pal",
-      "failedToDownload": "Error al descargar el Pal",
-      "notAvailable": "N/D"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "Abrir",
-      "install": "Instalar",
-      "pending": "Pendiente",
-      "unlocking": "Desbloqueando",
-      "retry": "Reintentar",
-      "supportCode": "Código de soporte: {{code}}",
-      "noLongerAvailable": "Este Pal ya no está disponible. Puedes {{refundLink}}.",
-      "refundLink": "pedir un reembolso a Apple",
-      "notCompleted": "No se pudo completar esta compra. Google te hará el reembolso.",
-      "withdrawnRefunding": "Este Pal se ha retirado. Contacta con soporte para obtener un reembolso.",
-      "invalid": "No pudimos verificar esta compra.",
-      "heldInvalid": "No pudimos desbloquear esta compra. Contacta con soporte y facilita este código.",
-      "recommendedModel": "Modelo recomendado",
-      "sampleExchange": "Conversación de ejemplo",
-      "signInLine": "¿Ya lo tienes? Inicia sesión",
-      "licenseNotice": "Estás comprando una licencia para usar este Pal.",
-      "termsOfSale": "Condiciones de venta",
-      "appleMediaTerms": "Términos de los Servicios Multimedia de Apple",
-      "linkPrompt": "Inicia sesión para usarlo también en tus otros dispositivos",
-      "linkSignIn": "Iniciar sesión",
-      "dismiss": "Ahora no",
-      "linkConflict": "Estas compras están vinculadas a otra cuenta.",
-      "restorePurchases": "Restaurar compras",
-      "badgePending": "Pendiente",
-      "badgeUnlocking": "Desbloqueando",
-      "badgeUpdate": "Actualización disponible",
-      "updatePrompt": "Hay una nueva versión del creador disponible.",
-      "updatePromptWithNote": "Hay una nueva versión del creador disponible: {{note}}.",
-      "updateButton": "Actualizar",
-      "updateConfirmText": "Esto reemplazará tus cambios en las partes que el creador modificó.",
-      "updateConfirm": "Actualizar",
-      "updateCancel": "Cancelar",
-      "modelStep": {
-        "download": "Descargar · {{size}}",
-        "startChat": "Iniciar chat",
-        "needsMemory": "Este Pal necesita un dispositivo con al menos {{size}} de memoria para su modelo más pequeño.",
-        "noModelFits": "Este dispositivo no tiene suficiente memoria para este Pal."
-      }
     }
   },
   "validation": {

@@ -126,14 +126,6 @@ class PalRepository {
     }
   }
 
-  async getPalByPalshubId(palshubId: string): Promise<Pal | null> {
-    const [localPal] = await database.collections
-      .get<LocalPal>('local_pals')
-      .query(Q.where('palshub_id', palshubId))
-      .fetch();
-    return localPal ? localPal.toPal() : null;
-  }
-
   async getPalById(id: string): Promise<Pal | null> {
     try {
       const localPal = await database.collections
@@ -341,20 +333,6 @@ class PalRepository {
       return localPals.map(pal => pal.toPal());
     } catch (error) {
       console.error('Error fetching local pals:', error);
-      return [];
-    }
-  }
-
-  async getPalsHubPals(): Promise<Pal[]> {
-    try {
-      const palshubPals = await database.collections
-        .get<LocalPal>('local_pals')
-        .query(Q.where('source', 'palshub'))
-        .fetch();
-
-      return palshubPals.map(pal => pal.toPal());
-    } catch (error) {
-      console.error('Error fetching palshub pals:', error);
       return [];
     }
   }

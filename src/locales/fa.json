@@ -106,13 +106,6 @@
     "importButton": "وارد کردن",
     "importSuccess": "{{count}} جلسه چت با موفقیت وارد شد.",
     "importError": "وارد کردن جلسات چت ناموفق بود. لطفاً فرمت فایل را بررسی کنید.",
-    "apiSettingsTitle": "تنظیمات API",
-    "huggingFaceTokenLabel": "توکن Hugging Face",
-    "tokenIsSetDescription": "توکن تنظیم شده است. برای دسترسی به مدل‌های محدودشده لازم است.",
-    "setTokenDescription": "برای دسترسی به مدل‌های محدودشده Hugging Face یک توکن تنظیم کنید.",
-    "setTokenButton": "تنظیم توکن",
-    "useHfTokenLabel": "استفاده از توکن HF",
-    "useHfTokenDescription": "فعال کنید تا از توکن برای درخواست‌های API استفاده شود. اگر توکن مشکل احراز هویت ایجاد می‌کند غیرفعال کنید.",
     "cacheStorageTitle": "کش و فضای ذخیره‌سازی",
     "clearPalCaches": "پاک کردن کش میانبرها",
     "clearPalCachesDescription": "داده‌های کش‌شده برای سرعت‌بخشی به میانبرها پاک می‌شود. این کار روی پَل‌ها یا تاریخچه چت تأثیری ندارد.",
@@ -205,13 +198,7 @@
     "speculativeDraftValueCacheType": "نوع کش Value پیش‌نویس",
     "speculativeDraftNGpuLayers": "لایه‌های GPU پیش‌نویس",
     "speculativeDraftNGpuLayersDescription": "تعداد لایه‌های مدل پیش‌نویس که روی GPU بارگذاری می‌شوند.",
-    "speculativeDraftCacheTypeInactiveDescription": "به‌محض اجرای رمزگشایی گمانه‌زنانه اعمال می‌شود.",
-    "purchases": {
-      "title": "خریدها",
-      "statusOwned": "خریداری‌شده",
-      "statusUnlocking": "در حال فعال‌سازی",
-      "link": "برای استفاده در دستگاه‌های دیگر وارد شوید"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "به‌محض اجرای رمزگشایی گمانه‌زنانه اعمال می‌شود."
   },
   "memory": {
     "shortWarning": "هشدار حافظه",
@@ -722,27 +709,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "دانلود ناموفق",
       "downloadFailedMessage": "دانلود مدل ممکن نشد: {{message}}",
-      "unauthorizedTitle": "احراز هویت ناموفق",
-      "unauthorizedMessage": "توکن Hugging Face شما نامعتبر یا منقضی شده. لطفاً توکن خود را در تنظیمات به‌روز کنید.",
-      "forbiddenTitle": "دسترسی رد شد",
-      "forbiddenMessage": "شما به این مدل دسترسی ندارید. لطفاً مطمئن شوید:",
-      "forbiddenSteps": [
-        "توکن شما دسترسی \"read\" دارد",
-        "درخواست دسترسی به این مدل داده‌اید و تأیید شده",
-        "صاحب مدل درخواست دسترسی شما را تأیید کرده"
-      ],
-      "getTokenTitle": "دریافت توکن Hugging Face",
-      "getTokenMessage": "این مدل برای دانلود به توکن Hugging Face نیاز دارد.",
-      "getTokenSteps": [
-        "به huggingface.co بروید و وارد شوید",
-        "به Settings > Access Tokens بروید",
-        "یک توکن جدید با دسترسی \"read\" بسازید",
-        "توکن را کپی کرده و در فیلد توکن وارد کنید"
-      ],
-      "tokenDisabledTitle": "توکن غیرفعال است",
-      "tokenDisabledMessage": "شما یک توکن Hugging Face دارید، اما در حال حاضر غیرفعال است. این مدل برای دانلود به توکن نیاز دارد. توکن را فعال کنید تا ادامه دهید.",
-      "enableAndRetry": "فعال‌سازی و تلاش مجدد",
-      "goToSettings": "رفتن به تنظیمات",
       "tryAgain": "تلاش مجدد",
       "viewOnHuggingFace": "مشاهده مدل در HF ↗"
     },
@@ -759,34 +725,6 @@
       "exportChatSession": "خروجی جلسه چت",
       "importSessions": "ورود جلسات",
       "exportCurrentSessionMarkdown": "خروجی به صورت Markdown"
-    },
-    "hfTokenSheet": {
-      "title": "توکن Hugging Face",
-      "description": "برای دسترسی به مدل‌های محدود لازم است",
-      "inputLabel": "توکن دسترسی شخصی",
-      "inputPlaceholder": "توکن خود را اینجا وارد کنید",
-      "save": "ذخیره توکن",
-      "saved": "توکن با موفقیت ذخیره شد",
-      "reset": "بازنشانی توکن",
-      "resetSuccess": "توکن با موفقیت حذف شد",
-      "instructions": "نحوه دریافت توکن:",
-      "instructionsSteps": [
-        "به huggingface.co بروید و وارد شوید",
-        "به Settings > Access Tokens بروید",
-        "یک توکن جدید با دسترسی \"read\" بسازید",
-        "توکن را کپی کرده و در زیر وارد کنید"
-      ],
-      "getTokenLink": "دریافت توکن از huggingface.co ↗",
-      "error": {
-        "saving": "خطا در ذخیره توکن",
-        "missing": "توکن Hugging Face لازم است",
-        "invalid": "توکن نامعتبر یا منقضی شده",
-        "gatedModelAccess": "دسترسی به این مدل محدود رد شد"
-      },
-      "gatedModelIndicator": "نیاز به توکن",
-      "tokenRequired": "این مدل به توکن دسترسی Hugging Face نیاز دارد",
-      "searchErrorHint": "توکن API Hugging Face شما نامعتبر یا منقضی شده. برای ادامه جستجو، لطفاً توکن را حذف کنید یا احراز هویت توکن را در تنظیمات غیرفعال کنید.",
-      "disableAndRetry": "غیرفعال‌سازی توکن و تلاش مجدد"
     },
     "modelSettingsSheet": {
       "modelSettings": "تنظیمات مدل",
@@ -1075,17 +1013,7 @@
     "missingModel": "مدل موجود نیست",
     "missingModelMessage": "مدل پیش‌فرض «{{modelName}}» برای این پَل در دسترس نیست. لطفاً آن را در صفحه ویرایش دانلود کنید یا مدل دیگری انتخاب کنید.",
     "search": "جستجو",
-    "profile": "پروفایل",
-    "signIn": "ورود",
     "addPal": "افزودن پَل",
-    "signInToAccessLibrary": "برای دسترسی به کتابخانه‌تان از palshub.ai وارد شوید",
-    "signOut": "خروج",
-    "signOutConfirmation": "آیا مطمئنید می‌خواهید خارج شوید؟",
-    "signOutError": "خروج با مشکل مواجه شد. لطفاً دوباره تلاش کنید.",
-    "account": "حساب کاربری",
-    "signInToPalsHub": "ورود به PalsHub",
-    "signInDescription": "به کتابخانه‌تان دسترسی پیدا کنید، پَل‌های خصوصی بسازید و بین دستگاه‌ها همگام‌سازی کنید",
-    "searchAllPals": "جستجو در همه پَل‌ها...",
     "deletePalConfirmation": "آیا مطمئنید می‌خواهید «{{palName}}» را حذف کنید؟",
     "filters": {
       "all": "همه",
@@ -1101,72 +1029,6 @@
       "private": "خصوصی",
       "download": "دانلود",
       "getFree": "دریافت رایگان"
-    },
-    "sortOptions": {
-      "newest": "جدیدترین",
-      "oldest": "قدیمی‌ترین",
-      "rating": "پرامتیازترین",
-      "popular": "محبوب‌ترین"
-    },
-    "palDetailSheet": {
-      "by": "توسط",
-      "unknown": "ناشناس",
-      "rating": "امتیاز",
-      "reviews": "نظرات",
-      "created": "تاریخ ایجاد",
-      "description": "توضیحات",
-      "noDescriptionAvailable": "توضیحاتی موجود نیست.",
-      "categories": "دسته‌بندی‌ها",
-      "tags": "برچسب‌ها",
-      "systemPrompt": "پرامپت سیستم",
-      "downloaded": "دانلود شد",
-      "success": "موفق",
-      "palAddedToCollection": "پَل به مجموعه شما اضافه شد!",
-      "error": "خطا",
-      "failedToLoadDetails": "بارگذاری جزئیات پَل با مشکل مواجه شد",
-      "failedToDownload": "دانلود پَل با مشکل مواجه شد",
-      "notAvailable": "ندارد"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "باز کردن",
-      "install": "نصب",
-      "pending": "در انتظار",
-      "unlocking": "در حال فعال‌سازی",
-      "retry": "تلاش مجدد",
-      "supportCode": "کد پشتیبانی: {{code}}",
-      "noLongerAvailable": "این پَل دیگر در دسترس نیست. می‌توانید {{refundLink}}.",
-      "refundLink": "از Apple بازگشت وجه بخواهید",
-      "notCompleted": "این خرید کامل نشد. Google مبلغ را به شما بازمی‌گرداند.",
-      "withdrawnRefunding": "این پَل از عرضه خارج شد. برای بازگشت وجه با پشتیبانی تماس بگیرید.",
-      "invalid": "تأیید این خرید ممکن نشد.",
-      "heldInvalid": "فعال‌سازی این خرید ممکن نشد. با همین کد با پشتیبانی تماس بگیرید.",
-      "recommendedModel": "مدل پیشنهادی",
-      "sampleExchange": "نمونه گفتگو",
-      "signInLine": "قبلاً خریده‌اید؟ وارد شوید",
-      "licenseNotice": "در حال خرید مجوز استفاده از این پَل هستید.",
-      "termsOfSale": "شرایط فروش",
-      "appleMediaTerms": "شرایط خدمات رسانه‌ای Apple",
-      "linkPrompt": "وارد شوید تا در دستگاه‌های دیگرتان هم از آن استفاده کنید",
-      "linkSignIn": "ورود",
-      "dismiss": "فعلاً نه",
-      "linkConflict": "این خریدها به حساب کاربری دیگری متصل‌اند.",
-      "restorePurchases": "بازیابی خریدها",
-      "badgePending": "در انتظار",
-      "badgeUnlocking": "در حال فعال‌سازی",
-      "badgeUpdate": "به‌روزرسانی در دسترس",
-      "updatePrompt": "نسخه جدیدی از سازنده در دسترس است.",
-      "updatePromptWithNote": "نسخه جدیدی از سازنده در دسترس است: {{note}}.",
-      "updateButton": "به‌روزرسانی",
-      "updateConfirmText": "این کار ویرایش‌های شما را در بخش‌هایی که سازنده تغییر داده جایگزین می‌کند.",
-      "updateConfirm": "به‌روزرسانی",
-      "updateCancel": "لغو",
-      "modelStep": {
-        "download": "دانلود · {{size}}",
-        "startChat": "شروع چت",
-        "needsMemory": "این پَل برای کوچک‌ترین مدلش به دستگاهی با حداقل {{size}} حافظه نیاز دارد.",
-        "noModelFits": "این دستگاه حافظه کافی برای این پَل ندارد."
-      }
     }
   },
   "validation": {

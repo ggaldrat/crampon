@@ -106,13 +106,6 @@
     "importButton": "Impor",
     "importSuccess": "Berhasil mengimpor {{count}} sesi obrolan.",
     "importError": "Gagal mengimpor sesi obrolan. Harap periksa format file.",
-    "apiSettingsTitle": "Pengaturan API",
-    "huggingFaceTokenLabel": "Token Hugging Face",
-    "tokenIsSetDescription": "Token telah diatur. Diperlukan untuk mengakses model bergerbang.",
-    "setTokenDescription": "Atur token untuk mengakses model bergerbang dari Hugging Face.",
-    "setTokenButton": "Atur Token",
-    "useHfTokenLabel": "Gunakan Token HF",
-    "useHfTokenDescription": "Aktifkan untuk menggunakan token dalam permintaan API. Nonaktifkan jika token menyebabkan masalah autentikasi.",
     "cacheStorageTitle": "Cache & Penyimpanan",
     "clearPalCaches": "Bersihkan Cache Shortcut",
     "clearPalCachesDescription": "Menghapus data cache yang digunakan untuk mempercepat Shortcut. Tidak memengaruhi Pal atau riwayat obrolan Anda.",
@@ -205,13 +198,7 @@
     "speculativeDraftValueCacheType": "Tipe Cache Nilai Draf",
     "speculativeDraftNGpuLayers": "Lapisan GPU Draf",
     "speculativeDraftNGpuLayersDescription": "Jumlah lapisan model draf yang dialihkan ke GPU.",
-    "speculativeDraftCacheTypeInactiveDescription": "Berlaku setelah decoding spekulatif berjalan.",
-    "purchases": {
-      "title": "Pembelian",
-      "statusOwned": "Sudah Dibeli",
-      "statusUnlocking": "Membuka Kunci",
-      "link": "Masuk untuk menggunakannya di perangkat lain"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "Berlaku setelah decoding spekulatif berjalan."
   },
   "memory": {
     "shortWarning": "Peringatan Memori",
@@ -722,27 +709,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Unduhan Gagal",
       "downloadFailedMessage": "Gagal mengunduh model: {{message}}",
-      "unauthorizedTitle": "Autentikasi Gagal",
-      "unauthorizedMessage": "Token Hugging Face Anda tampaknya tidak valid atau kedaluwarsa. Harap perbarui token Anda di pengaturan.",
-      "forbiddenTitle": "Akses Ditolak",
-      "forbiddenMessage": "Anda tidak memiliki izin untuk mengakses model ini. Pastikan:",
-      "forbiddenSteps": [
-        "Token Anda memiliki izin \"read\"",
-        "Anda telah meminta dan diberikan akses ke model ini",
-        "Pemilik model telah menyetujui permintaan akses Anda"
-      ],
-      "getTokenTitle": "Dapatkan Token Hugging Face",
-      "getTokenMessage": "Model ini memerlukan token Hugging Face untuk diunduh.",
-      "getTokenSteps": [
-        "Buka huggingface.co dan masuk",
-        "Buka Pengaturan > Access Tokens",
-        "Buat token baru dengan akses \"read\"",
-        "Salin token dan tempel di kolom token"
-      ],
-      "tokenDisabledTitle": "Token Dinonaktifkan",
-      "tokenDisabledMessage": "Anda memiliki token Hugging Face yang disetel, tetapi saat ini dinonaktifkan. Model ini memerlukan token untuk diunduh. Aktifkan token Anda untuk melanjutkan.",
-      "enableAndRetry": "Aktifkan dan Coba Lagi",
-      "goToSettings": "Buka Pengaturan",
       "tryAgain": "Coba Lagi",
       "viewOnHuggingFace": "Lihat Model di HF ↗"
     },
@@ -759,34 +725,6 @@
       "exportChatSession": "Ekspor sesi obrolan",
       "importSessions": "Impor sesi",
       "exportCurrentSessionMarkdown": "Ekspor sebagai Markdown"
-    },
-    "hfTokenSheet": {
-      "title": "Token Hugging Face",
-      "description": "Diperlukan untuk mengakses model bergerbang",
-      "inputLabel": "Token Akses Pribadi",
-      "inputPlaceholder": "Tempel token Anda di sini",
-      "save": "Simpan Token",
-      "saved": "Token berhasil disimpan",
-      "reset": "Atur Ulang Token",
-      "resetSuccess": "Token berhasil dihapus",
-      "instructions": "Cara mendapatkan token:",
-      "instructionsSteps": [
-        "Buka huggingface.co dan masuk",
-        "Buka Pengaturan > Access Tokens",
-        "Buat token baru dengan akses \"read\"",
-        "Salin token dan tempel di bawah ini"
-      ],
-      "getTokenLink": "Dapatkan token dari huggingface.co ↗",
-      "error": {
-        "saving": "Kesalahan menyimpan token",
-        "missing": "Token Hugging Face diperlukan",
-        "invalid": "Token tidak valid atau kedaluwarsa",
-        "gatedModelAccess": "Akses ke model bergerbang ini ditolak"
-      },
-      "gatedModelIndicator": "Memerlukan Token",
-      "tokenRequired": "Model ini memerlukan token akses Hugging Face",
-      "searchErrorHint": "Token API Hugging Face Anda tidak valid atau kedaluwarsa. Untuk melanjutkan pencarian, harap hapus token atau nonaktifkan autentikasi token di Pengaturan.",
-      "disableAndRetry": "Nonaktifkan Token & Coba Lagi"
     },
     "modelSettingsSheet": {
       "modelSettings": "Pengaturan Model",
@@ -1075,17 +1013,7 @@
     "missingModel": "Model Tidak Ditemukan",
     "missingModelMessage": "Model default \"{{modelName}}\" untuk pal ini tidak tersedia. Harap unduh di lembar edit atau pilih model lain.",
     "search": "Cari",
-    "profile": "Profil",
-    "signIn": "Masuk",
     "addPal": "Tambah Pal",
-    "signInToAccessLibrary": "Masuk untuk mengakses pustaka Anda dari palshub.ai",
-    "signOut": "Keluar",
-    "signOutConfirmation": "Yakin ingin keluar?",
-    "signOutError": "Gagal keluar. Silakan coba lagi.",
-    "account": "Akun",
-    "signInToPalsHub": "Masuk ke PalsHub",
-    "signInDescription": "Akses pustaka Anda, buat Pal pribadi, dan sinkronkan lintas perangkat",
-    "searchAllPals": "Cari semua Pal...",
     "deletePalConfirmation": "Yakin ingin menghapus \"{{palName}}\"?",
     "filters": {
       "all": "Semua",
@@ -1101,72 +1029,6 @@
       "private": "Pribadi",
       "download": "Unduh",
       "getFree": "Dapatkan Gratis"
-    },
-    "sortOptions": {
-      "newest": "Terbaru",
-      "oldest": "Terlama",
-      "rating": "Rating Tertinggi",
-      "popular": "Paling Populer"
-    },
-    "palDetailSheet": {
-      "by": "oleh",
-      "unknown": "Tidak Diketahui",
-      "rating": "Rating",
-      "reviews": "Ulasan",
-      "created": "Dibuat",
-      "description": "Deskripsi",
-      "noDescriptionAvailable": "Tidak ada deskripsi tersedia.",
-      "categories": "Kategori",
-      "tags": "Tag",
-      "systemPrompt": "Prompt Sistem",
-      "downloaded": "Diunduh",
-      "success": "Berhasil",
-      "palAddedToCollection": "Pal telah ditambahkan ke koleksi Anda!",
-      "error": "Kesalahan",
-      "failedToLoadDetails": "Gagal memuat detail pal",
-      "failedToDownload": "Gagal mengunduh pal",
-      "notAvailable": "T/A"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "Buka",
-      "install": "Pasang",
-      "pending": "Tertunda",
-      "unlocking": "Membuka Kunci",
-      "retry": "Coba Lagi",
-      "supportCode": "Kode dukungan: {{code}}",
-      "noLongerAvailable": "Pal ini tidak lagi tersedia. Anda dapat {{refundLink}}.",
-      "refundLink": "meminta pengembalian dana ke Apple",
-      "notCompleted": "Pembelian ini tidak dapat diselesaikan. Google akan mengembalikan dana Anda.",
-      "withdrawnRefunding": "Pal ini telah ditarik. Hubungi dukungan untuk pengembalian dana.",
-      "invalid": "Kami tidak dapat memverifikasi pembelian ini.",
-      "heldInvalid": "Kami tidak dapat membuka kunci pembelian ini. Hubungi dukungan dengan kode ini.",
-      "recommendedModel": "Model yang Direkomendasikan",
-      "sampleExchange": "Contoh Percakapan",
-      "signInLine": "Sudah punya? Masuk",
-      "licenseNotice": "Anda membeli lisensi untuk menggunakan Pal ini.",
-      "termsOfSale": "Ketentuan Penjualan",
-      "appleMediaTerms": "Ketentuan Layanan Media Apple",
-      "linkPrompt": "Masuk untuk menggunakannya di perangkat Anda yang lain juga",
-      "linkSignIn": "Masuk",
-      "dismiss": "Nanti Saja",
-      "linkConflict": "Pembelian ini tertaut ke akun lain.",
-      "restorePurchases": "Pulihkan Pembelian",
-      "badgePending": "Tertunda",
-      "badgeUnlocking": "Membuka Kunci",
-      "badgeUpdate": "Pembaruan Tersedia",
-      "updatePrompt": "Versi baru dari pembuatnya sudah tersedia.",
-      "updatePromptWithNote": "Versi baru dari pembuatnya sudah tersedia: {{note}}.",
-      "updateButton": "Perbarui",
-      "updateConfirmText": "Ini akan menggantikan perubahan Anda pada bagian yang diubah oleh pembuatnya.",
-      "updateConfirm": "Perbarui",
-      "updateCancel": "Batal",
-      "modelStep": {
-        "download": "Unduh · {{size}}",
-        "startChat": "Mulai Obrolan",
-        "needsMemory": "Pal ini memerlukan perangkat dengan memori minimal {{size}} untuk model terkecilnya.",
-        "noModelFits": "Perangkat ini tidak memiliki cukup memori untuk Pal ini."
-      }
     }
   },
   "validation": {

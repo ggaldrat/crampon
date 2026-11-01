@@ -156,6 +156,7 @@ const createIndex = (table, columns) => ({
   table,
   columns,
 });
+const unsafeExecuteSql = sql => ({type: 'sql', sql});
 
 // Export all the mocks
 module.exports = {
@@ -186,6 +187,7 @@ module.exports = {
   createTable,
   addColumns,
   createIndex,
+  unsafeExecuteSql,
 
   // Q for queries
   Q: {

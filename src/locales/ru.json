@@ -617,57 +617,8 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "Ошибка загрузки",
       "downloadFailedMessage": "Не удалось загрузить модель: {{message}}",
-      "unauthorizedTitle": "Ошибка аутентификации",
-      "unauthorizedMessage": "Ваш токен Hugging Face недействителен или истёк. Обновите его в настройках.",
-      "forbiddenTitle": "Доступ запрещён",
-      "forbiddenMessage": "У вас нет прав для доступа к этой модели. Убедитесь, что:",
-      "forbiddenSteps": [
-        "Ваш токен имеет разрешение \"read\"",
-        "Вы запросили и получили доступ на странице модели",
-        "Владелец модели одобрил ваш запрос"
-      ],
-      "getTokenTitle": "Получить токен Hugging Face",
-      "getTokenMessage": "Для загрузки этой модели требуется токен Hugging Face.",
-      "getTokenSteps": [
-        "Зайдите на huggingface.co и авторизуйтесь",
-        "Перейдите в Settings > Access Tokens",
-        "Создайте новый токен с правами \"read\"",
-        "Скопируйте и вставьте его в приложении"
-      ],
-      "tokenDisabledTitle": "Токен отключён",
-      "tokenDisabledMessage": "У вас задан токен Hugging Face, но в данный момент он отключён. Для загрузки этой модели требуется токен. Включите токен, чтобы продолжить.",
-      "enableAndRetry": "Включить и повторить",
-      "goToSettings": "В настройки",
       "tryAgain": "Повторить",
       "viewOnHuggingFace": "Открыть на HF ↗"
-    },
-    "hfTokenSheet": {
-      "title": "Токен Hugging Face",
-      "description": "Требуется для доступа к моделям с ограниченным доступом",
-      "inputLabel": "Персональный токен доступа",
-      "inputPlaceholder": "Вставьте ваш токен здесь",
-      "save": "Сохранить токен",
-      "saved": "Токен успешно сохранён",
-      "reset": "Сбросить токен",
-      "resetSuccess": "Токен успешно удалён",
-      "instructions": "Как получить токен:",
-      "instructionsSteps": [
-        "Зайдите на huggingface.co и авторизуйтесь",
-        "Перейдите в Settings > Access Tokens",
-        "Создайте новый токен с правами \"read\"",
-        "Скопируйте токен и вставьте его ниже"
-      ],
-      "getTokenLink": "Получить токен на huggingface.co ↗",
-      "error": {
-        "saving": "Ошибка сохранения токена",
-        "missing": "Требуется токен Hugging Face",
-        "invalid": "Недействительный или истёкший токен",
-        "gatedModelAccess": "Доступ к этой закрытой модели отклонён"
-      },
-      "gatedModelIndicator": "Требуется токен",
-      "tokenRequired": "Для этой модели требуется токен доступа Hugging Face",
-      "searchErrorHint": "Ваш токен API Hugging Face недействителен или истёк. Чтобы продолжить поиск, удалите токен или отключите аутентификацию по токену в Настройках.",
-      "disableAndRetry": "Отключить токен и повторить"
     },
     "palSheet": {
       "title": {
@@ -1147,13 +1098,6 @@
     "importButton": "Импорт",
     "importSuccess": "Успешно импортировано сессий чата: {{count}}.",
     "importError": "Не удалось импортировать сессии чата. Проверьте формат файла.",
-    "apiSettingsTitle": "Настройки API",
-    "huggingFaceTokenLabel": "Токен Hugging Face",
-    "tokenIsSetDescription": "Токен установлен. Требуется для доступа к моделям с ограниченным доступом.",
-    "setTokenDescription": "Установите токен для доступа к закрытым моделям на Hugging Face.",
-    "setTokenButton": "Установить токен",
-    "useHfTokenLabel": "Использовать HF токен",
-    "useHfTokenDescription": "Включите, чтобы использовать токен в API-запросах. Отключите, если токен вызывает проблемы с аутентификацией.",
     "cacheStorageTitle": "Кэш и хранилище",
     "clearPalCaches": "Очистить кэш ярлыков",
     "clearPalCachesDescription": "Очищает кэшированные данные, используемые для ускорения работы ярлыков. Это не затронет ваших Pal или историю чатов.",
@@ -1246,13 +1190,7 @@
     "speculativeDraftValueCacheType": "Тип кэша значений черновой модели",
     "speculativeDraftNGpuLayers": "Слои черновой модели на GPU",
     "speculativeDraftNGpuLayersDescription": "Количество слоёв черновой модели, переносимых на GPU.",
-    "speculativeDraftCacheTypeInactiveDescription": "Применяется при запуске спекулятивного декодирования.",
-    "purchases": {
-      "title": "Покупки",
-      "statusOwned": "Куплено",
-      "statusUnlocking": "Разблокировка",
-      "link": "Войдите, чтобы использовать на других устройствах"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "Применяется при запуске спекулятивного декодирования."
   },
   "storage": {
     "checkFailed": "Не удалось проверить хранилище",
@@ -1292,17 +1230,7 @@
     "missingModel": "Отсутствует модель",
     "missingModelMessage": "Модель по умолчанию \"{{modelName}}\" для этого Pal недоступна. Загрузите её на экране редактирования или выберите другую модель.",
     "search": "Поиск",
-    "profile": "Профиль",
-    "signIn": "Войти",
     "addPal": "Добавить Pal",
-    "signInToAccessLibrary": "Войдите, чтобы получить доступ к своей библиотеке на palshub.ai",
-    "signOut": "Выйти",
-    "signOutConfirmation": "Вы уверены, что хотите выйти?",
-    "signOutError": "Не удалось выйти. Попробуйте ещё раз.",
-    "account": "Аккаунт",
-    "signInToPalsHub": "Войти в PalsHub",
-    "signInDescription": "Доступ к вашей библиотеке, создание частных Pal и синхронизация между устройствами",
-    "searchAllPals": "Поиск всех Pal...",
     "deletePalConfirmation": "Вы уверены, что хотите удалить \"{{palName}}\"?",
     "filters": {
       "all": "Все",
@@ -1318,72 +1246,6 @@
       "private": "Частный",
       "download": "Загрузить",
       "getFree": "Получить бесплатно"
-    },
-    "sortOptions": {
-      "newest": "Самые новые",
-      "oldest": "Самые старые",
-      "rating": "Высокий рейтинг",
-      "popular": "Самые популярные"
-    },
-    "palDetailSheet": {
-      "by": "от",
-      "unknown": "Неизвестно",
-      "rating": "Рейтинг",
-      "reviews": "Отзывы",
-      "created": "Создано",
-      "description": "Описание",
-      "noDescriptionAvailable": "Описание недоступно.",
-      "categories": "Категории",
-      "tags": "Теги",
-      "systemPrompt": "Системный промпт",
-      "downloaded": "Загружено",
-      "success": "Успешно",
-      "palAddedToCollection": "Pal добавлен в вашу коллекцию!",
-      "error": "Ошибка",
-      "failedToLoadDetails": "Не удалось загрузить сведения о Pal",
-      "failedToDownload": "Не удалось загрузить Pal",
-      "notAvailable": "Н/Д"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "Открыть",
-      "install": "Установить",
-      "pending": "Ожидание",
-      "unlocking": "Разблокировка",
-      "retry": "Повторить",
-      "supportCode": "Код поддержки: {{code}}",
-      "noLongerAvailable": "Этот Pal больше недоступен. Вы можете {{refundLink}}.",
-      "refundLink": "запросить возврат средств у Apple",
-      "notCompleted": "Не удалось завершить покупку. Google вернёт вам средства.",
-      "withdrawnRefunding": "Этот Pal снят с публикации. Обратитесь в поддержку, чтобы вернуть средства.",
-      "invalid": "Не удалось проверить эту покупку.",
-      "heldInvalid": "Не удалось разблокировать покупку. Обратитесь в поддержку с этим кодом.",
-      "recommendedModel": "Рекомендуемая модель",
-      "sampleExchange": "Пример диалога",
-      "signInLine": "Уже купили? Войдите",
-      "licenseNotice": "Вы покупаете лицензию на использование этого Pal.",
-      "termsOfSale": "Условия продажи",
-      "appleMediaTerms": "Условия использования Apple Media Services",
-      "linkPrompt": "Войдите, чтобы использовать его и на других устройствах",
-      "linkSignIn": "Войти",
-      "dismiss": "Не сейчас",
-      "linkConflict": "Эти покупки привязаны к другому аккаунту.",
-      "restorePurchases": "Восстановить покупки",
-      "badgePending": "Ожидание",
-      "badgeUnlocking": "Разблокировка",
-      "badgeUpdate": "Доступно обновление",
-      "updatePrompt": "Доступна новая версия от автора.",
-      "updatePromptWithNote": "Доступна новая версия от автора: {{note}}.",
-      "updateButton": "Обновить",
-      "updateConfirmText": "Ваши правки в тех частях, которые изменил автор, будут заменены.",
-      "updateConfirm": "Обновить",
-      "updateCancel": "Отмена",
-      "modelStep": {
-        "download": "Загрузить · {{size}}",
-        "startChat": "Начать чат",
-        "needsMemory": "Для самой маленькой модели этого Pal нужно устройство с объёмом памяти не менее {{size}}.",
-        "noModelFits": "На этом устройстве недостаточно памяти для этого Pal."
-      }
     }
   },
   "camera": {

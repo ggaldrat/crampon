@@ -248,14 +248,6 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
 }
 
-// openiap-google's Compose helper (IapContext) is unreferenced; Gson is used by OpenIapModule.
-configurations.matching {
-    it.name.endsWith('CompileClasspath') || it.name.endsWith('RuntimeClasspath')
-}.configureEach {
-    exclude group: 'androidx.compose.ui'
-    exclude group: 'androidx.compose.runtime'
-}
-
 project.ext.vectoricons = [
     iconFontNames: [ 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf'  ] // Specify font files
 ]

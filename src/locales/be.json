@@ -118,9 +118,6 @@
     "addRemoteModel": "Дадаць аддаленую мадэль",
     "manageServers": "Кіраваць серверамі",
     "cpuThreads": "Патокі працэсара",
-    "huggingFaceTokenLabel": "Токен Hugging Face",
-    "setTokenButton": "Задаць токен",
-    "useHfTokenLabel": "Выкарыстоўваць токен HF",
     "orConnectNewServer": "або падключыцеся да новага сервера",
     "apiKeyDescription": "Захоўваецца бяспечна на прыладзе.",
     "remotePrivacyNotice": "Паведамленні, якія адпраўляюцца на аддаленыя серверы, выходзяць за межы вашай прылады. Падключайцеся толькі да тых сервераў, якім вы давяраеце."

@@ -34,11 +34,6 @@ export interface PalCapabilities {
  * This represents a pal that has been created locally or downloaded from PalsHub
  * and is stored in the device's local database. Local pals can be used offline
  * and have full access to all configuration options.
- *
- * Use the type discriminator `type: 'local'` to distinguish from PalsHubPal.
- * Use type guards from `src/utils/pal-type-guards.ts` for type-safe checks:
- * - isLocalPal(pal) - returns true if pal is a local Pal
- * - isPalsHubPal(pal) - returns true if pal is a PalsHubPal
  */
 export interface Pal {
   // ============================================================================

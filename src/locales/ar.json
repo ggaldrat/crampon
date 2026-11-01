@@ -152,13 +152,6 @@
       "consentGivenDescription": "قد تغادر استعلامات البحث وعمليات قراءة الصفحات جهازك كما هو موضح أعلاه.",
       "consentRevoke": "إلغاء"
     },
-    "apiSettingsTitle": "إعدادات API",
-    "huggingFaceTokenLabel": "رمز Hugging Face",
-    "tokenIsSetDescription": "تم تعيين الرمز. يلزم للوصول إلى النماذج المقيّدة.",
-    "setTokenDescription": "عيّن رمز وصول لاستخدام النماذج المقيّدة على Hugging Face.",
-    "setTokenButton": "تعيين الرمز",
-    "useHfTokenLabel": "استخدام رمز Hugging Face",
-    "useHfTokenDescription": "‎فعّل هذا الخيار لاستخدام الرمز في طلبات API. عطّله إذا تسبب الرمز في مشكلات بالمصادقة.",
     "cacheStorageTitle": "التخزين المؤقت والتخزين",
     "clearPalCaches": "مسح ذاكرة التخزين المؤقت للاختصارات",
     "clearPalCachesDescription": "يمسح البيانات المخزّنة مؤقتًا لتسريع الاختصارات. لن يؤثر ذلك على Pals أو سجل المحادثات.",
@@ -205,13 +198,7 @@
     "removeRemoteModel": "إزالة {{modelName}} ({{serverName}})؟",
     "retryConnection": "إعادة المحاولة",
     "enterUrlManually": "إدخال عنوان URL يدويًا",
-    "manageServers": "إدارة الخوادم",
-    "purchases": {
-      "title": "المشتريات",
-      "statusOwned": "تم الشراء",
-      "statusUnlocking": "جارٍ الفتح",
-      "link": "سجّل الدخول لاستخدامه على أجهزة أخرى"
-    }
+    "manageServers": "إدارة الخوادم"
   },
   "memory": {
     "shortWarning": "تحذير بشأن الذاكرة",
@@ -750,27 +737,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "فشل التنزيل",
       "downloadFailedMessage": "تعذّر تنزيل النموذج: {{message}}",
-      "unauthorizedTitle": "فشل المصادقة",
-      "unauthorizedMessage": "يبدو أن رمز Hugging Face الخاص بك غير صالح أو منتهي الصلاحية. يرجى تحديث الرمز في الإعدادات.",
-      "forbiddenTitle": "‎تم رفض الوصول",
-      "forbiddenMessage": "ليس لديك إذن للوصول إلى هذا النموذج. يرجى التأكد من:",
-      "forbiddenSteps": [
-        "رمزك لديه إذن \"قراءة\"",
-        "لقد طلبت الوصول إلى هذا النموذج وتم منحك إياه",
-        "وافق مالك النموذج على طلب وصولك"
-      ],
-      "getTokenTitle": "احصل على رمز Hugging Face",
-      "getTokenMessage": "يتطلب هذا النموذج رمز Hugging Face لتنزيله.",
-      "getTokenSteps": [
-        "انتقل إلى huggingface.co وسجّل الدخول",
-        "انتقل إلى الإعدادات > رموز الوصول",
-        "أنشئ رمزًا جديدًا بصلاحية \"قراءة\"",
-        "انسخ الرمز والصقه في حقل الرمز"
-      ],
-      "tokenDisabledTitle": "الرمز معطّل",
-      "tokenDisabledMessage": "لديك رمز Hugging Face مُعيَّن، لكنه معطّل حاليًا. يتطلب هذا النموذج رمزًا لتنزيله. فعّل رمزك للمتابعة.",
-      "enableAndRetry": "تفعيل وإعادة المحاولة",
-      "goToSettings": "الانتقال إلى الإعدادات",
       "tryAgain": "‎إعادة المحاولة",
       "viewOnHuggingFace": "عرض النموذج على HF ↗"
     },
@@ -787,34 +753,6 @@
       "exportAllSessions": "تصدير جميع الجلسات",
       "exportChatSession": "تصدير جلسة الدردشة",
       "importSessions": "استيراد الجلسات"
-    },
-    "hfTokenSheet": {
-      "title": "رمز Hugging Face",
-      "description": "مطلوب للوصول إلى النماذج المقيّدة",
-      "inputLabel": "رمز الوصول الشخصي",
-      "inputPlaceholder": "‏الصق رمزك هنا",
-      "save": "حفظ الرمز",
-      "saved": "تم حفظ الرمز بنجاح",
-      "reset": "إعادة تعيين الرمز",
-      "resetSuccess": "تمت إزالة الرمز بنجاح",
-      "instructions": "كيفية الحصول على رمز:",
-      "instructionsSteps": [
-        "انتقل إلى huggingface.co وسجّل الدخول",
-        "انتقل إلى الإعدادات > رموز الوصول",
-        "أنشئ رمزًا جديدًا بصلاحية \"قراءة\"",
-        "انسخ الرمز والصقه أدناه"
-      ],
-      "getTokenLink": "احصل على رمز من huggingface.co ↗",
-      "error": {
-        "saving": "خطأ في حفظ الرمز",
-        "missing": "رمز Hugging Face مطلوب",
-        "invalid": "رمز غير صالح أو منتهي الصلاحية",
-        "gatedModelAccess": "تم رفض الوصول إلى هذا النموذج المقيّد"
-      },
-      "gatedModelIndicator": "يتطلب رمزًا",
-      "tokenRequired": "يتطلب هذا النموذج رمز وصول من Hugging Face",
-      "searchErrorHint": "رمز Hugging Face API الخاص بك غير صالح أو منتهي الصلاحية. لمتابعة البحث، يرجى إما إزالة الرمز أو تعطيل مصادقة الرمز في الإعدادات.",
-      "disableAndRetry": "تعطيل الرمز وإعادة المحاولة"
     },
     "modelSettingsSheet": {
       "modelSettings": "إعدادات النموذج",
@@ -1073,17 +1011,7 @@
     "missingModel": "نموذج مفقود",
     "missingModelMessage": "النموذج الافتراضي \"{{modelName}}\" لهذا الرفيق غير متاح. يرجى تنزيله في نافذة التعديل أو اختيار نموذج مختلف.",
     "search": "بحث",
-    "profile": "الملف الشخصي",
-    "signIn": "تسجيل الدخول",
     "addPal": "إضافة رفيق",
-    "signInToAccessLibrary": "سجّل الدخول للوصول إلى مكتبتك من palshub.ai",
-    "signOut": "تسجيل الخروج",
-    "signOutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-    "signOutError": "تعذّر تسجيل الخروج. يرجى المحاولة مرة أخرى.",
-    "account": "الحساب",
-    "signInToPalsHub": "تسجيل الدخول إلى PalsHub",
-    "signInDescription": "يمكنك الوصول إلى مكتبتك، وإنشاء رفاق خاصين، والمزامنة عبر الأجهزة",
-    "searchAllPals": "ابحث في جميع الرفاق...",
     "deletePalConfirmation": "هل أنت متأكد أنك تريد حذف \"{{palName}}\"؟",
     "filters": {
       "all": "الكل",
@@ -1100,74 +1028,8 @@
       "download": "تنزيل",
       "getFree": "احصل عليه مجانًا"
     },
-    "sortOptions": {
-      "newest": "الأحدث",
-      "oldest": "الأقدم",
-      "rating": "الأعلى تقييمًا",
-      "popular": "الأكثر شعبية"
-    },
-    "palDetailSheet": {
-      "by": "بواسطة",
-      "unknown": "غير معروف",
-      "rating": "التقييم",
-      "reviews": "المراجعات",
-      "created": "تم الإنشاء",
-      "description": "الوصف",
-      "noDescriptionAvailable": "‎لا يوجد وصف متاح.",
-      "categories": "الفئات",
-      "tags": "‎الوسوم",
-      "downloaded": "تم التنزيل",
-      "success": "نجاح",
-      "palAddedToCollection": "تمت إضافة الرفيق إلى مجموعتك!",
-      "error": "خطأ",
-      "failedToLoadDetails": "تعذّر تحميل تفاصيل الرفيق",
-      "failedToDownload": "تعذّر تنزيل الرفيق",
-      "notAvailable": "غير متاح",
-      "systemPrompt": "Prompt النظام"
-    },
     "systemPrompt": "Prompt النظام",
-    "prompt": "Prompt",
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "مفتوح",
-      "install": "تثبيت",
-      "pending": "قيد الانتظار",
-      "unlocking": "جارٍ الفتح",
-      "retry": "‏إعادة المحاولة",
-      "supportCode": "رمز الدعم: {{code}}",
-      "noLongerAvailable": "‪لم يعد هذا الرفيق متاحًا. يمكنك {{refundLink}}.",
-      "refundLink": "اسأل Apple حول عملية استرداد",
-      "notCompleted": "تعذّر إتمام عملية الشراء هذه. ستقوم Google برد المبلغ إليك.",
-      "withdrawnRefunding": "تم سحب هذا الرفيق. تواصل مع الدعم لاسترداد المبلغ.",
-      "invalid": "تعذّر التحقق من عملية الشراء هذه.",
-      "heldInvalid": "تعذّر فتح عملية الشراء هذه. تواصل مع الدعم مع هذا الرمز.",
-      "recommendedModel": "النموذج الموصى به",
-      "sampleExchange": "محادثة نموذجية",
-      "signInLine": "هل تملكه بالفعل؟ سجّل الدخول",
-      "licenseNotice": "أنت تشتري ترخيصًا لاستخدام هذا الرفيق.",
-      "termsOfSale": "شروط البيع",
-      "appleMediaTerms": "شروط خدمات وسائط Apple",
-      "linkPrompt": "سجّل الدخول لاستخدامه على أجهزتك الأخرى أيضًا",
-      "linkSignIn": "تسجيل الدخول",
-      "dismiss": "‎ليس الآن",
-      "linkConflict": "عمليات الشراء هذه مرتبطة بحساب آخر.",
-      "restorePurchases": "استعادة المشتريات",
-      "badgePending": "قيد الانتظار",
-      "badgeUnlocking": "جارٍ الفتح",
-      "badgeUpdate": "يتوفر تحديث",
-      "updatePrompt": "يتوفر إصدار جديد من المنشئ.",
-      "updatePromptWithNote": "يتوفر إصدار جديد من المنشئ: {{note}}.",
-      "updateButton": "تحديث",
-      "updateConfirmText": "‎سيؤدي هذا إلى استبدال تعديلاتك للأجزاء التي غيّرها المنشئ.",
-      "updateConfirm": "تحديث",
-      "updateCancel": "إلغاء",
-      "modelStep": {
-        "download": "تنزيل · {{size}}",
-        "startChat": "ابدء الدردشة",
-        "needsMemory": "يحتاج هذا الرفيق إلى جهاز بذاكرة لا تقل عن {{size}} لأصغر نموذج لديه.",
-        "noModelFits": "لا يمتلك هذا الجهاز ذاكرة كافية لهذا الرفيق."
-      }
-    }
+    "prompt": "Prompt"
   },
   "validation": {
     "nameRequired": "الاسم مطلوب",

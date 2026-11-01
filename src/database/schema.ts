@@ -1,7 +1,7 @@
 import {appSchema, tableSchema} from '@nozbe/watermelondb';
 
 export default appSchema({
-  version: 8,
+  version: 9,
   tables: [
     tableSchema({
       name: 'chat_sessions',
@@ -41,57 +41,6 @@ export default appSchema({
       columns: [
         {name: 'key', type: 'string', isIndexed: true},
         {name: 'value', type: 'string'}, // JSON stringified
-        {name: 'created_at', type: 'number'},
-        {name: 'updated_at', type: 'number'},
-      ],
-    }),
-    // PalsHub integration tables
-    tableSchema({
-      name: 'cached_pals',
-      columns: [
-        {name: 'palshub_id', type: 'string', isIndexed: true},
-        {name: 'title', type: 'string'},
-        {name: 'description', type: 'string', isOptional: true},
-        {name: 'thumbnail_url', type: 'string', isOptional: true},
-        {name: 'creator_id', type: 'string'},
-        {name: 'creator_name', type: 'string', isOptional: true},
-        {name: 'creator_avatar_url', type: 'string', isOptional: true},
-        {name: 'protection_level', type: 'string'},
-        {name: 'price_cents', type: 'number'},
-        {name: 'allow_fork', type: 'boolean'},
-        {name: 'average_rating', type: 'number', isOptional: true},
-        {name: 'review_count', type: 'number'},
-        {name: 'is_owned', type: 'boolean'},
-        {name: 'categories', type: 'string'}, // JSON array
-        {name: 'tags', type: 'string'}, // JSON array
-        {name: 'system_prompt', type: 'string', isOptional: true},
-        {name: 'model_settings', type: 'string'}, // JSON object
-        {name: 'cached_at', type: 'number'},
-        {name: 'created_at', type: 'number'},
-        {name: 'updated_at', type: 'number'},
-      ],
-    }),
-    tableSchema({
-      name: 'user_library',
-      columns: [
-        {name: 'user_id', type: 'string', isIndexed: true},
-        {name: 'palshub_id', type: 'string', isIndexed: true},
-        {name: 'purchased_at', type: 'number'},
-        {name: 'purchase_id', type: 'string', isOptional: true},
-        {name: 'is_downloaded', type: 'boolean'},
-        {name: 'download_path', type: 'string', isOptional: true},
-        {name: 'created_at', type: 'number'},
-      ],
-    }),
-    tableSchema({
-      name: 'sync_status',
-      columns: [
-        {name: 'entity_type', type: 'string', isIndexed: true}, // 'library', 'pal', 'categories', etc.
-        {name: 'entity_id', type: 'string', isOptional: true},
-        {name: 'last_sync', type: 'number'},
-        {name: 'sync_version', type: 'string', isOptional: true},
-        {name: 'status', type: 'string'}, // 'synced', 'pending', 'error'
-        {name: 'error_message', type: 'string', isOptional: true},
         {name: 'created_at', type: 'number'},
         {name: 'updated_at', type: 'number'},
       ],

@@ -583,57 +583,8 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "無法下載",
       "downloadFailedMessage": "無法下載模型：{{message}}",
-      "unauthorizedTitle": "驗證失敗",
-      "unauthorizedMessage": "您的 Hugging Face Token 看起來無效或已過期。請在設定中更新您的 Token。",
-      "forbiddenTitle": "無權限存取",
-      "forbiddenMessage": "您沒有權限存取此模型。請確保：",
-      "forbiddenSteps": [
-        "您的 token 具有「讀取」權限",
-        "您請求並獲得了訪問此模型的權限",
-        "模型所有者已批准您的存取請求"
-      ],
-      "getTokenTitle": "取得 Hugging Face Token",
-      "getTokenMessage": "下載此模型需要一個 Hugging Face token。",
-      "getTokenSteps": [
-        "前往 huggingface.co 並登入",
-        "前往設定 > 存取 Token",
-        "新建一個具有「讀取」權限的新 token",
-        "複製 token 並將其貼到 token 欄位中"
-      ],
-      "tokenDisabledTitle": "Token 已停用",
-      "tokenDisabledMessage": "您設定了 Hugging Face token，但目前已停用。此模型需要一個 token 才能下載。請啟用您的 token 以繼續。",
-      "enableAndRetry": "啟用並重試",
-      "goToSettings": "前往設定",
       "tryAgain": "再試一次",
       "viewOnHuggingFace": "在 HF 上查看模型 ↗"
-    },
-    "hfTokenSheet": {
-      "save": "儲存 Token",
-      "reset": "重設 Token",
-      "title": "Hugging Face Token",
-      "description": "需要存取受保護模型的權限",
-      "inputLabel": "個人存取 Token",
-      "inputPlaceholder": "在此貼上您的 token",
-      "saved": "Token 已成功儲存",
-      "resetSuccess": "Token 已成功移除",
-      "instructions": "如何取得 token：",
-      "instructionsSteps": [
-        "前往 huggingface.co 並登入",
-        "前往設定 > 存取 Token",
-        "新建一個具有「讀取」權限的新 token",
-        "複製 token 並將其貼到下方"
-      ],
-      "getTokenLink": "從 huggingface.co 取得 token ↗",
-      "error": {
-        "saving": "儲存 token 時發生錯誤",
-        "missing": "需要 Hugging Face token",
-        "invalid": "無效或已過期的 token",
-        "gatedModelAccess": "無法存取此受保護模型"
-      },
-      "gatedModelIndicator": "需要 Token",
-      "tokenRequired": "此模型需要一個 Hugging Face 存取 token",
-      "searchErrorHint": "您的 Hugging Face API token 無效或已過期。若要繼續搜尋，請移除 token 或在設定中停用 token 驗證。",
-      "disableAndRetry": "停用 Token 並重試"
     },
     "palSheet": {
       "title": {
@@ -1149,13 +1100,6 @@
     "importButton": "匯入",
     "importSuccess": "成功匯入了 {{count}} 個聊天會話。",
     "importError": "匯入聊天會話失敗。請檢查檔案格式。",
-    "apiSettingsTitle": "API 設定",
-    "huggingFaceTokenLabel": "Hugging Face Token",
-    "tokenIsSetDescription": "已設定 Token。此 Token 是存取受限模型所必需的。",
-    "setTokenDescription": "請設定一個 Token 以存取來自 Hugging Face 的受限模型。",
-    "setTokenButton": "設定 Token",
-    "useHfTokenLabel": "使用 HF Token",
-    "useHfTokenDescription": "請啟用此 Token 以用於 API 請求。如果該 Token 引發了身份驗證問題，則應停用它。",
     "cacheStorageTitle": "快取與儲存",
     "clearPalCaches": "清除捷徑快取",
     "clearPalCachesDescription": "清除用來加速捷徑的快取資料。這不會影響您的 Pal 或聊天記錄。",
@@ -1246,13 +1190,7 @@
     "speculativeDraftValueCacheType": "草稿值快取類型",
     "speculativeDraftNGpuLayers": "草稿 GPU 層數",
     "speculativeDraftNGpuLayersDescription": "要卸載到 GPU 的草稿模型層數。",
-    "speculativeDraftCacheTypeInactiveDescription": "推測解碼啟動後即會套用。",
-    "purchases": {
-      "title": "購買項目",
-      "statusOwned": "已購買",
-      "statusUnlocking": "解鎖中",
-      "link": "登入以在其他裝置上使用"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "推測解碼啟動後即會套用。"
   },
   "storage": {
     "checkFailed": "無法檢查存儲",
@@ -1332,25 +1270,6 @@
     "promptPlaceholder": "你想知道這張圖片的什麼內容？"
   },
   "palsScreen": {
-    "palDetailSheet": {
-      "downloaded": "已下載",
-      "success": "成功",
-      "error": "錯誤",
-      "by": "由",
-      "unknown": "未知",
-      "rating": "評級",
-      "reviews": "評論",
-      "created": "新建",
-      "description": "描述",
-      "noDescriptionAvailable": "暫無描述。",
-      "categories": "類別",
-      "tags": "標籤",
-      "systemPrompt": "系統提示詞",
-      "palAddedToCollection": "Pal 已新增至您的收藏！",
-      "failedToLoadDetails": "載入 pal 詳情失敗",
-      "failedToDownload": "下載 pal 失敗",
-      "notAvailable": "不適用"
-    },
     "filters": {
       "myPals": "我的 Pal",
       "all": "全部",
@@ -1383,16 +1302,6 @@
     "missingModel": "缺少模型",
     "missingModelMessage": "此 pal 的預設模型 \"{{modelName}}\" 無法使用。請在編輯表單中下載它或選擇不同的模型。",
     "search": "搜尋",
-    "profile": "個人資料",
-    "signIn": "登入",
-    "signInToAccessLibrary": "登入以從 palshub.ai 存取您的資料庫",
-    "signOut": "登出",
-    "signOutConfirmation": "您確定要登出嗎？",
-    "signOutError": "登出失敗。請再試一次。",
-    "account": "帳戶",
-    "signInToPalsHub": "登入 PalsHub",
-    "signInDescription": "存取您的資料庫、建立私人 Pal 並在裝置間同步",
-    "searchAllPals": "搜尋所有 Pal...",
     "deletePalConfirmation": "您確定要刪除 \"{{palName}}\" 嗎？",
     "labels": {
       "free": "免費",
@@ -1400,53 +1309,6 @@
       "private": "私人",
       "download": "下載",
       "getFree": "獲得免費版本"
-    },
-    "sortOptions": {
-      "newest": "最新",
-      "oldest": "最舊的",
-      "rating": "最高評級",
-      "popular": "最受歡迎"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "開啟",
-      "install": "安裝",
-      "pending": "待處理",
-      "unlocking": "解鎖中",
-      "retry": "重試",
-      "supportCode": "支援碼：{{code}}",
-      "noLongerAvailable": "此 Pal 已不再可用。您可以 {{refundLink}}。",
-      "refundLink": "向 Apple 申請退款",
-      "notCompleted": "此購買無法完成。Google 將會為您退款。",
-      "withdrawnRefunding": "此 Pal 已撤回。請聯繫客服申請退款。",
-      "invalid": "無法驗證此筆購買。",
-      "heldInvalid": "我們無法解鎖此項購買。請提供此代碼給客服。",
-      "recommendedModel": "推薦模型",
-      "sampleExchange": "範例對話",
-      "signInLine": "已擁有？登入",
-      "licenseNotice": "您正在購買此 Pal 的使用授權。",
-      "termsOfSale": "銷售條款",
-      "appleMediaTerms": "Apple 媒體服務條款",
-      "linkPrompt": "登入以在您的其他裝置上使用",
-      "linkSignIn": "登入",
-      "dismiss": "現在不是時候",
-      "linkConflict": "這些購買項目與另一個帳號連結。",
-      "restorePurchases": "恢復購買項目",
-      "badgePending": "待處理",
-      "badgeUnlocking": "解鎖中",
-      "badgeUpdate": "有可用更新",
-      "updatePrompt": "創作者發布了新版本。",
-      "updatePromptWithNote": "創作者發布了新版本：{{note}}。",
-      "updateButton": "更新",
-      "updateConfirmText": "此操作將取代您對創作者修改部分的編輯內容。",
-      "updateConfirm": "更新",
-      "updateCancel": "取消",
-      "modelStep": {
-        "download": "下載 · {{size}}",
-        "startChat": "開始對話",
-        "needsMemory": "此 Pal 需要至少 {{size}} 記憶體的裝置來執行其最小模型。",
-        "noModelFits": "此裝置的記憶體不足以運行此 Pal。"
-      }
     }
   },
   "voiceAndSpeech": {

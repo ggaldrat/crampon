@@ -59,4 +59,15 @@ describe('database schema and migrations agree', () => {
 
     expect(pinned).toEqual({name: 'pinned', type: 'boolean'});
   });
+
+  it('drops the PalsHub marketplace tables at version 9', () => {
+    const v9 = migrationList.find(m => m.toVersion === 9);
+    const sql = v9.steps.map((step: any) => step.sql).join(' ');
+    for (const name of ['cached_pals', 'user_library', 'sync_status']) {
+      expect(sql).toContain(`DROP TABLE IF EXISTS ${name};`);
+      expect(
+        (schema as any).tables.find((t: any) => t.name === name),
+      ).toBeUndefined();
+    }
+  });
 });

@@ -12,7 +12,6 @@ import {Text, Button, ActivityIndicator} from 'react-native-paper';
 
 import {Sheet} from '../Sheet';
 import {useTheme} from '../../hooks';
-import {hfStore} from '../../store';
 import {useHubRunSheet} from '../../hooks/useDeepLinking';
 import {
   L10nContext,
@@ -57,8 +56,7 @@ export const HubRunSheetHost: React.FC = observer(() => {
     setError(null);
     setResolved(null);
     try {
-      const authToken = hfStore.shouldUseToken ? hfStore.hfToken : undefined;
-      const hfModel = await resolveHFRepo(repoId, authToken);
+      const hfModel = await resolveHFRepo(repoId);
       if (seq !== resolveSeq.current) {
         return;
       }

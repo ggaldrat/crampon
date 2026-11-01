@@ -2,7 +2,7 @@ import React, {useState, useContext, useCallback, useRef} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 
 import {observer} from 'mobx-react';
-import {Text, Chip, Button} from 'react-native-paper';
+import {Text, Chip} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 
@@ -125,7 +125,7 @@ export const SearchView = observer(
             {Boolean(item.gated) && (
               <Chip compact mode="outlined" textStyle={styles.gatedChipText}>
                 <Icon name="lock" size={12} color={theme.colors.primary} />{' '}
-                {l10n.components.hfTokenSheet.gatedModelIndicator}
+                {l10n.models.search.gatedModelIndicator}
               </Chip>
             )}
           </View>
@@ -153,23 +153,6 @@ export const SearchView = observer(
               {l10n.models.search.errorOccurred}
             </Text>
             <Text style={styles.errorText}>{hfStore.error.message}</Text>
-            {hfStore.error.code === 'authentication' && (
-              <Text style={styles.errorHintText}>
-                {l10n.components.hfTokenSheet.searchErrorHint}
-              </Text>
-            )}
-            {hfStore.error.code === 'authentication' && hfStore.useHfToken && (
-              <Button
-                mode="outlined"
-                style={styles.disableTokenButton}
-                onPress={() => {
-                  hfStore.setUseHfToken(false);
-                  hfStore.clearError();
-                  hfStore.fetchModels();
-                }}>
-                {l10n.components.hfTokenSheet.disableAndRetry}
-              </Button>
-            )}
           </View>
         );
       }

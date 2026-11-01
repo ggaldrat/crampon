@@ -106,13 +106,6 @@
     "importButton": "インポート",
     "importSuccess": "{{count}}個のチャットセッションをインポートしました",
     "importError": "チャットセッションのインポートに失敗しました、ファイル形式を確認してください",
-    "apiSettingsTitle": "API設定",
-    "huggingFaceTokenLabel": "Hugging Faceトークン",
-    "tokenIsSetDescription": "トークンが設定されています、制限付きモデルへのアクセスに必要です",
-    "setTokenDescription": "Hugging Faceから制限付きモデルにアクセスするためのトークンを設定します",
-    "setTokenButton": "トークンを設定",
-    "useHfTokenLabel": "HFトークンを使用",
-    "useHfTokenDescription": "HFトークンを使用して制限付きモデルにアクセスします",
     "cacheStorageTitle": "キャッシュとストレージ",
     "clearPalCaches": "ショートカットキャッシュをクリア",
     "clearPalCachesDescription": "ショートカットを高速化するために使用されるキャッシュデータをクリアします。Palやチャット履歴には影響しません。",
@@ -205,13 +198,7 @@
     "speculativeDraftValueCacheType": "ドラフトの値キャッシュタイプ",
     "speculativeDraftNGpuLayers": "ドラフトのGPUレイヤー",
     "speculativeDraftNGpuLayersDescription": "GPUにオフロードするドラフトモデルのレイヤー数。",
-    "speculativeDraftCacheTypeInactiveDescription": "投機的デコードが実行されると適用されます。",
-    "purchases": {
-      "title": "購入履歴",
-      "statusOwned": "購入済み",
-      "statusUnlocking": "ロック解除中",
-      "link": "他のデバイスで使うにはサインイン"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "投機的デコードが実行されると適用されます。"
   },
   "memory": {
     "shortWarning": "メモリ警告",
@@ -722,27 +709,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "ダウンロード失敗",
       "downloadFailedMessage": "モデルのダウンロードに失敗しました: {{message}}",
-      "unauthorizedTitle": "認証失敗",
-      "unauthorizedMessage": "Hugging Faceトークンが無効または期限切れのようです、設定でトークンを更新してください",
-      "forbiddenTitle": "アクセス拒否",
-      "forbiddenMessage": "このモデルにアクセスする権限がありません、以下を確認してください:",
-      "forbiddenSteps": [
-        "トークンに「読み取り」権限があること",
-        "このモデルへのアクセスをリクエストし、許可されていること",
-        "モデル所有者があなたのアクセスリクエストを承認していること"
-      ],
-      "getTokenTitle": "Hugging Faceトークンを取得",
-      "getTokenMessage": "このモデルをダウンロードするにはHugging Faceトークンが必要です",
-      "getTokenSteps": [
-        "huggingface.coにアクセスしてサインインする",
-        "設定 > アクセストークンに移動",
-        "「読み取り」アクセス権を持つ新しいトークンを作成",
-        "トークンをコピーしてトークンフィールドに貼り付ける"
-      ],
-      "tokenDisabledTitle": "トークンが無効",
-      "tokenDisabledMessage": "Hugging Faceトークンが設定されていますが、現在無効になっています、このモデルをダウンロードするにはトークンが必要です、続行するにはトークンを有効にしてください",
-      "enableAndRetry": "トークンを有効にして再試行",
-      "goToSettings": "設定へ移動",
       "tryAgain": "再試行",
       "viewOnHuggingFace": "HFでモデルを表示 ↗"
     },
@@ -759,34 +725,6 @@
       "exportChatSession": "チャットをエクスポート",
       "importSessions": "セッションをインポート",
       "exportCurrentSessionMarkdown": "Markdown形式でエクスポート"
-    },
-    "hfTokenSheet": {
-      "title": "Hugging Face トークン",
-      "description": "制限付きモデルへのアクセスに必要",
-      "inputLabel": "個人アクセストークン",
-      "inputPlaceholder": "トークンをここに貼り付けてください",
-      "save": "トークンを保存",
-      "saved": "トークンが正常に保存されました",
-      "reset": "トークンをリセット",
-      "resetSuccess": "トークンが正常に削除されました",
-      "instructions": "トークンの取得方法：",
-      "instructionsSteps": [
-        "huggingface.coにサインインします",
-        "設定 > アクセストークンに移動",
-        "「read」権限で新しいトークンを作成",
-        "トークンをコピーして下に貼り付け"
-      ],
-      "getTokenLink": "huggingface.coでトークンを取得 ↗",
-      "error": {
-        "saving": "トークンの保存エラー",
-        "missing": "Hugging Faceトークンが必要です",
-        "invalid": "無効または期限切れのトークン",
-        "gatedModelAccess": "このゲートモデルへのアクセスが拒否されました"
-      },
-      "gatedModelIndicator": "トークンが必要",
-      "tokenRequired": "このモデルはHugging Faceアクセストークンが必要です",
-      "searchErrorHint": "Hugging Face APIトークンが無効または期限切れです、検索を続けるには、設定でトークンを削除するか、トークン認証を無効にしてください",
-      "disableAndRetry": "トークンを無効にして再試行"
     },
     "modelSettingsSheet": {
       "modelSettings": "モデル設定",
@@ -1075,17 +1013,7 @@
     "missingModel": "モデルが見つかりません",
     "missingModelMessage": "このPalのデフォルトモデル「{{modelName}}」が利用できません、編集シートでダウンロードするか、別のモデルを選択してください",
     "search": "検索",
-    "profile": "プロフィール",
-    "signIn": "サインイン",
     "addPal": "Palを追加",
-    "signInToAccessLibrary": "palshub.aiのライブラリにアクセスするにはサインインしてください",
-    "signOut": "サインアウト",
-    "signOutConfirmation": "サインアウトしてもよろしいですか？",
-    "signOutError": "サインアウトに失敗しました。もう一度お試しください。",
-    "account": "アカウント",
-    "signInToPalsHub": "PalsHubにサインイン",
-    "signInDescription": "ライブラリにアクセスし、プライベートPalを作成し、デバイス間で同期",
-    "searchAllPals": "すべてのPalを検索...",
     "deletePalConfirmation": "「{{palName}}」を削除してもよろしいですか？",
     "filters": {
       "all": "すべて",
@@ -1101,72 +1029,6 @@
       "private": "プライベート",
       "download": "ダウンロード",
       "getFree": "無料で入手"
-    },
-    "sortOptions": {
-      "newest": "新着順",
-      "oldest": "古い順",
-      "rating": "評価順",
-      "popular": "人気順"
-    },
-    "palDetailSheet": {
-      "by": "by",
-      "unknown": "不明",
-      "rating": "評価",
-      "reviews": "レビュー",
-      "created": "作成日",
-      "description": "説明",
-      "noDescriptionAvailable": "説明がありません。",
-      "categories": "カテゴリ",
-      "tags": "タグ",
-      "systemPrompt": "システムプロンプト",
-      "downloaded": "ダウンロード済み",
-      "success": "成功",
-      "palAddedToCollection": "Palがコレクションに追加されました！",
-      "error": "エラー",
-      "failedToLoadDetails": "Palの詳細の読み込みに失敗しました",
-      "failedToDownload": "Palのダウンロードに失敗しました",
-      "notAvailable": "N/A"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "開く",
-      "install": "インストール",
-      "pending": "保留中",
-      "unlocking": "ロック解除中",
-      "retry": "再試行",
-      "supportCode": "サポートコード: {{code}}",
-      "noLongerAvailable": "このPalは提供終了しました。{{refundLink}}できます。",
-      "refundLink": "Appleに返金を依頼",
-      "notCompleted": "この購入を完了できませんでした。Googleから返金されます。",
-      "withdrawnRefunding": "このPalは公開停止になりました。返金についてはサポートにお問い合わせください。",
-      "invalid": "この購入を確認できませんでした。",
-      "heldInvalid": "この購入のロックを解除できませんでした。このコードを添えてサポートにお問い合わせください。",
-      "recommendedModel": "推奨モデル",
-      "sampleExchange": "会話例",
-      "signInLine": "すでにお持ちの方はサインイン",
-      "licenseNotice": "このPalを利用するためのライセンスを購入します。",
-      "termsOfSale": "販売条件",
-      "appleMediaTerms": "Apple メディアサービス利用規約",
-      "linkPrompt": "他のデバイスでも使うにはサインインしてください",
-      "linkSignIn": "サインイン",
-      "dismiss": "今はしない",
-      "linkConflict": "これらの購入は別のアカウントに紐付けられています。",
-      "restorePurchases": "購入を復元",
-      "badgePending": "保留中",
-      "badgeUnlocking": "ロック解除中",
-      "badgeUpdate": "更新あり",
-      "updatePrompt": "作者による新しいバージョンが公開されています。",
-      "updatePromptWithNote": "作者による新しいバージョンが公開されています: {{note}}。",
-      "updateButton": "更新",
-      "updateConfirmText": "作者が変更した部分については、あなたの編集内容が上書きされます。",
-      "updateConfirm": "更新",
-      "updateCancel": "キャンセル",
-      "modelStep": {
-        "download": "ダウンロード · {{size}}",
-        "startChat": "チャットを開始",
-        "needsMemory": "このPalの最小モデルを動かすには、{{size}}以上のメモリを搭載したデバイスが必要です。",
-        "noModelFits": "このデバイスにはこのPalを動かすのに十分なメモリがありません。"
-      }
     }
   },
   "validation": {

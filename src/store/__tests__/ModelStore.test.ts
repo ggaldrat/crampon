@@ -2250,7 +2250,6 @@ describe('ModelStore', () => {
       expect(downloadManager.startDownload).toHaveBeenCalledWith(
         expect.objectContaining({id: 'vision-model'}),
         expect.anything(),
-        expect.anything(),
       );
       expect(modelStore.downloadError).toBeNull();
     });
@@ -2389,7 +2388,6 @@ describe('ModelStore', () => {
         expect.stringContaining(
           '/path/to/documents/models/hf/test/hf-model/model-01.gguf',
         ),
-        'mockPass', // authToken from keychain mock
       );
     });
 
@@ -4829,7 +4827,6 @@ describe('ModelStore', () => {
       expect(downloadManager.startDownload).toHaveBeenCalledWith(
         visionModel,
         expect.any(String),
-        expect.any(String),
       );
     });
 
@@ -4868,7 +4865,6 @@ describe('ModelStore', () => {
       expect(downloadManager.startDownload).toHaveBeenCalledWith(
         projectionModel,
         expect.any(String),
-        expect.any(String),
       );
     });
 
@@ -4905,7 +4901,6 @@ describe('ModelStore', () => {
       expect(downloadManager.startDownload).toHaveBeenCalledTimes(1);
       expect(downloadManager.startDownload).toHaveBeenCalledWith(
         regularModel,
-        expect.any(String),
         expect.any(String),
       );
     });
@@ -5099,7 +5094,6 @@ describe('ModelStore', () => {
       expect(startDownloadSpy).toHaveBeenCalledTimes(1);
       expect(startDownloadSpy).toHaveBeenCalledWith(
         visionModel,
-        expect.any(String),
         expect.any(String),
       );
     });

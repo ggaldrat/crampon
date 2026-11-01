@@ -76,16 +76,4 @@ export const createStyles = (theme: Theme) =>
       color: theme.colors.error,
       marginTop: 8,
     },
-    errorHintText: {
-      color: theme.colors.onSurfaceVariant,
-      marginTop: 8,
-      textAlign: 'center',
-      fontSize: 14,
-      fontStyle: 'italic',
-      paddingHorizontal: 20,
-    },
-    disableTokenButton: {
-      marginTop: 10,
-      alignSelf: 'center',
-    },
   });

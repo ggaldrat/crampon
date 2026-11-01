@@ -17,8 +17,18 @@ import {l10n} from '../../../locales';
 
 jest.useFakeTimers();
 
-const render = (ui: React.ReactElement, options: any = {}) =>
-  baseRender(ui, {withBottomSheetProvider: true, ...options});
+// Engine settings sit in a collapsed section; most tests exercise them, so the
+// helper opens it unless asked not to.
+const render = (
+  ui: React.ReactElement,
+  {engineCollapsed = false, ...options}: any = {},
+) => {
+  const utils = baseRender(ui, {withBottomSheetProvider: true, ...options});
+  if (!engineCollapsed) {
+    fireEvent.press(utils.getByTestId('engine-settings-accordion'));
+  }
+  return utils;
+};
 
 describe('SettingsScreen', () => {
   beforeEach(() => {
@@ -26,6 +36,21 @@ describe('SettingsScreen', () => {
     jest.spyOn(Keyboard, 'dismiss');
     // Ensure clean timer state for each test
     jest.clearAllTimers();
+  });
+
+  it('shows app settings first and keeps engine settings collapsed', () => {
+    const {getByText, queryByText} = render(<SettingsScreen />, {
+      withSafeArea: true,
+      withNavigation: true,
+      engineCollapsed: true,
+    });
+
+    expect(getByText(l10n.en.settings.appSettings)).toBeTruthy();
+    expect(getByText(l10n.en.settings.engineSettings)).toBeTruthy();
+    expect(
+      queryByText(l10n.en.settings.modelInitializationSettings),
+    ).toBeNull();
+    expect(queryByText('Hugging Face Token')).toBeNull();
   });
 
   afterEach(() => {
@@ -134,7 +159,7 @@ describe('SettingsScreen', () => {
     const contextSizeInput = getByDisplayValue('2048');
 
     fireEvent.changeText(contextSizeInput, '512');
-    fireEvent.press(getByText('Model Initialization Settings'));
+    fireEvent.press(getByText(l10n.en.settings.appSettings));
 
     await waitFor(() => {
       expect(Keyboard.dismiss).toHaveBeenCalled();

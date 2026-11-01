@@ -11,3 +11,4 @@ export const createIndex = (table, columns) => ({
   table,
   columns,
 });
+export const unsafeExecuteSql = sql => ({type: 'sql', sql});

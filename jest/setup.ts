@@ -62,7 +62,6 @@ import {mockServerStore} from '../__mocks__/stores/serverStore';
 import {mockRouterStore} from '../__mocks__/stores/routerStore';
 import {mockTTSStore} from '../__mocks__/stores/ttsStore';
 import {mockSearchProviderStore} from '../__mocks__/stores/searchProviderStore';
-import {mockPurchaseStore} from '../__mocks__/stores/purchaseStore';
 
 jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);
 
@@ -123,7 +122,6 @@ jest.mock('../src/store', () => {
     routerStore: mockRouterStore,
     ttsStore: mockTTSStore,
     searchProviderStore: mockSearchProviderStore,
-    purchaseStore: mockPurchaseStore,
     defaultCompletionSettings: mockDefaultCompletionSettings,
     NEW_SESSION_TITLE: 'New Session',
   };
@@ -177,11 +175,3 @@ jest.mock('../src/database', () => {
     database: require('../__mocks__/database').mockDatabase,
   };
 });
-
-jest.mock('../src/services', () => {
-  return require('../__mocks__/services');
-});
-
-jest.mock('../src/services/palshub/accountDeletion', () =>
-  require('../__mocks__/services/palshub/accountDeletion'),
-);

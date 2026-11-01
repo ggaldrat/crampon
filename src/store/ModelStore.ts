@@ -21,7 +21,7 @@ import {
   OpenAICompletionEngine,
 } from '../api/completionEngines';
 
-import {uiStore, hfStore} from '.';
+import {uiStore} from '.';
 import {serverStore} from './ServerStore';
 import {routerStore} from './RouterStore';
 import {chatSessionStore} from './ChatSessionStore';
@@ -1658,8 +1658,7 @@ class ModelStore {
 
     try {
       const destinationPath = await this.getModelFullPath(model);
-      const authToken = hfStore.shouldUseToken ? hfStore.hfToken : null;
-      await downloadManager.startDownload(model, destinationPath, authToken);
+      await downloadManager.startDownload(model, destinationPath);
 
       // For vision models, automatically download the projection model
       await this._downloadProjectionModelIfNeeded(model);

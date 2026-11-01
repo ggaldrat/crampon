@@ -106,13 +106,6 @@
     "importButton": "导入",
     "importSuccess": "成功导入{{count}}个聊天会话。",
     "importError": "导入聊天会话失败，请检查文件格式。",
-    "apiSettingsTitle": "API设置",
-    "huggingFaceTokenLabel": "Hugging Face令牌",
-    "tokenIsSetDescription": "令牌已设置，访问受限模型时需要。",
-    "setTokenDescription": "设置令牌以从 Hugging Face 访问受限模型。",
-    "setTokenButton": "设置令牌",
-    "useHfTokenLabel": "使用HF令牌",
-    "useHfTokenDescription": "启用后使用令牌进行 API 请求。若令牌导致身份验证问题，请将其禁用。",
     "cacheStorageTitle": "缓存与存储",
     "clearPalCaches": "清除快捷指令缓存",
     "clearPalCachesDescription": "清除用于加速快捷指令的缓存数据。这不会影响您的 Pal 或聊天历史记录。",
@@ -205,13 +198,7 @@
     "speculativeDraftValueCacheType": "草稿模型值缓存类型",
     "speculativeDraftNGpuLayers": "草稿模型 GPU 层数",
     "speculativeDraftNGpuLayersDescription": "卸载到 GPU 的草稿模型层数。",
-    "speculativeDraftCacheTypeInactiveDescription": "推测解码运行后即生效。",
-    "purchases": {
-      "title": "购买项目",
-      "statusOwned": "已购买",
-      "statusUnlocking": "解锁中",
-      "link": "登录后可在其他设备使用"
-    }
+    "speculativeDraftCacheTypeInactiveDescription": "推测解码运行后即生效。"
   },
   "memory": {
     "shortWarning": "内存警告",
@@ -722,27 +709,6 @@
     "downloadErrorDialog": {
       "downloadFailedTitle": "下载失败",
       "downloadFailedMessage": "模型下载失败: {{message}}",
-      "unauthorizedTitle": "认证失败",
-      "unauthorizedMessage": "您的 Hugging Face 令牌似乎无效或已过期，请在设置中更新您的令牌。",
-      "forbiddenTitle": "访问被拒绝",
-      "forbiddenMessage": "您没有权限访问此模型，请确保:",
-      "forbiddenSteps": [
-        "您的令牌具有\"读取\"权限",
-        "您已请求并获得了此模型的访问权限",
-        "模型所有者已批准您的访问请求"
-      ],
-      "getTokenTitle": "获取 Hugging Face 令牌",
-      "getTokenMessage": "下载此模型需要 Hugging Face 令牌。",
-      "getTokenSteps": [
-        "访问 huggingface.co 并登录",
-        "导航至设置 > 访问令牌",
-        "创建具有\"读取\"权限的新令牌",
-        "复制令牌并粘贴到令牌字段中"
-      ],
-      "tokenDisabledTitle": "令牌已禁用",
-      "tokenDisabledMessage": "您有一个 Hugging Face 令牌设置，但它目前被禁用；此模型需要令牌才能下载；请启用您的令牌以继续。",
-      "enableAndRetry": "启用并重试",
-      "goToSettings": "前往设置",
       "tryAgain": "重试",
       "viewOnHuggingFace": "在HF上查看模型 ↗"
     },
@@ -759,34 +725,6 @@
       "exportChatSession": "导出聊天会话",
       "importSessions": "导入会话",
       "exportCurrentSessionMarkdown": "导出为 Markdown"
-    },
-    "hfTokenSheet": {
-      "title": "Hugging Face 令牌",
-      "description": "访问受限模型所需",
-      "inputLabel": "个人访问令牌",
-      "inputPlaceholder": "在此粘贴您的令牌",
-      "save": "保存令牌",
-      "saved": "令牌已成功保存",
-      "reset": "重置令牌",
-      "resetSuccess": "令牌已成功删除",
-      "instructions": "如何获取令牌：",
-      "instructionsSteps": [
-        "访问 huggingface.co 并登录",
-        "导航至设置 > 访问令牌",
-        "创建具有\"read\"权限的新令牌",
-        "复制令牌并粘贴在下方"
-      ],
-      "getTokenLink": "从 huggingface.co 获取令牌 ↗",
-      "error": {
-        "saving": "保存令牌时出错",
-        "missing": "需要 Hugging Face 令牌",
-        "invalid": "无效或过期的令牌",
-        "gatedModelAccess": "对此受限模型的访问被拒绝"
-      },
-      "gatedModelIndicator": "需要令牌",
-      "tokenRequired": "此模型需要 Hugging Face 访问令牌",
-      "searchErrorHint": "您的 Hugging Face API 令牌无效或已过期；如果要继续搜索，请在设置中删除令牌或禁用令牌验证。",
-      "disableAndRetry": "禁用令牌并重试"
     },
     "modelSettingsSheet": {
       "modelSettings": "模型设置",
@@ -1075,17 +1013,7 @@
     "missingModel": "缺少模型",
     "missingModelMessage": "此 Pal 的默认模型\"{{modelName}}\"不可用，请在编辑表中下载它或选择其他模型。",
     "search": "搜索",
-    "profile": "个人资料",
-    "signIn": "登录",
     "addPal": "添加Pal",
-    "signInToAccessLibrary": "登录以访问您在 palshub.ai 的资料库",
-    "signOut": "退出登录",
-    "signOutConfirmation": "您确定要退出登录吗？",
-    "signOutError": "退出登录失败，请重试。",
-    "account": "账户",
-    "signInToPalsHub": "登录PalsHub",
-    "signInDescription": "访问您的资料库，创建私人 Pal，并在设备间同步",
-    "searchAllPals": "搜索所有 Pal...",
     "deletePalConfirmation": "您确定要删除\"{{palName}}\"吗？",
     "filters": {
       "all": "全部",
@@ -1101,72 +1029,6 @@
       "private": "私人",
       "download": "下载",
       "getFree": "免费获取"
-    },
-    "sortOptions": {
-      "newest": "最新",
-      "oldest": "最旧",
-      "rating": "评分最高",
-      "popular": "最受欢迎"
-    },
-    "palDetailSheet": {
-      "by": "by",
-      "unknown": "未知",
-      "rating": "评分",
-      "reviews": "评论",
-      "created": "创建时间",
-      "description": "描述",
-      "noDescriptionAvailable": "暂无描述。",
-      "categories": "分类",
-      "tags": "标签",
-      "systemPrompt": "系统提示词",
-      "downloaded": "已下载",
-      "success": "成功",
-      "palAddedToCollection": "Pal已添加到您的收藏！",
-      "error": "错误",
-      "failedToLoadDetails": "加载 Pal 详情失败",
-      "failedToDownload": "下载 Pal 失败",
-      "notAvailable": "N/A"
-    },
-    "purchase": {
-      "buy": "{{price}}",
-      "open": "打开",
-      "install": "安装",
-      "pending": "待处理",
-      "unlocking": "解锁中",
-      "retry": "重试",
-      "supportCode": "客服代码：{{code}}",
-      "noLongerAvailable": "此 Pal 已不再提供，您可以{{refundLink}}。",
-      "refundLink": "向 Apple 申请退款",
-      "notCompleted": "此次购买未能完成，Google 将为您退款。",
-      "withdrawnRefunding": "此 Pal 已下架，请联系客服申请退款。",
-      "invalid": "我们无法验证此次购买。",
-      "heldInvalid": "我们无法解锁此次购买，请凭此代码联系客服。",
-      "recommendedModel": "推荐模型",
-      "sampleExchange": "对话示例",
-      "signInLine": "已经拥有？登录",
-      "licenseNotice": "您购买的是此 Pal 的使用许可。",
-      "termsOfSale": "销售条款",
-      "appleMediaTerms": "Apple 媒体服务条款",
-      "linkPrompt": "登录后也可在您的其他设备上使用",
-      "linkSignIn": "登录",
-      "dismiss": "以后再说",
-      "linkConflict": "这些购买项目已关联到另一个账户。",
-      "restorePurchases": "恢复购买",
-      "badgePending": "待处理",
-      "badgeUnlocking": "解锁中",
-      "badgeUpdate": "有可用更新",
-      "updatePrompt": "创作者发布了新版本。",
-      "updatePromptWithNote": "创作者发布了新版本：{{note}}。",
-      "updateButton": "更新",
-      "updateConfirmText": "这会覆盖您对创作者改动部分所做的修改。",
-      "updateConfirm": "更新",
-      "updateCancel": "取消",
-      "modelStep": {
-        "download": "下载 · {{size}}",
-        "startChat": "开始聊天",
-        "needsMemory": "此 Pal 的最小模型需要设备至少有 {{size}} 内存。",
-        "noModelFits": "此设备的内存不足以运行此 Pal。"
-      }
     }
   },
   "validation": {

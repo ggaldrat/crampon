@@ -25,9 +25,6 @@ describe('HFStore', () => {
     hfStore.error = null;
     hfStore.nextPageLink = null;
     hfStore.searchQuery = '';
-    // Clear the token to ensure tests start with no authentication
-    hfStore.hfToken = null;
-    hfStore.useHfToken = true;
     // Reset pagination protection state
     (hfStore as any).lastFetchMoreAttempt = 0;
     (hfStore as any).consecutiveSmallResults = 0;
@@ -157,8 +154,8 @@ describe('HFStore', () => {
 
       await hfStore.fetchModelData(modelId);
 
-      expect(fetchGGUFSpecs).toHaveBeenCalledWith(modelId, null);
-      expect(fetchModelFilesDetails).toHaveBeenCalledWith(modelId, null);
+      expect(fetchGGUFSpecs).toHaveBeenCalledWith(modelId);
+      expect(fetchModelFilesDetails).toHaveBeenCalledWith(modelId);
     });
   });
 

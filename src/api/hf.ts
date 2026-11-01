@@ -35,7 +35,6 @@ export async function fetchModels({
   full,
   config,
   nextPageUrl,
-  authToken,
 }: {
   search?: string;
   author?: string;
@@ -46,14 +45,9 @@ export async function fetchModels({
   full?: boolean;
   config?: boolean;
   nextPageUrl?: string;
-  authToken?: string | null;
 }): Promise<HuggingFaceModelsResponse> {
   try {
     const headers: Record<string, string> = {'User-Agent': hfUserAgent()};
-
-    if (authToken) {
-      headers.Authorization = `Bearer ${authToken}`;
-    }
 
     const response = await axios.get(nextPageUrl || urls.modelsList(), {
       params: {
@@ -92,20 +86,15 @@ export async function fetchModels({
 /**
  * Fetches the details of the model's files. Mainly the size is used.
  * @param modelId - The ID of the model.
- * @param authToken - Optional authentication token for accessing private models
  * @returns An array of ModelFileDetails.
  */
 export const fetchModelFilesDetails = async (
   modelId: string,
-  authToken?: string | null,
 ): Promise<ModelFileDetails[]> => {
   const url = `${urls.modelTree(modelId)}?recursive=true`;
 
   try {
     const headers: Record<string, string> = {'User-Agent': hfUserAgent()};
-    if (authToken) {
-      headers.Authorization = `Bearer ${authToken}`;
-    }
 
     const response = await fetch(url, {headers});
 
@@ -124,20 +113,13 @@ export const fetchModelFilesDetails = async (
 /**
  * Fetches the specs of the GGUF for a specific model.
  * @param modelId - The ID of the model.
- * @param authToken - Optional authentication token for accessing private models
  * @returns The GGUF specs.
  */
-export const fetchGGUFSpecs = async (
-  modelId: string,
-  authToken?: string | null,
-): Promise<GGUFSpecs> => {
+export const fetchGGUFSpecs = async (modelId: string): Promise<GGUFSpecs> => {
   const url = `${urls.modelSpecs(modelId)}?expand[]=gguf`;
 
   try {
     const headers: Record<string, string> = {'User-Agent': hfUserAgent()};
-    if (authToken) {
-      headers.Authorization = `Bearer ${authToken}`;
-    }
 
     const response = await fetch(url, {headers});
 
@@ -158,7 +140,6 @@ export const fetchGGUFSpecs = async (
  * @param repoId - The repository ID (e.g., "microsoft/DialoGPT-medium")
  * @param revision - Optional revision/branch (defaults to main)
  * @param full - Whether to fetch full model data
- * @param authToken - Optional authentication token for accessing private models
  * @param stripFields - Optional array of fields to remove from the result
  * @returns Partial HuggingFaceModel with GGUF specs converted to compatible format
  */
@@ -166,19 +147,14 @@ export async function fetchModelInfo({
   repoId,
   revision,
   full,
-  authToken,
   stripFields = ['spaces', 'cardData', 'config'], // Default fields to strip
 }: {
   repoId: string;
   revision?: string;
   full?: boolean;
-  authToken?: string | null;
   stripFields?: string[];
 }): Promise<Partial<HuggingFaceModel>> {
   const headers: Record<string, string> = {'User-Agent': hfUserAgent()};
-  if (authToken) {
-    headers.Authorization = `Bearer ${authToken}`;
-  }
 
   const base = revision
     ? `${urls.modelSpecs(repoId)}/revision/${revision}`
