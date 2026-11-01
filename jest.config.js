@@ -70,10 +70,6 @@ module.exports = {
     '@nozbe/simdjson': '<rootDir>/__mocks__/external/@nozbe/simdjson.js',
     '@nozbe/sqlite': '<rootDir>/__mocks__/external/@nozbe/sqlite.js',
     'mobx-persist-store': '<rootDir>/__mocks__/external/mobx-persist-store.js',
-    'react-native-image-picker':
-      '<rootDir>/__mocks__/external/react-native-image-picker.js',
-    'react-native-vision-camera':
-      '<rootDir>/__mocks__/external/react-native-vision-camera.ts',
     'react-native-code-highlighter':
       '<rootDir>/__mocks__/external/react-native-code-highlighter.js',
     '@env': '<rootDir>/__mocks__/external/@env.js',

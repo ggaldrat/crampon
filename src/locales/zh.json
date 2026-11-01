@@ -97,15 +97,10 @@
     "darkMode": "深色模式",
     "displayMemoryUsage": "显示内存使用情况",
     "displayMemoryUsageDescription": "在聊天页面中显示内存使用情况。",
-    "exportOptions": "导出选项",
-    "exportLegacyChats": "导出旧版聊天会话",
-    "exportLegacyChatsDescription": "如果迁移失败或需要恢复旧的聊天会话，请使用此选项。",
-    "exportButton": "导出",
     "importChats": "导入聊天会话",
     "importChatsDescription": "从（导出的）JSON文件中导入聊天会话。",
     "importButton": "导入",
     "importSuccess": "成功导入{{count}}个聊天会话。",
-    "importError": "导入聊天会话失败，请检查文件格式。",
     "cacheStorageTitle": "缓存与存储",
     "clearPalCaches": "清除快捷指令缓存",
     "clearPalCachesDescription": "清除用于加速快捷指令的缓存数据。这不会影响您的 Pal 或聊天历史记录。",
@@ -526,26 +521,6 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "发送媒体"
     },
-    "exportUtils": {
-      "fileSaved": "文件已保存",
-      "fileSavedMessage": "文件已保存到您的下载文件夹，文件名为 {{filename}}",
-      "share": "分享",
-      "ok": "确定",
-      "shareError": "分享错误",
-      "shareErrorMessage": "无法分享文件，请重试。",
-      "saveError": "保存到下载文件夹时出错",
-      "saveOptions": "保存选项",
-      "saveOptionsMessage": "无法直接保存到下载文件夹，您想改为分享文件吗？",
-      "cancel": "取消",
-      "shareContentErrorMessage": "无法分享内容，请重试。",
-      "exportError": "导出错误",
-      "exportErrorMessage": "导出文件时出错，请重试。",
-      "permissionRequired": "需要存储权限",
-      "permissionMessage": "需要存储权限才能将文件保存到下载文件夹。",
-      "permissionDenied": "存储权限被拒绝",
-      "permissionDeniedMessage": "没有存储权限，导出功能将被禁用。",
-      "continue": "继续"
-    },
     "thinkingBubble": {
       "reasoning": "思考"
     },
@@ -559,46 +534,7 @@
       "loading": "加载中..."
     },
     "chatInput": {
-      "inputPlaceholder": "消息",
-      "thinkingToggle": {
-        "enableThinking": "启用思考模式",
-        "disableThinking": "禁用思考模式",
-        "thinkingEnabled": "思考模式已启用",
-        "thinkingDisabled": "思考模式已禁用",
-        "thinkText": "思考",
-        "cycleEffort": "推理强度：{{level}}。双击可切换强度级别"
-      }
-    },
-    "contentReportSheet": {
-      "title": "举报内容",
-      "privacyNote": "我们不会发送任何消息内容或对话详情，请描述您遇到的具体问题。",
-      "categoryLabel": "举报类别",
-      "selectCategory": "选择类别",
-      "categories": {
-        "hate": "仇恨言论",
-        "sexual": "性内容",
-        "selfHarm": "自残",
-        "violence": "暴力",
-        "other": "其他"
-      },
-      "descriptionLabel": "描述",
-      "descriptionPlaceholder": "请描述此内容的问题...",
-      "includeModelInfo": "包含模型信息",
-      "includeModelInfoDescription": "包含模型名称和标识符以帮助我们调查",
-      "noActiveModelNote": "当前没有活动模型",
-      "submit": "提交举报",
-      "validation": {
-        "title": "信息缺失",
-        "message": "请选择类别并提供描述。"
-      },
-      "success": {
-        "title": "举报已提交",
-        "message": "感谢您的举报，我们将审查并采取适当行动。"
-      },
-      "error": {
-        "title": "举报失败",
-        "message": "提交举报失败，请重试。"
-      }
+      "inputPlaceholder": "消息"
     },
     "modelErrorReportSheet": {
       "title": "报告模型加载问题",
@@ -627,31 +563,11 @@
         "message": "提交报告失败。请稍后重试。"
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "无效值",
-      "invalidNumericValuesMessage": "必须是有效数字",
-      "pleaseCorrect": "请纠正以下内容：",
-      "ok": "确定",
-      "saveChanges": "保存更改",
-      "saveAsPreset": "保存为预设",
-      "title_session": "聊天生成设置（会话）",
-      "title_preset": "聊天生成设置（预设）",
-      "resetToSystemDefaults": "重置为系统默认值",
-      "resetToPreset": "重置为预设",
-      "applytoPresetAlert": {
-        "title": "成功",
-        "message": "这些设置将应用于所有未来的会话"
-      },
-      "settingsSource": "设置来源"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "聊天"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "文件"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "模型"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "下载失败",
@@ -662,16 +578,8 @@
     "headerRight": {
       "deleteChatTitle": "删除聊天",
       "deleteChatMessage": "确定要删除这个聊天记录吗？",
-      "generationSettings": "生成设置",
-      "model": "模型",
       "duplicateChatHistory": "复制聊天历史",
-      "makeChatTemporary": "使聊天临时",
-      "export": "导出/导入",
-      "exportCurrentSession": "导出当前会话",
-      "exportAllSessions": "导出所有会话",
-      "exportChatSession": "导出聊天会话",
-      "importSessions": "导入会话",
-      "exportCurrentSessionMarkdown": "导出为 Markdown"
+      "exportChatSession": "导出聊天会话"
     },
     "modelSettingsSheet": {
       "modelSettings": "模型设置",
@@ -761,8 +669,6 @@
       "bulkDeleteTitle": "删除聊天对话",
       "bulkDeleteMessage": "删除 {{count}} 个聊天会话？此操作无法撤销。",
       "bulkDeleteError": "删除聊天会话失败，请重试。",
-      "exportError": "导出聊天会话失败，请重试。",
-      "bulkExportError": "导出聊天会话失败，请重试。",
       "dateGroups": {
         "today": "今天",
         "yesterday": "昨天",
@@ -794,22 +700,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "复制",
-        "regenerate": "重新生成",
-        "regenerateWith": "重新生成（重选模型）",
-        "edit": "编辑",
-        "reportContent": "举报内容"
+        "copy": "复制"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}毫秒/token",
-      "tokensPerSec": "{{value}} tokens/秒",
-      "ttft": "{{value}}毫秒 TTFT",
       "interrupted": "被中断",
-      "truncated": "已截断 — 可能是上下文已满",
-      "draftAccepted": "草稿：{{accepted}}/{{total}}（{{pct}}%）",
-      "promptTokensPerSec": "{{value}} 提示词 tokens/秒",
-      "cachedTokens": "已缓存 {{value}}"
+      "truncated": "已截断 — 可能是上下文已满"
     },
     "pendingIndicator": {
       "preparingTool": "正在准备工具",
@@ -839,20 +735,6 @@
     "userRoleRequired": "需要填写用户角色",
     "situationRequired": "需要填写情况",
     "toneStyleRequired": "需要填写语气/风格"
-  },
-  "camera": {
-    "permissionTitle": "需要摄像头权限",
-    "permissionMessage": "PocketPal 需要访问摄像头来分析图像",
-    "requestingPermission": "请求摄像头权限...",
-    "noDevice": "未找到摄像头设备",
-    "errorTitle": "摄像头错误",
-    "errorMessage": "拍照时发生错误",
-    "flip": "翻转",
-    "analyzing": "分析图像中...",
-    "startCamera": "启动摄像头",
-    "stopCamera": "停止摄像头",
-    "promptPlaceholder": "你想了解这张图片的什么信息？",
-    "takePhoto": "摄像头"
   },
   "screenTitles": {
     "chat": "聊天",

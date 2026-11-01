@@ -279,32 +279,7 @@
       "activateModelButton": "모델 선택"
     },
     "chatInput": {
-      "inputPlaceholder": "메시지",
-      "thinkingToggle": {
-        "enableThinking": "사고 모드 활성화",
-        "disableThinking": "사고 모드 비활성화",
-        "thinkingEnabled": "사고 모드 활성화됨",
-        "thinkingDisabled": "사고 모드 비활성화됨",
-        "thinkText": "사고",
-        "cycleEffort": "추론 강도: {{level}}. 두 번 탭하면 강도 단계가 바뀌어요"
-      }
-    },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "유효하지 않은 값",
-      "invalidNumericValuesMessage": "유효한 숫자여야 합니다",
-      "pleaseCorrect": "다음 사항을 수정해 주세요:",
-      "resetToSystemDefaults": "시스템 기본값으로 재설정",
-      "ok": "확인",
-      "saveChanges": "변경 사항 저장",
-      "saveAsPreset": "프리셋으로 저장",
-      "title_session": "채팅 생성 설정 (세션)",
-      "title_preset": "채팅 생성 설정 (프리셋)",
-      "resetToPreset": "프리셋으로 재설정",
-      "applytoPresetAlert": {
-        "title": "성공",
-        "message": "변경사항이 향후 모든 세션에 적용됩니다."
-      },
-      "settingsSource": "설정 소스"
+      "inputPlaceholder": "메시지"
     },
     "modelsResetDialog": {
       "confirmReset": "재설정 확인",
@@ -322,22 +297,11 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "파일"
     },
-    "chatModelPickerSheet": {
-      "modelsTab": "모델"
-    },
     "headerRight": {
       "deleteChatTitle": "채팅 삭제하기",
       "deleteChatMessage": "이 채팅을 삭제하겠습니까?",
-      "generationSettings": "답변 생성 설정",
-      "model": "모델",
       "duplicateChatHistory": "채팅 복제하기",
-      "makeChatTemporary": "임시 채팅 사용하기",
-      "exportChatSession": "채팅 세션 내보내기",
-      "export": "내보내기/가져오기",
-      "exportCurrentSession": "현재 세션 내보내기",
-      "exportAllSessions": "모든 세션 내보내기",
-      "importSessions": "세션 가져오기",
-      "exportCurrentSessionMarkdown": "Markdown으로 내보내기"
+      "exportChatSession": "채팅 세션 내보내기"
     },
     "modelSettingsSheet": {
       "modelSettings": "모델 설정",
@@ -429,8 +393,6 @@
       "bulkDeleteTitle": "채팅 세션 삭제",
       "bulkDeleteMessage": "{{count}}개의 채팅 세션을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
       "bulkDeleteError": "채팅 세션 삭제에 실패했습니다. 다시 시도해 주세요.",
-      "exportError": "채팅 세션 내보내기에 실패했습니다. 다시 시도해 주세요.",
-      "bulkExportError": "채팅 세션 내보내기에 실패했습니다. 다시 시도해 주세요.",
       "pin": "고정",
       "unpin": "고정 해제"
     },
@@ -448,59 +410,8 @@
         "GB"
       ]
     },
-    "exportUtils": {
-      "fileSaved": "파일 저장됨",
-      "fileSavedMessage": "{{filename}} 파일이 다운로드 폴더에 저장되었습니다.",
-      "share": "공유",
-      "ok": "확인",
-      "shareError": "공유 실패",
-      "shareErrorMessage": "파일을 공유할 수 없습니다. 다시 시도해 주세요.",
-      "saveError": "다운로드 폴더에 저장하는데 오류 발생",
-      "saveOptions": "저장 옵션",
-      "saveOptionsMessage": "다운로드 폴더에 직접 저장할 수 없습니다. 대신 파일을 공유하시겠습니까?",
-      "cancel": "취소",
-      "shareContentErrorMessage": "콘텐츠 공유에 실패했습니다. 다시 시도해 주세요.",
-      "exportError": "내보내기 오류",
-      "exportErrorMessage": "파일을 내보내는 중 오류가 발생했습니다. 다시 시도해 주세요.",
-      "permissionRequired": "저장공간 접근 권한 필요",
-      "permissionMessage": "내보낼 파일을 다운로드 폴더에 저장하기 위해 권한 허용이 필요합니다.",
-      "permissionDenied": "권한 거부됨",
-      "permissionDeniedMessage": "저장공간 접근 권한이 없으면 내보내기 기능을 사용할 수 없습니다.",
-      "continue": "계속"
-    },
     "thinkingBubble": {
       "reasoning": "추론 중"
-    },
-    "contentReportSheet": {
-      "title": "콘텐츠 신고",
-      "privacyNote": "메시지 내용이나 대화 세부 정보는 전송되지 않습니다. 발생한 구체적인 문제를 설명해 주세요.",
-      "categoryLabel": "신고 유형",
-      "selectCategory": "유형을 선택하세요",
-      "categories": {
-        "hate": "혐오 표현",
-        "sexual": "성적 콘텐츠",
-        "selfHarm": "자해 및 자살",
-        "violence": "폭력적인 콘텐츠",
-        "other": "기타"
-      },
-      "descriptionLabel": "설명",
-      "descriptionPlaceholder": "이 콘텐츠에서 발견된 문제를 설명해 주세요...",
-      "includeModelInfo": "모델 정보 포함",
-      "includeModelInfoDescription": "조사에 도움이 되도록 모델 이름과 식별자를 포함해 주세요.",
-      "noActiveModelNote": "현재 활성화된 모델이 없습니다.",
-      "submit": "리포트 제출",
-      "validation": {
-        "title": "정보 누락됨",
-        "message": "카테고리를 선택하고 설명을 입력해 주세요."
-      },
-      "success": {
-        "title": "리포트 제출됨",
-        "message": "제보해 주셔서 감사합니다. 검토 후 적절한 조치를 취하겠습니다."
-      },
-      "error": {
-        "title": "리포트 제출 실패",
-        "message": "리포트 제출에 실패했습니다. 다시 시도해 주세요."
-      }
     },
     "modelErrorReportSheet": {
       "title": "모델 로드 문제 신고",
@@ -537,22 +448,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "복사",
-        "regenerate": "다시 생성",
-        "regenerateWith": "다른 모델로 다시 생성",
-        "edit": "수정",
-        "reportContent": "콘텐츠 리포트"
+        "copy": "복사"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}ms/토큰",
-      "tokensPerSec": "{{value}} 토큰/초",
-      "ttft": "{{value}}ms TTFT",
       "interrupted": "중단됨",
-      "truncated": "응답 중단됨 — 컨텍스트가 가득 참",
-      "draftAccepted": "드래프트: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} 프롬프트 토큰/초",
-      "cachedTokens": "{{value}} 캐시됨"
+      "truncated": "응답 중단됨 — 컨텍스트가 가득 참"
     },
     "pendingIndicator": {
       "preparingTool": "도구 준비 중",
@@ -942,15 +843,10 @@
     "useMmapFalse": "비활성화됨",
     "useMmapTrueDescription": "빠른 로딩을 위해 항상 메모리 매핑을 사용합니다.",
     "useMmapFalseDescription": "메모리 사용량이 두 배로 늘어나는 것을 방지하기 위해, 가중치 리패킹 활성화 시 이 기능은 비활성화를 권장합니다.",
-    "exportOptions": "내보내기 옵션",
-    "exportLegacyChats": "이전 채팅 내보내기",
-    "exportLegacyChatsDescription": "마이그레이션에 실패했거나 이전 채팅 세션을 복구해야 하는 경우 이 기능을 사용하세요.",
-    "exportButton": "내보내기",
     "importChats": "채팅 세션 가져오기",
     "importChatsDescription": "기존에 내보낸 JSON 파일을 선택하여 채팅 세션을 불러옵니다.",
     "importButton": "가져오기",
     "importSuccess": "채팅 세션 {{count}}개를 성공적으로 가져왔습니다.",
-    "importError": "채팅 세션을 가져오지 못했습니다. 파일 형식을 확인해 주세요.",
     "cacheStorageTitle": "캐시 및 저장공간",
     "clearPalCaches": "단축어 캐시 삭제",
     "clearPalCachesDescription": "단축어 실행 속도를 높이는 데 사용된 캐시 데이터를 삭제합니다. 이 작업은 Pals 또는 채팅 기록에는 영향을 주지 않습니다.",
@@ -1033,20 +929,6 @@
     "userRoleRequired": "사용자 역할을 입력해 주세요",
     "situationRequired": "상황을 입력해 주세요",
     "toneStyleRequired": "말투 및 스타일을 입력해 주세요"
-  },
-  "camera": {
-    "permissionTitle": "카메라 권한 필요",
-    "permissionMessage": "PocketPal은 이미지를 분석하기 위해 카메라 접근 권한이 필요합니다.",
-    "requestingPermission": "카메라 권한 요청 중...",
-    "noDevice": "카메라 기기를 찾을 수 없습니다",
-    "errorTitle": "카메라 오류",
-    "errorMessage": "사진을 촬영하는 중 오류가 발생했습니다.",
-    "flip": "회전",
-    "analyzing": "이미지 분석 중...",
-    "startCamera": "카메라 시작",
-    "stopCamera": "카메라 중지",
-    "promptPlaceholder": "이 이미지에 대해 무엇을 알고 싶으신가요?",
-    "takePhoto": "카메라"
   },
   "errors": {
     "cameraErrorTitle": "카메라 오류",

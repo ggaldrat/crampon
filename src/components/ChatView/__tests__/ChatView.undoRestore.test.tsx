@@ -15,7 +15,6 @@ jest.mock('../../ChatEmptyPlaceholder', () => ({
 }));
 
 const sentText = 'u2';
-const sentImages = ['file:///a.jpg'];
 
 const renderChat = () => {
   let settle!: (undone: UndoneSend | undefined) => void;
@@ -42,15 +41,11 @@ const renderChat = () => {
       settle(undone);
     });
   };
-  const images = () =>
-    screen
-      .queryAllByLabelText(/^Image preview \d+ of \d+$/)
-      .map(node => node.props.source.uri);
-  return {input, send, settleWith, images};
+  return {input, send, settleWith};
 };
 
 const undoneIn = (sessionId: string): UndoneSend => ({
-  message: {type: 'text', text: sentText, imageUris: sentImages},
+  message: {type: 'text', text: sentText},
   sessionId,
 });
 
@@ -69,7 +64,7 @@ describe('a send that comes back undone', () => {
     (chatSessionStore.getDraft as jest.Mock).mockReturnValue('');
   });
 
-  it('puts the text and images back in an empty composer', async () => {
+  it('puts the text back in an empty composer', async () => {
     const chat = renderChat();
     chat.send();
     expect(chat.input().props.value).toBe('');
@@ -77,7 +72,6 @@ describe('a send that comes back undone', () => {
     await chat.settleWith(undoneIn('session-1'));
 
     expect(chat.input().props.value).toBe(sentText);
-    expect(chat.images()).toEqual(sentImages);
   });
 
   it('puts the text before anything typed while waiting', async () => {
@@ -123,6 +117,5 @@ describe('a send that comes back undone', () => {
     await chat.settleWith(undefined);
 
     expect(chat.input().props.value).toBe('');
-    expect(chat.images()).toEqual([]);
   });
 });

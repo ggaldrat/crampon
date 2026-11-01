@@ -95,15 +95,10 @@
     "darkMode": "Dunkler Modus",
     "displayMemoryUsage": "Speichernutzung anzeigen",
     "displayMemoryUsageDescription": "Speichernutzung im Chat anzeigen.",
-    "exportOptions": "Export-Optionen",
-    "exportLegacyChats": "Exportiere alte Chats",
-    "exportLegacyChatsDescription": "Dies nutzen wenn Migration fehlgeschlagen ist oder alte Chats wiederhergestellt werden sollen.",
-    "exportButton": "Export",
     "importChats": "Importiere Chats",
     "importChatsDescription": "Importiere Chats aus einer (exportierten) JSON Datei.",
     "importButton": "Import",
     "importSuccess": "{{count}} Chats erfolgreich importiert.",
-    "importError": "Import von Chats fehlgeschlagen. Bitte Dateiformat überprüfen.",
     "cacheStorageTitle": "Cache & Speicher",
     "clearPalCaches": "Verknüpfungscache löschen",
     "clearPalCachesDescription": "Daten im Cache löschen um Verknüpfungen zu beschleunigen. Beeinflusst weder Deine Pals noch den Chat Verlauf.",
@@ -480,31 +475,7 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "Sende Medien"
     },
-    "bubble": {
-      "msPerToken": "{{value}} ms/Token",
-      "tokensPerSec": "{{{value}} Token/sek",
-      "ttft": "{{value}}ms TTFT"
-    },
-    "exportUtils": {
-      "fileSaved": "Datei gespeichert",
-      "fileSavedMessage": "Die Datei wurde in Ihrem Downloads-Ordner als {{filename}} gespeichert",
-      "share": "Teilen",
-      "ok": "OK",
-      "shareError": "Teilen Fehler",
-      "shareErrorMessage": "Könnte die Datei nicht teilen. Bitte versuchen Sie es noch mal.",
-      "saveError": "Fehler beim speichern unter Downloads",
-      "saveOptions": "Speicher Optionen",
-      "saveOptionsMessage": "Nicht möglich direkt unter Downloads zu speichern. Möchten Sie die Datei stattdessen teilen?",
-      "cancel": "Abbrechen",
-      "shareContentErrorMessage": "Könnte den Inhalt nicht teilen. Bitte versuchen Sie es noch mal.",
-      "exportError": "Export Fehler",
-      "exportErrorMessage": "Es gab einen Fehler, beim Exportieren der Datei. Bitte versuchen Sie es noch mal.",
-      "permissionRequired": "Speicherberechtigung erforderlich",
-      "permissionMessage": "Wir brauchen die Berechtigung, Ihren Export im Download-Ordner zu speichern.",
-      "permissionDenied": "Berechtigung verweigert",
-      "permissionDeniedMessage": "Ohne Speicherberechtigung wird die Exportfunktion deaktiviert.",
-      "continue": "Weiter"
-    },
+    "bubble": {},
     "thinkingBubble": {
       "reasoning": "Reasoning"
     },
@@ -518,45 +489,7 @@
       "loading": "Laden..."
     },
     "chatInput": {
-      "inputPlaceholder": "Nachricht",
-      "thinkingToggle": {
-        "enableThinking": "Denkmodus aktivieren",
-        "disableThinking": "Denkmodus deaktivieren",
-        "thinkingEnabled": "Denkmodus aktiviert",
-        "thinkingDisabled": "Denkmodus deaktiviert",
-        "thinkText": "Denken"
-      }
-    },
-    "contentReportSheet": {
-      "title": "Bericht Inhalt",
-      "privacyNote": "Wir versenden keine Nachrichteninhalte oder Gesprächsdetails. Bitte beschreiben Sie das spezifische Problem, das Sie betrifft.",
-      "categoryLabel": "Bericht Kategorie",
-      "selectCategory": "Wählen Sie eine Kategorie",
-      "categories": {
-        "hate": "Hassrede",
-        "sexual": "Sexuelle Inhalte",
-        "selfHarm": "Selbstverletzung",
-        "violence": "Gewalt",
-        "other": "Sonstige"
-      },
-      "descriptionLabel": "Beschreibung",
-      "descriptionPlaceholder": "Bitte beschreiben Sie das Problem mit diesem Inhalt...",
-      "includeModelInfo": "Modellinformationen einschließen",
-      "includeModelInfoDescription": "Geben Sie den Modellnamen und die Kennung ein, um uns bei der Untersuchung zu helfen",
-      "noActiveModelNote": "Kein Modell ist derzeit aktiv",
-      "submit": "Bericht einreichen",
-      "validation": {
-        "title": "Fehlende Informationen",
-        "message": "Bitte wählen Sie eine Kategorie aus und geben Sie eine Beschreibung an."
-      },
-      "success": {
-        "title": "Bericht gesendet",
-        "message": "Danke für Ihren Bericht. Wir werden ihn überprüfen und geeignete Maßnahmen ergreifen."
-      },
-      "error": {
-        "title": "Bericht Gescheitert",
-        "message": "Bericht senden gescheitert. Bitte versuchen Sie es noch mal."
-      }
+      "inputPlaceholder": "Nachricht"
     },
     "modelErrorReportSheet": {
       "title": "Bericht Fehler beim laden eines Modells",
@@ -585,31 +518,11 @@
         "message": "Bericht senden gescheitert. Bitte versuchen Sie es später nochmal."
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Falsche Werte",
-      "invalidNumericValuesMessage": "Muss eine gültige Nummer sein",
-      "pleaseCorrect": "Bitte korrigieren Sie Folgendes:",
-      "ok": "OK",
-      "saveChanges": "Änderungen speichern",
-      "saveAsPreset": "Als Vorlage speichern",
-      "title_session": "Einstellungen Chatgenerierung (Session)",
-      "title_preset": "Einstellungen Chatgenerierung (Preset)",
-      "resetToSystemDefaults": "Standardwerte laden",
-      "resetToPreset": "Standardwerte laden",
-      "applytoPresetAlert": {
-        "title": "Erfolgreich",
-        "message": "Diese Einstellungen werden auf alle zukünftigen Sitzungen angewendet"
-      },
-      "settingsSource": "Einstellungen Quelle"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "Chat"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Datei"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "Modelle"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Download gescheitert",
@@ -620,15 +533,8 @@
     "headerRight": {
       "deleteChatTitle": "Löschen des Chat",
       "deleteChatMessage": "Sind Sie sicher, dass Sie diesen Chat löschen möchten?",
-      "generationSettings": "Generierungseinstellungen",
-      "model": "Modell",
       "duplicateChatHistory": "Chatverlauf duplizieren",
-      "makeChatTemporary": "Mach Chat vorübergehend",
-      "export": "Export/Import",
-      "exportCurrentSession": "Exportiere aktuelle Sitzung",
-      "exportAllSessions": "Alle Sitzungen exportieren",
-      "exportChatSession": "Chat-Sitzung exportieren",
-      "importSessions": "Importiere Sitzungen"
+      "exportChatSession": "Chat-Sitzung exportieren"
     },
     "modelSettingsSheet": {
       "modelSettings": "Modelleinstellungen",
@@ -705,8 +611,6 @@
       "bulkDeleteTitle": "Chatsitzungen löschen",
       "bulkDeleteMessage": "Lösche {{count} Chat-Sitzung(en)? Diese Aktion kann nicht rückgängig gemacht werden.",
       "bulkDeleteError": "Chat-Sitzungen löschen gescheitert. Bitte versuchen Sie es noch mal.",
-      "exportError": "Export der Chatsitzungen gescheitert. Bitte versuchen Sie es nochmal.",
-      "bulkExportError": "Export der Chatsitzungen gescheitert. Bitte versuchen Sie es nochmal.",
       "dateGroups": {
         "today": "Heute",
         "yesterday": "Gestern",
@@ -735,11 +639,7 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "Kopie",
-        "regenerate": "Erneuern",
-        "regenerateWith": "Erneuer mit",
-        "edit": "Bearbeiten",
-        "reportContent": "Bericht Inhalt"
+        "copy": "Kopie"
       }
     }
   }

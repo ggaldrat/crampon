@@ -159,13 +159,6 @@ jest.mock('../src/utils/keepAwake', () => ({
   deactivateKeepAwake: jest.fn(),
 }));
 
-jest.mock('react-native-share', () => ({
-  default: jest.fn(),
-}));
-
-jest.mock('react-native-image-picker');
-jest.mock('react-native-vision-camera');
-
 jest.mock('../src/database', () => {
   return {
     database: require('../__mocks__/database').mockDatabase,

@@ -2,72 +2,10 @@ import {StyleSheet} from 'react-native';
 
 import {Theme} from '../../utils/types';
 
-export const createStyles = ({
-  theme,
-  isEditMode,
-}: {
-  theme: Theme;
-  isEditMode: boolean;
-}) =>
+export const createStyles = ({theme}: {theme: Theme}) =>
   StyleSheet.create({
     container: {
       flexDirection: 'column',
-    },
-    palBtn: {
-      height: 28,
-      width: 28,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 100,
-    },
-    plusButton: {
-      height: 28,
-      width: 28,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 100,
-      opacity: 0.9,
-    },
-    thinkingToggle: {
-      height: 28,
-      width: 28,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 100,
-      borderWidth: 1,
-      marginRight: 8,
-    },
-    thinkingToggleLeft: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 16,
-      borderWidth: 1,
-      paddingHorizontal: 8,
-      paddingVertical: 4,
-      marginLeft: 8,
-    },
-    thinkingToggleLeftDisabled: {
-      backgroundColor: 'transparent',
-    },
-    thinkingToggleText: {
-      fontSize: 12,
-      fontWeight: '500',
-      marginLeft: 4,
-    },
-    thinkingToggleTextDisabled: {
-      // Dynamic color will be applied via theme
-    },
-    palSelector: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 4,
-    },
-    inputWrapper: {
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      gap: 13,
-      flexShrink: 1,
     },
     input: {
       ...theme.fonts.inputTextStyle,
@@ -75,9 +13,6 @@ export const createStyles = ({
       flex: 1,
       maxHeight: 150,
       paddingVertical: 0,
-    },
-    marginRight: {
-      marginRight: 16,
     },
     inputContainer: {
       flex: 1,
@@ -98,12 +33,6 @@ export const createStyles = ({
       paddingHorizontal: 24,
       paddingVertical: 10,
       minHeight: 36,
-    },
-    leftControls: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 10,
-      flex: 1,
     },
     rightControls: {
       position: 'relative',
@@ -132,76 +61,7 @@ export const createStyles = ({
     editBarButton: {
       margin: 0,
     },
-    inputRow: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'flex-end',
-      paddingHorizontal: 24,
-      paddingVertical: 20,
-      marginTop: isEditMode ? 28 : 0,
-    },
-    // Image preview styles
-    imagePreviewContainer: {
-      marginVertical: 8,
-      paddingHorizontal: 16,
-    },
-    imagePreviewContainerEditMode: {
-      marginTop: 36, // Account for edit bar height (28px) + extra spacing (8px)
-    },
-    imageScrollContent: {
-      paddingHorizontal: 4,
-    },
-    imageContainer: {
-      marginHorizontal: 4,
-      position: 'relative',
-    },
-    previewImage: {
-      width: 80,
-      height: 80,
-      borderRadius: 8,
-      backgroundColor: theme.colors.surfaceVariant,
-    },
-    removeImageButton: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      margin: 0,
-      padding: 0,
-      backgroundColor: theme.colors.surface,
-      borderRadius: 8,
-      width: 25,
-      height: 25,
-    },
-    inputInnerContainer: {
-      flexShrink: 1,
-      flexGrow: 1,
-    },
-    // Camera-specific styles
-    cameraButton: {
-      width: 40,
-      height: 40,
-      borderRadius: 24,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: 8,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5,
-    },
 
-    stopButton: {
-      width: 48,
-      height: 48,
-      borderRadius: 24,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: 8,
-    },
     // Helper text for model not loaded warning
     helperTextContainer: {
       position: 'absolute',

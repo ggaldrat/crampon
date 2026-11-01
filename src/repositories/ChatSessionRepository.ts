@@ -395,19 +395,6 @@ class ChatSessionRepository {
     });
   }
 
-  // Export multiple sessions
-  async exportSessions(ids: string[]): Promise<void> {
-    if (ids.length === 0) {
-      return;
-    }
-
-    const {exportChatSession} = await import('../utils/exportUtils');
-
-    for (const id of ids) {
-      await exportChatSession(id);
-    }
-  }
-
   // Add a message to a session
   async addMessageToSession(
     sessionId: string,

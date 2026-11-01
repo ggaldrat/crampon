@@ -97,15 +97,10 @@
     "darkMode": "حالت تاریک",
     "displayMemoryUsage": "نمایش مصرف حافظه",
     "displayMemoryUsageDescription": "نمایش مصرف حافظه در صفحه چت.",
-    "exportOptions": "گزینه‌های خروجی",
-    "exportLegacyChats": "خروجی چت‌های قدیمی",
-    "exportLegacyChatsDescription": "اگر انتقال داده‌ها با مشکل مواجه شد یا نیاز به بازیابی چت‌های قدیمی دارید از این استفاده کنید.",
-    "exportButton": "خروجی",
     "importChats": "وارد کردن جلسات چت",
     "importChatsDescription": "وارد کردن جلسات چت از یک فایل JSON (خروجی‌گرفته‌شده).",
     "importButton": "وارد کردن",
     "importSuccess": "{{count}} جلسه چت با موفقیت وارد شد.",
-    "importError": "وارد کردن جلسات چت ناموفق بود. لطفاً فرمت فایل را بررسی کنید.",
     "cacheStorageTitle": "کش و فضای ذخیره‌سازی",
     "clearPalCaches": "پاک کردن کش میانبرها",
     "clearPalCachesDescription": "داده‌های کش‌شده برای سرعت‌بخشی به میانبرها پاک می‌شود. این کار روی پَل‌ها یا تاریخچه چت تأثیری ندارد.",
@@ -526,26 +521,6 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "ارسال رسانه"
     },
-    "exportUtils": {
-      "fileSaved": "فایل ذخیره شد",
-      "fileSavedMessage": "فایل در پوشه دانلودها با نام {{filename}} ذخیره شد",
-      "share": "اشتراک‌گذاری",
-      "ok": "باشه",
-      "shareError": "خطا در اشتراک‌گذاری",
-      "shareErrorMessage": "اشتراک‌گذاری فایل ممکن نشد. لطفاً دوباره امتحان کنید.",
-      "saveError": "خطا در ذخیره در پوشه دانلودها",
-      "saveOptions": "گزینه‌های ذخیره",
-      "saveOptionsMessage": "ذخیره مستقیم در پوشه دانلودها ممکن نشد. می‌خواهید فایل را به اشتراک بگذارید؟",
-      "cancel": "لغو",
-      "shareContentErrorMessage": "اشتراک‌گذاری محتوا ممکن نشد. لطفاً دوباره امتحان کنید.",
-      "exportError": "خطا در خروجی‌گیری",
-      "exportErrorMessage": "در خروجی‌گیری فایل خطایی رخ داد. لطفاً دوباره امتحان کنید.",
-      "permissionRequired": "نیاز به دسترسی حافظه",
-      "permissionMessage": "برای ذخیره فایل خروجی در پوشه دانلودها به دسترسی نیاز داریم.",
-      "permissionDenied": "دسترسی رد شد",
-      "permissionDeniedMessage": "بدون دسترسی حافظه، قابلیت خروجی‌گیری غیرفعال خواهد شد.",
-      "continue": "ادامه"
-    },
     "thinkingBubble": {
       "reasoning": "استدلال"
     },
@@ -559,46 +534,7 @@
       "loading": "در حال بارگذاری..."
     },
     "chatInput": {
-      "inputPlaceholder": "پیام",
-      "thinkingToggle": {
-        "enableThinking": "فعال‌سازی حالت تفکر",
-        "disableThinking": "غیرفعال‌سازی حالت تفکر",
-        "thinkingEnabled": "حالت تفکر فعال شد",
-        "thinkingDisabled": "حالت تفکر غیرفعال شد",
-        "thinkText": "تفکر",
-        "cycleEffort": "میزان استدلال: {{level}}. برای تغییر میزان دوبار ضربه بزنید"
-      }
-    },
-    "contentReportSheet": {
-      "title": "گزارش محتوا",
-      "privacyNote": "ما هیچ محتوای پیام یا جزئیات مکالمه‌ای ارسال نمی‌کنیم. لطفاً مشکلی که با آن مواجه شدید را توضیح دهید.",
-      "categoryLabel": "دسته‌بندی گزارش",
-      "selectCategory": "یک دسته‌بندی انتخاب کنید",
-      "categories": {
-        "hate": "نفرت‌پراکنی",
-        "sexual": "محتوای جنسی",
-        "selfHarm": "خودآزاری",
-        "violence": "خشونت",
-        "other": "سایر"
-      },
-      "descriptionLabel": "توضیحات",
-      "descriptionPlaceholder": "لطفاً مشکل این محتوا را توضیح دهید...",
-      "includeModelInfo": "شامل اطلاعات مدل",
-      "includeModelInfoDescription": "نام و شناسه مدل را برای کمک به بررسی ارسال کنید",
-      "noActiveModelNote": "در حال حاضر مدلی فعال نیست",
-      "submit": "ارسال گزارش",
-      "validation": {
-        "title": "اطلاعات ناقص",
-        "message": "لطفاً یک دسته‌بندی انتخاب کنید و توضیحات را وارد کنید."
-      },
-      "success": {
-        "title": "گزارش ارسال شد",
-        "message": "ممنون از گزارش شما. آن را بررسی کرده و اقدام مناسب انجام خواهیم داد."
-      },
-      "error": {
-        "title": "ارسال گزارش ناموفق بود",
-        "message": "ارسال گزارش ممکن نشد. لطفاً دوباره امتحان کنید."
-      }
+      "inputPlaceholder": "پیام"
     },
     "modelErrorReportSheet": {
       "title": "گزارش مشکل بارگذاری مدل",
@@ -627,31 +563,11 @@
         "message": "ارسال گزارش ممکن نشد. لطفاً بعداً دوباره امتحان کنید."
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "مقادیر نامعتبر",
-      "invalidNumericValuesMessage": "باید یک عدد معتبر باشد",
-      "pleaseCorrect": "لطفاً موارد زیر را اصلاح کنید:",
-      "ok": "باشه",
-      "saveChanges": "ذخیره تغییرات",
-      "saveAsPreset": "ذخیره به‌عنوان پیش‌تنظیم",
-      "title_session": "تنظیمات تولید متن (جلسه)",
-      "title_preset": "تنظیمات تولید متن (پیش‌تنظیم)",
-      "resetToSystemDefaults": "بازنشانی به پیش‌فرض سیستم",
-      "resetToPreset": "بازنشانی به پیش‌تنظیم",
-      "applytoPresetAlert": {
-        "title": "انجام شد",
-        "message": "این تنظیمات روی تمام جلسات آینده اعمال خواهد شد"
-      },
-      "settingsSource": "منبع تنظیمات"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "چت"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "فایل"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "مدل‌ها"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "دانلود ناموفق",
@@ -662,16 +578,8 @@
     "headerRight": {
       "deleteChatTitle": "حذف چت",
       "deleteChatMessage": "آیا از حذف این چت مطمئن هستید؟",
-      "generationSettings": "تنظیمات تولید متن",
-      "model": "مدل",
       "duplicateChatHistory": "کپی تاریخچه چت",
-      "makeChatTemporary": "تبدیل به چت موقت",
-      "export": "خروجی/ورودی",
-      "exportCurrentSession": "خروجی جلسه فعلی",
-      "exportAllSessions": "خروجی همه جلسات",
-      "exportChatSession": "خروجی جلسه چت",
-      "importSessions": "ورود جلسات",
-      "exportCurrentSessionMarkdown": "خروجی به صورت Markdown"
+      "exportChatSession": "خروجی جلسه چت"
     },
     "modelSettingsSheet": {
       "modelSettings": "تنظیمات مدل",
@@ -761,8 +669,6 @@
       "bulkDeleteTitle": "حذف جلسات چت",
       "bulkDeleteMessage": "{{count}} جلسه چت حذف شود؟ این عمل قابل بازگشت نیست.",
       "bulkDeleteError": "حذف جلسات چت انجام نشد. لطفاً دوباره تلاش کنید.",
-      "exportError": "خروجی‌گیری از جلسه چت انجام نشد. لطفاً دوباره تلاش کنید.",
-      "bulkExportError": "خروجی‌گیری از جلسات چت انجام نشد. لطفاً دوباره تلاش کنید.",
       "dateGroups": {
         "today": "امروز",
         "yesterday": "دیروز",
@@ -794,22 +700,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "کپی",
-        "regenerate": "تولید مجدد",
-        "regenerateWith": "تولید مجدد با",
-        "edit": "ویرایش",
-        "reportContent": "گزارش محتوا"
+        "copy": "کپی"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}ms/توکن",
-      "tokensPerSec": "{{value}} توکن/ثانیه",
-      "ttft": "{{value}}ms TTFT",
       "interrupted": "متوقف شد",
-      "truncated": "قطع شد — احتمالاً context پر شده",
-      "draftAccepted": "پیش‌نویس: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} توکن پرامپت/ثانیه",
-      "cachedTokens": "{{value}} کش‌شده"
+      "truncated": "قطع شد — احتمالاً context پر شده"
     },
     "pendingIndicator": {
       "preparingTool": "در حال آماده‌سازی ابزار",
@@ -839,20 +735,6 @@
     "userRoleRequired": "نقش کاربر الزامی است",
     "situationRequired": "موقعیت الزامی است",
     "toneStyleRequired": "لحن/سبک الزامی است"
-  },
-  "camera": {
-    "permissionTitle": "دسترسی به دوربین لازم است",
-    "permissionMessage": "PocketPal برای تحلیل تصاویر به دسترسی دوربین نیاز دارد",
-    "requestingPermission": "درخواست دسترسی به دوربین...",
-    "noDevice": "دوربینی یافت نشد",
-    "errorTitle": "خطای دوربین",
-    "errorMessage": "هنگام گرفتن عکس خطایی رخ داد",
-    "flip": "چرخش",
-    "analyzing": "در حال تحلیل تصویر...",
-    "startCamera": "شروع دوربین",
-    "stopCamera": "توقف دوربین",
-    "promptPlaceholder": "درباره این تصویر چه می‌خواهید بدانید؟",
-    "takePhoto": "دوربین"
   },
   "screenTitles": {
     "chat": "چت",

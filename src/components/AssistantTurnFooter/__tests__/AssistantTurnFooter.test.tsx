@@ -6,7 +6,6 @@ import {render, fireEvent} from '../../../../jest/test-utils';
 import {chatSessionStore} from '../../../store';
 
 import {AssistantTurnFooter} from '../AssistantTurnFooter';
-import {streamFinishChunk} from '../../../../jest/fixtures/llamaServerWire';
 
 jest.mock('@react-native-clipboard/clipboard', () => ({
   setString: jest.fn(),
@@ -33,143 +32,25 @@ describe('AssistantTurnFooter', () => {
     expect(queryByTestId('assistant-turn-footer')).toBeNull();
   });
 
-  it('renders timing line when timings present (no copy button if not copyable)', () => {
+  it('shows no speed metrics, even when the turn stored timings', () => {
     const message = baseTurn({
       metadata: {
-        timings: {predicted_per_token_ms: 10, predicted_per_second: 100},
-      },
-    });
-    const {getByText, queryByTestId} = render(
-      <AssistantTurnFooter message={message} />,
-    );
-    expect(queryByTestId('assistant-turn-footer')).toBeTruthy();
-    expect(getByText('10ms/token, 100.00 tokens/sec')).toBeTruthy();
-    expect(queryByTestId('footer-copy')).toBeNull();
-  });
-
-  it('renders prompt speed and cached tokens from a server finish chunk', () => {
-    const message = baseTurn({
-      metadata: {
-        timings: {...streamFinishChunk.timings, time_to_first_token_ms: 150},
-        completionResult: {used: 0, contextFull: false, isRemote: true},
-      },
-    });
-    const {getByTestId} = render(<AssistantTurnFooter message={message} />);
-    expect(getByTestId('footer-timing').props.children).toBe(
-      '6ms/token, 170.35 tokens/sec, 126.90 prompt tokens/sec, 15 cached, 150ms TTFT',
-    );
-  });
-
-  it('leaves out the parts a build does not report', () => {
-    const message = baseTurn({
-      metadata: {
+        copyable: true,
         timings: {
           predicted_per_token_ms: 10,
           predicted_per_second: 100,
-          time_to_first_token_ms: 150,
+          time_to_first_token_ms: 50,
+          draft_tokens: 4,
         },
-        // Remote, so the origin gate passes and the absence under test is the
-        // server's silence rather than the gate withholding them.
-        completionResult: {used: 0, contextFull: false, isRemote: true},
       },
     });
-    const {getByTestId} = render(<AssistantTurnFooter message={message} />);
-    expect(getByTestId('footer-timing').props.children).toBe(
-      '10ms/token, 100.00 tokens/sec, 150ms TTFT',
+    const {queryByTestId, queryByText} = render(
+      <AssistantTurnFooter message={message} />,
     );
-  });
-
-  it('separates a cold prompt cache from a build that never reports one', () => {
-    const cold = baseTurn({
-      metadata: {
-        timings: {predicted_per_token_ms: 10, cache_n: 0},
-        completionResult: {used: 0, contextFull: false, isRemote: true},
-      },
-    });
-    expect(
-      render(<AssistantTurnFooter message={cold} />).getByTestId(
-        'footer-timing',
-      ).props.children,
-    ).toBe('10ms/token, 0 cached');
-
-    const silent = baseTurn({
-      metadata: {
-        timings: {predicted_per_token_ms: 10},
-        completionResult: {used: 0, contextFull: false, isRemote: true},
-      },
-    });
-    expect(
-      render(<AssistantTurnFooter message={silent} />).getByTestId(
-        'footer-timing',
-      ).props.children,
-    ).toBe('10ms/token');
-  });
-
-  // A row stored before timings were normalised on write holds whatever the
-  // server sent, and the two bad shapes failed differently: a string threw in
-  // render, a NaN printed itself.
-  it('renders no part for a stored value that is a string', () => {
-    const message = baseTurn({
-      metadata: {
-        timings: {predicted_per_second: 'NaN', cache_n: 3},
-        completionResult: {used: 0, contextFull: false, isRemote: true},
-      },
-    });
-    expect(
-      render(<AssistantTurnFooter message={message} />).getByTestId(
-        'footer-timing',
-      ).props.children,
-    ).toBe('3 cached');
-  });
-
-  it('renders no part for a stored NaN', () => {
-    const message = baseTurn({
-      metadata: {
-        timings: {
-          predicted_per_token_ms: NaN,
-          prompt_per_second: NaN,
-          cache_n: 3,
-        },
-        completionResult: {used: 0, contextFull: false, isRemote: true},
-      },
-    });
-    expect(
-      render(<AssistantTurnFooter message={message} />).getByTestId(
-        'footer-timing',
-      ).props.children,
-    ).toBe('3 cached');
-  });
-
-  it('keeps prompt speed and cached tokens off a local turn that reports them', () => {
-    const timings = {...streamFinishChunk.timings, time_to_first_token_ms: 150};
-    expect(timings.prompt_per_second).toBeDefined();
-    expect(timings.cache_n).toBeDefined();
-
-    const local = baseTurn({
-      metadata: {
-        timings,
-        completionResult: {used: 0, contextFull: false, isRemote: false},
-      },
-    });
-    expect(
-      render(<AssistantTurnFooter message={local} />).getByTestId(
-        'footer-timing',
-      ).props.children,
-    ).toBe('6ms/token, 170.35 tokens/sec, 150ms TTFT');
-
-    const remote = baseTurn({
-      metadata: {
-        timings,
-        completionResult: {used: 0, contextFull: false, isRemote: true},
-      },
-    });
-    expect(
-      render(<AssistantTurnFooter message={remote} />).getByTestId(
-        'footer-timing',
-      ).props.children,
-    ).toBe(
-      '6ms/token, 170.35 tokens/sec, 126.90 prompt tokens/sec, 15 cached, 150ms TTFT',
-    );
+    expect(queryByTestId('footer-copy')).toBeTruthy();
+    expect(queryByTestId('footer-timing')).toBeNull();
+    expect(queryByTestId('message-draft-tokens')).toBeNull();
+    expect(queryByText(/tokens\/sec/)).toBeNull();
   });
 
   it('renders copy button when copyable, even if timings absent (abort path)', () => {
@@ -180,20 +61,6 @@ describe('AssistantTurnFooter', () => {
     expect(queryByTestId('assistant-turn-footer')).toBeTruthy();
     expect(queryByTestId('footer-copy')).toBeTruthy();
     expect(queryByTestId('footer-timing')).toBeNull();
-  });
-
-  it('renders both timing and copy when both fields present', () => {
-    const message = baseTurn({
-      metadata: {
-        copyable: true,
-        timings: {predicted_per_token_ms: 32, predicted_per_second: 30},
-      },
-    });
-    const {getByText, queryByTestId} = render(
-      <AssistantTurnFooter message={message} />,
-    );
-    expect(getByText('32ms/token, 30.00 tokens/sec')).toBeTruthy();
-    expect(queryByTestId('footer-copy')).toBeTruthy();
   });
 
   it('copy button copies derived text via Clipboard.setString', () => {
@@ -229,67 +96,6 @@ describe('AssistantTurnFooter', () => {
     expect(
       require('@react-native-clipboard/clipboard').setString,
     ).not.toHaveBeenCalled();
-  });
-
-  it('renders TTFT-only timing string when only ttft is present', () => {
-    const message = baseTurn({
-      metadata: {
-        timings: {time_to_first_token_ms: 150},
-      },
-    });
-    const {getByText} = render(<AssistantTurnFooter message={message} />);
-    expect(getByText('150ms TTFT')).toBeTruthy();
-  });
-
-  it('does not render the timing Text when timings are empty (no parts to show)', () => {
-    const message = baseTurn({
-      metadata: {
-        copyable: true,
-        timings: {},
-      },
-    });
-    const {queryByTestId} = render(<AssistantTurnFooter message={message} />);
-    expect(queryByTestId('footer-timing')).toBeNull();
-    expect(queryByTestId('footer-copy')).toBeTruthy();
-  });
-
-  it('renders draft acceptance when speculative draft_tokens > 0', () => {
-    const message = baseTurn({
-      metadata: {
-        timings: {
-          predicted_per_second: 80,
-          draft_tokens: 12,
-          draft_tokens_accepted: 9,
-        },
-      },
-    });
-    const {getByTestId, getByText} = render(
-      <AssistantTurnFooter message={message} />,
-    );
-    expect(getByTestId('message-draft-tokens')).toBeTruthy();
-    expect(getByText('draft: 9/12 (75%)')).toBeTruthy();
-  });
-
-  it('does not render draft acceptance when draft_tokens is 0', () => {
-    const message = baseTurn({
-      metadata: {
-        timings: {
-          predicted_per_second: 80,
-          draft_tokens: 0,
-          draft_tokens_accepted: 0,
-        },
-      },
-    });
-    const {queryByTestId} = render(<AssistantTurnFooter message={message} />);
-    expect(queryByTestId('message-draft-tokens')).toBeNull();
-  });
-
-  it('does not render draft acceptance when draft_tokens is absent (non-speculative turn)', () => {
-    const message = baseTurn({
-      metadata: {timings: {predicted_per_second: 80}},
-    });
-    const {queryByTestId} = render(<AssistantTurnFooter message={message} />);
-    expect(queryByTestId('message-draft-tokens')).toBeNull();
   });
 
   it('renders "Interrupted" status when metadata.interrupted is set', () => {

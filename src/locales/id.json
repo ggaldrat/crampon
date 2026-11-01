@@ -97,15 +97,10 @@
     "darkMode": "Mode Gelap",
     "displayMemoryUsage": "Tampilkan Penggunaan Memori",
     "displayMemoryUsageDescription": "Tampilkan penggunaan memori di halaman obrolan.",
-    "exportOptions": "Opsi Ekspor",
-    "exportLegacyChats": "Ekspor Obrolan Lama",
-    "exportLegacyChatsDescription": "Gunakan ini jika migrasi gagal atau Anda perlu memulihkan sesi obrolan lama.",
-    "exportButton": "Ekspor",
     "importChats": "Impor Sesi Obrolan",
     "importChatsDescription": "Impor sesi obrolan dari file JSON (hasil ekspor).",
     "importButton": "Impor",
     "importSuccess": "Berhasil mengimpor {{count}} sesi obrolan.",
-    "importError": "Gagal mengimpor sesi obrolan. Harap periksa format file.",
     "cacheStorageTitle": "Cache & Penyimpanan",
     "clearPalCaches": "Bersihkan Cache Shortcut",
     "clearPalCachesDescription": "Menghapus data cache yang digunakan untuk mempercepat Shortcut. Tidak memengaruhi Pal atau riwayat obrolan Anda.",
@@ -526,26 +521,6 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "Kirim media"
     },
-    "exportUtils": {
-      "fileSaved": "File Disimpan",
-      "fileSavedMessage": "File telah disimpan ke folder Unduhan Anda sebagai {{filename}}",
-      "share": "Bagikan",
-      "ok": "OK",
-      "shareError": "Kesalahan Berbagi",
-      "shareErrorMessage": "Tidak dapat membagikan file. Silakan coba lagi.",
-      "saveError": "Kesalahan menyimpan ke Unduhan",
-      "saveOptions": "Opsi Simpan",
-      "saveOptionsMessage": "Tidak dapat menyimpan langsung ke Unduhan. Apakah Anda ingin membagikan file tersebut?",
-      "cancel": "Batal",
-      "shareContentErrorMessage": "Tidak dapat membagikan konten. Silakan coba lagi.",
-      "exportError": "Kesalahan Ekspor",
-      "exportErrorMessage": "Terjadi kesalahan saat mengekspor file. Silakan coba lagi.",
-      "permissionRequired": "Izin Penyimpanan Diperlukan",
-      "permissionMessage": "Kami memerlukan izin untuk menyimpan ekspor Anda ke folder Unduhan.",
-      "permissionDenied": "Izin Ditolak",
-      "permissionDeniedMessage": "Tanpa izin penyimpanan, fitur ekspor akan dinonaktifkan.",
-      "continue": "Lanjutkan"
-    },
     "thinkingBubble": {
       "reasoning": "Berpikir"
     },
@@ -559,46 +534,7 @@
       "loading": "Memuat..."
     },
     "chatInput": {
-      "inputPlaceholder": "Pesan",
-      "thinkingToggle": {
-        "enableThinking": "Aktifkan mode berpikir",
-        "disableThinking": "Nonaktifkan mode berpikir",
-        "thinkingEnabled": "Mode berpikir diaktifkan",
-        "thinkingDisabled": "Mode berpikir dinonaktifkan",
-        "thinkText": "Berpikir",
-        "cycleEffort": "Tingkat penalaran: {{level}}. Ketuk dua kali untuk mengganti tingkat penalaran"
-      }
-    },
-    "contentReportSheet": {
-      "title": "Laporkan Konten",
-      "privacyNote": "Kami tidak mengirim konten pesan atau detail percakapan. Harap jelaskan masalah spesifik yang Anda temui.",
-      "categoryLabel": "Kategori Laporan",
-      "selectCategory": "Pilih kategori",
-      "categories": {
-        "hate": "Ujaran Kebencian",
-        "sexual": "Konten Seksual",
-        "selfHarm": "Melukai Diri Sendiri",
-        "violence": "Kekerasan",
-        "other": "Lainnya"
-      },
-      "descriptionLabel": "Deskripsi",
-      "descriptionPlaceholder": "Harap jelaskan masalah dengan konten ini...",
-      "includeModelInfo": "Sertakan informasi model",
-      "includeModelInfoDescription": "Sertakan nama dan pengenal model untuk membantu investigasi",
-      "noActiveModelNote": "Tidak ada model yang aktif saat ini",
-      "submit": "Kirim Laporan",
-      "validation": {
-        "title": "Informasi Kurang",
-        "message": "Harap pilih kategori dan berikan deskripsi."
-      },
-      "success": {
-        "title": "Laporan Dikirim",
-        "message": "Terima kasih atas laporan Anda. Kami akan meninjau dan mengambil tindakan yang sesuai."
-      },
-      "error": {
-        "title": "Gagal Mengirim Laporan",
-        "message": "Gagal mengirim laporan. Silakan coba lagi."
-      }
+      "inputPlaceholder": "Pesan"
     },
     "modelErrorReportSheet": {
       "title": "Laporkan Masalah Pemuatan Model",
@@ -627,31 +563,11 @@
         "message": "Gagal mengirim laporan. Silakan coba lagi nanti."
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Nilai Tidak Valid",
-      "invalidNumericValuesMessage": "Harus berupa angka yang valid",
-      "pleaseCorrect": "Harap perbaiki hal berikut:",
-      "ok": "OK",
-      "saveChanges": "Simpan Perubahan",
-      "saveAsPreset": "Simpan sebagai Preset",
-      "title_session": "Pengaturan Generasi Obrolan (Sesi)",
-      "title_preset": "Pengaturan Generasi Obrolan (Preset)",
-      "resetToSystemDefaults": "Atur Ulang ke Default Sistem",
-      "resetToPreset": "Atur Ulang ke Preset",
-      "applytoPresetAlert": {
-        "title": "Berhasil",
-        "message": "Pengaturan ini akan diterapkan ke semua sesi mendatang"
-      },
-      "settingsSource": "Sumber Pengaturan"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "Obrolan"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "File"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "Model"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Unduhan Gagal",
@@ -662,16 +578,8 @@
     "headerRight": {
       "deleteChatTitle": "Hapus Obrolan",
       "deleteChatMessage": "Yakin ingin menghapus obrolan ini?",
-      "generationSettings": "pengaturan generasi",
-      "model": "Model",
       "duplicateChatHistory": "Duplikat riwayat obrolan",
-      "makeChatTemporary": "Jadikan obrolan sementara",
-      "export": "Ekspor/Impor",
-      "exportCurrentSession": "Ekspor sesi saat ini",
-      "exportAllSessions": "Ekspor semua sesi",
-      "exportChatSession": "Ekspor sesi obrolan",
-      "importSessions": "Impor sesi",
-      "exportCurrentSessionMarkdown": "Ekspor sebagai Markdown"
+      "exportChatSession": "Ekspor sesi obrolan"
     },
     "modelSettingsSheet": {
       "modelSettings": "Pengaturan Model",
@@ -761,8 +669,6 @@
       "bulkDeleteTitle": "Hapus Sesi Obrolan",
       "bulkDeleteMessage": "Hapus {{count}} sesi obrolan? Tindakan ini tidak dapat dibatalkan.",
       "bulkDeleteError": "Gagal menghapus sesi obrolan. Silakan coba lagi.",
-      "exportError": "Gagal mengekspor sesi obrolan. Silakan coba lagi.",
-      "bulkExportError": "Gagal mengekspor sesi obrolan. Silakan coba lagi.",
       "dateGroups": {
         "today": "Hari Ini",
         "yesterday": "Kemarin",
@@ -794,22 +700,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "Salin",
-        "regenerate": "Hasilkan Ulang",
-        "regenerateWith": "Hasilkan Ulang dengan",
-        "edit": "Sunting",
-        "reportContent": "Laporkan Konten"
+        "copy": "Salin"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}md/token",
-      "tokensPerSec": "{{value}} token/detik",
-      "ttft": "{{value}}md TTFT",
       "interrupted": "Terputus",
-      "truncated": "Terpotong — kemungkinan konteks penuh",
-      "draftAccepted": "draf: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} token prompt/detik",
-      "cachedTokens": "{{value}} dari cache"
+      "truncated": "Terpotong — kemungkinan konteks penuh"
     },
     "pendingIndicator": {
       "preparingTool": "Menyiapkan alat",
@@ -839,20 +735,6 @@
     "userRoleRequired": "Peran pengguna wajib diisi",
     "situationRequired": "Situasi wajib diisi",
     "toneStyleRequired": "Nada/Gaya wajib diisi"
-  },
-  "camera": {
-    "permissionTitle": "Izin Kamera Diperlukan",
-    "permissionMessage": "PocketPal memerlukan akses kamera untuk menganalisis gambar",
-    "requestingPermission": "Meminta izin kamera...",
-    "noDevice": "Tidak ditemukan perangkat kamera",
-    "errorTitle": "Kesalahan Kamera",
-    "errorMessage": "Terjadi kesalahan saat mengambil foto",
-    "flip": "Balik",
-    "analyzing": "Menganalisis gambar...",
-    "startCamera": "Mulai Kamera",
-    "stopCamera": "Hentikan Kamera",
-    "promptPlaceholder": "Apa yang ingin Anda ketahui tentang gambar ini?",
-    "takePhoto": "Kamera"
   },
   "screenTitles": {
     "chat": "Obrolan",

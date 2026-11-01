@@ -33,7 +33,10 @@ import Reanimated, {
 
 import {useComponentSize} from '../KeyboardAccessoryView/hooks';
 
-import {useTheme, useMessageActions, usePrevious} from '../../hooks';
+import Clipboard from '@react-native-clipboard/clipboard';
+import {derivedText} from '../../utils/chat';
+
+import {useTheme, usePrevious} from '../../hooks';
 
 import ImageView from './ImageView';
 import {BannerRow} from './BannerRow';
@@ -65,22 +68,13 @@ import {
   MessageTopLevelProps,
   CircularActivityIndicator,
   ChatInput,
-  ChatInputAdditionalProps,
   ChatInputTopLevelProps,
   Menu,
   PendingIndicator,
-  ChatModelPickerSheet,
   ChatHeader,
   ChatEmptyPlaceholder,
-  ContentReportSheet,
 } from '..';
-import {
-  AlertIcon,
-  CopyIcon,
-  GridIcon,
-  PencilLineIcon,
-  RefreshIcon,
-} from '../../assets/icons';
+import {CopyIcon} from '../../assets/icons';
 
 type MenuItem = {
   label: string;
@@ -137,7 +131,6 @@ export interface ChatProps extends Omit<ChatTopLevelProps, 'onSendPress'> {
   /** Use this to enable `LayoutAnimation`. Experimental on Android (same as React Native). */
   enableAnimation?: boolean;
   flatListProps?: Partial<FlatListProps<MessageType.DerivedAny[]>>;
-  inputProps?: ChatInputAdditionalProps;
   /** Used for pagination (infinite scroll) together with {@link ChatProps.onEndReached}.
    * When true, indicates that there are no more pages to load and
    * pagination will not be triggered. */
@@ -157,10 +150,6 @@ export interface ChatProps extends Omit<ChatTopLevelProps, 'onSendPress'> {
   showUserNames?: boolean;
   /** Whether to show date headers between messages. Defaults to true. */
   showDateHeaders?: boolean;
-  /** Whether to show the image upload button in the chat input */
-  showImageUpload?: boolean;
-  /** Whether to enable vision mode for the chat input */
-  isVisionEnabled?: boolean;
   /** Initial text to prefill the input (e.g., from deep linking) */
   initialInputText?: string;
   /** Callback when initial text is consumed */
@@ -205,7 +194,6 @@ export const ChatView = observer(
     disableImageGallery,
     enableAnimation,
     flatListProps,
-    inputProps,
     isLastPage,
     isStopVisible,
     isStreaming = false,
@@ -225,8 +213,6 @@ export const ChatView = observer(
     showUserAvatars = false,
     showUserNames = false,
     showDateHeaders = false,
-    showImageUpload = false,
-    isVisionEnabled = false,
     initialInputText,
     onInitialTextConsumed,
     textInputProps,
@@ -250,11 +236,6 @@ export const ChatView = observer(
     const [inputText, setInputText] = React.useState('');
     const inputTextRef = React.useRef(inputText);
     inputTextRef.current = inputText;
-    const [inputImages, setInputImages] = React.useState<string[]>([]);
-    const [isPickerVisible, setIsPickerVisible] = React.useState(false);
-    const [_selectedModel, setSelectedModel] = React.useState<string | null>(
-      null,
-    );
 
     // Image viewer state
     const [isImageViewVisible, setIsImageViewVisible] = React.useState(false);
@@ -266,8 +247,6 @@ export const ChatView = observer(
     const [menuPosition, setMenuPosition] = React.useState({x: 0, y: 0});
     const [selectedMessage, setSelectedMessage] =
       React.useState<MessageType.Any | null>(null);
-    const [isReportSheetVisible, setIsReportSheetVisible] =
-      React.useState(false);
 
     // Pagination state
     const [isNextPageLoading, setNextPageLoading] = React.useState(false);
@@ -485,7 +464,6 @@ export const ChatView = observer(
         }
         if (sessionId === chatSessionStore.activeSessionId) {
           setInputText(prev => prependText(message.text, prev));
-          setInputImages(prev => [...(message.imageUris ?? []), ...prev]);
         } else {
           chatSessionStore.saveDraft(
             sessionId,
@@ -520,18 +498,14 @@ export const ChatView = observer(
 
     const handleCancelEdit = React.useCallback(() => {
       setInputText('');
-      setInputImages([]);
       chatSessionStore.exitEditMode();
     }, []);
 
-    const {handleCopy, handleEdit, handleTryAgain, handleTryAgainWith} =
-      useMessageActions({
-        user,
-        messages,
-        handleSendPress: wrappedOnSendPress,
-        setInputText,
-        setInputImages,
-      });
+    const handleCopy = React.useCallback((message: MessageType.Any) => {
+      if (message.type === 'text' || message.type === 'assistant_turn') {
+        Clipboard.setString(derivedText(message).trim());
+      }
+    }, []);
 
     // ============ AUTO-SCROLL ON NEW USER MESSAGE ============
     // Scroll to bottom when user sends a new message
@@ -655,15 +629,8 @@ export const ChatView = observer(
     );
 
     // ============ CONTEXT MENU CONFIGURATION ============
-    const {
-      copy: copyLabel,
-      regenerate: regenerateLabel,
-      regenerateWith: regenerateWithLabel,
-      edit: editLabel,
-      reportContent: reportContentLabel,
-    } = l10n.components.chatView.menuItems;
+    const {copy: copyLabel} = l10n.components.chatView.menuItems;
 
-    const isStopping = chatSessionStore.isStopping;
     const menuItems = React.useMemo((): MenuItem[] => {
       if (
         !selectedMessage ||
@@ -673,11 +640,7 @@ export const ChatView = observer(
         return [];
       }
 
-      const isAuthor = selectedMessage.author.id === user.id;
-      const hasActiveModel = modelStore.activeModelId !== undefined;
-      const models = modelStore.availableModels || [];
-
-      const baseItems: MenuItem[] = [
+      return [
         {
           label: copyLabel,
           onPress: () => {
@@ -688,72 +651,12 @@ export const ChatView = observer(
           disabled: false,
         },
       ];
-
-      if (!isAuthor) {
-        baseItems.push({
-          label: regenerateLabel,
-          onPress: () => {
-            handleTryAgain(selectedMessage);
-            handleMenuDismiss();
-          },
-          icon: () => <RefreshIcon stroke={theme.colors.primary} />,
-          disabled: !hasActiveModel || isStopping,
-        });
-
-        baseItems.push({
-          label: regenerateWithLabel,
-          icon: () => <GridIcon stroke={theme.colors.primary} />,
-          disabled: isStopping,
-          submenu: models.map(model => ({
-            label: model.name,
-            width: Math.min(300, size.width),
-            onPress: () => {
-              handleTryAgainWith(model.id, selectedMessage);
-              handleMenuDismiss();
-            },
-          })),
-        });
-      }
-
-      if (isAuthor) {
-        baseItems.push({
-          label: editLabel,
-          onPress: () => {
-            handleEdit(selectedMessage);
-            handleMenuDismiss();
-          },
-          icon: () => <PencilLineIcon stroke={theme.colors.primary} />,
-          disabled: !hasActiveModel || isStopping,
-        });
-      }
-
-      baseItems.push({
-        label: reportContentLabel,
-        onPress: () => {
-          setIsReportSheetVisible(true);
-          handleMenuDismiss();
-        },
-        icon: () => <AlertIcon stroke={theme.colors.primary} />,
-        disabled: false,
-      });
-
-      return baseItems;
     }, [
       selectedMessage,
-      isStopping,
-      user.id,
       handleCopy,
-      handleTryAgain,
-      handleTryAgainWith,
-      handleEdit,
       handleMenuDismiss,
-      size.width,
       theme.colors.primary,
       copyLabel,
-      regenerateLabel,
-      regenerateWithLabel,
-      editLabel,
-      reportContentLabel,
     ]);
 
     // ============ RENDER FUNCTIONS ============
@@ -902,12 +805,9 @@ export const ChatView = observer(
     // Render empty state
     const renderListEmptyComponent = React.useCallback(
       () => (
-        <ChatEmptyPlaceholder
-          bottomComponentHeight={bottomComponentHeight}
-          onSelectModel={() => setIsPickerVisible(true)}
-        />
+        <ChatEmptyPlaceholder bottomComponentHeight={bottomComponentHeight} />
       ),
-      [bottomComponentHeight, setIsPickerVisible],
+      [bottomComponentHeight],
     );
 
     // Render footer (loading indicator or spacer)
@@ -1057,12 +957,6 @@ export const ChatView = observer(
     );
 
     // ============ MODEL PICKER HANDLERS ============
-    const handleModelSelect = React.useCallback((model: string) => {
-      setSelectedModel(model);
-      setIsPickerVisible(false);
-    }, []);
-
-    // ============ COMPUTED VALUES ============
     const inputBackgroundColor = theme.colors.surface;
 
     // Soft cap: warn the user before the 5th HTML preview in this session.
@@ -1122,21 +1016,13 @@ export const ChatView = observer(
               />
               <ChatInput
                 {...{
-                  ...unwrap(inputProps),
                   isStreaming,
                   onSendPress: wrappedOnSendPress,
                   onStopPress,
                   chatInputHeight,
-                  inputBackgroundColor,
                   onCancelEdit: handleCancelEdit,
-                  onModelBtnPress: () => setIsPickerVisible(!isPickerVisible),
                   isStopVisible,
-                  isPickerVisible,
                   sendButtonVisibilityMode,
-                  showImageUpload,
-                  isVisionEnabled,
-                  defaultImages: inputImages,
-                  onDefaultImagesChange: setInputImages,
                   textInputProps: {
                     ...textInputProps,
                     value: inputText,
@@ -1145,18 +1031,6 @@ export const ChatView = observer(
                 }}
               />
             </Reanimated.View>
-
-            {/* Model picker sheet */}
-            {/* Conditionally render the sheet to avoid keyboard issues.
-            It makes the disappearing sudden, but it's better than the keyboard issue.*/}
-            {isPickerVisible && (
-              <ChatModelPickerSheet
-                isVisible={isPickerVisible}
-                onClose={() => setIsPickerVisible(false)}
-                onModelSelect={handleModelSelect}
-                chatInputHeight={chatInputHeight.height}
-              />
-            )}
           </Reanimated.View>
 
           {/* Image viewer */}
@@ -1175,12 +1049,6 @@ export const ChatView = observer(
             anchor={menuPosition}>
             {menuItems.map(renderMenuItem)}
           </Menu>
-
-          {/* Content report sheet */}
-          <ContentReportSheet
-            isVisible={isReportSheetVisible}
-            onClose={() => setIsReportSheetVisible(false)}
-          />
 
           {increaseSheetOpen && activeModel && currentNCtx !== undefined ? (
             <IncreaseContextSheet

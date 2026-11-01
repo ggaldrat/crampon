@@ -11,12 +11,11 @@ import {NavigationProp} from '@react-navigation/native';
 import {L10nContext} from '../../utils';
 
 interface ChatEmptyPlaceholderProps {
-  onSelectModel: () => void;
   bottomComponentHeight: number;
 }
 
 export const ChatEmptyPlaceholder = observer(
-  ({onSelectModel, bottomComponentHeight}: ChatEmptyPlaceholderProps) => {
+  ({bottomComponentHeight}: ChatEmptyPlaceholderProps) => {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp<any>>();
     const l10n = useContext(L10nContext);
@@ -41,7 +40,14 @@ export const ChatEmptyPlaceholder = observer(
         description:
           l10n.components.chatEmptyPlaceholder.activateModelDescription,
         buttonText: l10n.components.chatEmptyPlaceholder.activateModelButton,
-        onPress: onSelectModel,
+        // No model picker: reload the last used model, else the first one
+        onPress: () => {
+          const model =
+            modelStore.lastUsedModel ?? modelStore.availableModels[0];
+          if (model) {
+            modelStore.selectModel(model);
+          }
+        },
       };
     };
 

@@ -7675,11 +7675,6 @@ react-native-haptic-feedback@^2.3.3:
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-2.3.3.tgz#88b6876e91399a69bd1b551fe1681b2f3dc1214e"
   integrity sha512-svS4D5PxfNv8o68m9ahWfwje5NqukM3qLS48+WTdhbDkNUkOhP9rDfDSRHzlhk4zq+ISjyw95EhLeh8NkKX5vQ==
 
-react-native-image-picker@^8.2.1:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-8.2.1.tgz#1ac7826563cbaa5d5298d9f2acc53c69805e5393"
-  integrity sha512-FBeGYJGFDjMdGCcyubDJgBAPCQ4L1D3hwLXyUU91jY9ahOZMTbluceVvRmrEKqnDPFJ0gF1NVhJ0nr1nROFLdg==
-
 react-native-image-viewing@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-native-image-viewing/-/react-native-image-viewing-0.2.2.tgz#fb26e57d7d3d9ce4559a3af3d244387c0367242b"
@@ -7772,11 +7767,6 @@ react-native-screens@^4.19.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-share@^12.2.0:
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-12.2.0.tgz#d7011825bf79631858de459873ee2618235031d6"
-  integrity sha512-f6MB9BsKa9xVvu0DKbxq5jw4IyYHqQeqUlCNkD8eAFoJx6SD31ObPAn7SQ6NG9AOuhCy6aYuSJYJvx25DaoMZQ==
-
 react-native-svg-transformer@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/react-native-svg-transformer/-/react-native-svg-transformer-1.5.1.tgz#04467563becbea65b8e576df7e33c9a9a86961e8"
@@ -7810,11 +7800,6 @@ react-native-vector-icons@^10.3.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
-
-react-native-vision-camera@^4.7.2:
-  version "4.7.2"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-4.7.2.tgz#e4bd8f3d893a3f5fa9d8224ce28b8ef00d171bc1"
-  integrity sha512-C+5PvlSunN6I4aYplSask+v3jfhgduZumIVw6H6lG+Afpf8boIcG3uFSsSfVgj+hxI7fx6qM6bsciEhzgxEUYg==
 
 react-native-webview@^13.16.1:
   version "13.16.1"

@@ -97,15 +97,10 @@
     "darkMode": "ダークモード",
     "displayMemoryUsage": "メモリ使用量を表示",
     "displayMemoryUsageDescription": "チャット画面にメモリ使用量を表示します",
-    "exportOptions": "エクスポートオプション",
-    "exportLegacyChats": "旧チャットセッションをエクスポート",
-    "exportLegacyChatsDescription": "移行に失敗した場合や古いチャットセッションを復元する必要がある場合に使用します",
-    "exportButton": "エクスポート",
     "importChats": "チャットセッションをインポート",
     "importChatsDescription": "JSONファイルからチャットセッションをインポートします",
     "importButton": "インポート",
     "importSuccess": "{{count}}個のチャットセッションをインポートしました",
-    "importError": "チャットセッションのインポートに失敗しました、ファイル形式を確認してください",
     "cacheStorageTitle": "キャッシュとストレージ",
     "clearPalCaches": "ショートカットキャッシュをクリア",
     "clearPalCachesDescription": "ショートカットを高速化するために使用されるキャッシュデータをクリアします。Palやチャット履歴には影響しません。",
@@ -526,26 +521,6 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "メディアを送信"
     },
-    "exportUtils": {
-      "fileSaved": "ファイル保存完了",
-      "fileSavedMessage": "ファイルはダウンロードフォルダに{{filename}}として保存されました",
-      "share": "共有",
-      "ok": "OK",
-      "shareError": "共有エラー",
-      "shareErrorMessage": "ファイルを共有できませんでした、もう一度お試しください",
-      "saveError": "ダウンロードフォルダへの保存エラー",
-      "saveOptions": "保存オプション",
-      "saveOptionsMessage": "ダウンロードフォルダに直接保存できません、代わりにファイルを共有しますか？",
-      "cancel": "キャンセル",
-      "shareContentErrorMessage": "コンテンツを共有できませんでした、もう一度お試しください",
-      "exportError": "エクスポートエラー",
-      "exportErrorMessage": "ファイルのエクスポート中にエラーが発生しました、もう一度お試しください",
-      "permissionRequired": "ストレージへのアクセス許可が必要です",
-      "permissionMessage": "ダウンロードフォルダにファイルを保存するには許可が必要です",
-      "permissionDenied": "アクセス許可が拒否されました",
-      "permissionDeniedMessage": "ストレージへのアクセス許可がないため、エクスポート機能は利用できません",
-      "continue": "続ける"
-    },
     "thinkingBubble": {
       "reasoning": "考える"
     },
@@ -559,46 +534,7 @@
       "loading": "読み込み中..."
     },
     "chatInput": {
-      "inputPlaceholder": "メッセージを入力",
-      "thinkingToggle": {
-        "enableThinking": "思考モードを有効にする",
-        "disableThinking": "思考モードを無効にする",
-        "thinkingEnabled": "思考モードが有効",
-        "thinkingDisabled": "思考モードが無効",
-        "thinkText": "思考",
-        "cycleEffort": "推論の努力レベル：{{level}}。ダブルタップで努力レベルを切り替えます"
-      }
-    },
-    "contentReportSheet": {
-      "title": "コンテンツを報告",
-      "privacyNote": "メッセージの内容や会話の詳細は送信されません。遭遇した具体的な問題について説明してください。",
-      "categoryLabel": "報告カテゴリ",
-      "selectCategory": "カテゴリを選択",
-      "categories": {
-        "hate": "ヘイトスピーチ",
-        "sexual": "性的コンテンツ",
-        "selfHarm": "自傷行為",
-        "violence": "暴力",
-        "other": "その他"
-      },
-      "descriptionLabel": "説明",
-      "descriptionPlaceholder": "このコンテンツの問題について説明してください...",
-      "includeModelInfo": "モデル情報を含める",
-      "includeModelInfoDescription": "調査に役立つようにモデル名と識別子を含める",
-      "noActiveModelNote": "現在アクティブなモデルがありません",
-      "submit": "報告を送信",
-      "validation": {
-        "title": "情報が不足しています",
-        "message": "カテゴリを選択し、説明を入力してください。"
-      },
-      "success": {
-        "title": "報告が送信されました",
-        "message": "ご報告ありがとうございます。内容を確認し、適切な対応を取らせていただきます。"
-      },
-      "error": {
-        "title": "報告に失敗しました",
-        "message": "報告の送信に失敗しました。もう一度お試しください。"
-      }
+      "inputPlaceholder": "メッセージを入力"
     },
     "modelErrorReportSheet": {
       "title": "モデル読み込みエラーを報告",
@@ -627,31 +563,11 @@
         "message": "報告の送信に失敗しました。後でもう一度お試しください。"
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "無効な値",
-      "invalidNumericValuesMessage": "有効な数値を入力してください",
-      "pleaseCorrect": "以下を修正してください：",
-      "ok": "OK",
-      "saveChanges": "変更を保存",
-      "saveAsPreset": "プリセットとして保存",
-      "title_session": "チャット生成設定 (セッション)",
-      "title_preset": "チャット生成設定 (プリセット)",
-      "resetToSystemDefaults": "デフォルト設定に戻す",
-      "resetToPreset": "プリセットに戻す",
-      "applytoPresetAlert": {
-        "title": "保存完了",
-        "message": "これらの設定は今後すべてのセッションに適用されます"
-      },
-      "settingsSource": "設定ソース"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "チャット"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "ファイル"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "モデル"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "ダウンロード失敗",
@@ -662,16 +578,8 @@
     "headerRight": {
       "deleteChatTitle": "チャットを削除",
       "deleteChatMessage": "このチャットを削除してもよろしいですか？",
-      "generationSettings": "生成設定",
-      "model": "モデル",
       "duplicateChatHistory": "チャット履歴を複製",
-      "makeChatTemporary": "一時的なチャットにする",
-      "export": "エクスポート/インポート",
-      "exportCurrentSession": "現在のセッションをエクスポート",
-      "exportAllSessions": "すべてのセッションをエクスポート",
-      "exportChatSession": "チャットをエクスポート",
-      "importSessions": "セッションをインポート",
-      "exportCurrentSessionMarkdown": "Markdown形式でエクスポート"
+      "exportChatSession": "チャットをエクスポート"
     },
     "modelSettingsSheet": {
       "modelSettings": "モデル設定",
@@ -761,8 +669,6 @@
       "bulkDeleteTitle": "チャットを削除",
       "bulkDeleteMessage": "{{count}}件のチャットを削除しますか？この操作は取り消せません。",
       "bulkDeleteError": "チャットの削除に失敗しました。もう一度お試しください。",
-      "exportError": "チャットのエクスポートに失敗しました。もう一度お試しください。",
-      "bulkExportError": "チャットのエクスポートに失敗しました。もう一度お試しください。",
       "dateGroups": {
         "today": "今日",
         "yesterday": "昨日",
@@ -794,22 +700,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "コピー",
-        "regenerate": "再生成",
-        "regenerateWith": "再生成（モデル選択）",
-        "edit": "編集",
-        "reportContent": "コンテンツを報告"
+        "copy": "コピー"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}ms/トークン",
-      "tokensPerSec": "{{value}} トークン/秒",
-      "ttft": "{{value}}ms TTFT",
       "interrupted": "中断されました",
-      "truncated": "途中で停止 — コンテキストが満杯の可能性",
-      "draftAccepted": "ドラフト: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} プロンプトトークン/秒",
-      "cachedTokens": "{{value}} キャッシュ済み"
+      "truncated": "途中で停止 — コンテキストが満杯の可能性"
     },
     "pendingIndicator": {
       "preparingTool": "ツールを準備中",
@@ -839,20 +735,6 @@
     "userRoleRequired": "ユーザーの役割を入力してください",
     "situationRequired": "状況を入力してください",
     "toneStyleRequired": "雰囲気/スタイルを入力してください"
-  },
-  "camera": {
-    "permissionTitle": "カメラ許可が必要",
-    "permissionMessage": "PocketPalが画像を分析するにはカメラへのアクセスが必要です",
-    "requestingPermission": "カメラの許可をリクエスト中...",
-    "noDevice": "カメラデバイスが見つかりません",
-    "errorTitle": "カメラエラー",
-    "errorMessage": "写真撮影中にエラーが発生しました",
-    "flip": "反転",
-    "analyzing": "画像を分析中...",
-    "startCamera": "カメラを起動",
-    "stopCamera": "カメラを停止",
-    "promptPlaceholder": "この画像について何を知りたいですか？",
-    "takePhoto": "カメラ"
   },
   "screenTitles": {
     "chat": "チャット",

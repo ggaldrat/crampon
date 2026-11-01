@@ -97,15 +97,10 @@
     "darkMode": "מצב כהה",
     "displayMemoryUsage": "שימוש בתצוגת זיכרון",
     "displayMemoryUsageDescription": "הצגת ניצול זיכרון במסך הצ'אט.",
-    "exportOptions": "אפשרויות ייצוא",
-    "exportLegacyChats": "ייצוא צ'אטים ישנים",
-    "exportLegacyChatsDescription": "השתמש באפשרות זו אם ההעברה נכשלה או שאתה צריך לשחזר הפעלות צ'אט ישנות.",
-    "exportButton": "ייצוא",
     "importChats": "ייבוא סשני צ'אט",
     "importChatsDescription": "ייבוא סשני צ'אט מקובץ JSON (מיוצא).",
     "importButton": "ייבוא",
     "importSuccess": "יובאו בהצלחה {{count}} סשני צ'אט.",
-    "importError": "ייבוא סשני צ'אט נכשל. אנא בדוק את פורמט הקובץ.",
     "cacheStorageTitle": "מטמון ואחסון",
     "clearPalCaches": "נקה מטמון קיצורי דרך",
     "clearPalCachesDescription": "מנקה נתונים מהמטמון המשמשים להאצת קיצורי דרך. פעולה זו לא תשפיע על ה-Pals שלך או על היסטוריית הצ'אט.",
@@ -526,26 +521,6 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "שלח מדיה"
     },
-    "exportUtils": {
-      "fileSaved": "קובץ נשמר",
-      "fileSavedMessage": "הקובץ נשמר בתיקיית ההורדות שלך בשם {{filename}}",
-      "share": "שתף",
-      "ok": "אישור",
-      "shareError": "שגיאת שיתוף",
-      "shareErrorMessage": "לא ניתן היה לשתף את הקובץ. אנא נסה שוב.",
-      "saveError": "שגיאה בשמירה בהורדות",
-      "saveOptions": "אפשרויות שמירה",
-      "saveOptionsMessage": "לא ניתן לשמור ישירות בהורדות. האם ברצונך לשתף את הקובץ במקום זאת?",
-      "cancel": "ביטול",
-      "shareContentErrorMessage": "לא ניתן היה לשתף את התוכן. אנא נסה שוב.",
-      "exportError": "שגיאת ייצוא",
-      "exportErrorMessage": "אירעה שגיאה בייצוא הקובץ. אנא נסה שוב.",
-      "permissionRequired": "נדרשת הרשאת אחסון",
-      "permissionMessage": "אנו זקוקים להרשאה כדי לשמור את היצוא שלך בתיקיית ההורדות.",
-      "permissionDenied": "ההרשאה נדחתה",
-      "permissionDeniedMessage": "ללא הרשאת אחסון, תכונת הייצוא תושבת.",
-      "continue": "המשך"
-    },
     "thinkingBubble": {
       "reasoning": "הנמקה"
     },
@@ -559,46 +534,7 @@
       "loading": "טוען..."
     },
     "chatInput": {
-      "inputPlaceholder": "הודעה",
-      "thinkingToggle": {
-        "enableThinking": "הפעל מצב חשיבה",
-        "disableThinking": "השבת מצב חשיבה",
-        "thinkingEnabled": "מצב חשיבה הופעל",
-        "thinkingDisabled": "מצב חשיבה הושבת",
-        "thinkText": "חשיבה",
-        "cycleEffort": "מאמץ חשיבה: {{level}}. הקש פעמיים כדי לעבור בין רמות המאמץ"
-      }
-    },
-    "contentReportSheet": {
-      "title": "דיווח על תוכן",
-      "privacyNote": "איננו שולחים תוכן הודעות או פרטי שיחה. אנא תאר את הבעיה הספציפית שנתקלת בה.",
-      "categoryLabel": "קטגוריית דיווח",
-      "selectCategory": "בחר קטגוריה",
-      "categories": {
-        "hate": "ביטויי שנאה",
-        "sexual": "תוכן מיני",
-        "selfHarm": "פגיעה עצמית",
-        "violence": "אלימות",
-        "other": "אחר"
-      },
-      "descriptionLabel": "תיאור",
-      "descriptionPlaceholder": "אנא תאר מה הבעיה בתוכן הזה...",
-      "includeModelInfo": "כלול מידע על המודל",
-      "includeModelInfoDescription": "כלול את שם המודל והמזהה שלו כדי שנוכל לחקור",
-      "noActiveModelNote": "אין מודל פעיל כרגע",
-      "submit": "שלח דיווח",
-      "validation": {
-        "title": "מידע חסר",
-        "message": "אנא בחר קטגוריה וציין תיאור."
-      },
-      "success": {
-        "title": "דיווח נשלח",
-        "message": "תודה על הדיווח. נבחן אותו וננקוט בפעולה המתאימה."
-      },
-      "error": {
-        "title": "דיווח נכשל",
-        "message": "שליחת הדיווח נכשלה. אנא נסה שוב."
-      }
+      "inputPlaceholder": "הודעה"
     },
     "modelErrorReportSheet": {
       "title": "דיווח בעיית טעינת מודל",
@@ -627,31 +563,11 @@
         "message": "שליחת הדיווח נכשלה. אנא נסה שוב מאוחר יותר."
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "ערכים לא חוקיים",
-      "invalidNumericValuesMessage": "חייב להיות מספר תקין",
-      "pleaseCorrect": "אנא תקן את הדברים הבאים:",
-      "ok": "אישור",
-      "saveChanges": "שמור שינויים",
-      "saveAsPreset": "שמור כהגדרה קבועה",
-      "title_session": "הגדרות יצירת צ'אט (סשן)",
-      "title_preset": "הגדרות יצירת צ'אט (קבוע)",
-      "resetToSystemDefaults": "איפוס להגדרות ברירת מחדל של המערכת",
-      "resetToPreset": "איפוס להגדרות הקבועות",
-      "applytoPresetAlert": {
-        "title": "הצליח",
-        "message": "הגדרות אלו יוחלו על כל הסשנים העתידיים"
-      },
-      "settingsSource": "מקור ההגדרות"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "צ'אט"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "קובץ"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "מודלים"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "ההורדה נכשלה",
@@ -662,16 +578,8 @@
     "headerRight": {
       "deleteChatTitle": "מחק צ'אט",
       "deleteChatMessage": "האם אתה בטוח שאתה רוצה למחוק את הצ'אט הזה?",
-      "generationSettings": "הגדרות יצירה",
-      "model": "מודל",
       "duplicateChatHistory": "שכפל את היסטוריית הצ'אט",
-      "makeChatTemporary": "הפוך את הצ'אט לזמני",
-      "export": "ייצוא/ייבוא",
-      "exportCurrentSession": "ייצוא הסשן הנוכחי",
-      "exportAllSessions": "ייצוא כל הסשנים",
-      "exportChatSession": "ייצוא סשן צ'אט",
-      "importSessions": "ייבוא סשנים",
-      "exportCurrentSessionMarkdown": "ייצוא כ-Markdown"
+      "exportChatSession": "ייצוא סשן צ'אט"
     },
     "modelSettingsSheet": {
       "modelSettings": "הגדרות מודל",
@@ -761,8 +669,6 @@
       "bulkDeleteTitle": "מחק סשני צ'אט",
       "bulkDeleteMessage": "למחוק {{count}} סשני צ'אט? לא יהיה ניתן לבטל פעולה זו.",
       "bulkDeleteError": "מחיקת סשני הצ'אט נכשלה. אנא נסה שוב.",
-      "exportError": "ייצוא סשן הצ'אט נכשל. אנא נסה שוב.",
-      "bulkExportError": "ייצוא מפגשי הצ'אט נכשל. אנא נסה שוב.",
       "dateGroups": {
         "today": "היום",
         "yesterday": "אתמול",
@@ -794,22 +700,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "העתק",
-        "regenerate": "צור מחדש",
-        "regenerateWith": "צור עם",
-        "edit": "ערוך",
-        "reportContent": "דווח על תוכן"
+        "copy": "העתק"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}מ.ש./טוקן",
-      "tokensPerSec": "{{value}} טוקנים/שנ'",
-      "ttft": "{{value}}מ.ש. TTFT",
       "interrupted": "הופסק",
-      "truncated": "נקטע — ככל הנראה ההקשר מלא",
-      "draftAccepted": "טיוטה: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} טוקני הנחיה/שנ'",
-      "cachedTokens": "{{value}} מהמטמון"
+      "truncated": "נקטע — ככל הנראה ההקשר מלא"
     },
     "pendingIndicator": {
       "preparingTool": "מכין כלי",
@@ -839,20 +735,6 @@
     "userRoleRequired": "נדרש תפקיד משתמש",
     "situationRequired": "נדרש מצב",
     "toneStyleRequired": "נדרש טון/סגנון"
-  },
-  "camera": {
-    "permissionTitle": "נדרשת הרשאת מצלמה",
-    "permissionMessage": "PocketPal זקוק לגישה למצלמה כדי לנתח תמונות",
-    "requestingPermission": "מבקש הרשאת מצלמה...",
-    "noDevice": "לא נמצאה מצלמה במכשיר",
-    "errorTitle": "שגיאת מצלמה",
-    "errorMessage": "אירעה שגיאה בעת צילום התמונה",
-    "flip": "היפוך",
-    "analyzing": "ניתוח תמונה...",
-    "startCamera": "הפעל את המצלמה",
-    "stopCamera": "עצור את המצלמה",
-    "promptPlaceholder": "מה אתה רוצה לדעת על התמונה הזו?",
-    "takePhoto": "מצלמה"
   },
   "screenTitles": {
     "chat": "צ'אט",

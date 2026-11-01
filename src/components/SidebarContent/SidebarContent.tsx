@@ -14,7 +14,6 @@ import {
   ChatIcon,
   EditIcon,
   SettingsIcon,
-  ShareIcon,
   StarIcon,
   TrashIcon,
   AppInfoIcon,
@@ -22,7 +21,6 @@ import {
 import {L10nContext} from '../../utils';
 import {t} from '../../locales';
 import {ROUTES} from '../../utils/navigationConstants';
-import {exportChatSession} from '../../utils/exportUtils';
 
 // Check if app is in debug mode
 const isDebugMode = __DEV__;
@@ -40,7 +38,6 @@ interface SessionItemProps {
   onPressPin: (sessionId: string) => void;
   onPressRename: (session: SessionMetaData) => void;
   onPressDelete: (sessionId: string) => void;
-  onPressExport: (sessionId: string) => void;
   onPressSelect: (sessionId: string) => void;
   isSelectionMode: boolean;
   isSelected: boolean;
@@ -64,7 +61,6 @@ const SessionItem = React.memo<SessionItemProps>(
     onPressPin,
     onPressRename,
     onPressDelete,
-    onPressExport,
     onPressSelect,
     isSelectionMode,
     isSelected,
@@ -162,14 +158,6 @@ const SessionItem = React.memo<SessionItemProps>(
             />
             <Menu.Item
               onPress={() => {
-                onPressExport(session.id);
-                onMenuDismiss();
-              }}
-              label={l10n.common.export}
-              leadingIcon={() => <ShareIcon stroke={theme.colors.primary} />}
-            />
-            <Menu.Item
-              onPress={() => {
                 onPressDelete(session.id);
                 onMenuDismiss();
               }}
@@ -198,7 +186,6 @@ SessionItem.displayName = 'SessionItem';
 interface SelectionModeHeaderProps {
   selectedCount: number;
   onCancel: () => void;
-  onExport: () => void;
   onDelete: () => void;
   l10n: any;
   theme: any;
@@ -208,7 +195,6 @@ interface SelectionModeHeaderProps {
 const SelectionModeHeader: React.FC<SelectionModeHeaderProps> = ({
   selectedCount,
   onCancel,
-  onExport,
   onDelete,
   l10n,
   theme,
@@ -227,22 +213,6 @@ const SelectionModeHeader: React.FC<SelectionModeHeaderProps> = ({
       </Text>
 
       <View style={styles.headerActions}>
-        <TouchableOpacity
-          onPress={onExport}
-          disabled={selectedCount === 0}
-          style={[
-            styles.headerActionButton,
-            selectedCount === 0 && styles.headerActionButtonDisabled,
-          ]}
-          testID="bulk-export-button">
-          <ShareIcon
-            stroke={
-              selectedCount === 0
-                ? theme.colors.onSurfaceDisabled
-                : theme.colors.primary
-            }
-          />
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={onDelete}
           disabled={selectedCount === 0}
@@ -391,20 +361,6 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
       await chatSessionStore.togglePinSession(sessionId);
     }, []);
 
-    const handlePressExport = React.useCallback(
-      async (sessionId: string) => {
-        try {
-          await exportChatSession(sessionId);
-        } catch {
-          Alert.alert(
-            l10n.common.error,
-            l10n.components.sidebarContent.exportError,
-          );
-        }
-      },
-      [l10n],
-    );
-
     const handlePressSelect = React.useCallback(
       (sessionId: string) => {
         chatSessionStore.enterSelectionMode(sessionId);
@@ -452,17 +408,6 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
       );
     }, [l10n]);
 
-    const handleBulkExport = React.useCallback(async () => {
-      try {
-        await chatSessionStore.bulkExportSessions();
-      } catch {
-        Alert.alert(
-          l10n.common.error,
-          l10n.components.sidebarContent.bulkExportError,
-        );
-      }
-    }, [l10n]);
-
     // Key extractor for SectionList
     const keyExtractor = React.useCallback(
       (item: SessionMetaData) => item.id,
@@ -500,7 +445,6 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
             onPressPin={handlePressPin}
             onPressRename={handlePressRename}
             onPressDelete={onPressDelete}
-            onPressExport={handlePressExport}
             onPressSelect={handlePressSelect}
             isSelectionMode={chatSessionStore.isSelectionMode}
             isSelected={isSelected}
@@ -520,7 +464,6 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
         handlePressPin,
         handlePressRename,
         onPressDelete,
-        handlePressExport,
         handlePressSelect,
         handleToggleSelection,
         theme,
@@ -600,7 +543,6 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
               <SelectionModeHeader
                 selectedCount={chatSessionStore.selectedCount}
                 onCancel={handleExitSelectionMode}
-                onExport={handleBulkExport}
                 onDelete={handleBulkDelete}
                 l10n={l10n}
                 theme={theme}

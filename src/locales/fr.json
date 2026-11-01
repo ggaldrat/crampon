@@ -71,15 +71,10 @@
     "darkMode": "Mode sombre",
     "displayMemoryUsage": "Afficher l'utilisation de mémoire",
     "displayMemoryUsageDescription": "Afficher l'utilisation de mémoire dans la page de chat.",
-    "exportOptions": "Options d'exportation",
-    "exportLegacyChats": "Exporter les anciens chats",
-    "exportLegacyChatsDescription": "Utilisez cette option si la migration a échoué ou si vous devez récupérer d'anciennes sessions de chat.",
-    "exportButton": "Exporter",
     "importChats": "Importer des sessions de chat",
     "importChatsDescription": "Importer des sessions de chat depuis un fichier JSON (exporté).",
     "importButton": "Importer",
     "importSuccess": "{{count}} session(s) de chat importée(s) avec succès.",
-    "importError": "Échec de l'importation des sessions de chat. Veuillez vérifier le format du fichier.",
     "openCL": "OpenCL (expérimental)",
     "openCLDescription": "Acceleration GPU pour Adreno GPUs. prompt plus rapide, generation ne sera pas toujours plus rapide.",
     "openCLNotAvailable": "OpenCL n'es pas disponible sur cet appareil. Nécessite un GPU adreno avec i8mm et dotprod CPU.",
@@ -318,26 +313,6 @@
     "attachmentButton": {
       "attachmentButtonAccessibilityLabel": "Envoyer un média"
     },
-    "exportUtils": {
-      "fileSaved": "Fichier enregistré",
-      "fileSavedMessage": "Le fichier a été enregistré dans votre dossier Téléchargements sous le nom {{filename}}",
-      "share": "Partager",
-      "ok": "OK",
-      "shareError": "Erreur de partage",
-      "shareErrorMessage": "Impossible de partager le fichier. Veuillez réessayer.",
-      "saveError": "Erreur d'enregistrement dans Téléchargements",
-      "saveOptions": "Options d'enregistrement",
-      "saveOptionsMessage": "Impossible d'enregistrer directement dans Téléchargements. Voulez-vous partager le fichier à la place ?",
-      "cancel": "Annuler",
-      "shareContentErrorMessage": "Impossible de partager le contenu. Veuillez réessayer.",
-      "exportError": "Erreur d'exportation",
-      "exportErrorMessage": "Une erreur s'est produite lors de l'exportation du fichier. Veuillez réessayer.",
-      "permissionRequired": "Permission de stockage requise",
-      "permissionMessage": "Nous avons besoin d'une permission pour enregistrer votre export dans le dossier Téléchargements.",
-      "permissionDenied": "Permission refusée",
-      "permissionDeniedMessage": "Sans permission de stockage, la fonction d'exportation sera désactivée.",
-      "continue": "Continuer"
-    },
     "thinkingBubble": {
       "reasoning": "Raisonnement"
     },
@@ -353,30 +328,11 @@
     "chatInput": {
       "inputPlaceholder": "Message"
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Valeurs invalides",
-      "invalidNumericValuesMessage": "Doit être un nombre valide",
-      "pleaseCorrect": "Veuillez corriger ce qui suit :",
-      "ok": "OK",
-      "saveChanges": "Enregistrer les modifications",
-      "saveAsPreset": "Enregistrer comme préréglage",
-      "title_session": "Paramètres de génération (Session)",
-      "title_preset": "Paramètres de génération (Préréglage)",
-      "resetToSystemDefaults": "Réinitialiser aux valeurs par défaut",
-      "resetToPreset": "Réinitialiser au préréglage",
-      "applytoPresetAlert": {
-        "title": "Succès",
-        "message": "Ces paramètres seront appliqués à toutes les futures sessions"
-      }
-    },
     "chatHeaderTitle": {
       "defaultTitle": "Discussion"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Fichier"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "Modèles"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Échec du téléchargement",
@@ -389,15 +345,8 @@
     "headerRight": {
       "deleteChatTitle": "Supprimer la discussion",
       "deleteChatMessage": "Êtes-vous sûr de vouloir supprimer cette discussion ?",
-      "generationSettings": "Paramètres de génération",
-      "model": "Modèle",
       "duplicateChatHistory": "Dupliquer l'historique de discussion",
-      "makeChatTemporary": "Rendre la discussion temporaire",
-      "export": "Exporter/Importer",
-      "exportCurrentSession": "Exporter la session actuelle",
-      "exportAllSessions": "Exporter toutes les sessions",
-      "exportChatSession": "Exporter la session de discussion",
-      "importSessions": "Importer des sessions"
+      "exportChatSession": "Exporter la session de discussion"
     },
     "modelSettingsSheet": {
       "modelSettings": "Paramètres du modèle",

@@ -75,15 +75,10 @@
     "darkMode": "Modo Oscuro",
     "displayMemoryUsage": "Mostrar uso de memoria",
     "displayMemoryUsageDescription": "Mostrar el uso de memoria en la página del chat.",
-    "exportOptions": "Opciones de exportación",
-    "exportLegacyChats": "Exportar chats anteriores",
-    "exportLegacyChatsDescription": "Usa esta opción si la migración falló o necesitas recuperar sesiones de chat anteriores.",
-    "exportButton": "Exportar",
     "importChats": "Importar sesiones de chat",
     "importChatsDescription": "Importar sesiones de chat de un archivo JSON (exportado).",
     "importButton": "Importar",
     "importSuccess": "Se importaron {{count}} sesiones de chat con éxito.",
-    "importError": "Error al importar las sesiones de chat. Revisa el formato del archivo.",
     "serverUrlRequired": "Se requiere la URL del servidor",
     "serverUrlInvalid": "Formato de URL no válido",
     "serverUrlHttpWarning": "iOS requiere HTTPS para servidores no locales. Usa https:// o una dirección de red local.",
@@ -527,34 +522,8 @@
       "attachmentButtonAccessibilityLabel": "Enviar contenido multimedia"
     },
     "bubble": {
-      "msPerToken": "{{value}} ms/token",
-      "tokensPerSec": "{{value}} tokens/seg",
-      "ttft": "{{value}} ms TTFT",
-      "draftAccepted": "borrador: {{accepted}}/{{total}} ({{pct}}%)",
       "interrupted": "Interrumpido",
-      "truncated": "Truncado — posible límite de contexto alcanzado",
-      "promptTokensPerSec": "{{value}} tokens de prompt/seg",
-      "cachedTokens": "{{value}} en caché"
-    },
-    "exportUtils": {
-      "fileSaved": "Archivo guardado",
-      "fileSavedMessage": "El archivo se ha guardado en tu carpeta de Descargas como {{filename}}",
-      "share": "Compartir",
-      "ok": "Aceptar",
-      "shareError": "Error al compartir",
-      "shareErrorMessage": "No se pudo compartir el archivo. Por favor, inténtalo de nuevo.",
-      "saveError": "Error al guardar en Descargas",
-      "saveOptions": "Opciones de guardado",
-      "saveOptionsMessage": "No se pudo guardar directamente en Descargas. ¿Te gustaría compartir el archivo en su lugar?",
-      "cancel": "Cancelar",
-      "shareContentErrorMessage": "No se pudo compartir el contenido. Por favor, inténtalo de nuevo.",
-      "exportError": "Error de exportación",
-      "exportErrorMessage": "Hubo un error al exportar el archivo. Por favor, inténtalo de nuevo.",
-      "permissionRequired": "Permiso de almacenamiento requerido",
-      "permissionMessage": "Necesitamos permiso para guardar tu exportación en la carpeta Descargas.",
-      "permissionDenied": "Permiso denegado",
-      "permissionDeniedMessage": "Sin el permiso de almacenamiento, la función de exportación estará deshabilitada.",
-      "continue": "Continuar"
+      "truncated": "Truncado — posible límite de contexto alcanzado"
     },
     "thinkingBubble": {
       "reasoning": "Razonamiento"
@@ -580,46 +549,7 @@
       "loading": "Cargando..."
     },
     "chatInput": {
-      "inputPlaceholder": "Mensaje",
-      "thinkingToggle": {
-        "enableThinking": "Activar modo de pensamiento",
-        "disableThinking": "Desactivar modo de pensamiento",
-        "thinkingEnabled": "Modo de pensamiento activado",
-        "thinkingDisabled": "Modo de pensamiento desactivado",
-        "thinkText": "Pensamiento",
-        "cycleEffort": "Esfuerzo de razonamiento: {{level}}. Toca dos veces para cambiar el nivel de esfuerzo"
-      }
-    },
-    "contentReportSheet": {
-      "title": "Reportar contenido",
-      "privacyNote": "No enviamos el contenido de los mensajes ni detalles de la conversación. Por favor, describe el problema específico que encontraste.",
-      "categoryLabel": "Categoría del reporte",
-      "selectCategory": "Selecciona una categoría",
-      "categories": {
-        "hate": "Discurso de odio",
-        "sexual": "Contenido sexual",
-        "selfHarm": "Autolesión",
-        "violence": "Violencia",
-        "other": "Otro"
-      },
-      "descriptionLabel": "Descripción",
-      "descriptionPlaceholder": "Por favor describe el problema con este contenido...",
-      "includeModelInfo": "Incluir información del modelo",
-      "includeModelInfoDescription": "Incluya el nombre y el identificador del modelo para ayudarnos a investigar",
-      "noActiveModelNote": "Ningún modelo activo actualmente",
-      "submit": "Enviar reporte",
-      "validation": {
-        "title": "Información faltante",
-        "message": "Por favor, selecciona una categoría y proporciona una descripción."
-      },
-      "success": {
-        "title": "Reporte enviado",
-        "message": "Gracias por tu reporte. Lo revisaremos y tomaremos las medidas necesarias."
-      },
-      "error": {
-        "title": "Error al enviar el reporte",
-        "message": "No se pudo enviar el reporte. Por favor, inténtalo de nuevo."
-      }
+      "inputPlaceholder": "Mensaje"
     },
     "modelErrorReportSheet": {
       "title": "Reportar problema de carga del modelo",
@@ -647,23 +577,6 @@
         "title": "Error al enviar el reporte",
         "message": "No se pudo enviar el reporte. Inténtalo de nuevo más tarde."
       }
-    },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Valores no válidos",
-      "invalidNumericValuesMessage": "Debe ser un número válido",
-      "pleaseCorrect": "Corrige lo siguiente:",
-      "ok": "Aceptar",
-      "saveChanges": "Guardar cambios",
-      "saveAsPreset": "Guardar como ajuste preestablecido",
-      "title_session": "Ajustes de generación del chat (sesión)",
-      "title_preset": "Ajustes de generación del chat (ajuste preestablecido)",
-      "resetToSystemDefaults": "Restablecer valores predeterminados del sistema",
-      "resetToPreset": "Restablecer al ajuste preestablecido",
-      "applytoPresetAlert": {
-        "title": "Éxito",
-        "message": "Estos ajustes se aplicarán a todas las sesiones futuras"
-      },
-      "settingsSource": "Origen de los ajustes"
     },
     "systemPromptSection": {
       "buttons": {
@@ -699,9 +612,6 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Archivo"
     },
-    "chatModelPickerSheet": {
-      "modelsTab": "Modelos"
-    },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Error de descarga",
       "downloadFailedMessage": "No se pudo descargar el modelo: {{message}}",
@@ -711,16 +621,8 @@
     "headerRight": {
       "deleteChatTitle": "Eliminar chat",
       "deleteChatMessage": "¿Seguro que quieres eliminar este chat?",
-      "generationSettings": "Ajustes de generación",
-      "model": "Modelo",
       "duplicateChatHistory": "Duplicar historial de chat",
-      "makeChatTemporary": "Hacer que el chat sea temporal",
-      "export": "Exportar / Importar",
-      "exportCurrentSession": "Exportar sesión actual",
-      "exportCurrentSessionMarkdown": "Exportar como Markdown",
-      "exportAllSessions": "Exportar todas las sesiones",
-      "exportChatSession": "Exportar sesión de chat",
-      "importSessions": "Importar sesiones"
+      "exportChatSession": "Exportar sesión de chat"
     },
     "modelSettingsSheet": {
       "modelSettings": "Ajustes del modelo",
@@ -782,8 +684,6 @@
       "bulkDeleteTitle": "Eliminar sesiones de chat",
       "bulkDeleteMessage": "¿Eliminar {{count}} sesión(es) de chat? Esta acción no se puede deshacer.",
       "bulkDeleteError": "Error al eliminar las sesiones de chat. Por favor, inténtalo de nuevo.",
-      "exportError": "Error al exportar la sesión de chat. Por favor, inténtalo de nuevo.",
-      "bulkExportError": "Error al exportar las sesiones de chat. Por favor, inténtalo de nuevo.",
       "pin": "Fijar",
       "unpin": "Desfijar",
       "dateGroups": {
@@ -815,11 +715,7 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "Copiar",
-        "regenerate": "Regenerar",
-        "regenerateWith": "Regenerar con",
-        "edit": "Editar",
-        "reportContent": "Reportar contenido"
+        "copy": "Copiar"
       }
     },
     "completionSettings": {
@@ -839,20 +735,6 @@
     "userRoleRequired": "El rol del usuario es obligatorio",
     "situationRequired": "La situación es obligatoria",
     "toneStyleRequired": "El tono/estilo es obligatorio"
-  },
-  "camera": {
-    "permissionTitle": "Permiso de cámara requerido",
-    "permissionMessage": "Pocket Pal necesita acceso a la cámara para analizar imágenes",
-    "requestingPermission": "Solicitando permiso de cámara...",
-    "noDevice": "No se encontró ningún dispositivo de cámara",
-    "errorTitle": "Error de cámara",
-    "errorMessage": "Ocurrió un error al tomar la foto",
-    "flip": "Voltear",
-    "analyzing": "Analizando imagen...",
-    "startCamera": "Iniciar cámara",
-    "stopCamera": "Detener cámara",
-    "promptPlaceholder": "¿Qué quieres saber sobre esta imagen?",
-    "takePhoto": "Cámara"
   },
   "screenTitles": {
     "chat": "Chat",

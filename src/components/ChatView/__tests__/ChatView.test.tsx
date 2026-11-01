@@ -374,29 +374,27 @@ describe('chat', () => {
     });
 
     it.each([
-      [
-        'an assistant row',
-        answer,
-        [menuLabels.regenerate, menuLabels.regenerateWith],
-      ],
-      ['a user row', textMessage, [menuLabels.edit]],
-    ])(
-      'disables the row-deleting menu items on %s, but not Copy',
-      (_row, message, deleting) => {
-        const {getAllByTestId, getByText} = render(
-          <ChatView messages={[message]} onSendPress={jest.fn()} user={user} />,
-          options,
-        );
-        fireEvent(getAllByTestId('ContentContainer')[0], 'onLongPress', {
-          nativeEvent: {pageX: 0, pageY: 0},
-        });
+      ['an assistant row', answer],
+      ['a user row', textMessage],
+    ])('offers only Copy on %s, still enabled', (_row, message) => {
+      const {getAllByTestId, getByText, queryByText} = render(
+        <ChatView messages={[message]} onSendPress={jest.fn()} user={user} />,
+        options,
+      );
+      fireEvent(getAllByTestId('ContentContainer')[0], 'onLongPress', {
+        nativeEvent: {pageX: 0, pageY: 0},
+      });
 
-        for (const label of deleting) {
-          expect(isDisabled(label, getByText)).toBe(true);
-        }
-        expect(isDisabled(menuLabels.copy, getByText)).toBe(false);
-      },
-    );
+      expect(isDisabled(menuLabels.copy, getByText)).toBe(false);
+      for (const label of [
+        'Regenerate',
+        'Regenerate with',
+        'Edit',
+        'Report Content',
+      ]) {
+        expect(queryByText(label)).toBeNull();
+      }
+    });
   });
 
   describe('increase-context CTA memory estimate', () => {

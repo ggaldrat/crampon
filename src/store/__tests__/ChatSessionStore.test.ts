@@ -20,7 +20,6 @@ jest.spyOn(chatSessionRepository, 'getSessionMetadataWithSettings');
 jest.spyOn(chatSessionRepository, 'createSession');
 jest.spyOn(chatSessionRepository, 'deleteSession');
 jest.spyOn(chatSessionRepository, 'deleteSessions');
-jest.spyOn(chatSessionRepository, 'exportSessions');
 jest.spyOn(chatSessionRepository, 'addMessageToSession');
 jest.spyOn(chatSessionRepository, 'updateMessage');
 jest.spyOn(chatSessionRepository, 'updateSessionTitle');
@@ -703,7 +702,12 @@ describe('chatSessionStore', () => {
       expect(chatSessionRepository.createSession).toHaveBeenCalledWith(
         expect.any(String),
         [mockMessage],
-        originalSession.completionSettings,
+        // Reasoning is forced off on top of the inherited settings
+        {
+          ...originalSession.completionSettings,
+          enable_thinking: false,
+          reasoning: {enabled: false},
+        },
         'pal',
       );
       expect(chatSessionStore.sessions.length).toBe(2);
@@ -1496,94 +1500,15 @@ describe('chatSessionStore', () => {
     });
   });
 
-  describe('newChatThinkingOverride — session-creation handoff & clears', () => {
-    beforeEach(() => {
-      chatSessionStore.newChatThinkingOverride = undefined;
-    });
-
-    it("births session as 'custom' when override is staged — memory + DB", async () => {
-      const mockNewSession = {
-        id: 'new-session-override',
-        title: 'With Override',
-        date: new Date().toISOString(),
+  describe('reasoning', () => {
+    it('is always off, whatever the stored settings', async () => {
+      chatSessionStore.newChatCompletionSettings = {
+        ...defaultCompletionSettings,
+        enable_thinking: true,
       };
-      (chatSessionRepository.createSession as jest.Mock).mockResolvedValue(
-        mockNewSession,
-      );
-      (chatSessionRepository.getSessionById as jest.Mock).mockResolvedValue({
-        messages: [],
-        completionSettings: {getSettings: () => defaultCompletionSettings},
-      });
-
-      chatSessionStore.newChatThinkingOverride = false;
-
-      await chatSessionStore.createNewSession('With Override');
-
-      // Memory-side: session.settingsSource is 'custom' at birth.
-      expect(chatSessionStore.sessions[0].settingsSource).toBe('custom');
-      // DB-side: repo received 'custom' too.
-      expect(chatSessionRepository.createSession).toHaveBeenCalledWith(
-        'With Override',
-        [],
-        defaultCompletionSettings,
-        'custom',
-      );
-      // Override is one-shot — cleared once the session exists.
-      expect(chatSessionStore.newChatThinkingOverride).toBeUndefined();
-    });
-
-    it("births session as 'pal' (global settings) when override is undefined (regression guard)", async () => {
-      const mockNewSession = {
-        id: 'new-session-default',
-        title: 'No Override',
-        date: new Date().toISOString(),
-      };
-      (chatSessionRepository.createSession as jest.Mock).mockResolvedValue(
-        mockNewSession,
-      );
-      (chatSessionRepository.getSessionById as jest.Mock).mockResolvedValue({
-        messages: [],
-        completionSettings: {getSettings: () => defaultCompletionSettings},
-      });
-
-      chatSessionStore.newChatThinkingOverride = undefined;
-
-      await chatSessionStore.createNewSession('No Override');
-
-      expect(chatSessionStore.sessions[0].settingsSource).toBe('pal');
-      expect(chatSessionRepository.createSession).toHaveBeenCalledWith(
-        'No Override',
-        [],
-        defaultCompletionSettings,
-        'pal',
-      );
-    });
-
-    it('clears override on resetActiveSession', () => {
-      chatSessionStore.newChatThinkingOverride = false;
-      chatSessionStore.activeSessionId = 'session1';
-
-      chatSessionStore.resetActiveSession();
-
-      expect(chatSessionStore.newChatThinkingOverride).toBeUndefined();
-    });
-
-    it('clears override on setActiveSession (session switch)', async () => {
-      const existing = {
-        id: 'session1',
-        title: 'Existing',
-        date: new Date().toISOString(),
-        messages: [],
-        completionSettings: defaultCompletionSettings,
-        settingsSource: 'pal' as 'pal' | 'custom',
-        messagesLoaded: true,
-      };
-      chatSessionStore.sessions = [existing];
-      chatSessionStore.newChatThinkingOverride = true;
-
-      await chatSessionStore.setActiveSession('session1');
-
-      expect(chatSessionStore.newChatThinkingOverride).toBeUndefined();
+      const settings = await chatSessionStore.resolveCompletionSettings();
+      expect(settings.enable_thinking).toBe(false);
+      expect(settings.reasoning?.enabled).toBe(false);
     });
   });
 
@@ -2214,61 +2139,6 @@ describe('chatSessionStore', () => {
         expect(chatSessionStore.sessionDrafts.has('session3')).toBe(false);
         // Draft for non-deleted session is preserved
         expect(chatSessionStore.getDraft('session2')).toBe('draft B');
-      });
-    });
-
-    describe('bulkExportSessions', () => {
-      it('calls repository exportSessions with selected IDs', async () => {
-        chatSessionStore.selectedSessionIds.add('session1');
-        chatSessionStore.selectedSessionIds.add('session3');
-
-        (chatSessionRepository.exportSessions as jest.Mock).mockResolvedValue(
-          undefined,
-        );
-
-        await chatSessionStore.bulkExportSessions();
-
-        expect(chatSessionRepository.exportSessions).toHaveBeenCalledWith([
-          'session1',
-          'session3',
-        ]);
-      });
-
-      it('exits selection mode on success', async () => {
-        chatSessionStore.isSelectionMode = true;
-        chatSessionStore.selectedSessionIds.add('session1');
-
-        (chatSessionRepository.exportSessions as jest.Mock).mockResolvedValue(
-          undefined,
-        );
-
-        await chatSessionStore.bulkExportSessions();
-
-        expect(chatSessionStore.isSelectionMode).toBe(false);
-        expect(chatSessionStore.selectedCount).toBe(0);
-      });
-
-      it('handles errors gracefully and re-throws', async () => {
-        chatSessionStore.selectedSessionIds.add('session1');
-
-        const error = new Error('Export failed');
-        (chatSessionRepository.exportSessions as jest.Mock).mockRejectedValue(
-          error,
-        );
-
-        await expect(chatSessionStore.bulkExportSessions()).rejects.toThrow(
-          'Export failed',
-        );
-      });
-
-      it('handles empty selection gracefully', async () => {
-        (chatSessionRepository.exportSessions as jest.Mock).mockResolvedValue(
-          undefined,
-        );
-
-        await chatSessionStore.bulkExportSessions();
-
-        expect(chatSessionRepository.exportSessions).toHaveBeenCalledWith([]);
       });
     });
   });

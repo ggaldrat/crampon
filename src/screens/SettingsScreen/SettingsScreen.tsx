@@ -30,7 +30,6 @@ import {
   GlobeIcon,
   MoonIcon,
   CpuChipIcon,
-  ShareIcon,
   LinkExternalIcon,
   VolumeOnIcon,
 } from '../../assets/icons';
@@ -59,7 +58,6 @@ import {
 } from '../../utils';
 import {t} from '../../locales';
 import {checkGpuSupport} from '../../utils/deviceCapabilities';
-import {exportLegacyChatSessions} from '../../utils/exportUtils';
 import {getDeviceOptions, DeviceOption} from '../../utils/deviceSelection';
 import {
   inferBackendType,
@@ -542,48 +540,6 @@ export const SettingsScreen: React.FC = observer(() => {
             </Card>
           )}
 
-          {/* Export Options */}
-          <Card elevation={0} style={styles.card}>
-            <Card.Title title={l10n.settings.exportOptions} />
-            <Card.Content>
-              <View style={styles.settingItemContainer}>
-                {/* Legacy Export */}
-                <View style={styles.switchContainer}>
-                  <View style={styles.textContainer}>
-                    <View style={styles.labelWithIconContainer}>
-                      <ShareIcon
-                        width={20}
-                        height={20}
-                        style={styles.settingIcon}
-                        stroke={theme.colors.onSurface}
-                      />
-                      <Text variant="titleMedium" style={styles.textLabel}>
-                        {l10n.settings.exportLegacyChats}
-                      </Text>
-                    </View>
-                    <Text variant="labelSmall" style={styles.textDescription}>
-                      {l10n.settings.exportLegacyChatsDescription}
-                    </Text>
-                  </View>
-                  <Button
-                    mode="outlined"
-                    onPress={async () => {
-                      try {
-                        await exportLegacyChatSessions();
-                      } catch {
-                        Alert.alert(
-                          'Export Error',
-                          'Failed to export legacy chat sessions. The file may not exist.',
-                        );
-                      }
-                    }}
-                    style={styles.menuButton}>
-                    {l10n.settings.exportButton}
-                  </Button>
-                </View>
-              </View>
-            </Card.Content>
-          </Card>
           {/* Engine settings: llama.cpp tuning, collapsed by default */}
           <List.Accordion
             testID="engine-settings-accordion"

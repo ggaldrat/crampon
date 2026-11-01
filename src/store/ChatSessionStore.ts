@@ -81,16 +81,6 @@ class ChatSessionStore {
   /** A send is waiting for a stopped run to drain. */
   isStopping: boolean = false;
   newChatCompletionSettings: CompletionParams = defaultCompletionSettings;
-  // User's manual thinking toggle in the no-session chat path. When set,
-  // the resolver applies it as the last layer so the toggle
-  // persists; cleared on session creation, new-chat reset, and session
-  // switch.
-  newChatThinkingOverride: boolean | undefined = undefined;
-  // User's manual graded-effort choice in the no-session chat path, paired with
-  // newChatThinkingOverride. Carries the effort grade (low/medium/high) so a
-  // graded pill round-trips before the first message creates a session; cleared
-  // alongside newChatThinkingOverride.
-  newChatReasoningEffort: string | undefined = undefined;
   // Store localized date group names
   dateGroupNames: typeof DEFAULT_GROUP_NAMES = DEFAULT_GROUP_NAMES;
   // Migration status
@@ -340,8 +330,6 @@ class ChatSessionStore {
 
   resetActiveSession() {
     runInAction(() => {
-      this.newChatThinkingOverride = undefined;
-      this.newChatReasoningEffort = undefined;
       // Do not copy completion settings from session to global settings
       // Instead, preserve global settings as they are
       this.exitEditMode();
@@ -389,8 +377,6 @@ class ChatSessionStore {
       this.exitEditMode();
       this.activeSessionId = sessionId;
       // Don't modify global settings when changing sessions
-      this.newChatThinkingOverride = undefined;
-      this.newChatReasoningEffort = undefined;
       this.lastCompletionResult = this.hydrateCompletionSnapshot(session);
       this.dismissedBannerVariants = new Set();
       this.consecutiveFullFailures = 0;
@@ -551,13 +537,8 @@ class ChatSessionStore {
     completionSettings: CompletionParams = defaultCompletionSettings,
   ): Promise<void> {
     try {
-      // If the user has staged a thinking override for the new-chat path,
-      // the resolved snapshot in `completionSettings` already carries it
-      // (applied last in `resolveCompletionSettings`). Birth the session as
-      // 'custom' so the resolver returns that snapshot verbatim on every
-      // subsequent inference and the user's choice is preserved.
-      const birthSource: 'pal' | 'custom' =
-        this.newChatThinkingOverride !== undefined ? 'custom' : 'pal';
+      // New sessions follow the global settings.
+      const birthSource: 'pal' | 'custom' = 'pal';
 
       // Create in database
       const newSession = await chatSessionRepository.createSession(
@@ -604,8 +585,6 @@ class ChatSessionStore {
       runInAction(() => {
         this.sessions.push(metaData);
         this.activeSessionId = newSession.id;
-        this.newChatThinkingOverride = undefined;
-        this.newChatReasoningEffort = undefined;
       });
     } catch (error) {
       console.error('Failed to create new session:', error);
@@ -1348,20 +1327,6 @@ class ChatSessionStore {
     }
   }
 
-  async bulkExportSessions(): Promise<void> {
-    try {
-      const idsToExport = Array.from(this.selectedSessionIds);
-      await chatSessionRepository.exportSessions(idsToExport);
-
-      runInAction(() => {
-        this.exitSelectionMode();
-      });
-    } catch (error) {
-      console.error('Failed to bulk export sessions:', error);
-      throw error;
-    }
-  }
-
   // Draft autosave methods (ephemeral, not persisted to DB)
   saveDraft(sessionId: string, text: string) {
     if (text.trim()) {
@@ -1427,23 +1392,6 @@ class ChatSessionStore {
       resolvedSettings = {...resolvedSettings, tools};
     }
 
-    // No-session-only: apply user's explicit thinking override last.
-    // Overlays the local enable_thinking flag AND the reasoning carrier (so
-    // the remote wire path honors the on/off intent for the first message of
-    // the new chat, not just local thinking). Does NOT touch any other field,
-    // and does NOT affect tool availability.
-    if (!sessionId && this.newChatThinkingOverride !== undefined) {
-      resolvedSettings = {
-        ...resolvedSettings,
-        enable_thinking: this.newChatThinkingOverride,
-        reasoning: {
-          ...resolvedSettings.reasoning,
-          enabled: this.newChatThinkingOverride,
-          effort: this.newChatReasoningEffort,
-        },
-      };
-    }
-
     // Apply session-specific settings based on explicit user choice
     if (sessionId) {
       const session = this.sessions.find(s => s.id === sessionId);
@@ -1460,7 +1408,13 @@ class ChatSessionStore {
       }
     }
 
-    return resolvedSettings;
+    // Crampon never uses reasoning: on a phone it delays the first word by
+    // tens of seconds. Applied last so no stored setting can turn it back on.
+    return {
+      ...resolvedSettings,
+      enable_thinking: false,
+      reasoning: {...resolvedSettings.reasoning, enabled: false},
+    };
   }
 
   /**

@@ -279,32 +279,7 @@
       "loading": "正在載入..."
     },
     "chatInput": {
-      "inputPlaceholder": "訊息",
-      "thinkingToggle": {
-        "enableThinking": "啟用思考模式",
-        "disableThinking": "停用思考模式",
-        "thinkingEnabled": "思考模式已啟用",
-        "thinkingDisabled": "思考模式已停用",
-        "thinkText": "思考",
-        "cycleEffort": "推理強度：{{level}}。連按兩次可切換強度層級"
-      }
-    },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "無效值",
-      "invalidNumericValuesMessage": "必須是有效數字",
-      "pleaseCorrect": "請糾正以下內容：",
-      "ok": "確定",
-      "saveChanges": "儲存更改",
-      "saveAsPreset": "儲存為預設",
-      "title_session": "聊天生成設定（會話）",
-      "title_preset": "聊天生成設定（預設）",
-      "resetToSystemDefaults": "重設為系統預設",
-      "resetToPreset": "重設為預設",
-      "applytoPresetAlert": {
-        "title": "成功",
-        "message": "這些設定將應用於所有未來會話"
-      },
-      "settingsSource": "設定來源"
+      "inputPlaceholder": "訊息"
     },
     "modelsHeaderRight": {
       "menuTitleHf": "Hugging Face 模型",
@@ -369,8 +344,6 @@
       "bulkDeleteTitle": "刪除聊天會話",
       "bulkDeleteMessage": "刪除 {{count}} 個聊天會話？此操作無法復原。",
       "bulkDeleteError": "刪除聊天會話失敗。請再試一次。",
-      "exportError": "匯出聊天會話失敗。請再試一次。",
-      "bulkExportError": "匯出聊天會話失敗。請再試一次。",
       "pin": "釘選",
       "unpin": "取消釘選"
     },
@@ -402,22 +375,11 @@
         "placeholder": "請描述這個 Pal 的角色、目的或情境…"
       }
     },
-    "chatModelPickerSheet": {
-      "modelsTab": "模型"
-    },
     "headerRight": {
       "deleteChatTitle": "刪除聊天",
       "deleteChatMessage": "您確定要刪除此聊天嗎？",
-      "generationSettings": "生成設定",
-      "model": "模型",
       "duplicateChatHistory": "重複聊天紀錄",
-      "makeChatTemporary": "把聊天暫存",
-      "exportChatSession": "匯出聊天會話",
-      "export": "匯出 / 匯入",
-      "exportCurrentSession": "匯出目前會話",
-      "exportAllSessions": "匯出所有會話",
-      "importSessions": "匯入會話",
-      "exportCurrentSessionMarkdown": "匯出為 Markdown 格式"
+      "exportChatSession": "匯出聊天會話"
     },
     "modelSettingsSheet": {
       "modelSettings": "模型設定",
@@ -447,26 +409,6 @@
     },
     "sendButton": {
       "accessibilityLabel": "發送"
-    },
-    "exportUtils": {
-      "ok": "確定",
-      "cancel": "取消",
-      "saveOptions": "儲存選項",
-      "fileSaved": "檔案已儲存",
-      "fileSavedMessage": "此檔案已儲存到您的下載資料夾，檔案名稱為 {{filename}}",
-      "share": "分享",
-      "shareError": "分享錯誤",
-      "shareErrorMessage": "無法分享該檔案。請再試一次。",
-      "saveError": "儲存至下載資料夾時發生錯誤",
-      "saveOptionsMessage": "無法直接儲存至下載資料夾。您想分享該檔案嗎？",
-      "shareContentErrorMessage": "無法分享內容。請再試一次。",
-      "exportError": "匯出錯誤",
-      "exportErrorMessage": "匯出檔案時發生錯誤。請再試一次。",
-      "permissionRequired": "需要儲存權限",
-      "permissionMessage": "我們需要儲存到下載資料夾的授權。",
-      "permissionDenied": "授權被拒絕",
-      "permissionDeniedMessage": "沒有儲存權限，匯出功能將會被停用。",
-      "continue": "繼續"
     },
     "modelErrorReportSheet": {
       "memoryInfo": "記憶體",
@@ -503,56 +445,15 @@
     },
     "chatView": {
       "menuItems": {
-        "edit": "編輯",
-        "copy": "複製",
-        "regenerate": "重新生成",
-        "regenerateWith": "使用...重新生成",
-        "reportContent": "報告內容"
+        "copy": "複製"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}}毫秒/詞元",
-      "tokensPerSec": "{{value}} 詞元/秒",
-      "ttft": "{{value}}毫秒 TTFT",
       "interrupted": "被打斷",
-      "truncated": "中斷 — 可能上下文已滿",
-      "draftAccepted": "草稿：{{accepted}}/{{total}}（{{pct}}%）",
-      "promptTokensPerSec": "{{value}} prompt tokens/sec",
-      "cachedTokens": "{{value}} 已快取"
+      "truncated": "中斷 — 可能上下文已滿"
     },
     "thinkingBubble": {
       "reasoning": "推理"
-    },
-    "contentReportSheet": {
-      "title": "檢舉內容",
-      "privacyNote": "我們不會傳送任何訊息內容或對話細節。請描述您遇到的具體問題。",
-      "categoryLabel": "檢舉類別",
-      "selectCategory": "選擇一個類別",
-      "categories": {
-        "hate": "仇恨言論",
-        "sexual": "色情內容",
-        "selfHarm": "自殘",
-        "violence": "暴力",
-        "other": "其他"
-      },
-      "descriptionLabel": "描述",
-      "descriptionPlaceholder": "請描述此內容的問題...",
-      "includeModelInfo": "包含模型資訊",
-      "includeModelInfoDescription": "包含模型名稱和識別碼，以便我們協助調查",
-      "noActiveModelNote": "目前沒有啟用模型",
-      "submit": "提交報告",
-      "validation": {
-        "title": "缺少資訊",
-        "message": "請選擇一個類別並提供描述。"
-      },
-      "success": {
-        "title": "報告已提交",
-        "message": "感謝您的報告。我們將審核並採取適當行動。"
-      },
-      "error": {
-        "title": "報告失敗",
-        "message": "傳送報告失敗。請再試一次。"
-      }
     },
     "pendingIndicator": {
       "preparingTool": "正在準備工具",
@@ -944,15 +845,10 @@
     "useMmapFalseDescription": "當權重重新包裝啟用時，建議停用此功能以避免記憶體使用量加倍",
     "weightRepacking": "啟用權重重新包裝",
     "weightRepackingDescription": "當停用記憶體映射時，提示詞處理速度更快且記憶體使用量更低。 詞元生成不受影響。",
-    "exportOptions": "匯出選項",
-    "exportLegacyChats": "匯出舊版聊天記錄",
-    "exportLegacyChatsDescription": "如果遷移失敗或您需要恢復舊的聊天會話，請使用此選項。",
-    "exportButton": "匯出",
     "importChats": "匯入聊天會話",
     "importChatsDescription": "從（匯出的）JSON 檔案中匯入聊天會話。",
     "importButton": "匯入",
     "importSuccess": "成功匯入了 {{count}} 個聊天會話。",
-    "importError": "匯入聊天會話失敗。請檢查檔案格式。",
     "cacheStorageTitle": "快取與儲存",
     "clearPalCaches": "清除捷徑快取",
     "clearPalCachesDescription": "清除用來加速捷徑的快取資料。這不會影響您的 Pal 或聊天記錄。",
@@ -1056,20 +952,6 @@
   },
   "simulator": {
     "cameraNotAvailable": "模擬器中沒有相機可用。請使用實體設備。"
-  },
-  "camera": {
-    "takePhoto": "相機",
-    "errorTitle": "相機錯誤",
-    "startCamera": "啟動相機",
-    "stopCamera": "停止相機",
-    "permissionTitle": "需要相機權限",
-    "permissionMessage": "PocketPal 需要存取相機，以分析影像",
-    "requestingPermission": "請求相機權限中...",
-    "noDevice": "未偵測到相機裝置",
-    "errorMessage": "拍攝照片時發生錯誤",
-    "flip": "翻轉",
-    "analyzing": "正在分析影像...",
-    "promptPlaceholder": "你想知道這張圖片的什麼內容？"
   },
   "voiceAndSpeech": {
     "sectionTitle": "語音與朗讀",

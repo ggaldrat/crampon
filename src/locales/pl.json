@@ -61,15 +61,10 @@
     "darkMode": "Tryb Ciemny",
     "displayMemoryUsage": "Wyświetl Zużycie Pamięci",
     "displayMemoryUsageDescription": "Wyświetl zużycie pamięci na stronie czatu.",
-    "exportOptions": "Opcje Eksportu",
-    "exportLegacyChats": "Eksportuj Stare Czaty",
-    "exportLegacyChatsDescription": "Skorzystaj z tej opcji, jeśli migracja nie powiodła się lub chcesz odzyskać stare sesje czatu.",
-    "exportButton": "Eksportuj",
     "importChats": "Importuj Sesje Czatu",
     "importChatsDescription": "Zaimportuj sesje czatu z (wyeksportowanego) pliku JSON.",
     "importButton": "Importuj",
     "importSuccess": "Pomyślnie zaimportowano sesje czatu: {{count}}.",
-    "importError": "Nie udało się zaimportować sesji czatu. Sprawdź format pliku.",
     "cacheStorageTitle": "Pamięć podręczna i Pamięć masowa",
     "clearPalCaches": "Wyczyść Pamięć Podręczną Skrótów",
     "clearPalCachesDescription": "Usuwa dane z pamięci podręcznej służące do przyspieszenia działania Skrótów. Nie wpłynie to na Twoich Kumpli ani historię czatu.",
@@ -501,34 +496,8 @@
       "attachmentButtonAccessibilityLabel": "Załącz pliki multimedialne"
     },
     "bubble": {
-      "msPerToken": "{{value}}ms/token",
-      "tokensPerSec": "{{value}} tokenów/sek",
-      "ttft": "{{value}}ms TTFT",
       "interrupted": "Przerwane",
-      "truncated": "Przerwano - prawdopodobnie wyczerpano limit kontekstu",
-      "draftAccepted": "roboczy: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} tokenów promptu/sek",
-      "cachedTokens": "{{value}} z pamięci podręcznej"
-    },
-    "exportUtils": {
-      "fileSaved": "Plik zapisany",
-      "fileSavedMessage": "Plik został zapisany w folderze „Pobrane” pod nazwą {{filename}}",
-      "share": "Udostępnij",
-      "ok": "OK",
-      "shareError": "Błąd Udostępniania",
-      "shareErrorMessage": "Nie udało się udostępnić pliku. Spróbuj ponownie.",
-      "saveError": "Błąd podczas zapisywania w folderze „Pobrane”",
-      "saveOptions": "Opcje Zapisu",
-      "saveOptionsMessage": "Nie można zapisać pliku bezpośrednio w folderze „Pobrane”. Czy chcesz zamiast tego udostępnić ten plik?",
-      "cancel": "Anuluj",
-      "shareContentErrorMessage": "Nie udało się udostępnić treści. Spróbuj ponownie.",
-      "exportError": "Błąd Eksportu",
-      "exportErrorMessage": "Wystąpił błąd podczas eksportowania pliku. Spróbuj ponownie.",
-      "permissionRequired": "Uprawnienie Wymagane do Zapisu",
-      "permissionMessage": "Potrzebujemy zgody na zapisanie Twojego pliku eksportu w folderze „Pobrane”.",
-      "permissionDenied": "Odmowa Dostępu",
-      "permissionDeniedMessage": "Bez uprawnień do przechowywania danych funkcja eksportu będzie wyłączona.",
-      "continue": "Kontynuuj"
+      "truncated": "Przerwano - prawdopodobnie wyczerpano limit kontekstu"
     },
     "thinkingBubble": {
       "reasoning": "Rozumowanie"
@@ -539,37 +508,6 @@
       "lookingUpTime": "Sprawdzanie czasu",
       "stopping": "Zatrzymywanie…",
       "buildingPage": "Tworzenie strony"
-    },
-    "contentReportSheet": {
-      "submit": "Prześlij Zgłoszenie",
-      "validation": {
-        "title": "Brakujące Informacje",
-        "message": "Proszę wybrać kategorię i podać opis."
-      },
-      "success": {
-        "title": "Zgłoszenie Złożone",
-        "message": "Dziękujemy za zgłoszenie. Przeanalizujemy je i podejmiemy odpowiednie działania."
-      },
-      "error": {
-        "title": "Błąd Zgłoszenia",
-        "message": "Nie udało się przesłać zgłoszenia. Spróbuj ponownie."
-      },
-      "title": "Zgłoś Zawartość",
-      "selectCategory": "Wybierz kategorię",
-      "categories": {
-        "hate": "Mowa Nienawiści",
-        "sexual": "Treści o charakterze seksualnym",
-        "selfHarm": "Samookaleczanie",
-        "violence": "Przemoc",
-        "other": "Inne"
-      },
-      "descriptionLabel": "Opis",
-      "descriptionPlaceholder": "Opisz proszę problem związany z tą treścią...",
-      "includeModelInfo": "Załącz informacje o modelu",
-      "includeModelInfoDescription": "Podaj nazwę modelu i identyfikatora, aby pomóc nam zbadać sprawę",
-      "noActiveModelNote": "Żaden model nie jest obecnie aktywny",
-      "privacyNote": "Nie przesyłamy treści wiadomości ani szczegółów rozmów. Prosimy o opisanie konkretnego problemu, z którym się Państwo spotkali.",
-      "categoryLabel": "Kategoria zgłoszenia"
     },
     "modelErrorReportSheet": {
       "title": "Zgłoś Problem z Ładowaniem Modelu",
@@ -598,31 +536,11 @@
         "message": "Nie udało się przesłać zgłoszenia. Spróbuj ponownie później."
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Nieprawidłowe Wartości",
-      "invalidNumericValuesMessage": "Musi to być prawidłowa liczba",
-      "pleaseCorrect": "Proszę poprawić poniższe fragmenty:",
-      "ok": "OK",
-      "saveChanges": "Zapisz Zmiany",
-      "saveAsPreset": "Zapisz jako Szablon",
-      "title_session": "Ustawienia Generowania Czatu (Sesji)",
-      "title_preset": "Ustawienia Generowania Czatu (Szablon)",
-      "resetToSystemDefaults": "Zresetuj do Ustawień Domyślnych",
-      "resetToPreset": "Zresetuj do Szablonu",
-      "applytoPresetAlert": {
-        "title": "Sukces",
-        "message": "Te ustawienia zostaną zastosowane do wszystkich przyszłych sesji"
-      },
-      "settingsSource": "Źródło Ustawień"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "Czat"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Plik"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "Modele"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Błąd Pobierania",
@@ -633,16 +551,8 @@
     "headerRight": {
       "deleteChatTitle": "Usuń Czat",
       "deleteChatMessage": "Czy na pewno chcesz usunąć ten czat?",
-      "generationSettings": "Ustawienia generowania",
-      "model": "Model",
       "duplicateChatHistory": "Duplikuj historię czatu",
-      "makeChatTemporary": "Ustaw czat jako tymczasowy",
-      "export": "Eksportuj/Importuj",
-      "exportCurrentSession": "Eksportuj bieżącą sesję",
-      "exportAllSessions": "Eksportuj wszystkie sesje",
-      "exportChatSession": "Eksportuj sesję czatu",
-      "importSessions": "Importuj sesje",
-      "exportCurrentSessionMarkdown": "Eksportuj jako Markdown"
+      "exportChatSession": "Eksportuj sesję czatu"
     },
     "modelSettingsSheet": {
       "modelSettings": "Ustawienia Modelu",
@@ -681,15 +591,7 @@
       "activateModelDescription": "Wybierz model i pobierz go. Po zakończeniu pobierania dotknij opcji „Załaduj” obok modelu i rozpocznij rozmowę."
     },
     "chatInput": {
-      "inputPlaceholder": "Wiadomość",
-      "thinkingToggle": {
-        "enableThinking": "Włącz tryb myślenia",
-        "disableThinking": "Wyłącz tryb myślenia",
-        "thinkText": "Myśl",
-        "cycleEffort": "Wysiłek rozumowania: {{level}}. Dwukrotne dotknięcie pozwala przełączać poziomy wysiłku",
-        "thinkingEnabled": "Tryb rozumowania włączony",
-        "thinkingDisabled": "Tryb myślenia wyłączony"
-      }
+      "inputPlaceholder": "Wiadomość"
     },
     "modelNotAvailable": {
       "defaultModelNotDownloaded": "Ten kumpel poleca konkretny model, który należy pobrać, ale można też wybrać inny model.",
@@ -752,8 +654,6 @@
       "bulkDeleteTitle": "Usuń Sesje Czatu",
       "bulkDeleteMessage": "Czy chcesz usunąć {{count}} sesji czatu? Tego działania nie można cofnąć.",
       "bulkDeleteError": "Nie udało się usunąć sesji czatu. Spróbuj ponownie.",
-      "exportError": "Nie udało się wyeksportować sesji czatu. Proszę spróbować ponownie.",
-      "bulkExportError": "Nie udało się wyeksportować sesji czatu. Spróbuj ponownie.",
       "dateGroups": {
         "today": "Dzisiaj",
         "yesterday": "Wczoraj",
@@ -785,11 +685,7 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "Kopiuj",
-        "regenerate": "Wygeneruj ponownie",
-        "regenerateWith": "Wygeneruj ponownie z",
-        "edit": "Edytuj",
-        "reportContent": "Zgłoś Zawartość"
+        "copy": "Kopiuj"
       }
     },
     "toolMetrics": {
@@ -813,20 +709,6 @@
     "userRoleRequired": "Rola użytkownika jest wymagana",
     "situationRequired": "Sytuacja jest wymagana",
     "toneStyleRequired": "Ton/Styl jest wymagany"
-  },
-  "camera": {
-    "permissionTitle": "Dostęp do Aparatu Wymagany",
-    "permissionMessage": "Aplikacja PocketPal potrzebuje dostępu do aparatu, aby analizować zdjęcia",
-    "requestingPermission": "Prośba o zgodę na dostęp do aparatu...",
-    "noDevice": "Nie znaleziono żadnego aparatu",
-    "errorTitle": "Błąd Aparatu",
-    "errorMessage": "Wystąpił błąd podczas robienia zdjęcia",
-    "flip": "Obróć",
-    "analyzing": "Analizowanie zdjęcia...",
-    "startCamera": "Włącz Aparat",
-    "stopCamera": "Wyłącz Aparat",
-    "promptPlaceholder": "Co chcesz wiedzieć o tym zdjęciu?",
-    "takePhoto": "Aparat"
   },
   "benchmark": {
     "dialogs": {

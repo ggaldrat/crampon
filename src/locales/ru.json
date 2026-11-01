@@ -279,32 +279,7 @@
       "loading": "Загрузка..."
     },
     "chatInput": {
-      "inputPlaceholder": "Сообщение",
-      "thinkingToggle": {
-        "enableThinking": "Включить режим рассуждения",
-        "disableThinking": "Отключить режим рассуждения",
-        "thinkingEnabled": "Режим рассуждения включён",
-        "thinkingDisabled": "Режим рассуждения выключен",
-        "thinkText": "Рассуждение",
-        "cycleEffort": "Уровень рассуждения: {{level}}. Нажмите дважды, чтобы изменить"
-      }
-    },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Неверные значения",
-      "invalidNumericValuesMessage": "Должно быть числом",
-      "pleaseCorrect": "Исправьте следующее:",
-      "ok": "ОК",
-      "saveChanges": "Сохранить изменения",
-      "saveAsPreset": "Сохранить как предустановку",
-      "title_preset": "Настройки генерации чата (Предустановка)",
-      "resetToPreset": "Сброс к предустановке",
-      "applytoPresetAlert": {
-        "title": "Успешно",
-        "message": "Эти настройки будут применяться ко всем будущим сессиям"
-      },
-      "title_session": "Настройки генерации чата (Сессия)",
-      "resetToSystemDefaults": "Сброс к системным",
-      "settingsSource": "Источник настроек"
+      "inputPlaceholder": "Сообщение"
     },
     "chatHeaderTitle": {
       "defaultTitle": "Чат"
@@ -312,22 +287,11 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Файл"
     },
-    "chatModelPickerSheet": {
-      "modelsTab": "Модели"
-    },
     "headerRight": {
       "deleteChatTitle": "Удалить чат",
       "deleteChatMessage": "Вы уверены, что хотите удалить этот чат?",
-      "generationSettings": "Настройки генерации",
-      "model": "Модель",
       "duplicateChatHistory": "Дублировать историю чата",
-      "makeChatTemporary": "Сделать чат временным",
-      "exportChatSession": "Экспорт сессии чата",
-      "export": "Экспорт/Импорт",
-      "exportCurrentSession": "Экспорт текущей сессии",
-      "exportAllSessions": "Экспорт всех сессий",
-      "importSessions": "Импорт сессий",
-      "exportCurrentSessionMarkdown": "Экспорт в Markdown"
+      "exportChatSession": "Экспорт сессии чата"
     },
     "modelSettingsSheet": {
       "modelSettings": "Настройки модели",
@@ -429,8 +393,6 @@
       "bulkDeleteTitle": "Удалить сессии чата",
       "bulkDeleteMessage": "Удалить выбранные сессии чата ({{count}})? Это действие нельзя отменить.",
       "bulkDeleteError": "Не удалось удалить сессии чата. Попробуйте ещё раз.",
-      "exportError": "Не удалось экспортировать сессию чата. Попробуйте ещё раз.",
-      "bulkExportError": "Не удалось экспортировать сессии чата. Попробуйте ещё раз.",
       "pin": "Закрепить",
       "unpin": "Открепить"
     },
@@ -448,59 +410,8 @@
         "ГБ"
       ]
     },
-    "exportUtils": {
-      "fileSaved": "Файл сохранён",
-      "fileSavedMessage": "Файл был сохранён в папку 'Загрузки' как {{filename}}",
-      "share": "Поделиться",
-      "ok": "ОК",
-      "shareError": "Ошибка отправки",
-      "shareErrorMessage": "Не удалось поделиться файлом. Попробуйте ещё раз.",
-      "saveError": "Ошибка сохранения в 'Загрузки'",
-      "saveOptions": "Параметры сохранения",
-      "saveOptionsMessage": "Не удалось сохранить напрямую в 'Загрузки'. Хотите вместо этого поделиться файлом?",
-      "cancel": "Отмена",
-      "shareContentErrorMessage": "Не удалось поделиться контентом. Попробуйте ещё раз.",
-      "exportError": "Ошибка экспорта",
-      "exportErrorMessage": "Произошла ошибка при экспорте файла. Попробуйте ещё раз.",
-      "permissionRequired": "Требуется разрешение на доступ к хранилищу",
-      "permissionMessage": "Требуется разрешение для сохранения экспортированных файлов в папку 'Загрузки'.",
-      "permissionDenied": "Доступ запрещён",
-      "permissionDeniedMessage": "Без разрешения на доступ к хранилищу функция экспорта будет отключена.",
-      "continue": "Продолжить"
-    },
     "thinkingBubble": {
       "reasoning": "Рассуждение"
-    },
-    "contentReportSheet": {
-      "title": "Жалоба на контент",
-      "privacyNote": "Мы не передаём содержимое сообщений или детали контекста диалога. Пожалуйста, опишите конкретную проблему, с которой вы столкнулись.",
-      "categoryLabel": "Категория",
-      "selectCategory": "Выберите категорию",
-      "categories": {
-        "hate": "Разжигание ненависти",
-        "sexual": "Контент сексуального характера",
-        "selfHarm": "Самоповреждение",
-        "violence": "Насилие",
-        "other": "Другое"
-      },
-      "descriptionLabel": "Описание",
-      "descriptionPlaceholder": "Опишите проблему с этим ответом...",
-      "includeModelInfo": "Включить информацию о модели",
-      "includeModelInfoDescription": "Добавить название и ID модели для помощи в расследовании",
-      "noActiveModelNote": "Нет активной модели",
-      "submit": "Отправить отчёт",
-      "validation": {
-        "title": "Недостаточно данных",
-        "message": "Пожалуйста, выберите категорию и добавьте описание."
-      },
-      "success": {
-        "title": "Отчёт отправлен",
-        "message": "Спасибо. Мы рассмотрим ваше сообщение и примем меры."
-      },
-      "error": {
-        "title": "Ошибка",
-        "message": "Не удалось отправить отчёт. Попробуйте ещё раз."
-      }
     },
     "modelErrorReportSheet": {
       "title": "Ошибка загрузки модели",
@@ -537,22 +448,12 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "Копировать",
-        "regenerate": "Сгенерировать заново",
-        "regenerateWith": "Сгенерировать заново с",
-        "edit": "Редактировать",
-        "reportContent": "Жалоба на контент"
+        "copy": "Копировать"
       }
     },
     "bubble": {
-      "msPerToken": "{{value}} мс/ток",
-      "tokensPerSec": "{{value}} ток/сек",
-      "ttft": "{{value}} мс TTFT",
       "interrupted": "Прервано",
-      "truncated": "Прервано – вероятно, контекст исчерпан",
-      "draftAccepted": "черновик: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} ток. промпта/сек",
-      "cachedTokens": "{{value}} кэшировано"
+      "truncated": "Прервано – вероятно, контекст исчерпан"
     },
     "pendingIndicator": {
       "preparingTool": "Подготовка инструмента",
@@ -942,15 +843,10 @@
     "useMmapFalse": "Отключено",
     "useMmapTrueDescription": "Всегда использовать отображение в память для быстрой загрузки",
     "useMmapFalseDescription": "Рекомендуется отключить эту функцию, если включена повторная упаковка весов, чтобы избежать удвоения использования памяти",
-    "exportOptions": "Параметры экспорта",
-    "exportLegacyChats": "Экспорт старых чатов",
-    "exportLegacyChatsDescription": "Используйте, если миграция не удалась или нужно восстановить старые сессии чата.",
-    "exportButton": "Экспорт",
     "importChats": "Импорт сессий чата",
     "importChatsDescription": "Импорт сессий чата из (экспортированного) JSON-файла.",
     "importButton": "Импорт",
     "importSuccess": "Успешно импортировано сессий чата: {{count}}.",
-    "importError": "Не удалось импортировать сессии чата. Проверьте формат файла.",
     "cacheStorageTitle": "Кэш и хранилище",
     "clearPalCaches": "Очистить кэш ярлыков",
     "clearPalCachesDescription": "Очищает кэшированные данные, используемые для ускорения работы ярлыков. Это не затронет ваших Pal или историю чатов.",
@@ -1033,20 +929,6 @@
     "userRoleRequired": "Необходимо указать роль пользователя",
     "situationRequired": "Необходимо указать ситуацию",
     "toneStyleRequired": "Необходимо указать тон/стиль"
-  },
-  "camera": {
-    "permissionTitle": "Требуется разрешение на доступ к камере",
-    "permissionMessage": "PocketPal нужен доступ к камере для анализа изображений",
-    "requestingPermission": "Запрос разрешения на доступ к камере...",
-    "noDevice": "Камера не найдена",
-    "errorTitle": "Ошибка камеры",
-    "errorMessage": "Произошла ошибка при создании фото",
-    "flip": "Повернуть",
-    "analyzing": "Анализ изображения...",
-    "startCamera": "Включить камеру",
-    "stopCamera": "Выключить камеру",
-    "promptPlaceholder": "Что вы хотите узнать об этом изображении?",
-    "takePhoto": "Камера"
   },
   "errors": {
     "unexpectedError": "Произошла непредвиденная ошибка",

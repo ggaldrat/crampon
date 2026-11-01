@@ -99,7 +99,7 @@ describe('SidebarContent Component', () => {
         chatSessionStore.selectedSessionIds.add('session-1');
       });
 
-      const {getByTestId, getByText} = render(<TestNavigator />);
+      const {getByTestId, getByText, queryByTestId} = render(<TestNavigator />);
 
       // Check for Cancel button
       expect(getByTestId('cancel-selection-button')).toBeTruthy();
@@ -107,8 +107,8 @@ describe('SidebarContent Component', () => {
       // Check for count text
       expect(getByText('1 selected')).toBeTruthy();
 
-      // Check for direct action icons (export and delete)
-      expect(getByTestId('bulk-export-button')).toBeTruthy();
+      // Delete is the only bulk action (no export)
+      expect(queryByTestId('bulk-export-button')).toBeNull();
       expect(getByTestId('bulk-delete-button')).toBeTruthy();
 
       // Check for Select all row

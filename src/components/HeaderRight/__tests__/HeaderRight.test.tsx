@@ -18,19 +18,6 @@ jest.mock('../../UsageStats', () => ({
   }),
 }));
 
-jest.mock(
-  '../../ChatGenerationSettingsSheet/ChatGenerationSettingsSheet',
-  () => ({
-    ChatGenerationSettingsSheet: jest.fn(({isVisible}) => {
-      const {View} = require('react-native');
-      if (!isVisible) {
-        return null;
-      }
-      return <View testID="chat-generation-settings-sheet" />;
-    }),
-  }),
-);
-
 const renderWithI18n = (ui: React.ReactElement) => {
   return render(
     <L10nContext.Provider value={l10n.en as any}>{ui}</L10nContext.Provider>,
@@ -49,7 +36,8 @@ describe('HeaderRight', () => {
     const {queryByTestId} = renderWithI18n(<HeaderRight />);
     expect(queryByTestId('usage-stats')).toBeNull();
     expect(queryByTestId('reset-button')).toBeTruthy();
-    expect(queryByTestId('menu-button')).toBeTruthy();
+    // No session yet: nothing to act on, so no menu
+    expect(queryByTestId('menu-button')).toBeNull();
   });
 
   it('renders UsageStats when displayMemUsage is true', () => {
@@ -57,7 +45,6 @@ describe('HeaderRight', () => {
     const {queryByTestId} = renderWithI18n(<HeaderRight />);
     expect(queryByTestId('usage-stats')).toBeTruthy();
     expect(queryByTestId('reset-button')).toBeTruthy();
-    expect(queryByTestId('menu-button')).toBeTruthy();
   });
 
   it('calls resetActiveSession when reset button is pressed', () => {
@@ -71,14 +58,6 @@ describe('HeaderRight', () => {
   });
 
   describe('Menu functionality', () => {
-    it('opens menu when menu button is pressed', () => {
-      const {getByTestId} = renderWithI18n(<HeaderRight />);
-      const menuButton = getByTestId('menu-button');
-      fireEvent.press(menuButton);
-      // Menu should be visible now
-      expect(getByTestId('menu-view')).toBeTruthy();
-    });
-
     describe('with active session', () => {
       beforeEach(() => {
         chatSessionStore.sessions = [
@@ -102,35 +81,26 @@ describe('HeaderRight', () => {
         jest.restoreAllMocks();
       });
 
-      it('shows session-specific menu items', async () => {
-        const {getByTestId, findByText} = renderWithI18n(<HeaderRight />);
+      it('shows only the session actions', async () => {
+        const {getByTestId, findByText, queryByText} = renderWithI18n(
+          <HeaderRight />,
+        );
         const menuButton = getByTestId('menu-button');
         fireEvent.press(menuButton);
 
-        expect(
-          await findByText(l10n.en.components.headerRight.generationSettings),
-        ).toBeTruthy();
-        expect(
-          await findByText(l10n.en.components.headerRight.model),
-        ).toBeTruthy();
+        expect(getByTestId('menu-view')).toBeTruthy();
+        for (const removed of [
+          'Generation settings',
+          'Model',
+          'Export/Import',
+        ]) {
+          expect(queryByText(removed)).toBeNull();
+        }
         expect(
           await findByText(l10n.en.components.headerRight.duplicateChatHistory),
         ).toBeTruthy();
         expect(await findByText(l10n.en.common.rename)).toBeTruthy();
         expect(await findByText(l10n.en.common.delete)).toBeTruthy();
-      });
-
-      it('handles generation settings press', async () => {
-        const {getByTestId, findByText} = renderWithI18n(<HeaderRight />);
-        const menuButton = getByTestId('menu-button');
-        fireEvent.press(menuButton);
-
-        const settingsButton = await findByText(
-          l10n.en.components.headerRight.generationSettings,
-        );
-        fireEvent.press(settingsButton);
-
-        expect(getByTestId('chat-generation-settings-sheet')).toBeTruthy();
       });
 
       it('handles delete action with confirmation', async () => {

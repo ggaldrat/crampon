@@ -99,15 +99,10 @@
     "darkMode": "Темний режим",
     "displayMemoryUsage": "Відобразити використання пам'яті",
     "displayMemoryUsageDescription": "Відображати використання пам'яті на сторінці чату.",
-    "exportOptions": "Параметри експорту",
-    "exportLegacyChats": "Експортувати старі чати",
-    "exportLegacyChatsDescription": "Скористайтеся цією функцією, якщо міграція не вдалася або вам потрібно відновити старі сесії чату.",
-    "exportButton": "Експорт",
     "importChats": "Імпортувати сесії чату",
     "importChatsDescription": "Імпортувати сесії чату з (експортованого) файлу JSON.",
     "importButton": "Імпорт",
     "importSuccess": "Успішно імпортовано {{count}} сеансів чату.",
-    "importError": "Не вдалося імпортувати сесії чату. Перевірте формат файлу.",
     "cacheStorageTitle": "Кеш і пам'ять",
     "clearPalCaches": "Очистити кеш ярликів",
     "clearPalCachesDescription": "Очищає кешовані дані, які використовуються для прискорення роботи ярликів. Це не вплине на ваших друзів або історію чату.",
@@ -527,34 +522,8 @@
       "attachmentButtonAccessibilityLabel": "Надіслати медіафайли"
     },
     "bubble": {
-      "msPerToken": "{{value}} мс/токен",
-      "tokensPerSec": "{{value}} токенів/сек",
-      "ttft": "{{value}} мс TTFT",
       "interrupted": "Перервано",
-      "truncated": "Перервано — ймовірно, контекст вичерпано",
-      "draftAccepted": "чернетка: {{accepted}}/{{total}} ({{pct}}%)",
-      "promptTokensPerSec": "{{value}} токенів запиту/сек",
-      "cachedTokens": "{{value}} з кешу"
-    },
-    "exportUtils": {
-      "fileSaved": "Файл збережено",
-      "fileSavedMessage": "Файл збережено у папці «Завантаження» під назвою {{filename}}",
-      "share": "Поділитися",
-      "ok": "Гаразд",
-      "shareError": "Поділитися з Помилкою",
-      "shareErrorMessage": "Не вдалося надіслати файл. Спробуйте ще раз.",
-      "saveError": "Помилка під час збереження у папці «Завантаження»",
-      "saveOptions": "Зберегти налаштування",
-      "saveOptionsMessage": "Неможливо зберегти файл безпосередньо в папці «Завантаження». Чи хочете ви замість цього поділитися цим файлом?",
-      "cancel": "Скасувати",
-      "shareContentErrorMessage": "Не вдалося поділитися вмістом. Спробуйте ще раз.",
-      "exportError": "Помилка експорту",
-      "exportErrorMessage": "Сталася помилка під час експорту файлу. Спробуйте ще раз.",
-      "permissionRequired": "Потрібен дозвіл на збереження",
-      "permissionMessage": "Нам потрібен дозвіл, щоб зберегти ваш експорт у папці «Завантаження».",
-      "permissionDenied": "Доступ Заборонено",
-      "permissionDeniedMessage": "Без дозволу на збереження функція експорту буде вимкнена.",
-      "continue": "Продовжити"
+      "truncated": "Перервано — ймовірно, контекст вичерпано"
     },
     "thinkingBubble": {
       "reasoning": "Аргументація"
@@ -569,46 +538,7 @@
       "loading": "Завантаження..."
     },
     "chatInput": {
-      "inputPlaceholder": "Повідомлення",
-      "thinkingToggle": {
-        "enableThinking": "Увімкнути режим мислення",
-        "disableThinking": "Вимкнути режим мислення",
-        "thinkingEnabled": "Увімкнено режим мислення",
-        "thinkingDisabled": "Режим мислення вимкнено",
-        "thinkText": "Мислення",
-        "cycleEffort": "Зусилля на міркування: {{level}}. Подвійний дотик, щоб перемкнути рівень зусиль"
-      }
-    },
-    "contentReportSheet": {
-      "title": "Зміст звіту",
-      "privacyNote": "Ми не надсилаємо зміст повідомлень чи деталі розмов. Будь ласка, опишіть конкретну проблему, з якою ви зіткнулися.",
-      "categoryLabel": "Категорія звіту",
-      "selectCategory": "Виберіть категорію",
-      "categories": {
-        "hate": "Мова ворожнечі",
-        "sexual": "Сексуальний контент",
-        "selfHarm": "Самоушкодження",
-        "violence": "Насильство",
-        "other": "Інше"
-      },
-      "descriptionLabel": "Опис",
-      "descriptionPlaceholder": "Будь ласка, опишіть проблему, пов’язану з цим матеріалом...",
-      "includeModelInfo": "Вказати інформацію про модель",
-      "includeModelInfoDescription": "Вкажіть назву моделі та ідентифікатор, щоб допомогти нам провести розслідування",
-      "noActiveModelNote": "Наразі жодна модель не активна",
-      "submit": "Надіслати звіт",
-      "validation": {
-        "title": "Відсутня інформація",
-        "message": "Будь ласка, виберіть категорію та вкажіть опис."
-      },
-      "success": {
-        "title": "Звіт подано",
-        "message": "Дякуємо за ваше повідомлення. Ми розглянемо його та вживемо відповідних заходів."
-      },
-      "error": {
-        "title": "Повідомлення не вдалося надіслати",
-        "message": "Не вдалося надіслати звіт. Спробуйте ще раз."
-      }
+      "inputPlaceholder": "Повідомлення"
     },
     "modelErrorReportSheet": {
       "title": "Повідомити про проблему із завантаженням моделі",
@@ -637,31 +567,11 @@
         "message": "Не вдалося надіслати звіт. Спробуйте ще раз пізніше."
       }
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "Недопустимі значення",
-      "invalidNumericValuesMessage": "Номер повинен бути дійсним",
-      "pleaseCorrect": "Будь ласка, виправте наступне:",
-      "ok": "Гаразд",
-      "saveChanges": "Зберегти зміни",
-      "saveAsPreset": "Зберегти як пресет",
-      "title_session": "Налаштування генерації чату (сесія)",
-      "title_preset": "Налаштування генерації чату (пресет)",
-      "resetToSystemDefaults": "Відновити заводські налаштування",
-      "resetToPreset": "Скинути до заводських налаштувань",
-      "applytoPresetAlert": {
-        "title": "Успіх",
-        "message": "Ці налаштування будуть застосовані до всіх майбутніх сеансів"
-      },
-      "settingsSource": "Джерело налаштувань"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "Чат"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Файл"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "Моделі"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Завантаження не вдалося",
@@ -672,16 +582,8 @@
     "headerRight": {
       "deleteChatTitle": "Видалити чат",
       "deleteChatMessage": "Ви впевнені, що хочете видалити цей чат?",
-      "generationSettings": "Налаштування покоління",
-      "model": "Модель",
       "duplicateChatHistory": "Дублікат історії чату",
-      "makeChatTemporary": "Зробити чат тимчасовим",
-      "export": "Експорт/Імпорт",
-      "exportCurrentSession": "Експортувати поточну сесію",
-      "exportAllSessions": "Експортувати всі сесії",
-      "exportChatSession": "Експортувати сеанс чату",
-      "importSessions": "Імпортувати сесії",
-      "exportCurrentSessionMarkdown": "Експортувати як Markdown"
+      "exportChatSession": "Експортувати сеанс чату"
     },
     "modelSettingsSheet": {
       "modelSettings": "Налаштування Моделі",
@@ -771,8 +673,6 @@
       "bulkDeleteTitle": "Видалити історії чатів",
       "bulkDeleteMessage": "Видалити {{count}} сеансів чату? Цю дію неможливо скасувати.",
       "bulkDeleteError": "Не вдалося видалити сесії чату. Спробуйте ще раз.",
-      "exportError": "Не вдалося експортувати сеанс чату. Спробуйте ще раз.",
-      "bulkExportError": "Не вдалося експортувати сеанси чату. Спробуйте ще раз.",
       "dateGroups": {
         "today": "Сьогодні",
         "yesterday": "Вчора",
@@ -804,11 +704,7 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "Копіювати",
-        "regenerate": "Перегенерувати",
-        "regenerateWith": "Перегенерувати з",
-        "edit": "Редагувати",
-        "reportContent": "Зміст звіту"
+        "copy": "Копіювати"
       }
     },
     "pendingIndicator": {
@@ -839,20 +735,6 @@
     "userRoleRequired": "Необхідно вказати роль користувача",
     "situationRequired": "Необхідно вказати ситуацію",
     "toneStyleRequired": "Необхідно вказати тон/стиль"
-  },
-  "camera": {
-    "permissionTitle": "Потрібен доступ до камери",
-    "permissionMessage": "PocketPal потребує доступу до камери для аналізу зображень",
-    "requestingPermission": "Запит на дозвіл на використання камери...",
-    "noDevice": "Камера не знайдено",
-    "errorTitle": "Помилка камери",
-    "errorMessage": "Під час зйомки фотографії сталася помилка",
-    "flip": "Перевернути",
-    "analyzing": "Аналізується зображення...",
-    "startCamera": "Запустити камеру",
-    "stopCamera": "Зупинити камеру",
-    "promptPlaceholder": "Що ви хочете дізнатися про це зображення?",
-    "takePhoto": "Камера"
   },
   "screenTitles": {
     "chat": "Чпт",

@@ -118,15 +118,10 @@
     "darkMode": "الوضع الداكن",
     "displayMemoryUsage": "عرض استخدام الذاكرة",
     "displayMemoryUsageDescription": "عرض استخدام الذاكرة في صفحة الدردشة.",
-    "exportOptions": "خيارات التصدير",
-    "exportLegacyChats": "تصدير المحادثات القديمة",
-    "exportLegacyChatsDescription": "استخدم هذا الخيار إذا فشلت عملية النقل أو كنت بحاجة إلى استعادة جلسات المحادثات القديمة.",
-    "exportButton": "تصدير",
     "importChats": "استيراد جلسات المحادثات",
     "importChatsDescription": "استيراد جلسات المحادثات من ملف JSON مُصدَّر.",
     "importButton": "استيراد",
     "importSuccess": "تم استيراد {{count}} من جلسات المحادثات بنجاح.",
-    "importError": "تعذّر استيراد جلسات المحادثات. يُرجى التحقق من تنسيق الملف.",
     "cacheStorageTitle": "التخزين المؤقت والتخزين",
     "clearPalCaches": "مسح ذاكرة التخزين المؤقت للاختصارات",
     "clearPalCachesDescription": "يمسح البيانات المخزّنة مؤقتًا لتسريع الاختصارات. لن يؤثر ذلك على Pals أو سجل المحادثات.",
@@ -527,34 +522,8 @@
       "attachmentButtonAccessibilityLabel": "إرسال الوسائط"
     },
     "bubble": {
-      "msPerToken": "{{value}} ms/رمز",
-      "tokensPerSec": "{{value}} رمز/ثانية",
-      "promptTokensPerSec": "{{value}} رمز الإدخال/ثانية",
-      "cachedTokens": "{{value}} مخزّن مؤقتًا",
-      "ttft": "{{value}}ms TTFT",
-      "draftAccepted": "المسودة: {{accepted}}/{{total}} ({{pct}}%)",
       "interrupted": "مقاطَع",
       "truncated": "تم القطع — على الأرجح السياق ممتلئ"
-    },
-    "exportUtils": {
-      "fileSaved": "تم حفظ الملف",
-      "fileSavedMessage": "تم حفظ الملف في مجلد التنزيلات باسم {{filename}}",
-      "share": "مشاركة",
-      "ok": "حسنًا",
-      "shareError": "خطأ في المشاركة",
-      "shareErrorMessage": "تعذر مشاركة الملف. يرجى المحاولة مرة أخرى.",
-      "saveError": "خطأ في الحفظ في مجلد التنزيلات",
-      "saveOptions": "خيارات الحفظ",
-      "saveOptionsMessage": "تعذّر الحفظ مباشرةً في مجلد التنزيلات. هل تريد مشاركة الملف بدلاً من ذلك؟",
-      "cancel": "إلغاء",
-      "shareContentErrorMessage": "تعذّرت مشاركة المحتوى. يرجى المحاولة مرة أخرى.",
-      "exportError": "خطأ في التصدير",
-      "exportErrorMessage": "حدث خطأ أثناء تصدير الملف. يرجى المحاولة مرة أخرى.",
-      "permissionRequired": "إذن التخزين مطلوب",
-      "permissionMessage": "نحتاج إلى إذن لحفظ التصدير في مجلد التنزيلات.",
-      "permissionDenied": "تم رفض الإذن",
-      "permissionDeniedMessage": "بدون إذن التخزين، سيتم تعطيل ميزة التصدير.",
-      "continue": "‏متابعة"
     },
     "thinkingBubble": {
       "reasoning": "الاستدلال"
@@ -580,46 +549,7 @@
       "loading": "جارٍ التحميل..."
     },
     "chatInput": {
-      "inputPlaceholder": "رسالة",
-      "thinkingToggle": {
-        "enableThinking": "تفعيل وضع التفكير",
-        "disableThinking": "تعطيل وضع التفكير",
-        "thinkingEnabled": "تم تفعيل وضع التفكير",
-        "thinkingDisabled": "تم تعطيل وضع التفكير",
-        "thinkText": "تفكير",
-        "cycleEffort": "‎مستوى جهد الاستدلال: {{level}}. اضغط مرتين لتبديل مستوى الجهد"
-      }
-    },
-    "contentReportSheet": {
-      "title": "الإبلاغ عن المحتوى",
-      "privacyNote": "نحن لا نرسل أي محتوى من الرسائل أو تفاصيل المحادثة. يرجى وصف المشكلة المحددة التي واجهتها.",
-      "categoryLabel": "فئة الإبلاغ",
-      "selectCategory": "اختر فئة",
-      "categories": {
-        "hate": "خطاب كراهية",
-        "sexual": "محتوى جنسي",
-        "selfHarm": "إيذاء النفس",
-        "violence": "العنف",
-        "other": "أخرى"
-      },
-      "descriptionLabel": "الوصف",
-      "descriptionPlaceholder": "يرجى وصف المشكلة المتعلقة بهذا المحتوى...",
-      "includeModelInfo": "تضمين معلومات النموذج",
-      "includeModelInfoDescription": "ضمّن اسم النموذج ومعرّفه لمساعدتنا في التحقيق",
-      "noActiveModelNote": "لا يوجد نموذج نشط حاليًا",
-      "submit": "إرسال الإبلاغ",
-      "validation": {
-        "title": "‎معلومات ناقصة",
-        "message": "يرجى اختيار فئة وتقديم وصف."
-      },
-      "success": {
-        "title": "تم إرسال الإبلاغ",
-        "message": "شكرًا لك على إبلاغك. سنراجعه ونتخذ الإجراء المناسب."
-      },
-      "error": {
-        "title": "فشل الإبلاغ",
-        "message": "تعذّر إرسال الإبلاغ. يرجى المحاولة مرة أخرى."
-      }
+      "inputPlaceholder": "رسالة"
     },
     "modelErrorReportSheet": {
       "title": "الإبلاغ عن مشكلة في تحميل النموذج",
@@ -655,31 +585,11 @@
       "resetToServerDefault": "افتراضي الخادم: {{value}} · إعادة تعيين",
       "resetToServerDefaultAccessibilityLabel": "إعادة تعيين {{name}} إلى افتراضي الخادم، {{value}}"
     },
-    "chatGenerationSettingsSheet": {
-      "invalidValues": "قيم غير صالحة",
-      "invalidNumericValuesMessage": "يجب أن يكون رقمًا صالحًا",
-      "pleaseCorrect": "يرجى تصحيح ما يلي:",
-      "ok": "حسنًا",
-      "saveChanges": "حفظ التغييرات",
-      "saveAsPreset": "حفظ كإعداد مسبق",
-      "title_session": "إعدادات توليد الدردشة (الجلسة)",
-      "title_preset": "إعدادات توليد الدردشة (الإعداد المسبق)",
-      "resetToSystemDefaults": "إعادة التعيين إلى إعدادات النظام الافتراضية",
-      "resetToPreset": "إعادة التعيين إلى الإعداد المسبق",
-      "applytoPresetAlert": {
-        "title": "نجاح",
-        "message": "سيتم تطبيق هذه الإعدادات على جميع الجلسات المستقبلية"
-      },
-      "settingsSource": "مصدر الإعدادات"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "دردشة"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "ملف"
-    },
-    "chatModelPickerSheet": {
-      "modelsTab": "النماذج"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "فشل التنزيل",
@@ -690,16 +600,8 @@
     "headerRight": {
       "deleteChatTitle": "حذف الدردشة",
       "deleteChatMessage": "هل أنت متأكد أنك تريد حذف هذه الدردشة؟",
-      "generationSettings": "إعدادات التوليد",
-      "model": "النموذج",
       "duplicateChatHistory": "تكرار سجل الدردشة",
-      "makeChatTemporary": "‎جعل الدردشة مؤقتة",
-      "export": "تصدير/استيراد",
-      "exportCurrentSession": "تصدير الجلسة الحالية",
-      "exportCurrentSessionMarkdown": "تصدير بصيغة Markdown",
-      "exportAllSessions": "تصدير جميع الجلسات",
-      "exportChatSession": "تصدير جلسة الدردشة",
-      "importSessions": "استيراد الجلسات"
+      "exportChatSession": "تصدير جلسة الدردشة"
     },
     "modelSettingsSheet": {
       "modelSettings": "إعدادات النموذج",
@@ -789,8 +691,6 @@
       "bulkDeleteTitle": "حذف جلسات الدردشة",
       "bulkDeleteMessage": "حذف {{count}} جلسة دردشة؟ لا يمكن التراجع عن هذا الإجراء.",
       "bulkDeleteError": "تعذّر حذف جلسات الدردشة. يرجى المحاولة مرة أخرى.",
-      "exportError": "تعذّر تصدير جلسة الدردشة. يرجى المحاولة مرة أخرى.",
-      "bulkExportError": "تعذّر تصدير جلسات الدردشة. يرجى المحاولة مرة أخرى.",
       "pin": "تثبيت",
       "unpin": "‎إلغاء التثبيت",
       "dateGroups": {
@@ -822,11 +722,7 @@
     },
     "chatView": {
       "menuItems": {
-        "copy": "نسخ",
-        "regenerate": "إعادة التوليد",
-        "regenerateWith": "إعادة التوليد باستخدام",
-        "edit": "تعديل",
-        "reportContent": "الإبلاغ عن المحتوى"
+        "copy": "نسخ"
       }
     }
   },
@@ -839,20 +735,6 @@
     "situationRequired": "الموقف مطلوب",
     "toneStyleRequired": "النبرة/الأسلوب مطلوب",
     "systemPromptRequired": "prompt النظام مطلوب"
-  },
-  "camera": {
-    "permissionTitle": "إذن الكاميرا مطلوب",
-    "permissionMessage": "يحتاج PocketPal إلى الوصول إلى الكاميرا لتحليل الصور",
-    "requestingPermission": "جارٍ طلب إذن الكاميرا...",
-    "noDevice": "لم يتم العثور على كاميرا",
-    "errorTitle": "خطأ في الكاميرا",
-    "errorMessage": "حدث خطأ أثناء التقاط الصورة",
-    "flip": "قلب",
-    "analyzing": "جارٍ تحليل الصورة...",
-    "startCamera": "تشغيل الكاميرا",
-    "stopCamera": "إيقاف الكاميرا",
-    "promptPlaceholder": "ماذا تريد أن تعرفه حول هذه الصورة؟",
-    "takePhoto": "الكاميرا"
   },
   "screenTitles": {
     "chat": "‎الدردشة",

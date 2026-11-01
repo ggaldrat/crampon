@@ -24,7 +24,6 @@ const EXPECTED_SECTIONS = [
   'feedback',
   'components',
   'validation',
-  'camera',
   'screenTitles',
   'chat',
   'benchmark',

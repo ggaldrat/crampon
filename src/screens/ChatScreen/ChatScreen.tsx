@@ -1,7 +1,6 @@
 import React, {useRef, ReactNode, useState} from 'react';
 
 import {observer} from 'mobx-react';
-import {runInAction} from 'mobx';
 
 import {
   Bubble,
@@ -13,10 +12,9 @@ import {
 import {useChatSession} from '../../hooks';
 import {usePendingMessage} from '../../hooks/useDeepLinking';
 
-import {modelStore, chatSessionStore, serverStore, uiStore} from '../../store';
+import {modelStore, chatSessionStore, uiStore} from '../../store';
 
 import {L10nContext} from '../../utils';
-import {resolveReasoningCapability} from '../../utils/reasoningCapability';
 import {MessageType} from '../../utils/types';
 import {ErrorState} from '../../utils/errors';
 import {user, assistant} from '../../utils/chat';
@@ -75,104 +73,6 @@ export const ChatScreen: React.FC = observer(() => {
     setErrorToReport(null);
   }, []);
 
-  const visionEnabled = modelStore.activeModelCaps.visionActive;
-
-  // Resolver is the single source of truth for reasoning capability.
-  // Pill is reachable whenever the model is not known to be non-reasoning
-  // (fail-open on 'unknown' so remote + missed-local models are reachable).
-  const reasoningCapability = resolveReasoningCapability(
-    modelStore.activeModel,
-    serverStore.remoteReasoning,
-  );
-  const thinkingSupported =
-    !!modelStore.activeModel && reasoningCapability.isReasoning !== 'no';
-
-  const [thinkingEnabled, setThinkingEnabled] = useState(true);
-  const [reasoningEffort, setReasoningEffort] = useState<string | undefined>(
-    undefined,
-  );
-  const activeSession = chatSessionStore.sessions.find(
-    s => s.id === chatSessionStore.activeSessionId,
-  );
-  React.useEffect(() => {
-    let cancelled = false;
-    chatSessionStore.getCurrentCompletionSettings().then(settings => {
-      if (!cancelled) {
-        setThinkingEnabled(settings.enable_thinking ?? true);
-        setReasoningEffort(settings.reasoning?.effort);
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    chatSessionStore.activeSessionId,
-    activeSession?.settingsSource,
-    activeSession?.completionSettings,
-    chatSessionStore.newChatCompletionSettings,
-    chatSessionStore.newChatThinkingOverride,
-    chatSessionStore.newChatReasoningEffort,
-  ]);
-
-  // Persist the on/off intent (and optional effort) onto both the local
-  // enable_thinking flag and the reasoning carrier so the remote wire path
-  // (the profile in src/api/servers/) and the local hook both see it.
-  // No active session: stage on the new-chat
-  // override field — the resolver applies it as the last layer and session
-  // creation bakes it in, without touching newChatCompletionSettings.
-  const persistReasoning = async (enabled: boolean, effort?: string) => {
-    const currentSession = chatSessionStore.sessions.find(
-      s => s.id === chatSessionStore.activeSessionId,
-    );
-    if (currentSession) {
-      const resolvedSettings =
-        await chatSessionStore.getCurrentCompletionSettings();
-      await chatSessionStore.updateSessionCompletionSettings({
-        ...resolvedSettings,
-        enable_thinking: enabled,
-        reasoning: {enabled, effort},
-      });
-    } else {
-      runInAction(() => {
-        chatSessionStore.newChatThinkingOverride = enabled;
-        chatSessionStore.newChatReasoningEffort = effort;
-      });
-    }
-  };
-
-  // Simple on/off pill (effortless models): carries the on/off intent on the
-  // reasoning carrier (effort undefined) so remote OFF is not a no-op.
-  const handleThinkingToggle = async (enabled: boolean) => {
-    await persistReasoning(enabled);
-  };
-
-  // Graded pill cycle: off -> values[0] -> ... -> values[n] -> off.
-  const handleEffortCycle = async () => {
-    const values = reasoningCapability.effortValues;
-    if (values.length === 0) {
-      return;
-    }
-    let nextEnabled: boolean;
-    let nextEffort: string | undefined;
-    if (!thinkingEnabled) {
-      nextEnabled = true;
-      nextEffort = values[0];
-    } else {
-      const idx = reasoningEffort ? values.indexOf(reasoningEffort) : -1;
-      if (idx < 0 || idx >= values.length - 1) {
-        nextEnabled = false;
-        nextEffort = undefined;
-      } else {
-        nextEnabled = true;
-        nextEffort = values[idx + 1];
-      }
-    }
-    setThinkingEnabled(nextEnabled);
-    setReasoningEffort(nextEffort);
-    await persistReasoning(nextEnabled, nextEffort);
-  };
-
   return (
     <>
       <ChatView
@@ -184,19 +84,8 @@ export const ChatScreen: React.FC = observer(() => {
         isStopVisible={modelStore.inferencing}
         isStreaming={modelStore.isStreaming}
         sendButtonVisibilityMode="always"
-        showImageUpload={true}
-        isVisionEnabled={visionEnabled}
         initialInputText={pendingMessage || undefined}
         onInitialTextConsumed={clearPendingMessage}
-        inputProps={{
-          showThinkingToggle: thinkingSupported,
-          isThinkingEnabled: thinkingEnabled,
-          onThinkingToggle: handleThinkingToggle,
-          supportsEffort: reasoningCapability.supportsEffort,
-          effortValues: reasoningCapability.effortValues,
-          reasoningEffort,
-          onEffortCycle: handleEffortCycle,
-        }}
         textInputProps={{
           placeholder: !modelStore.engine
             ? modelStore.isContextLoading
