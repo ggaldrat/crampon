@@ -601,5 +601,10 @@
     "networkError": "Erreur réseau : Impossible de se connecter à l'API",
     "downloadSetupFailedTitle": "Échec de configuration du téléchargement",
     "downloadSetupFailedMessage": "Échec de préparation du modèle pour le téléchargement : {{message}}"
+  },
+  "voiceAndSpeech": {
+    "missingVoiceTitle": "Aucune voix sur ce téléphone",
+    "missingVoiceMessage": "Crampon lit les réponses avec la voix hors ligne du téléphone, et aucune n'est installée pour votre langue. Installez-la dans les réglages de synthèse vocale d'Android, puis revenez.",
+    "openVoiceSettings": "Ouvrir les réglages"
   }
 }

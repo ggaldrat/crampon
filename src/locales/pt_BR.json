@@ -91,7 +91,6 @@
     "weightRepackingDescription": "Processamento de prompt mais rápido com sobrecarga mínima de memória quando o mapeamento de memória está desativado. A geração de tokens não é afetada.",
     "ttsAvailability": "Conversão de texto em fala",
     "ttsAvailabilityDescription": "Ler as respostas do assistente em voz alta.",
-    "ttsAvailabilityLowMemoryWarning": "A memória do seu dispositivo está baixa — isso pode não funcionar de forma confiável.",
     "modelLoadingSettings": "Configurações de Carregamento do Modelo",
     "autoOffloadLoad": "Descarregar/Carregar Automaticamente",
     "autoOffloadLoadDescription": "Descarregar o modelo quando o app estiver em segundo plano.",

@@ -7,6 +7,7 @@ import {modelStore, ttsStore} from '../../store';
 import {L10nContext} from '../../utils';
 import {assistant, derivedText} from '../../utils/chat';
 import {PlayIcon, StopIcon} from '../../assets/icons';
+import {promptMissingVoice} from '../VoiceChip/promptMissingVoice';
 import type {MessageType} from '../../utils/types';
 
 const countWords = (text: string): number => {
@@ -70,7 +71,7 @@ export const PlayButton: React.FC<PlayButtonProps> = observer(({message}) => {
       return;
     }
     if (ttsStore.currentVoice == null) {
-      ttsStore.openSetupSheet();
+      promptMissingVoice(l10n);
       return;
     }
     const hadReasoning =

@@ -1,4 +1,4 @@
-import {AppState, AppStateStatus} from 'react-native';
+import {AppState, AppStateStatus, Linking, Platform} from 'react-native';
 
 import {makeAutoObservable, reaction, runInAction} from 'mobx';
 import {makePersistable} from 'mobx-persist-store';
@@ -12,7 +12,6 @@ import {
   KokoroEngine,
   SupertonicEngine,
   TTS_MIN_RAM_BYTES,
-  TTS_PREVIEW_SAMPLE,
   SUPERTONIC_MODEL_ESTIMATED_BYTES,
   KOKORO_MODEL_ESTIMATED_BYTES,
   KITTEN_MODEL_ESTIMATED_BYTES,
@@ -23,6 +22,7 @@ import {
   ThinkingStripper,
   pickThinkingPlaceholder,
 } from '../services/tts/thinkingStripper';
+import {resolveAutoSystemVoice} from '../services/tts/engines/system/voices';
 import {chatSessionStore} from './ChatSessionStore';
 
 /**
@@ -64,16 +64,12 @@ const DEFAULT_SUPERTONIC_STEPS: SupertonicSteps = 5;
  */
 const DEFAULT_SUPERTONIC_LANGUAGE: SupertonicLanguage = 'na';
 
-const previewMessageId = (voice: Voice): string =>
-  `preview:${voice.engine}:${voice.id}`;
-
 /**
  * Store that coordinates text-to-speech playback.
  *
  * Availability gate: `isTTSAvailable` is the single boolean every TTS-aware
- * surface reads. It is derived from `deviceMeetsMemory` (set once in `init()`
- * from `DeviceInfo.getTotalMemory()`) and `userTTSOverride` (a persisted user
- * choice). See architecture/tts.md §4a for the formula. The lifecycle hooks
+ * surface reads; only `userTTSOverride` (a persisted user choice) closes it.
+ * The voice is picked automatically (`refreshAutoVoice`). The lifecycle hooks
  * registered in `init()` (AppState listener, session reaction, isInstalled
  * checks) run unconditionally so a low-memory user opting in mid-session has
  * a safe runtime — see architecture/tts.md §4e.
@@ -96,18 +92,11 @@ export class TTSStore {
 
   /**
    * The TTS availability gate. Single boolean every TTS-aware surface reads.
-   * Derived from `userTTSOverride` and `deviceMeetsMemory` per the formula
-   * in architecture/tts.md §4a.1: an explicit user override wins; otherwise
-   * the device-memory default applies.
+   * Crampon speaks with the phone's own voice, which needs no extra memory,
+   * so the feature is on unless the user turned it off.
    */
   get isTTSAvailable(): boolean {
-    if (this.userTTSOverride === true) {
-      return true;
-    }
-    if (this.userTTSOverride === false) {
-      return false;
-    }
-    return this.deviceMeetsMemory;
+    return this.userTTSOverride !== false;
   }
 
   // Runtime playback state (discriminated union)
@@ -129,10 +118,12 @@ export class TTSStore {
    */
   supertonicLanguage: SupertonicLanguage = DEFAULT_SUPERTONIC_LANGUAGE;
 
-  // UI state
-  isSetupSheetOpen: boolean = false;
-  /** Free disk bytes, refreshed each time the setup sheet opens. */
-  freeDiskBytes: number | null = null;
+  /**
+   * True when the phone has no offline voice for its language. Crampon picks
+   * the voice itself (see `refreshAutoVoice`); the user can only install the
+   * missing voice data from Android's settings.
+   */
+  voiceMissing: boolean = false;
 
   // Per-engine model lifecycle — derived state, NOT persisted.
   supertonicDownloadState: NeuralDownloadState = 'not_installed';
@@ -172,7 +163,6 @@ export class TTSStore {
       name: 'TTSStore',
       properties: [
         'autoSpeakEnabled',
-        'currentVoice',
         'supertonicSteps',
         'supertonicLanguage',
         'userTTSOverride',
@@ -244,6 +234,8 @@ export class TTSStore {
       }
     });
 
+    await this.refreshAutoVoice();
+
     this.appStateSubscription = AppState.addEventListener(
       'change',
       this.handleAppStateChange,
@@ -258,6 +250,10 @@ export class TTSStore {
   }
 
   private handleAppStateChange = (nextAppState: AppStateStatus) => {
+    // Back from Android's settings: a voice may have been installed.
+    if (nextAppState === 'active' && this.voiceMissing) {
+      this.refreshAutoVoice();
+    }
     if (nextAppState === 'background') {
       // Stop in-flight audio AND release the active engine's native
       // resources (200-450 MB depending on engine). Re-init is lazy on
@@ -310,6 +306,37 @@ export class TTSStore {
     this.currentVoice = v;
   }
 
+  /**
+   * Select the phone's offline voice for its language. There is no user
+   * choice: this runs at startup and when the app comes back to the
+   * foreground while no voice was found.
+   */
+  async refreshAutoVoice(): Promise<void> {
+    let voice: Voice | null = null;
+    try {
+      voice = await resolveAutoSystemVoice();
+    } catch (err) {
+      console.warn('[TTSStore] voice lookup failed:', err);
+    }
+    runInAction(() => {
+      this.currentVoice = voice;
+      this.voiceMissing = voice == null;
+    });
+  }
+
+  /** Open the OS screen where voice data is installed. */
+  async openVoiceSettings(): Promise<void> {
+    try {
+      if (Platform.OS === 'android') {
+        await Linking.sendIntent('com.android.settings.TTS_SETTINGS');
+        return;
+      }
+    } catch (err) {
+      console.warn('[TTSStore] TTS settings intent failed:', err);
+    }
+    await Linking.openSettings();
+  }
+
   setSupertonicSteps(steps: SupertonicSteps) {
     this.supertonicSteps = steps;
   }
@@ -320,28 +347,6 @@ export class TTSStore {
    */
   setSupertonicLanguage(language: SupertonicLanguage) {
     this.supertonicLanguage = language;
-  }
-
-  openSetupSheet() {
-    this.isSetupSheetOpen = true;
-    this.refreshFreeDisk();
-  }
-
-  /** Re-read free disk space. Called on sheet open so the UI can
-   *  disable Install buttons for engines that won't fit. */
-  async refreshFreeDisk() {
-    try {
-      const bytes = await DeviceInfo.getFreeDiskStorage('important');
-      runInAction(() => {
-        this.freeDiskBytes = bytes;
-      });
-    } catch (err) {
-      console.warn('[TTSStore] refreshFreeDisk failed:', err);
-    }
-  }
-
-  closeSetupSheet() {
-    this.isSetupSheetOpen = false;
   }
 
   // --- Per-engine state helpers ----------------------------------------
@@ -466,63 +471,6 @@ export class TTSStore {
         }
       });
     }
-  }
-
-  /**
-   * Audition path — speak `TTS_PREVIEW_SAMPLE` with `voice` and route
-   * through the store so it interacts cleanly with any in-flight stream
-   * or replay (no overlapping audio, no engine-swap races).
-   *
-   * Skips the thinking-stripper entirely — preview text is fixed and
-   * known clean.
-   *
-   * messageId is engine-qualified (`preview:<engine>:<voiceId>`) so two
-   * engines that share a voice id can't collide on the cleanup guard.
-   */
-  async preview(voice: Voice): Promise<void> {
-    if (!this.isTTSAvailable) {
-      return;
-    }
-    const messageId = previewMessageId(voice);
-    await this.stop();
-    runInAction(() => {
-      this.playbackState = {mode: 'playing', messageId};
-    });
-    try {
-      const engine = getEngine(voice.engine);
-      if (voice.engine === 'supertonic') {
-        await (engine as SupertonicEngine).play(TTS_PREVIEW_SAMPLE, voice, {
-          language: this.supertonicLanguage,
-          inferenceSteps: this.supertonicSteps,
-        });
-      } else {
-        await engine.play(TTS_PREVIEW_SAMPLE, voice);
-      }
-    } catch (err) {
-      console.warn('[TTSStore] preview failed:', err);
-    } finally {
-      runInAction(() => {
-        if (
-          this.playbackState.mode === 'playing' &&
-          this.playbackState.messageId === messageId
-        ) {
-          this.playbackState = {mode: 'idle'};
-        }
-      });
-    }
-  }
-
-  /**
-   * `true` when a preview for `voice` is currently in flight. Components
-   * use this to swap their play icon for stop while the engine loads
-   * and speaks (Kokoro warm-up is ~4s — without this the user has no
-   * feedback that their tap registered).
-   */
-  isPreviewingVoice(voice: Voice): boolean {
-    return (
-      this.playbackState.mode === 'playing' &&
-      this.playbackState.messageId === previewMessageId(voice)
-    );
   }
 
   /** First token / message creation. Opens a streaming session. */
@@ -694,9 +642,7 @@ export class TTSStore {
       }
     }
 
-    // Safety-net disk-space check. The UI already disables the Install
-    // button when `freeDiskBytes` is too low, so this is a last resort
-    // guard for race conditions (space changed between sheet open and tap).
+    // Disk-space check before a neural engine download.
     const estimatedBytes = TTSStore.ENGINE_ESTIMATED_BYTES[id];
     const requiredBytes = Math.ceil(estimatedBytes * 1.2);
     try {
@@ -704,7 +650,6 @@ export class TTSStore {
       if (freeBytes < requiredBytes) {
         runInAction(() => {
           this.setDownloadState(id, 'not_installed');
-          this.freeDiskBytes = freeBytes;
         });
         return;
       }

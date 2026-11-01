@@ -3,18 +3,12 @@ import {makeAutoObservable} from 'mobx';
 type DownloadState = 'not_installed' | 'downloading' | 'ready' | 'error';
 
 class MockTTSStore {
-  // Mirror the real store shape: `isTTSAvailable` is derived from
-  // `deviceMeetsMemory` and `userTTSOverride`. Tests should mutate the inputs.
+  // Mirror the real store shape: `isTTSAvailable` is open unless the user
+  // turned it off. Tests should mutate `userTTSOverride`.
   deviceMeetsMemory = false;
   userTTSOverride: boolean | null = null;
   get isTTSAvailable(): boolean {
-    if (this.userTTSOverride === true) {
-      return true;
-    }
-    if (this.userTTSOverride === false) {
-      return false;
-    }
-    return this.deviceMeetsMemory;
+    return this.userTTSOverride !== false;
   }
   playbackState:
     | {mode: 'idle'}
@@ -22,7 +16,7 @@ class MockTTSStore {
     | {mode: 'playing'; messageId: string} = {mode: 'idle'};
   autoSpeakEnabled = false;
   currentVoice: any = null;
-  isSetupSheetOpen = false;
+  voiceMissing = false;
   lastSpokenMessageId: string | null = null;
 
   supertonicDownloadState: DownloadState = 'not_installed';
@@ -41,16 +35,14 @@ class MockTTSStore {
 
   init: jest.Mock;
   play: jest.Mock;
-  preview: jest.Mock;
-  isPreviewingVoice: jest.Mock;
   stop: jest.Mock;
   setAutoSpeak: jest.Mock;
   setUserTTSOverride: jest.Mock;
   setCurrentVoice: jest.Mock;
   setSupertonicSteps: jest.Mock;
   setSupertonicLanguage: jest.Mock;
-  openSetupSheet: jest.Mock;
-  closeSetupSheet: jest.Mock;
+  refreshAutoVoice: jest.Mock;
+  openVoiceSettings: jest.Mock;
   onAssistantMessageStart: jest.Mock;
   onAssistantMessageChunk: jest.Mock;
   onAssistantMessageComplete: jest.Mock;
@@ -68,16 +60,14 @@ class MockTTSStore {
     makeAutoObservable(this, {
       init: false,
       play: false,
-      preview: false,
-      isPreviewingVoice: false,
       stop: false,
       setAutoSpeak: false,
       setUserTTSOverride: false,
       setCurrentVoice: false,
       setSupertonicSteps: false,
       setSupertonicLanguage: false,
-      openSetupSheet: false,
-      closeSetupSheet: false,
+      refreshAutoVoice: false,
+      openVoiceSettings: false,
       onAssistantMessageStart: false,
       onAssistantMessageChunk: false,
       onAssistantMessageComplete: false,
@@ -93,16 +83,14 @@ class MockTTSStore {
     });
     this.init = jest.fn().mockResolvedValue(undefined);
     this.play = jest.fn().mockResolvedValue(undefined);
-    this.preview = jest.fn().mockResolvedValue(undefined);
-    this.isPreviewingVoice = jest.fn().mockReturnValue(false);
     this.stop = jest.fn().mockResolvedValue(undefined);
     this.setAutoSpeak = jest.fn();
     this.setUserTTSOverride = jest.fn();
     this.setCurrentVoice = jest.fn();
     this.setSupertonicSteps = jest.fn();
     this.setSupertonicLanguage = jest.fn();
-    this.openSetupSheet = jest.fn();
-    this.closeSetupSheet = jest.fn();
+    this.refreshAutoVoice = jest.fn().mockResolvedValue(undefined);
+    this.openVoiceSettings = jest.fn().mockResolvedValue(undefined);
     this.onAssistantMessageStart = jest.fn();
     this.onAssistantMessageChunk = jest.fn();
     this.onAssistantMessageComplete = jest.fn();

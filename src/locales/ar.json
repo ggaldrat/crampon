@@ -105,7 +105,6 @@
     "speculativeDraftCacheTypeInactiveDescription": "يُطبَّق عند تشغيل التوليد التخميني.",
     "ttsAvailability": "تحويل النص إلى كلام",
     "ttsAvailabilityDescription": "قراءة ردود المساعد بصوت عالٍ.",
-    "ttsAvailabilityLowMemoryWarning": "ذاكرة جهازك منخفضة — قد لا يعمل هذا بشكل موثوق.",
     "modelLoadingSettings": "إعدادات تحميل النموذج",
     "autoOffloadLoad": "النقل/التحميل التلقائي",
     "autoOffloadLoadDescription": "نقل النموذج إلى الذاكرة الافتراضية عند انتقال التطبيق إلى الخلفية.",

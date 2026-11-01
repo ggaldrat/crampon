@@ -62,7 +62,6 @@
     "speculativeDraftCacheTypeInactiveDescription": "Se aplica una vez que se ejecuta la decodificación especulativa.",
     "ttsAvailability": "Texto a voz",
     "ttsAvailabilityDescription": "Leer las respuestas del asistente en voz alta.",
-    "ttsAvailabilityLowMemoryWarning": "El dispositivo tiene poca memoria; es posible que esto no funcione de manera fiable.",
     "modelLoadingSettings": "Ajustes de carga del modelo",
     "autoOffloadLoad": "Carga/Descarga Automática",
     "autoOffloadLoadDescription": "Descargar el modelo cuando la aplicación esté en segundo plano.",

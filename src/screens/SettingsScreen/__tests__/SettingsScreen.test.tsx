@@ -1232,41 +1232,7 @@ describe('SettingsScreen', () => {
       });
     });
 
-    it('§6.A — high-memory, no override: switch ON, helper line hidden', async () => {
-      runInAction(() => {
-        ttsStore.deviceMeetsMemory = true;
-        ttsStore.userTTSOverride = null;
-      });
-      const {getByTestId, queryByText} = render(<SettingsScreen />, {
-        withSafeArea: true,
-        withNavigation: true,
-      });
-
-      const sw = getByTestId('tts-availability-switch');
-      expect(sw.props.value).toBe(true);
-      expect(
-        queryByText(l10n.en.settings.ttsAvailabilityLowMemoryWarning),
-      ).toBeNull();
-    });
-
-    it('§6.B — low-memory, no override: switch OFF, helper line visible', async () => {
-      runInAction(() => {
-        ttsStore.deviceMeetsMemory = false;
-        ttsStore.userTTSOverride = null;
-      });
-      const {getByTestId, getByText} = render(<SettingsScreen />, {
-        withSafeArea: true,
-        withNavigation: true,
-      });
-
-      const sw = getByTestId('tts-availability-switch');
-      expect(sw.props.value).toBe(false);
-      expect(
-        getByText(l10n.en.settings.ttsAvailabilityLowMemoryWarning),
-      ).toBeTruthy();
-    });
-
-    it('§6.C — low-memory: toggling ON calls setUserTTSOverride(true)', async () => {
+    it('is on by default, whatever the memory (the phone voice needs none)', async () => {
       runInAction(() => {
         ttsStore.deviceMeetsMemory = false;
         ttsStore.userTTSOverride = null;
@@ -1275,16 +1241,23 @@ describe('SettingsScreen', () => {
         withSafeArea: true,
         withNavigation: true,
       });
-      const sw = getByTestId('tts-availability-switch');
 
-      await act(async () => {
-        fireEvent(sw, 'valueChange', true);
-      });
-
-      expect(ttsStore.setUserTTSOverride).toHaveBeenCalledWith(true);
+      expect(getByTestId('tts-availability-switch').props.value).toBe(true);
     });
 
-    it('§6.D — high-memory: toggling OFF calls setUserTTSOverride(false)', async () => {
+    it('shows off once the user turned it off', async () => {
+      runInAction(() => {
+        ttsStore.userTTSOverride = false;
+      });
+      const {getByTestId} = render(<SettingsScreen />, {
+        withSafeArea: true,
+        withNavigation: true,
+      });
+
+      expect(getByTestId('tts-availability-switch').props.value).toBe(false);
+    });
+
+    it('toggling OFF calls setUserTTSOverride(false)', async () => {
       runInAction(() => {
         ttsStore.deviceMeetsMemory = true;
         ttsStore.userTTSOverride = null;
@@ -1300,24 +1273,6 @@ describe('SettingsScreen', () => {
       });
 
       expect(ttsStore.setUserTTSOverride).toHaveBeenCalledWith(false);
-    });
-
-    it('§9f — low-memory + opt-in: switch ON, helper line still visible', async () => {
-      runInAction(() => {
-        ttsStore.deviceMeetsMemory = false;
-        ttsStore.userTTSOverride = true;
-      });
-      const {getByTestId, getByText} = render(<SettingsScreen />, {
-        withSafeArea: true,
-        withNavigation: true,
-      });
-
-      const sw = getByTestId('tts-availability-switch');
-      expect(sw.props.value).toBe(true);
-      // Helper line tracks deviceMeetsMemory, NOT the override.
-      expect(
-        getByText(l10n.en.settings.ttsAvailabilityLowMemoryWarning),
-      ).toBeTruthy();
     });
   });
 

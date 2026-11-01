@@ -114,7 +114,6 @@
     "weightRepackingDescription": "Pemprosesan prompt yang lebih pantas dengan overhed memori yang minimum apabila pemetaan memori dilumpuhkan. Penjanaan token tidak terjejas.",
     "ttsAvailability": "Teks-ke-pertuturan",
     "ttsAvailabilityDescription": "Bacakan balasan pembantu dengan kuat.",
-    "ttsAvailabilityLowMemoryWarning": "Memori peranti anda rendah — ini mungkin tidak berfungsi dengan baik.",
     "serverName": "Nama Pelayan",
     "serverUrl": "URL Pelayan",
     "serverUrlPlaceholder": "cth., http://192.168.1.100:1234",

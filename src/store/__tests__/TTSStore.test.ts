@@ -142,6 +142,13 @@ jest.mock('../../services/tts', () => {
   };
 });
 
+// Crampon picks the phone voice itself; tests control what the phone offers.
+const mockResolveAutoVoice = jest.fn().mockResolvedValue(null);
+jest.mock('../../services/tts/engines/system/voices', () => ({
+  ...jest.requireActual('../../services/tts/engines/system/voices'),
+  resolveAutoSystemVoice: () => mockResolveAutoVoice(),
+}));
+
 // Import after mocks
 import {TTSStore} from '../TTSStore';
 import type {Voice} from '../../services/tts';
@@ -174,36 +181,27 @@ describe('TTSStore', () => {
     lastSupertonicHandle = null;
   });
 
-  describe('memory gate', () => {
-    it('sets deviceMeetsMemory=false when total memory < 4 GiB; isTTSAvailable=false; lifecycle hooks STILL register (I8)', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(3 * GIB);
-
+  describe('availability gate', () => {
+    it('is open on any phone, whatever its memory (the phone voice needs none)', async () => {
+      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(2 * GIB);
       const store = new TTSStore();
       await store.init();
 
       expect(store.deviceMeetsMemory).toBe(false);
-      expect(store.isTTSAvailable).toBe(false);
-      // Lifecycle hooks run unconditionally so a low-memory user opting in
-      // mid-session has the AppState listener already in place — see
-      // architecture/tts.md §4e and I8.
+      expect(store.userTTSOverride).toBeNull();
+      expect(store.isTTSAvailable).toBe(true);
       expect(mockAddEventListener).toHaveBeenCalledWith(
         'change',
         expect.any(Function),
       );
     });
 
-    it('sets deviceMeetsMemory=true when total memory >= 4 GiB; isTTSAvailable=true; registers listeners', async () => {
+    it('still records whether the phone could host a neural voice', async () => {
       (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(6 * GIB);
-
       const store = new TTSStore();
       await store.init();
 
       expect(store.deviceMeetsMemory).toBe(true);
-      expect(store.isTTSAvailable).toBe(true);
-      expect(mockAddEventListener).toHaveBeenCalledWith(
-        'change',
-        expect.any(Function),
-      );
     });
 
     it('is idempotent: second init() does not re-run memory check or re-register listeners', async () => {
@@ -217,182 +215,83 @@ describe('TTSStore', () => {
       expect(mockAddEventListener).toHaveBeenCalledTimes(1);
     });
 
-    it('init() runs neural-engine isInstalled checks even on low-memory devices (I8)', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(2 * GIB);
-      mockSupertonicIsInstalled.mockResolvedValueOnce(false);
-      mockKokoroIsInstalled.mockResolvedValueOnce(false);
-      mockKittenIsInstalled.mockResolvedValueOnce(false);
-
-      const store = new TTSStore();
-      await store.init();
-
-      expect(mockSupertonicIsInstalled).toHaveBeenCalledTimes(1);
-      expect(mockKokoroIsInstalled).toHaveBeenCalledTimes(1);
-      expect(mockKittenIsInstalled).toHaveBeenCalledTimes(1);
-      // Session-change reaction is also registered — verified by the chat
-      // session change test below executing without an unhandled error.
-      expect(store.deviceMeetsMemory).toBe(false);
-    });
-  });
-
-  describe('availability gate (override formula)', () => {
-    it('§6.A — high-memory, no override: deviceMeetsMemory=true, userTTSOverride=null, isTTSAvailable=true', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(6 * GIB);
-      const store = new TTSStore();
-      await store.init();
-
-      expect(store.deviceMeetsMemory).toBe(true);
-      expect(store.userTTSOverride).toBeNull();
-      expect(store.isTTSAvailable).toBe(true);
-    });
-
-    it('§6.B — low-memory, no override: deviceMeetsMemory=false, userTTSOverride=null, isTTSAvailable=false', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(3 * GIB);
-      const store = new TTSStore();
-      await store.init();
-
-      expect(store.deviceMeetsMemory).toBe(false);
-      expect(store.userTTSOverride).toBeNull();
-      expect(store.isTTSAvailable).toBe(false);
-    });
-
-    it('§6.C — low-memory + setUserTTSOverride(true) flips isTTSAvailable to true', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(3 * GIB);
-      const store = new TTSStore();
-      await store.init();
-
-      store.setUserTTSOverride(true);
-
-      expect(store.userTTSOverride).toBe(true);
-      expect(store.isTTSAvailable).toBe(true);
-    });
-
-    it('§6.D — high-memory + setUserTTSOverride(false) forces isTTSAvailable to false (proves naive || formula is wrong)', async () => {
+    it('closes when the user turns it off, and stops + releases playback', async () => {
       (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(8 * GIB);
       const store = new TTSStore();
       await store.init();
       store.setCurrentVoice(SYSTEM_VOICE);
-      // Start an in-flight playback so we can observe the stop+release path.
       await store.play('msg-1', 'hello');
       mockSystemStop.mockClear();
-      // Spy on the singleton ttsRuntime.release — the action is fire-and-forget
-      // (`.then(() => ttsRuntime.release())`), so we need to await the promise
-      // chain after firing the OFF transition.
       const releaseSpy = jest
         .spyOn(ttsRuntime, 'release')
         .mockResolvedValue(undefined);
 
       store.setUserTTSOverride(false);
-      // Yield twice: once for stop()'s resolution, once for the chained
-      // ttsRuntime.release() callback. flush() yields a single tick.
       await flush();
       await flush();
 
-      expect(store.userTTSOverride).toBe(false);
       expect(store.isTTSAvailable).toBe(false);
-      // I6: stop+release runs fire-and-forget when the gate transitions
-      // from open to closed, mirroring setAutoSpeak(false).
       expect(mockSystemStop).toHaveBeenCalled();
-      // Strengthened per implementer note 1: also assert ttsRuntime.release()
-      // is invoked, mirroring the setAutoSpeak(false) precedent.
       expect(releaseSpy).toHaveBeenCalled();
-
       releaseSpy.mockRestore();
-    });
-
-    it('§6.E — toggle from opt-in to off (low-memory): override is `false`, NOT null (D4)', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(2 * GIB);
-      const store = new TTSStore();
-      await store.init();
-
-      store.setUserTTSOverride(true);
-      expect(store.isTTSAvailable).toBe(true);
-
-      store.setUserTTSOverride(false);
-
-      expect(store.userTTSOverride).toBe(false);
-      expect(store.isTTSAvailable).toBe(false);
-    });
-
-    it('§9a — pre-hydration read: fresh store, no init(), isTTSAvailable=false', () => {
-      const store = new TTSStore();
-      // No init() — deviceMeetsMemory=false, userTTSOverride=null → false.
-      expect(store.deviceMeetsMemory).toBe(false);
-      expect(store.userTTSOverride).toBeNull();
-      expect(store.isTTSAvailable).toBe(false);
-    });
-
-    it('§9c — post-migration boot: pre-existing user with no persisted override hydrates as null and falls through to deviceMeetsMemory', async () => {
-      // Pre-existing user installed before this change has no
-      // `userTTSOverride` key in AsyncStorage. mobx-persist-store is mocked
-      // (top of file), so a fresh store starts with the field's initial
-      // value (`null`). After init() runs, the gate equals deviceMeetsMemory
-      // exactly — same behaviour as today, no migration needed.
-      // High-memory path:
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(8 * GIB);
-      const high = new TTSStore();
-      expect(high.userTTSOverride).toBeNull();
-      await high.init();
-      expect(high.userTTSOverride).toBeNull();
-      expect(high.deviceMeetsMemory).toBe(true);
-      expect(high.isTTSAvailable).toBe(true);
-
-      // Low-memory path:
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(2 * GIB);
-      const low = new TTSStore();
-      expect(low.userTTSOverride).toBeNull();
-      await low.init();
-      expect(low.userTTSOverride).toBeNull();
-      expect(low.deviceMeetsMemory).toBe(false);
-      expect(low.isTTSAvailable).toBe(false);
-    });
-
-    it('§9d — getTotalMemory failure: deviceMeetsMemory=false; override path still works', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockRejectedValueOnce(
-        new Error('boom'),
-      );
-      const store = new TTSStore();
-      await store.init();
-
-      expect(store.deviceMeetsMemory).toBe(false);
-      expect(store.isTTSAvailable).toBe(false);
 
       store.setUserTTSOverride(true);
       expect(store.isTTSAvailable).toBe(true);
     });
 
-    it('§9e — rapid toggles: last write wins, no debouncing', async () => {
-      (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(8 * GIB);
-      const store = new TTSStore();
-      await store.init();
-
-      store.setUserTTSOverride(true);
-      store.setUserTTSOverride(false);
-      store.setUserTTSOverride(true);
-
-      expect(store.userTTSOverride).toBe(true);
-      expect(store.isTTSAvailable).toBe(true);
-    });
-
-    it('persistence config includes userTTSOverride (I7, D7)', () => {
-      // makePersistable is mocked at module level (top of file). Construct a
-      // fresh store and inspect the call args to confirm `userTTSOverride`
-      // sits alongside the other persisted properties.
+    it('persists the on/off choice but not the voice (picked at each launch)', () => {
       const {makePersistable} = require('mobx-persist-store');
       (makePersistable as jest.Mock).mockClear();
       // eslint-disable-next-line no-new
       new TTSStore();
-      expect(makePersistable).toHaveBeenCalledTimes(1);
       const config = (makePersistable as jest.Mock).mock.calls[0][1];
       expect(config.properties).toEqual(
-        expect.arrayContaining([
-          'autoSpeakEnabled',
-          'currentVoice',
-          'supertonicSteps',
-          'supertonicLanguage',
-          'userTTSOverride',
-        ]),
+        expect.arrayContaining(['autoSpeakEnabled', 'userTTSOverride']),
       );
+      expect(config.properties).not.toContain('currentVoice');
+    });
+  });
+
+  describe('automatic voice', () => {
+    it('init() selects the phone voice for its language', async () => {
+      mockResolveAutoVoice.mockResolvedValueOnce(SYSTEM_VOICE);
+      const store = new TTSStore();
+      await store.init();
+
+      expect(store.currentVoice).toEqual(SYSTEM_VOICE);
+      expect(store.voiceMissing).toBe(false);
+    });
+
+    it('flags the missing voice when the phone has none for its language', async () => {
+      mockResolveAutoVoice.mockResolvedValueOnce(null);
+      const store = new TTSStore();
+      await store.init();
+
+      expect(store.currentVoice).toBeNull();
+      expect(store.voiceMissing).toBe(true);
+    });
+
+    it('treats a failed voice lookup as a missing voice', async () => {
+      mockResolveAutoVoice.mockRejectedValueOnce(new Error('no tts engine'));
+      const store = new TTSStore();
+      await store.init();
+
+      expect(store.currentVoice).toBeNull();
+      expect(store.voiceMissing).toBe(true);
+    });
+
+    it('looks again when the app comes back from the settings', async () => {
+      mockResolveAutoVoice.mockResolvedValueOnce(null);
+      const store = new TTSStore();
+      await store.init();
+      expect(store.voiceMissing).toBe(true);
+
+      mockResolveAutoVoice.mockResolvedValueOnce(SYSTEM_VOICE);
+      appStateHandlers[appStateHandlers.length - 1]('active');
+      await flush();
+
+      expect(store.currentVoice).toEqual(SYSTEM_VOICE);
+      expect(store.voiceMissing).toBe(false);
     });
   });
 
@@ -435,6 +334,7 @@ describe('TTSStore', () => {
       (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(2 * GIB);
       const store = new TTSStore();
       await store.init();
+      store.setUserTTSOverride(false);
       store.setCurrentVoice(SYSTEM_VOICE);
 
       await store.play('msg-1', 'hello');
@@ -540,6 +440,7 @@ describe('TTSStore', () => {
       (DeviceInfo.getTotalMemory as jest.Mock).mockResolvedValueOnce(2 * GIB);
       const store = new TTSStore();
       await store.init();
+      store.setUserTTSOverride(false);
       store.setCurrentVoice(SYSTEM_VOICE);
       store.setAutoSpeak(true);
 
@@ -852,15 +753,6 @@ describe('TTSStore', () => {
       expect(store.currentVoice).toEqual(SYSTEM_VOICE);
       store.setCurrentVoice(null);
       expect(store.currentVoice).toBeNull();
-    });
-
-    it('openSetupSheet/closeSetupSheet toggle isSetupSheetOpen', () => {
-      const store = new TTSStore();
-      expect(store.isSetupSheetOpen).toBe(false);
-      store.openSetupSheet();
-      expect(store.isSetupSheetOpen).toBe(true);
-      store.closeSetupSheet();
-      expect(store.isSetupSheetOpen).toBe(false);
     });
   });
 
@@ -1321,34 +1213,6 @@ describe('TTSStore', () => {
         expect.objectContaining({language: 'na'}),
       );
     });
-
-    it('preview() forwards the selected language to the Supertonic engine', async () => {
-      const store = await makeStore();
-      store.setSupertonicLanguage('fr');
-      mockSupertonicPlay.mockResolvedValueOnce(undefined);
-
-      await store.preview(SUPERTONIC_VOICE);
-
-      expect(mockSupertonicPlay).toHaveBeenCalledWith(
-        expect.any(String),
-        SUPERTONIC_VOICE,
-        expect.objectContaining({language: 'fr'}),
-      );
-    });
-
-    it('preview() threads the default language "na" when none is set', async () => {
-      const store = await makeStore();
-      mockSupertonicPlay.mockResolvedValueOnce(undefined);
-
-      await store.preview(SUPERTONIC_VOICE);
-
-      expect(mockSupertonicPlay).toHaveBeenCalledWith(
-        expect.any(String),
-        SUPERTONIC_VOICE,
-        expect.objectContaining({language: 'na'}),
-      );
-    });
-
     it('streaming forwards the selected language to playStreaming', async () => {
       const store = await makeStore();
       store.setCurrentVoice(SUPERTONIC_VOICE);
@@ -1372,66 +1236,6 @@ describe('TTSStore', () => {
       await store.play('msg-1', 'hello');
 
       expect(mockSystemPlay).toHaveBeenCalledWith('hello', SYSTEM_VOICE);
-    });
-  });
-
-  describe('preview() and isPreviewingVoice()', () => {
-    it('flips isPreviewingVoice true while play() is in flight, false after', async () => {
-      const store = await makeStore();
-      let resolvePlay: () => void = () => {};
-      mockSystemPlay.mockImplementationOnce(
-        () => new Promise<void>(r => (resolvePlay = r)),
-      );
-
-      const previewPromise = store.preview(SYSTEM_VOICE);
-      await flush();
-
-      expect(store.isPreviewingVoice(SYSTEM_VOICE)).toBe(true);
-      // A different voice never matches the in-flight preview.
-      expect(store.isPreviewingVoice(SUPERTONIC_VOICE)).toBe(false);
-
-      resolvePlay();
-      await previewPromise;
-
-      expect(store.isPreviewingVoice(SYSTEM_VOICE)).toBe(false);
-      expect(store.playbackState).toEqual({mode: 'idle'});
-    });
-
-    it('messageId is engine-qualified — same voice id on different engines does not collide', async () => {
-      const store = await makeStore();
-      const supertonicVoice: Voice = {
-        id: 'F1',
-        name: 'Sarah',
-        engine: 'supertonic',
-      };
-      const systemVoiceWithSameId: Voice = {
-        id: 'F1',
-        name: 'Other',
-        engine: 'system',
-      };
-
-      // Hold supertonic preview in flight.
-      let resolveSupertonic: () => void = () => {};
-      mockSupertonicPlay.mockImplementationOnce(
-        () => new Promise<void>(r => (resolveSupertonic = r)),
-      );
-      const p = store.preview(supertonicVoice);
-      await flush();
-
-      expect(store.isPreviewingVoice(supertonicVoice)).toBe(true);
-      // Same voice id but different engine — must NOT match.
-      expect(store.isPreviewingVoice(systemVoiceWithSameId)).toBe(false);
-
-      resolveSupertonic();
-      await p;
-    });
-
-    it('does nothing when isTTSAvailable is false', async () => {
-      const store = new TTSStore();
-      // Skip init — leaves isTTSAvailable at the default false.
-      await store.preview(SYSTEM_VOICE);
-      expect(mockSystemPlay).not.toHaveBeenCalled();
-      expect(store.playbackState).toEqual({mode: 'idle'});
     });
   });
 });

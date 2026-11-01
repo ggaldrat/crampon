@@ -393,17 +393,10 @@ export const SettingsScreen: React.FC = observer(() => {
                     <Text variant="labelSmall" style={styles.textDescription}>
                       {l10n.settings.ttsAvailabilityDescription}
                     </Text>
-                    {!ttsStore.deviceMeetsMemory && (
-                      <Text variant="labelSmall" style={styles.textDescription}>
-                        {l10n.settings.ttsAvailabilityLowMemoryWarning}
-                      </Text>
-                    )}
                   </View>
                   <Switch
                     testID="tts-availability-switch"
-                    value={
-                      ttsStore.userTTSOverride ?? ttsStore.deviceMeetsMemory
-                    }
+                    value={ttsStore.isTTSAvailable}
                     onValueChange={value => ttsStore.setUserTTSOverride(value)}
                   />
                 </View>

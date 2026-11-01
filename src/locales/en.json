@@ -105,7 +105,6 @@
     "speculativeDraftCacheTypeInactiveDescription": "Applies once speculative decoding runs.",
     "ttsAvailability": "Text-to-speech",
     "ttsAvailabilityDescription": "Read assistant replies aloud.",
-    "ttsAvailabilityLowMemoryWarning": "Your device's memory is low — this may not work reliably.",
     "modelLoadingSettings": "Model Loading Settings",
     "autoOffloadLoad": "Auto Offload/Load",
     "autoOffloadLoadDescription": "Offload model when app is in background.",
@@ -1059,7 +1058,10 @@
     "engineRetryCta": "Try again",
     "voicesEmptyState": "No voices found.",
     "kokoroDeviceNote": "Some voices may not work on all devices.",
-    "insufficientStorage": "Not enough space — free up {{requiredMb}} MB to install this engine ({{freeMb}} MB available)."
+    "insufficientStorage": "Not enough space — free up {{requiredMb}} MB to install this engine ({{freeMb}} MB available).",
+    "missingVoiceTitle": "No voice on this phone",
+    "missingVoiceMessage": "Crampon reads answers with your phone's offline voice, and none is installed for your language. Install it in Android's text-to-speech settings, then come back.",
+    "openVoiceSettings": "Open settings"
   },
   "onboarding": {
     "back": "Back",

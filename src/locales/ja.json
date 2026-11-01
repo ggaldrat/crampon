@@ -114,7 +114,6 @@
     "weightRepackingDescription": "メモリマッピングが無効な場合に、最小限のメモリオーバーヘッドでプロンプト処理を高速化します。トークン生成には影響しません。",
     "ttsAvailability": "音声読み上げ",
     "ttsAvailabilityDescription": "アシスタントの返信を音声で読み上げます。",
-    "ttsAvailabilityLowMemoryWarning": "デバイスのメモリが不足しています。正常に動作しない可能性があります。",
     "serverName": "サーバー名",
     "serverUrl": "サーバーURL",
     "serverUrlPlaceholder": "例：http://192.168.1.100:1234",

@@ -50,7 +50,6 @@
     "weightRepackingDescription": "Szybsze przetwarzanie poleceń przy minimalnym obciążeniu pamięci, gdy mapowanie pamięci jest wyłączone. Nie ma to wpływu na generowanie tokenów.",
     "ttsAvailability": "Synteza mowy",
     "ttsAvailabilityDescription": "Przeczytaj na głos odpowiedzi asystenta.",
-    "ttsAvailabilityLowMemoryWarning": "W urządzeniu jest mało pamięci — funkcja może nie działać prawidłowo.",
     "modelLoadingSettings": "Ustawienia Ładowania Modelu",
     "autoOffloadLoad": "Automatyczne Wyładowywanie/Załadowywanie",
     "autoOffloadLoadDescription": "Wyładuj model, gdy aplikacja działa w tle.",

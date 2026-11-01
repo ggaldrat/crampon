@@ -1,4 +1,5 @@
 import React from 'react';
+import {Alert} from 'react-native';
 import {runInAction} from 'mobx';
 
 import {fireEvent, render} from '../../../../jest/test-utils';
@@ -41,10 +42,9 @@ describe('PlayButton', () => {
     });
   });
 
-  it('renders nothing when TTS is unavailable', () => {
+  it('renders nothing when the user turned TTS off', () => {
     runInAction(() => {
-      ttsStore.deviceMeetsMemory = false;
-      ttsStore.userTTSOverride = null;
+      ttsStore.userTTSOverride = false;
     });
     const {queryByTestId} = renderButton(makeAssistantMsg());
     expect(queryByTestId('playbutton-msg-1')).toBeNull();
@@ -75,11 +75,17 @@ describe('PlayButton', () => {
     expect(queryByTestId('playbutton-msg-1')).toBeNull();
   });
 
-  it('opens setup sheet on first tap when no voice chosen', () => {
+  it('explains how to install a voice when the phone has none', () => {
+    const alertSpy = jest.spyOn(Alert, 'alert').mockImplementation(jest.fn());
     const {getByTestId} = renderButton(makeAssistantMsg());
     fireEvent.press(getByTestId('playbutton-msg-1'));
-    expect(ttsStore.openSetupSheet).toHaveBeenCalledTimes(1);
+    expect(alertSpy).toHaveBeenCalledWith(
+      l10n.en.voiceAndSpeech.missingVoiceTitle,
+      l10n.en.voiceAndSpeech.missingVoiceMessage,
+      expect.any(Array),
+    );
     expect(ttsStore.play).not.toHaveBeenCalled();
+    alertSpy.mockRestore();
   });
 
   it('calls play when tapped with a voice chosen', () => {

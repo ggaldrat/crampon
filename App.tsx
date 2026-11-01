@@ -28,7 +28,6 @@ import {
   ModelsHeaderRight,
   HeaderLeft,
   AppWithMigration,
-  TTSSetupSheet,
   DownloadOverlay,
   HubRunSheetHost,
 } from './src/components';
@@ -203,7 +202,6 @@ const App = observer(() => {
                         </Drawer.Navigator>
                       }
                     />
-                    <TTSSetupSheet />
                     <DownloadOverlay />
                     <HubRunSheetHost />
                   </BottomSheetModalProvider>

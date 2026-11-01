@@ -1,0 +1,18 @@
+diff --git a/node_modules/@pocketpalai/react-native-speech/android/src/main/java/com/pocketpalai/speech/RNSpeechModule.kt b/node_modules/@pocketpalai/react-native-speech/android/src/main/java/com/pocketpalai/speech/RNSpeechModule.kt
+index 5b0c9ff..53beedb 100644
+--- a/node_modules/@pocketpalai/react-native-speech/android/src/main/java/com/pocketpalai/speech/RNSpeechModule.kt
++++ b/node_modules/@pocketpalai/react-native-speech/android/src/main/java/com/pocketpalai/speech/RNSpeechModule.kt
+@@ -240,6 +240,13 @@ class RNSpeechModule(reactContext: ReactApplicationContext) :
+       putString("name", voice.name)
+       putString("identifier", voice.name)
+       putString("language", voice.locale.toLanguageTag())
++      // Crampon: lets the app skip voices that send text to a server or whose
++      // data is not downloaded on the device.
++      putBoolean("requiresNetwork", voice.isNetworkConnectionRequired)
++      putBoolean(
++        "notInstalled",
++        voice.features?.contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED) == true
++      )
+     }
+   }
+ 

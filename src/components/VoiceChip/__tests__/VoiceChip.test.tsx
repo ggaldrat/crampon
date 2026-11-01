@@ -1,4 +1,5 @@
 import React from 'react';
+import {Alert} from 'react-native';
 import {runInAction} from 'mobx';
 
 import {fireEvent, render} from '../../../../jest/test-utils';
@@ -25,57 +26,41 @@ const systemVoice = {
 describe('VoiceChip', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(Alert, 'alert').mockImplementation(jest.fn());
     runInAction(() => {
-      ttsStore.deviceMeetsMemory = true;
       ttsStore.userTTSOverride = null;
-      ttsStore.currentVoice = null;
+      ttsStore.currentVoice = systemVoice;
       ttsStore.autoSpeakEnabled = false;
       ttsStore.playbackState = {mode: 'idle'};
     });
   });
 
-  it('renders nothing when TTS is unavailable', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('renders nothing when the user turned TTS off', () => {
     runInAction(() => {
-      ttsStore.deviceMeetsMemory = false;
-      ttsStore.userTTSOverride = null;
+      ttsStore.userTTSOverride = false;
     });
     const {queryByTestId} = renderChip();
     expect(queryByTestId('voicechip')).toBeNull();
   });
 
-  it('renders both halves (speaker + secondary) regardless of setup state', () => {
-    const {getByTestId} = renderChip();
+  it('shows a single speaker button, no voice settings entry', () => {
+    const {getByTestId, queryByTestId} = renderChip();
     expect(getByTestId('voicechip-speaker')).toBeTruthy();
-    expect(getByTestId('voicechip-secondary')).toBeTruthy();
+    expect(queryByTestId('voicechip-secondary')).toBeNull();
   });
 
-  it('pre-setup: speaker tap opens setup sheet (no voice to toggle)', () => {
-    const {getByTestId} = renderChip();
-    fireEvent.press(getByTestId('voicechip-speaker'));
-    expect(ttsStore.openSetupSheet).toHaveBeenCalledTimes(1);
-    expect(ttsStore.setAutoSpeak).not.toHaveBeenCalled();
-  });
-
-  it('pre-setup: secondary tap opens setup sheet', () => {
-    const {getByTestId} = renderChip();
-    fireEvent.press(getByTestId('voicechip-secondary'));
-    expect(ttsStore.openSetupSheet).toHaveBeenCalledTimes(1);
-  });
-
-  it('voice-chosen: speaker tap toggles autoSpeakEnabled', () => {
-    runInAction(() => {
-      ttsStore.currentVoice = systemVoice;
-      ttsStore.autoSpeakEnabled = false;
-    });
+  it('turns reading aloud on', () => {
     const {getByTestId} = renderChip();
     fireEvent.press(getByTestId('voicechip-speaker'));
     expect(ttsStore.setAutoSpeak).toHaveBeenCalledWith(true);
-    expect(ttsStore.openSetupSheet).not.toHaveBeenCalled();
   });
 
-  it('voice-chosen: speaker tap while ON toggles autoSpeakEnabled off', () => {
+  it('turns reading aloud off', () => {
     runInAction(() => {
-      ttsStore.currentVoice = systemVoice;
       ttsStore.autoSpeakEnabled = true;
     });
     const {getByTestId} = renderChip();
@@ -83,32 +68,40 @@ describe('VoiceChip', () => {
     expect(ttsStore.setAutoSpeak).toHaveBeenCalledWith(false);
   });
 
-  it('voice-chosen: secondary tap opens setup sheet, does not toggle', () => {
+  it('stops playback while speaking', () => {
     runInAction(() => {
-      ttsStore.currentVoice = systemVoice;
-      ttsStore.autoSpeakEnabled = false;
+      ttsStore.playbackState = {mode: 'playing', messageId: 'm1'};
     });
     const {getByTestId} = renderChip();
-    fireEvent.press(getByTestId('voicechip-secondary'));
-    expect(ttsStore.openSetupSheet).toHaveBeenCalledTimes(1);
+    fireEvent.press(getByTestId('voicechip-speaker'));
+    expect(ttsStore.stop).toHaveBeenCalled();
     expect(ttsStore.setAutoSpeak).not.toHaveBeenCalled();
   });
 
-  it('speaker accessibilityState reflects autoSpeakEnabled post-setup', () => {
+  it('explains how to install a voice when the phone has none', () => {
     runInAction(() => {
-      ttsStore.currentVoice = systemVoice;
+      ttsStore.currentVoice = null;
+    });
+    const {getByTestId} = renderChip();
+    fireEvent.press(getByTestId('voicechip-speaker'));
+    expect(Alert.alert).toHaveBeenCalledWith(
+      l10n.en.voiceAndSpeech.missingVoiceTitle,
+      l10n.en.voiceAndSpeech.missingVoiceMessage,
+      expect.any(Array),
+    );
+    expect(ttsStore.setAutoSpeak).not.toHaveBeenCalled();
+
+    const buttons = (Alert.alert as jest.Mock).mock.calls[0][2];
+    buttons[1].onPress();
+    expect(ttsStore.openVoiceSettings).toHaveBeenCalled();
+  });
+
+  it('speaker accessibilityState reflects autoSpeakEnabled', () => {
+    runInAction(() => {
       ttsStore.autoSpeakEnabled = true;
     });
     const {getByTestId} = renderChip();
     const speaker = getByTestId('voicechip-speaker');
     expect(speaker.props.accessibilityState).toEqual({selected: true});
-  });
-
-  it('pre-setup speaker accessibilityState has no selected flag', () => {
-    const {getByTestId} = renderChip();
-    const speaker = getByTestId('voicechip-speaker');
-    // Pressable synthesizes an accessibilityState object; the selected key
-    // should be undefined pre-setup since the component doesn't pass it.
-    expect(speaker.props.accessibilityState?.selected).toBeUndefined();
   });
 });
