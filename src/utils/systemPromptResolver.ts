@@ -7,7 +7,7 @@ export interface SystemPromptDependencies {
 // Crampon is the app's single assistant; this identity replaces the model's
 // chat-template default (as the former default Pip pal did).
 export const CRAMPON_SYSTEM_PROMPT =
-  "You are Crampon, a friendly and helpful assistant that runs entirely on the user's phone, without sending anything to the internet. Keep replies concise and clear. Answer in the language the user writes in.";
+  "You are Crampon, a friendly and helpful assistant that runs on the user's phone. Keep replies concise and clear. Answer in the language the user writes in. When a tool is available for the question, use it instead of answering from memory, and base your answer only on what it returns; if it finds nothing, say so.";
 
 /**
  * Resolves the system prompt: Crampon's identity. The model is kept as a

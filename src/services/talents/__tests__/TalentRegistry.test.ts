@@ -2,6 +2,7 @@ import {TalentRegistry} from '../TalentRegistry';
 import {
   collectSystemPromptFragments,
   deriveToolSchemas,
+  resetRegisteredFlag,
   talentRegistry,
 } from '../index';
 import type {TalentEngine} from '../types';
@@ -57,8 +58,15 @@ describe('talent helpers', () => {
     talentRegistry.reset();
   });
 
-  it('ships no built-in talents', () => {
-    expect(deriveToolSchemas()).toEqual([]);
+  it('registers the four built-in talents on first use', () => {
+    resetRegisteredFlag();
+    expect(deriveToolSchemas().map(s => s.function.name)).toEqual([
+      'calculate',
+      'datetime',
+      'wikipedia',
+      'read_url',
+    ]);
+    talentRegistry.reset();
   });
 
   it('derives schemas for registered engines, filtered by name', () => {

@@ -40,6 +40,9 @@ import {
 } from '../utils/completionTypes';
 import {
   collectSystemPromptFragments,
+  deriveToolSchemas,
+  seedReadUrlAllowlist,
+  selectTalents,
   talentRegistry,
 } from '../services/talents';
 import type {ToolDefinition} from '../services/talents/types';
@@ -135,12 +138,14 @@ const prepareCompletion = async ({
     });
   }
 
+  // Only the tools likely useful for this question are shown to the model
+  // (see services/talents/router.ts).
+  const talentNames = selectTalents(message.text);
+  const tools: ToolDefinition[] = deriveToolSchemas(talentNames);
+
   // Talent-contributed system-prompt fragments. Kept on
   // the initial messages array so they persist across every follow-up tool turn.
-  const sessionToolNames = (
-    (sessionCompletionSettings?.tools as ToolDefinition[] | undefined) ?? []
-  ).map(tool => tool.function?.name ?? '');
-  const systemPromptFragments = collectSystemPromptFragments(sessionToolNames, {
+  const systemPromptFragments = collectSystemPromptFragments(talentNames, {
     now: new Date(),
     maxToolTurns: DEFAULT_MAX_TURNS,
   });
@@ -150,8 +155,13 @@ const prepareCompletion = async ({
     {role: 'user', content: userMessageContent},
   ]);
 
+  // read_url only follows pages the user named or links from pages and
+  // articles read in this chat (exfiltration guard).
+  seedReadUrlAllowlist(messages, currentMessages);
+
   const completionParamsWithAppProps = {
     ...sessionCompletionSettings,
+    ...(tools.length > 0 ? {tools} : {}),
     messages,
     stop: stopWords,
   };

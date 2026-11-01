@@ -16,7 +16,6 @@ import {
 import {chatSessionRepository} from '../repositories/ChatSessionRepository';
 import {defaultCompletionParams} from '../utils/completionSettingsVersions';
 import {derivedText} from '../utils/chat';
-import {deriveToolSchemas} from '../services/talents';
 import {AgentUiState, initialAgentUiState} from '../services/agent';
 
 /**
@@ -1386,32 +1385,24 @@ class ChatSessionStore {
       ...this.newChatCompletionSettings,
     };
 
-    // Tools from registered talents (none built in; extension point)
-    const tools = deriveToolSchemas();
-    if (tools.length > 0) {
-      resolvedSettings = {...resolvedSettings, tools};
-    }
-
     // Apply session-specific settings based on explicit user choice
     if (sessionId) {
       const session = this.sessions.find(s => s.id === sessionId);
 
       if (session?.settingsSource === 'custom') {
         // User explicitly chose custom settings - use session settings.
-        // Preserve registered tools — custom settings control generation
-        // params (temperature, etc.), not tool availability.
-        const registeredTools = resolvedSettings.tools;
         resolvedSettings = session.completionSettings;
-        if (registeredTools) {
-          resolvedSettings = {...resolvedSettings, tools: registeredTools};
-        }
       }
     }
 
     // Crampon never uses reasoning: on a phone it delays the first word by
     // tens of seconds. Applied last so no stored setting can turn it back on.
+    // Tools are chosen per question in useChatSession (talent router), so a
+    // stored snapshot never carries them.
+    const withoutTools = {...resolvedSettings};
+    delete withoutTools.tools;
     return {
-      ...resolvedSettings,
+      ...withoutTools,
       enable_thinking: false,
       reasoning: {...resolvedSettings.reasoning, enabled: false},
     };
