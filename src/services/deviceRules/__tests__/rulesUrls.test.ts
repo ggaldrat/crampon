@@ -4,7 +4,7 @@ describe('getRulesUrl', () => {
   it.each([
     [
       'android',
-      'https://cdn.jsdelivr.net/gh/a-ghorbani/pocketpal-device-rules@main/rules.android.v2.json',
+      'https://crampon.blandy-studio.com/rules/rules.android.v2.json',
     ],
     [
       'ios',

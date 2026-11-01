@@ -169,6 +169,16 @@ const answersSession = (
   capsMatchBinding(caps, binding, binding.modelId) &&
   caps?.samplerDefaults !== undefined;
 
+// Rule presets in tier order, without the projector / draft stubs that
+// resolvePresetModels interleaves after their parent model.
+const llmPresetIds = (presets: Model[]): string[] =>
+  presets
+    .filter(
+      m =>
+        m.modelType !== ModelType.PROJECTION && m.modelType !== ModelType.DRAFT,
+    )
+    .map(m => m.id);
+
 const pairedDraftModel = (config?: DraftConfig): Model | undefined =>
   config?.mode === 'paired' ? config.draftModel : undefined;
 
@@ -177,6 +187,12 @@ class ModelStore {
   version: number | undefined = undefined; // Persisted version
   deviceTier: Tier | null = null; // resolved device classification
   rulesVersion: string | null = null; // provenance of the preset list
+  // Crampon: ordered LLM preset ids of the current tier (first = the tier's
+  // primary recommendation, auto-installed by onboarding). Not persisted.
+  tierPresetIds: string[] = [];
+  // Crampon: true once the online rules fetch has finished (success or not),
+  // so onboarding can pick from the freshest rule set. Not persisted.
+  rulesSettled: boolean = false;
 
   /**
    * Returns models with projection models filtered out for display purposes
@@ -970,11 +986,13 @@ class ModelStore {
         rules.classifier,
         Platform.OS as ClassifyPlatform,
       );
+      const presets = this.resolvePresetModels(rules, signals);
       runInAction(() => {
         this.deviceTier = tier;
         this.rulesVersion = rules.rulesVersion;
+        this.tierPresetIds = llmPresetIds(presets);
       });
-      return this.resolvePresetModels(rules, signals);
+      return presets;
     } catch (error) {
       console.warn('[ModelStore] preset resolution failed:', error);
       return [];
@@ -997,13 +1015,19 @@ class ModelStore {
         fetched.classifier,
         Platform.OS as ClassifyPlatform,
       );
+      const presets = this.resolvePresetModels(fetched, signals);
       runInAction(() => {
         this.deviceTier = tier;
         this.rulesVersion = fetched.rulesVersion;
+        this.tierPresetIds = llmPresetIds(presets);
       });
-      this.reconcilePresets(this.resolvePresetModels(fetched, signals));
+      this.reconcilePresets(presets);
     } catch (error) {
       console.warn('[ModelStore] fetched-rules upgrade failed:', error);
+    } finally {
+      runInAction(() => {
+        this.rulesSettled = true;
+      });
     }
   };
 

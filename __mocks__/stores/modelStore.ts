@@ -36,6 +36,8 @@ class MockModelStore {
   models = modelsList;
   contextInitParams: ContextInitParams = createDefaultContextInitParams();
   deviceTier: Tier | null = null;
+  tierPresetIds: string[] = [];
+  rulesSettled = true;
   max_threads = 4;
   MIN_CONTEXT_SIZE = 200;
   useAutoRelease = true;

@@ -38,6 +38,8 @@ describe('Onboarding6Screen (single full-screen auto-setup, no pal, no chrome)',
         selectedModelId: null,
       };
       modelStore.models = [] as Model[];
+      modelStore.tierPresetIds = [];
+      modelStore.rulesSettled = true;
     });
     palStore.pals = [];
 
@@ -99,6 +101,32 @@ describe('Onboarding6Screen (single full-screen auto-setup, no pal, no chrome)',
       );
       expect(modelStore.checkSpaceAndDownload).toHaveBeenCalled();
     });
+  });
+
+  it("installs the device tier's first rule preset instead of the hardcoded entry when one resolved", async () => {
+    const preset = {
+      id: 'LiquidAI/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf',
+      name: 'LFM2.5 2.6B',
+      origin: 'HF',
+      isRulePreset: true,
+      isDownloaded: false,
+      progress: 0,
+    } as unknown as Model;
+    runInAction(() => {
+      modelStore.models.push(preset);
+      modelStore.tierPresetIds = [preset.id, 'other/repo/file.gguf'];
+    });
+
+    renderScreen();
+
+    await waitFor(() => {
+      expect(uiStore.completeOnboarding).toHaveBeenCalledWith({
+        topic: null,
+        modelId: preset.id,
+      });
+    });
+    expect(modelStore.registerOnboardingPalModel).not.toHaveBeenCalled();
+    expect(modelStore.checkSpaceAndDownload).toHaveBeenCalledWith(preset.id);
   });
 
   it('never creates or touches a pal — the model is bound directly, no persona', async () => {

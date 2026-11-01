@@ -26,12 +26,39 @@ import {createStyles} from './styles';
 // (replayed onboarding) and the whole run resolves near-instantly.
 const MIN_DWELL_MS = 700;
 
+// How long to wait for the online rules fetch (itself capped at 10 s) before
+// picking from the bundled rules instead.
+const RULES_WAIT_MS = 12_000;
+
 type Phase = 'preparing' | 'downloading' | 'activating' | 'ready' | 'error';
 
 // There is no topic picker — this always resolves to the `else` tier
 // list (general-purpose models), independent of any named persona. No
-// Pal is ever created from it: the model is bound directly.
+// Pal is ever created from it: the model is bound directly. Fallback only:
+// the device tier's first rule preset is preferred (see pickModel).
 const RECOMMENDED_MODELS = resolvePalForTopic(null).models;
+
+/**
+ * Crampon: the model to auto-install is the first candidate of the device's
+ * tier in the device rules (Crampon-hosted, see rulesUrls.ts), waiting briefly
+ * for the online rules so a newer recommendation wins over the bundled one.
+ * Falls back to the hardcoded general-purpose entry if no preset resolved.
+ */
+const pickModel = async () => {
+  try {
+    await when(() => modelStore.rulesSettled, {timeout: RULES_WAIT_MS});
+  } catch {
+    // timeout: use whatever preset list is already resolved (bundled floor)
+  }
+  const presetId = modelStore.tierPresetIds[0];
+  const preset = modelStore.models.find(m => m.id === presetId);
+  if (preset) {
+    return preset;
+  }
+  const entry =
+    RECOMMENDED_MODELS.find(m => m.recommended) ?? RECOMMENDED_MODELS[0];
+  return entry ? modelStore.registerOnboardingPalModel(entry) : null;
+};
 
 /**
  * The only onboarding screen — no picker, no chrome, no skip button.
@@ -76,14 +103,12 @@ export const Onboarding6Screen: React.FC = observer(() => {
 
   const run = useCallback(async () => {
     setPhase('preparing');
-    const entry =
-      RECOMMENDED_MODELS.find(m => m.recommended) ?? RECOMMENDED_MODELS[0];
-    if (!entry) {
+    if (!modelStore.tierPresetIds.length && !RECOMMENDED_MODELS.length) {
       uiStore.completeOnboarding({topic: null, modelId: null});
       return;
     }
     try {
-      const picked = await modelStore.registerOnboardingPalModel(entry);
+      const picked = await pickModel();
       pickedIdRef.current = picked?.id;
       if (!picked) {
         throw new Error('model registration failed');
