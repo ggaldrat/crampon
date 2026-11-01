@@ -46,13 +46,6 @@ export const createStyles = ({theme}: {theme: Theme}) =>
       shadowRadius: 3.84,
       elevation: 5,
     },
-    suggestedPromptsOverlay: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      zIndex: 9,
-      backgroundColor: 'transparent',
-    },
     inputContainer: {
       borderTopLeftRadius: theme.borders.inputBorderRadius,
       borderTopRightRadius: theme.borders.inputBorderRadius,

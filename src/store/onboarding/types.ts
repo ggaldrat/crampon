@@ -8,10 +8,7 @@
  *
  * There is no onboarding screen or topic-picker any more —
  * `useAutoModelSetup` runs silently on first launch and
- * `selectedTopic` stays `null` for the life of the app, which
- * `resolvePalForTopic(null)` resolves to the `else`/Pip entry's model
- * list (data only — no Pal is ever created from it). The `TopicKey`
- * union and `TOPIC_TO_PAL` map are kept for that resolver.
+ * `selectedTopic` stays `null` for the life of the app.
  */
 
 export type TopicKey =

@@ -5,7 +5,7 @@ import {useNavigation, NavigationProp} from '@react-navigation/native';
 
 import {XIcon} from '../../assets/icons';
 import {useTheme} from '../../hooks';
-import {modelStore, palStore, uiStore} from '../../store';
+import {modelStore, uiStore} from '../../store';
 import {L10nContext} from '../../utils';
 import {ROUTES} from '../../utils/navigationConstants';
 import {bannerStyles as createStyles} from './styles';
@@ -21,23 +21,14 @@ const formatSize = (bytes: number): string => {
   return `${Math.round(bytes / (1024 * 1024))} MB`;
 };
 
-// Users think "Pip is downloading", not the filename.
-const ownerOf = (modelId: string, modelName: string) => {
-  const pal = palStore.pals.find(
-    p =>
-      p.source === 'local' && p.defaultModel && p.defaultModel.id === modelId,
-  );
-  return {pal, subject: pal ? pal.name : modelName};
-};
-
 /**
  * Sticky single-row banner showing the first non-dismissed active download.
  *
  * Affordances:
  *   - Body tap → Models screen (the home for multi-download management;
  *     the +N badge telegraphs that there are more behind the visible one).
- *   - Stop pill → cancels the visible download. Pal stays bound to the
- *     model so the user can resume from the Models screen.
+ *   - Stop pill → cancels the visible download; the user can resume it
+ *     from the Models screen.
  *   - × icon  → dismisses the banner for this download only. Download
  *     continues. Dismissal clears when the download disappears.
  *   - Failed → Retry replaces Stop; × clears the error.
@@ -55,10 +46,7 @@ export const DownloadBanner: React.FC = observer(() => {
       : undefined;
   if (failedModel) {
     const failedTitle = l10n.downloadBanner.failedTitle;
-    const {pal: failedPal, subject: failedSubject} = ownerOf(
-      failedModel.id,
-      failedModel.name,
-    );
+    const failedSubject = failedModel.name;
     const activeCount = modelStore.activeDownloads.length;
     const failedLabel = [
       failedTitle,
@@ -82,12 +70,7 @@ export const DownloadBanner: React.FC = observer(() => {
           <View
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
-            style={[
-              styles.avatar,
-              failedPal?.color?.[0]
-                ? {backgroundColor: failedPal.color[0]}
-                : null,
-            ]}
+            style={styles.avatar}
           />
           <View style={styles.content}>
             <Text style={[styles.title, styles.failedTitle]} numberOfLines={1}>
@@ -143,10 +126,10 @@ export const DownloadBanner: React.FC = observer(() => {
     return null;
   }
 
-  const {pal, subject} = ownerOf(visible.modelId, visible.model.name);
-  const title = (
-    pal ? l10n.downloadBanner.titleByPal : l10n.downloadBanner.titleByModel
-  ).replace('{{name}}', subject);
+  const title = l10n.downloadBanner.titleByModel.replace(
+    '{{name}}',
+    visible.model.name,
+  );
   const eta = visible.etaLabel || formatSize(visible.bytesTotal);
   const clamped = Math.max(0, Math.min(100, visible.progress));
   const extraCount = Math.max(0, modelStore.activeDownloads.length - 1);
@@ -170,10 +153,7 @@ export const DownloadBanner: React.FC = observer(() => {
         <View
           accessibilityElementsHidden
           importantForAccessibility="no-hide-descendants"
-          style={[
-            styles.avatar,
-            pal?.color?.[0] ? {backgroundColor: pal.color[0]} : null,
-          ]}
+          style={styles.avatar}
         />
         <View style={styles.content}>
           <View style={styles.titleRow}>

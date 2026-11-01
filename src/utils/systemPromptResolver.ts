@@ -1,40 +1,22 @@
-import type {Pal} from '../types/pal';
 import type {Model} from './types';
-import {generateFinalSystemPrompt} from './palshub-template-parser';
 
 export interface SystemPromptDependencies {
-  pal?: Pal | null;
   model?: Model | null;
 }
 
+// Crampon is the app's single assistant; this identity replaces the model's
+// chat-template default (as the former default Pip pal did).
+export const CRAMPON_SYSTEM_PROMPT =
+  "You are Crampon, a friendly and helpful assistant that runs entirely on the user's phone, without sending anything to the internet. Keep replies concise and clear. Answer in the language the user writes in.";
+
 /**
- * Resolves the system prompt based on priority:
- * 1. Pal's system prompt (with parameter rendering if needed)
- * 2. Fallback to model's chat template system prompt
- * 3. Empty string if neither exists
+ * Resolves the system prompt: Crampon's identity. The model is kept as a
+ * dependency so a per-model prompt can be layered in later.
  */
 export function resolveSystemPrompt(
-  dependencies: SystemPromptDependencies,
+  _dependencies: SystemPromptDependencies,
 ): string {
-  const {pal, model} = dependencies;
-
-  // Priority 1: Pal's system prompt
-  if (pal?.systemPrompt) {
-    // Check if the pal has parameters that need rendering
-    if (pal.parameters && Object.keys(pal.parameters).length > 0) {
-      return generateFinalSystemPrompt(pal.systemPrompt, pal.parameters);
-    } else {
-      return pal.systemPrompt;
-    }
-  }
-
-  // Priority 2: Model's chat template system prompt
-  if (model?.chatTemplate?.systemPrompt) {
-    return model.chatTemplate.systemPrompt;
-  }
-
-  // Priority 3: Empty string
-  return '';
+  return CRAMPON_SYSTEM_PROMPT;
 }
 
 type ChatMessage = {role: string; content?: unknown};

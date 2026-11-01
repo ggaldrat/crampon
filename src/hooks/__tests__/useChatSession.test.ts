@@ -7,18 +7,16 @@ import {textMessage} from '../../../jest/fixtures';
 import {sessionFixtures} from '../../../jest/fixtures/chatSessions';
 import {
   mockBasicModel,
-  mockDefaultCompletionParams,
   mockLlamaContextParams,
   modelsList,
 } from '../../../jest/fixtures/models';
 
 import {useChatSession} from '../useChatSession';
-import {isReadUrlAllowed} from '../../services/talents';
+import {CRAMPON_SYSTEM_PROMPT} from '../../utils/systemPromptResolver';
 
 import {
   chatSessionStore,
   modelStore,
-  palStore,
   serverStore,
   ttsStore,
   uiStore,
@@ -41,7 +39,6 @@ beforeEach(() => {
   jest.clearAllMocks();
 
   // Reset mock stores to a known baseline between tests
-  palStore.pals = [] as any;
   chatSessionStore.sessions = sessionFixtures as any;
   chatSessionStore.activeSessionId = 'session-1';
 
@@ -564,22 +561,12 @@ describe('useChatSession', () => {
   });
 
   test.each([
-    {systemPrompt: undefined, shouldInclude: false, description: 'undefined'},
-    {systemPrompt: '', shouldInclude: false, description: 'empty string'},
-    {systemPrompt: '   ', shouldInclude: false, description: 'whitespace-only'},
-    {
-      systemPrompt: 'You are a helpful assistant',
-      shouldInclude: true,
-      description: 'valid prompt',
-    },
-    {
-      systemPrompt: '  Trimmed prompt  ',
-      shouldInclude: true,
-      description: 'prompt with whitespace',
-    },
+    {systemPrompt: undefined, description: 'undefined'},
+    {systemPrompt: '', description: 'empty string'},
+    {systemPrompt: 'You are a helpful assistant', description: 'valid prompt'},
   ])(
-    'should handle system prompt for $description',
-    async ({systemPrompt, shouldInclude}) => {
+    'sends the Crampon prompt whatever the model template prompt ($description)',
+    async ({systemPrompt}) => {
       const testModel = {
         ...mockBasicModel,
         id: 'test-model',
@@ -608,66 +595,15 @@ describe('useChatSession', () => {
         await result.current.handleSendPress(textMessage);
       });
 
-      if (shouldInclude && systemPrompt?.trim()) {
-        // Check that a system message was included in the messages passed to completion
-        expect(capturedMessages.some(msg => msg.role === 'system')).toBe(true);
-        const systemMessage = capturedMessages.find(
-          msg => msg.role === 'system',
-        );
-        expect(systemMessage.content).toBe(systemPrompt);
-      } else {
-        // Check that no system message was included
-        expect(capturedMessages.some(msg => msg.role === 'system')).toBe(false);
-      }
+      const systemMessages = capturedMessages.filter(
+        msg => msg.role === 'system',
+      );
+      expect(systemMessages).toHaveLength(1);
+      expect(systemMessages[0].content).toBe(CRAMPON_SYSTEM_PROMPT);
     },
   );
 
-  it('should render parametrized system prompt when pal has parameters', async () => {
-    // Create a mock pal with parametrized system prompt
-    const mockPal = {
-      id: 'test-pal-id',
-      type: 'local' as const,
-      name: 'Test Pal',
-      systemPrompt: 'You are {{name}}, a {{role}} in {{setting}}.',
-      parameters: {
-        name: 'Gandalf',
-        role: 'wizard',
-        setting: 'Middle-earth',
-      },
-      parameterSchema: [
-        {key: 'name', type: 'text' as const, label: 'Name', required: true},
-        {key: 'role', type: 'text' as const, label: 'Role', required: true},
-        {
-          key: 'setting',
-          type: 'text' as const,
-          label: 'Setting',
-          required: true,
-        },
-      ],
-      isSystemPromptChanged: false,
-      useAIPrompt: false,
-      source: 'local' as const,
-    };
-
-    // Mock palStore to return our test pal
-    palStore.pals = [mockPal];
-
-    // Create a mock session with the pal
-    const mockSession = {
-      id: 'test-session-id',
-      activePalId: 'test-pal-id',
-      title: 'Test Session',
-      date: new Date().toISOString().split('T')[0], // Format: YYYY-MM-DD
-      messages: [],
-      completionSettings: mockDefaultCompletionParams,
-      settingsSource: 'pal' as const,
-    };
-
-    // Mock chatSessionStore to return our test session
-    chatSessionStore.sessions = [mockSession];
-    chatSessionStore.activeSessionId = 'test-session-id';
-
-    // Mock the completion function to capture the messages passed to it
+  it("sends Crampon's identity as the single system message", async () => {
     let capturedMessages: any[] = [];
     if (modelStore.context) {
       modelStore.context.completion = jest
@@ -686,12 +622,11 @@ describe('useChatSession', () => {
       await result.current.handleSendPress(textMessage);
     });
 
-    // Check that a system message was included with the rendered template
-    expect(capturedMessages.some(msg => msg.role === 'system')).toBe(true);
-    const systemMessage = capturedMessages.find(msg => msg.role === 'system');
-    expect(systemMessage.content).toBe(
-      'You are Gandalf, a wizard in Middle-earth.',
+    const systemMessages = capturedMessages.filter(
+      msg => msg.role === 'system',
     );
+    expect(systemMessages).toHaveLength(1);
+    expect(systemMessages[0].content).toBe(CRAMPON_SYSTEM_PROMPT);
   });
 
   it('emits multimodal warning when user sends an image but multimodal is disabled', async () => {
@@ -766,231 +701,6 @@ describe('useChatSession', () => {
       serverStore.remoteCaps = {};
       modelStore.activeModelId = undefined;
     });
-  });
-
-  it('should use system prompt as-is when pal has no parameters', async () => {
-    // Create a mock pal without parameters
-    const mockPal = {
-      id: 'test-pal-id-no-params',
-      type: 'local' as const,
-      name: 'Test Pal No Params',
-      systemPrompt: 'You are a helpful assistant.',
-      parameters: {},
-      parameterSchema: [],
-      isSystemPromptChanged: false,
-      useAIPrompt: false,
-      source: 'local' as const,
-    };
-
-    // Mock palStore to return our test pal
-    palStore.pals = [mockPal];
-
-    // Create a mock session with the pal
-    const mockSession = {
-      id: 'test-session-id-no-params',
-      activePalId: 'test-pal-id-no-params',
-      title: 'Test Session No Params',
-      date: new Date().toISOString().split('T')[0], // Format: YYYY-MM-DD
-      messages: [],
-      completionSettings: mockDefaultCompletionParams,
-      settingsSource: 'pal' as const,
-    };
-
-    // Mock chatSessionStore to return our test session
-    chatSessionStore.sessions = [mockSession];
-    chatSessionStore.activeSessionId = 'test-session-id-no-params';
-
-    // Mock the completion function to capture the messages passed to it
-    let capturedMessages: any[] = [];
-    if (modelStore.context) {
-      modelStore.context.completion = jest
-        .fn()
-        .mockImplementation((params, _onData) => {
-          capturedMessages = params.messages || [];
-          return Promise.resolve({timings: {total: 100}, usage: {}});
-        });
-    }
-
-    const {result} = renderHook(() =>
-      useChatSession({current: null}, textMessage.author, mockAssistant),
-    );
-
-    await act(async () => {
-      await result.current.handleSendPress(textMessage);
-    });
-
-    // Check that a system message was included with the original prompt
-    expect(capturedMessages.some(msg => msg.role === 'system')).toBe(true);
-    const systemMessage = capturedMessages.find(msg => msg.role === 'system');
-    expect(systemMessage.content).toBe('You are a helpful assistant.');
-  });
-
-  describe('search grounding', () => {
-    const webSearchTool = {
-      type: 'function',
-      function: {name: 'web_search', description: '', parameters: {}},
-    };
-
-    const activateSearchTools = async () => {
-      const baseSettings =
-        await chatSessionStore.getCurrentCompletionSettings();
-      (
-        chatSessionStore.getCurrentCompletionSettings as jest.Mock
-      ).mockResolvedValueOnce({...baseSettings, tools: [webSearchTool]});
-    };
-
-    const useSessionWithPal = (systemPrompt: string) => {
-      const pal = {
-        id: 'search-pal-id',
-        type: 'local' as const,
-        name: 'Search Pal',
-        systemPrompt,
-        parameters: {},
-        parameterSchema: [],
-        isSystemPromptChanged: false,
-        useAIPrompt: false,
-        source: 'local' as const,
-      };
-      palStore.pals = [pal];
-      chatSessionStore.sessions = [
-        {
-          id: 'search-session-id',
-          activePalId: pal.id,
-          title: 'Search Session',
-          date: new Date().toISOString().split('T')[0],
-          messages: [],
-          completionSettings: mockDefaultCompletionParams,
-          settingsSource: 'pal' as const,
-        },
-      ];
-      chatSessionStore.activeSessionId = 'search-session-id';
-      return pal;
-    };
-
-    const captureMessages = () => {
-      const captured: {messages: any[]} = {messages: []};
-      if (modelStore.context) {
-        modelStore.context.completion = jest
-          .fn()
-          .mockImplementation((params, _onData) => {
-            captured.messages = params.messages || [];
-            return Promise.resolve({timings: {total: 100}, usage: {}});
-          });
-      }
-      return captured;
-    };
-
-    const send = async () => {
-      const {result} = renderHook(() =>
-        useChatSession({current: null}, textMessage.author, mockAssistant),
-      );
-      await act(async () => {
-        await result.current.handleSendPress(textMessage);
-      });
-    };
-
-    // Strict templates reject a second system message ("must be at the
-    // beginning"), so grounding folds into the pal's system message.
-    it('sends exactly one system message carrying both the pal prompt and the grounding', async () => {
-      const pal = useSessionWithPal('You are a research assistant.');
-      await activateSearchTools();
-      const captured = captureMessages();
-
-      await send();
-
-      const systemMessages = captured.messages.filter(
-        msg => msg.role === 'system',
-      );
-      expect(systemMessages).toHaveLength(1);
-
-      const today = new Date().toISOString().slice(0, 10);
-      expect(systemMessages[0].content).toContain(
-        'You are a research assistant.',
-      );
-      expect(systemMessages[0].content).toContain(`Today's date is ${today}`);
-      expect(systemMessages[0].content).toContain('web_search');
-
-      // Composition happens at assembly time only.
-      expect(pal.systemPrompt).toBe('You are a research assistant.');
-    });
-
-    it('sends the grounding as the sole system message when the pal has no system prompt', async () => {
-      useSessionWithPal('');
-      await activateSearchTools();
-      const captured = captureMessages();
-
-      await send();
-
-      const systemMessages = captured.messages.filter(
-        msg => msg.role === 'system',
-      );
-      expect(systemMessages).toHaveLength(1);
-
-      const today = new Date().toISOString().slice(0, 10);
-      expect(systemMessages[0].content).toContain(`Today's date is ${today}`);
-      expect(systemMessages[0].content).toContain('web_search');
-    });
-
-    it('leaves the pal system message alone when no search tools are active', async () => {
-      useSessionWithPal('You are a research assistant.');
-      const captured = captureMessages();
-
-      await send();
-
-      const systemMessages = captured.messages.filter(
-        msg => msg.role === 'system',
-      );
-      expect(systemMessages).toHaveLength(1);
-      expect(systemMessages[0].content).toBe('You are a research assistant.');
-    });
-
-    it('seeds the read_url allowlist from URLs the user wrote', async () => {
-      useSessionWithPal('');
-      await activateSearchTools();
-      captureMessages();
-
-      const {result} = renderHook(() =>
-        useChatSession({current: null}, textMessage.author, mockAssistant),
-      );
-      await act(async () => {
-        await result.current.handleSendPress({
-          ...textMessage,
-          text: 'summarize https://user.example.com/doc please',
-        });
-      });
-
-      expect(isReadUrlAllowed('https://user.example.com/doc')).toBe(true);
-      expect(isReadUrlAllowed('https://other.example.com/x')).toBe(false);
-    });
-  });
-
-  it('omits the search grounding line when no search tools are active', async () => {
-    let capturedMessages: any[] = [];
-    if (modelStore.context) {
-      modelStore.context.completion = jest
-        .fn()
-        .mockImplementation((params, _onData) => {
-          capturedMessages = params.messages || [];
-          return Promise.resolve({timings: {total: 100}, usage: {}});
-        });
-    }
-
-    const {result} = renderHook(() =>
-      useChatSession({current: null}, textMessage.author, mockAssistant),
-    );
-
-    await act(async () => {
-      await result.current.handleSendPress(textMessage);
-    });
-
-    expect(
-      capturedMessages.some(
-        msg =>
-          msg.role === 'system' &&
-          typeof msg.content === 'string' &&
-          msg.content.includes("Today's date is"),
-      ),
-    ).toBe(false);
   });
 
   describe('TTS streaming wiring', () => {

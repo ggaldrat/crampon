@@ -159,7 +159,6 @@
     "multimodalNotEnabled": "Мультимодальность для этой модели не включена. Изображения будут отображаться, но не будут обрабатываться ИИ.",
     "cannotSendWithoutModel": "Загрузите модель перед началом работы",
     "toolCallTruncated": "Вызов инструмента прерван – вероятно, у модели исчерпан лимит контекста. Попробуйте использовать более объёмный контекст или более короткий запрос.",
-    "toolCompatWarning": "Эта модель может не поддерживать вызовы инструментов. Результаты могут быть недостоверными.",
     "softCapWarning": "Начните новый чат для оптимальной работы.",
     "generatingPreview": "Генерация предпросмотра… ({{tokens}} ток.)",
     "generatingPreviewPending": "Генерация предпросмотра…",
@@ -198,17 +197,6 @@
     "increaseContextReloading": "Перезагрузка модели с увеличенным контекстом…",
     "increaseContextSuccess": "Контекст увеличен до {{target}} токенов.",
     "increaseContextFailure": "Не удалось увеличить размер контекста. Предыдущие настройки были восстановлены.",
-    "palLoadHint": "Этому Pal обычно требуется больше контекста, чем позволяет текущий размер.",
-    "webSearch": {
-      "searched": "Поиск: {{query}}",
-      "noResults": "Нет результатов",
-      "noResultsFor": "По запросу {{query}} ничего не найдено",
-      "resultsCount": "{{count}} результатов",
-      "resultsCountOne": "1 результат",
-      "searchResultsTitle": "Результаты поиска",
-      "showResultsAccessibilityLabel": "Показать результаты веб-поиска по запросу: {{query}}",
-      "openLinkError": "Не удалось открыть эту ссылку."
-    },
     "contextFullRemote": "Лимит контекста диалога исчерпан. Начните новый чат.",
     "speculativeInitFailed": "На этом устройстве не удалось запустить спекулятивное декодирование для этой модели – скорее всего, не хватает памяти для контекста черновой модели. Отключите спекулятивное декодирование в разделе Настройки → Дополнительные настройки и попробуйте снова."
   },
@@ -288,9 +276,7 @@
       "activateModelTitle": "Активируйте модель",
       "activateModelDescription": "Выберите модель и загрузите её. После этого, нажмите 'Загрузить' рядом с моделью и начните общение.",
       "activateModelButton": "Выбрать модель",
-      "loading": "Загрузка...",
-      "gettingReadyTitle": "{{name}} готовится к работе",
-      "gettingReadyDescription": "Мы сообщим вам, как только Pal сможет начать общение. Нажмите на баннер наверху, чтобы увидеть текущее состояние."
+      "loading": "Загрузка..."
     },
     "chatInput": {
       "inputPlaceholder": "Сообщение",
@@ -318,7 +304,6 @@
       },
       "title_session": "Настройки генерации чата (Сессия)",
       "resetToSystemDefaults": "Сброс к системным",
-      "palSettings": "Настройки Pal",
       "settingsSource": "Источник настроек"
     },
     "chatHeaderTitle": {
@@ -327,19 +312,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Файл"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Модели",
-      "palsTab": "Pal",
-      "noPal": "Без Pal",
-      "disablePal": "Отключить активный Pal",
-      "noDescription": "Без описания",
-      "assistantType": "Ассистент",
-      "roleplayType": "Ролевая игра",
-      "confirmationTitle": "Подтверждение",
-      "modelSwitchMessage": "У этого Pal другая модель по умолчанию ({{modelName}}). Хотите переключиться на неё?",
-      "keepButton": "Оставить",
-      "switchButton": "Переключить",
-      "videoType": "Видео"
+    "chatModelPickerSheet": {
+      "modelsTab": "Модели"
     },
     "headerRight": {
       "deleteChatTitle": "Удалить чат",
@@ -382,21 +356,6 @@
       "proceedWithReset": "Выполнить сброс",
       "confirmReset": "Подтвердить сброс"
     },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Создать Pal-ассистента",
-        "edit": "Редактировать Pal-ассистента"
-      },
-      "palName": "Имя Pal",
-      "palNamePlaceholder": "Имя",
-      "defaultModel": "Модель по умолчанию",
-      "defaultModelPlaceholder": "Выбрать модель",
-      "validation": {
-        "generatingPromptRequired": "Требуется промпт для генерации",
-        "promptModelRequired": "Требуется модель для генерации промпта"
-      },
-      "create": "Создать"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "У вас еще нет загруженных моделей. Пожалуйста, сначала загрузите модель.",
       "downloadAModel": "Загрузить модель",
@@ -405,36 +364,6 @@
       "download": "Загрузить",
       "modelNotDownloadedShort": "Модель не загружена",
       "recommendedModel": "Рекомендуемая модель"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Создать Pal ролевых игр",
-        "edit": "Редактировать Pal ролевых игр"
-      },
-      "palName": "Имя Pal",
-      "palNamePlaceholder": "Имя",
-      "defaultModel": "Модель по умолчанию",
-      "defaultModelPlaceholder": "Выбрать модель",
-      "descriptionSection": "Описание",
-      "world": "Мир",
-      "worldPlaceholder": "Фэнтези",
-      "location": "Место",
-      "locationPlaceholder": "Зачарованный лес",
-      "locationSublabel": "Где происходит действие истории?",
-      "aiRole": "Роль ИИ",
-      "aiRolePlaceholder": "Эльдара, озорная лесная фея",
-      "aiRoleSublabel": "Установите роль персонажа",
-      "userRole": "Роль пользователя",
-      "userRolePlaceholder": "Сэр Эландор, храбрый рыцарь",
-      "userRoleSublabel": "Кто вы?",
-      "situation": "Ситуация",
-      "situationPlaceholder": "Миссия спасения, разгадка тайны",
-      "toneStyle": "Тон/Стиль",
-      "toneStylePlaceholder": "Серьёзный",
-      "validation": {
-        "promptModelRequired": "Требуется модель для генерации промпта"
-      },
-      "create": "Создать"
     },
     "sendButton": {
       "accessibilityLabel": "Отправить"
@@ -600,80 +529,11 @@
         "message": "Не удалось отправить отчёт. Попробуйте ещё раз позже."
       }
     },
-    "palGenerationSettingsSheet": {
-      "title": "Настройки генерации - {{palName}}",
-      "invalidValues": "Неверные значения",
-      "invalidNumericValuesMessage": "Должно быть числом",
-      "pleaseCorrect": "Исправьте следующее:",
-      "ok": "ОК",
-      "error": "Ошибка",
-      "failedToSave": "Не удалось сохранить настройки Pal",
-      "resetToGlobal": "Сброс к глобальным настройкам",
-      "resetToSystem": "Сброс к системным",
-      "clearPalSettings": "Очистить настройки Pal",
-      "customSettingsFor": "Пользовательские настройки для {{palName}}",
-      "inheritedSettingsFor": "Унаследованные настройки для {{palName}}"
-    },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Ошибка загрузки",
       "downloadFailedMessage": "Не удалось загрузить модель: {{message}}",
       "tryAgain": "Повторить",
       "viewOnHuggingFace": "Открыть на HF ↗"
-    },
-    "palSheet": {
-      "title": {
-        "edit": "Редактировать Pal",
-        "newPal": "Новый Pal",
-        "newVideoPal": "Новый видео Pal"
-      },
-      "description": "Описание",
-      "descriptionPlaceholder": "Введите краткое описание вашего Pal",
-      "parameters": "Параметры",
-      "generationSettings": "Настройки генерации",
-      "configureGenerationSettings": "Настройка параметров генерации",
-      "validation": {
-        "nameRequired": "Необходимо указать имя",
-        "generatingPromptRequired": "Для генерации системного промпта с помощью ИИ требуется промпт",
-        "promptModelRequired": "Для генерации системного промпта с помощью ИИ требуется модель"
-      },
-      "talents": "Таланты",
-      "talentNames": {
-        "render_html": "Предпросмотр HTML",
-        "calculate": "Математические выражения",
-        "datetime": "Дата и время",
-        "web_search": "Поиск в интернете",
-        "read_url": "Чтение веб-страницы"
-      },
-      "talentDescriptions": {
-        "render_html": "Отображение HTML-документов прямо в чате",
-        "calculate": "Вычисление математических выражений",
-        "datetime": "Получение текущей даты и времени",
-        "web_search": "Поиск актуальной информации в интернете (требуется API-ключ в Настройках)",
-        "read_url": "Чтение полного содержимого веб-страницы (требуется API-ключ в Настройках)"
-      },
-      "greeting": {
-        "sectionLabel": "Приветствие",
-        "textLabel": "Приветственное сообщение",
-        "textPlaceholder": "Что должен написать этот Pal в пустом чате?",
-        "suggestedPromptsLabel": "Рекомендуемые промпты",
-        "addPromptButton": "Добавить промпт",
-        "promptPlaceholder": "Короткий промпт для быстрой команды",
-        "removePromptLabel": "Удалить промпт"
-      }
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Создать Lookie Pal",
-        "edit": "Редактировать Lookie Pal"
-      },
-      "palName": "Имя Pal",
-      "palNamePlaceholder": "Введите имя для Lookie Pal",
-      "visionModel": "Модель зрения",
-      "visionModelPlaceholder": "Выберите модель зрения",
-      "requiredModelsSection": "Требуемые модели",
-      "captureInterval": "Интервал захвата",
-      "captureIntervalHelper": "Интервал между автоматическими захватами в миллисекундах",
-      "create": "Создать"
     },
     "chatView": {
       "menuItems": {
@@ -683,12 +543,6 @@
         "edit": "Редактировать",
         "reportContent": "Жалоба на контент"
       }
-    },
-    "palHeaderRight": {
-      "exportAllPals": "Экспорт всех Pal",
-      "importPals": "Импорт Pal",
-      "importSuccess": "Успешно импортировано {{count}} Pal.",
-      "importError": "Не удалось импортировать Pal. Проверьте формат файла."
     },
     "bubble": {
       "msPerToken": "{{value}} мс/ток",
@@ -1023,8 +877,7 @@
     "benchmark": "Бенчмарк",
     "settings": "Настройки",
     "appInfo": "О приложении",
-    "testCompletion": "Завершение теста",
-    "pals": "Pal (экспериментально)"
+    "testCompletion": "Завершение теста"
   },
   "settings": {
     "modelInitializationSettings": "Настройки инициализации модели",
@@ -1150,31 +1003,6 @@
     "requestTimeoutHelp": "Макс. время ожидания ответа от медленного сервера. Оставьте пустым для использования значения по умолчанию.",
     "serverType": "Тип сервера",
     "serverTypeHelp": "Определено автоматически. Измените, если это неверно.",
-    "internetSearch": {
-      "title": "Поиск в интернете",
-      "description": "Разрешить Pal использовать собственные инструменты для поиска в интернете. Используйте свой собственный API-ключ – PocketPal никогда не хранит ключи и не пересылает ваши запросы.",
-      "providerLabel": "Поставщик поиска",
-      "providerGated": "Скоро появится",
-      "keyLabel": "API-ключ",
-      "keyIsSet": "Ключ для {{provider}} установлен.",
-      "keyNotSet": "Ключ для {{provider}} не установлен.",
-      "setKeyButton": "Установить ключ",
-      "updateKeyButton": "Обновить ключ",
-      "clearKeyButton": "Очистить ключ",
-      "keyInputPlaceholder": "Вставьте ваш API-ключ {{provider}}",
-      "keyUpdateError": "Не удалось обновить ключ. Попробуйте ещё раз.",
-      "showKeyAccessibilityLabel": "Показать API-ключ",
-      "hideKeyAccessibilityLabel": "Скрыть API-ключ",
-      "resultCountLabel": "Количество результатов на запрос",
-      "resultCountDescription": "Меньшее количество результатов оставляет больше места в контексте модели.",
-      "consentTitle": "Поисковые запросы покидают ваше устройство",
-      "consentDescription": "Когда Pal ищет в интернете, ваш запрос отправляется выбранному провайдеру через интернет. Когда Pal читает страницу, URL-адрес и её содержимое могут быть отправлены сервису чтения по умолчанию (r.jina.ai), если у выбранного провайдера нет встроенной функции чтения. Ключи и запросы никогда не передаются в PocketPal.",
-      "consentAccept": "Я понимаю",
-      "consentRequired": "Примите вышеуказанные условия, чтобы установить ключ и включить поиск.",
-      "consentGivenTitle": "Поиск в интернете включён",
-      "consentGivenDescription": "Запросы и чтение страниц могут покидать ваше устройство, как описано выше.",
-      "consentRevoke": "Отозвать"
-    },
     "languageSheetTitle": "Язык",
     "languageSearchPlaceholder": "Поиск языков",
     "speculativeDecoding": "Спекулятивное декодирование",
@@ -1206,48 +1034,6 @@
     "situationRequired": "Необходимо указать ситуацию",
     "toneStyleRequired": "Необходимо указать тон/стиль"
   },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "Мои Pal (локально)",
-      "myLibrary": "Моя библиотека (palshub.ai)",
-      "discoverPals": "Откройте для себя Pal (palshub.ai)"
-    },
-    "systemPrompt": "Системный промпт",
-    "videoAnalysis": "Анализ видео",
-    "videoAnalysisDescription": "Это видео‑ассистент ИИ, который даёт комментарии в реальном времени к видеопотоку с камеры вашего устройства.",
-    "captureInterval": "Интервал захвата",
-    "captureIntervalUnit": "мс",
-    "world": "Мир",
-    "toneStyle": "Тон/Стиль",
-    "aiRole": "Роль ИИ",
-    "userRole": "Моя роль",
-    "prompt": "Промпт",
-    "assistant": "Ассистент",
-    "roleplay": "Ролевая игра",
-    "video": "Видео",
-    "deletePal": "Удалить Pal",
-    "deletePalMessage": "Вы уверены, что хотите удалить этот Pal?",
-    "missingModel": "Отсутствует модель",
-    "missingModelMessage": "Модель по умолчанию \"{{modelName}}\" для этого Pal недоступна. Загрузите её на экране редактирования или выберите другую модель.",
-    "search": "Поиск",
-    "addPal": "Добавить Pal",
-    "deletePalConfirmation": "Вы уверены, что хотите удалить \"{{palName}}\"?",
-    "filters": {
-      "all": "Все",
-      "myPals": "Мои Pal",
-      "local": "Локальные",
-      "video": "Видео",
-      "free": "Бесплатно",
-      "premium": "Премиум"
-    },
-    "labels": {
-      "free": "Бесплатно",
-      "premium": "Премиум",
-      "private": "Частный",
-      "download": "Загрузить",
-      "getFree": "Получить бесплатно"
-    }
-  },
   "camera": {
     "permissionTitle": "Требуется разрешение на доступ к камере",
     "permissionMessage": "PocketPal нужен доступ к камере для анализа изображений",
@@ -1261,32 +1047,6 @@
     "stopCamera": "Выключить камеру",
     "promptPlaceholder": "Что вы хотите узнать об этом изображении?",
     "takePhoto": "Камера"
-  },
-  "video": {
-    "permissionTitle": "Требуется разрешение на доступ к камере",
-    "permissionMessage": "PocketPal нужен доступ к камере для анализа видео",
-    "requestingPermission": "Запрос разрешения на доступ к камере...",
-    "noDevice": "Камера не найдена",
-    "errorTitle": "Ошибка камеры",
-    "errorMessage": "Произошла ошибка при работе с камерой",
-    "flip": "Повернуть",
-    "analyzing": "Анализ видео...",
-    "startCamera": "Включить камеру",
-    "stopCamera": "Выключить камеру",
-    "promptPlaceholder": "Что вы хотите узнать об этом видео?",
-    "captureInterval": "Интервал захвата",
-    "captureIntervalUnit": "мс",
-    "liveCommentary": "Комментарий в реальном времени",
-    "emptyPlaceholder": {
-      "title": "Добро пожаловать в Lookie",
-      "subtitle": "Конфиденциальный анализ видео в реальном времени на устройстве",
-      "experimentalNotice": "Это экспериментальная функция. Точность зависит от выбранной модели, скорость – от характеристик вашего устройства, а некоторые модели могут не работать.",
-      "howToUse": "Как использовать:",
-      "step1": "• При необходимости отредактируйте промпт, чтобы направить анализ",
-      "step2": "• Нажмите кнопку камеры, чтобы начать анализ видео в реальном времени",
-      "step3": "• Регулируйте частоту снимков, пока камера активна",
-      "step4": "• Переключитесь на другой Pal для обычного текстового чата"
-    }
   },
   "errors": {
     "unexpectedError": "Произошла непредвиденная ошибка",
@@ -1470,28 +1230,10 @@
         "balanced": "Сбалансированный",
         "best": "Лучший"
       },
-      "subtitleTemplate": "{{name}} мыслит с помощью небольшой модели ИИ на вашем телефоне – выберите ту, которая вам подходит.",
-      "pal": {
-        "pip": {
-          "body": "Мы нашли для вас идеальный Pal – дружелюбный спутник на каждый день. Достаточно умный для большинства задач и достаточно лёгкий для любого телефона."
-        },
-        "codie": {
-          "body": "Познакомьтесь с Codie – ваш локальный напарник для программирования. Читает и пишет код, объясняет сложные моменты, не покидая ваш телефон."
-        },
-        "sage": {
-          "body": "Sage – терпелив, любознателен и шаг за шагом проводит вас через идеи. Помощник для занятий, который всегда в вашем кармане."
-        },
-        "echo": {
-          "body": "Echo – это универсальный партнёр для ролевых игр: придерживается выбранного образа, рисует живые сцены и следует за любым поворотом вашего сюжета."
-        },
-        "muse": {
-          "body": "Muse – помогает вам писать. Предлагает формулировки, подбирает ритм и сохраняет ваш стиль."
-        }
-      }
+      "subtitleTemplate": "{{name}} мыслит с помощью небольшой модели ИИ на вашем телефоне – выберите ту, которая вам подходит."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} загружается",
     "titleByModel": "{{name}} загружается",
     "extraInProgress": "+{{count}} в очереди",
     "failedTitle": "Загрузка не завершена",

@@ -600,22 +600,7 @@
         "title": "Erfolgreich",
         "message": "Diese Einstellungen werden auf alle zukünftigen Sitzungen angewendet"
       },
-      "palSettings": "Pal-Einstellungen",
       "settingsSource": "Einstellungen Quelle"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "Generierungseinstellungen - {{palName}}",
-      "invalidValues": "Falsche Werte",
-      "invalidNumericValuesMessage": "Muss eine gültige Nummer sein",
-      "pleaseCorrect": "Bitte korrigieren Sie Folgendes:",
-      "ok": "OK",
-      "error": "Fehler",
-      "failedToSave": "Speichern der Pal-Einstellungen gescheitert",
-      "resetToGlobal": "Auf globale Standardwerte zurücksetzen",
-      "resetToSystem": "Standardwerte laden",
-      "clearPalSettings": "Lösche Pal-Einstellungen",
-      "customSettingsFor": "Benutzerdefinierte Einstellungen für {{palName}}",
-      "inheritedSettingsFor": "Geerbte Einstellungen für {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "Chat"
@@ -623,19 +608,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Datei"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Modelle",
-      "palsTab": "Pals",
-      "noPal": "Kein Pal",
-      "disablePal": "Aktiven Pal deaktivieren",
-      "noDescription": "Keine Beschreibung",
-      "assistantType": "Assistent",
-      "roleplayType": "Rollenspiele",
-      "videoType": "Video",
-      "confirmationTitle": "Bestätigung",
-      "modelSwitchMessage": "Dieser Pal nutzt ein anderes Standardmodell ({{modelName}}). Möchten Sie zum Standardmodell des Pals wechseln?",
-      "keepButton": "Behalten",
-      "switchButton": "Wechseln"
+    "chatModelPickerSheet": {
+      "modelsTab": "Modelle"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Download gescheitert",
@@ -670,38 +644,6 @@
       "proceedWithReset": "Zurücksetzen ausführen",
       "confirmReset": "Zurücksetzen bestätigen"
     },
-    "palSheet": {
-      "title": {
-        "edit": "Pal bearbeiten",
-        "newPal": "Neuer Pal",
-        "newVideoPal": "Neuer Video Pal"
-      },
-      "description": "Beschreibung",
-      "descriptionPlaceholder": "Geben Sie eine kurze Beschreibung Ihres Pals ein",
-      "parameters": "Parameter",
-      "generationSettings": "Generierungseinstellungen",
-      "configureGenerationSettings": "Erzeugungseinstellungen konfigurieren",
-      "validation": {
-        "nameRequired": "Name ist erforderlich",
-        "generatingPromptRequired": "Generierender Prompt ist erforderlich bei der Nutzung von AI Prompts",
-        "promptModelRequired": "Prompt-Generierung Modell ist erforderlich, bei der Nutzung von AI-Prompt"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Assistent Pal erstellen",
-        "edit": "Assistent Pal bearbeiten"
-      },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Name",
-      "defaultModel": "Standardmodell",
-      "defaultModelPlaceholder": "Modell auswählen",
-      "validation": {
-        "generatingPromptRequired": "Generierender Prompt ist erforderlich",
-        "promptModelRequired": "Prompt-Generierung Modell erforderlich"
-      },
-      "create": "Erstellen"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "Sie haben noch keine Modelle heruntergeladen. Bitte laden Sie zuerst ein Modell herunter.",
       "downloadAModel": "Modell herunterladen",
@@ -710,49 +652,6 @@
       "recommendedModel": "Empfohlenes Modell",
       "cancelDownload": "Download abbrechen",
       "download": "Download"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Rollenspiel Pal erstellen",
-        "edit": "Rollenspiel Pal bearbeiten"
-      },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Name",
-      "defaultModel": "Standardmodell",
-      "defaultModelPlaceholder": "Modell auswählen",
-      "descriptionSection": "Beschreibung",
-      "world": "Welt",
-      "worldPlaceholder": "Fantasy",
-      "location": "Standort",
-      "locationPlaceholder": "Zauberwald",
-      "locationSublabel": "Wo findet die Geschichte statt?",
-      "aiRole": "Die Rolle der AI",
-      "aiRolePlaceholder": "Eldara, ein spitzbübischer Waldgeist",
-      "aiRoleSublabel": "Stellen Sie die Rolle für den Charakter ein",
-      "userRole": "Rolle des Nutzers",
-      "userRolePlaceholder": "Sir Elandor, ein mutiger Ritter",
-      "userRoleSublabel": "Wer bist du?",
-      "situation": "Situation",
-      "situationPlaceholder": "Rettungsmission, löse ein Geheimnis",
-      "toneStyle": "Ton/Stil",
-      "toneStylePlaceholder": "Ernst",
-      "validation": {
-        "promptModelRequired": "Prompt-Generierungs Modell erforderlich"
-      },
-      "create": "Erstellen"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Erstellen Sie Lookie Pal",
-        "edit": "Bearbeite Lookie Pal"
-      },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Geben Sie einen Namen für Ihren Lookie Pal",
-      "visionModel": "Vision Modell",
-      "visionModelPlaceholder": "Wählen Sie ein Vision-Modell",
-      "requiredModelsSection": "Erforderliche Modelle",
-      "captureIntervalHelper": "Zeit zwischen automatischen Erfassungen in Millisekunden",
-      "create": "Erstellen"
     },
     "sendButton": {
       "accessibilityLabel": "Sende"
@@ -842,25 +741,6 @@
         "edit": "Bearbeiten",
         "reportContent": "Bericht Inhalt"
       }
-    },
-    "palHeaderRight": {
-      "exportAllPals": "Exportiere alle Pals",
-      "importPals": "Importiere Pals",
-      "importSuccess": "Erfolgreich {{count}} Pal(s) importiert.",
-      "importError": "Import der Pals gescheitert. Bitte überprüfen Sie das Dateiformat."
     }
-  },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "Meine Pals (lokal)",
-      "myLibrary": "Meine Bibliothek (palshub.ai)",
-      "discoverPals": "Entdecken Sie Pals (palshub.ai)"
-    },
-    "systemPrompt": "System Prompt",
-    "videoAnalysis": "Videoanalyse",
-    "videoAnalysisDescription": "Dies ist ein Video-basierter KI-Assistent, der Echtzeit-Kommentare des Videostreams der Kamera Ihres Geräts liefert.",
-    "captureInterval": "Erfassungsinterval",
-    "captureIntervalUnit": "ms",
-    "world": "Welt"
   }
 }

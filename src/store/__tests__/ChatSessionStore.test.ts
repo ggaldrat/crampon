@@ -27,7 +27,6 @@ jest.spyOn(chatSessionRepository, 'updateSessionTitle');
 jest.spyOn(chatSessionRepository, 'updateSessionCompletionSettings');
 jest.spyOn(chatSessionRepository, 'getGlobalCompletionSettings');
 jest.spyOn(chatSessionRepository, 'saveGlobalCompletionSettings');
-jest.spyOn(chatSessionRepository, 'setSessionActivePal');
 jest.spyOn(chatSessionRepository, 'setSessionSettingsSource');
 jest.spyOn(chatSessionRepository, 'setSessionPinned');
 
@@ -642,7 +641,6 @@ describe('chatSessionStore', () => {
         'My New Session',
         [mockMessage],
         defaultCompletionSettings,
-        undefined,
         'pal',
       );
       expect(chatSessionRepository.getSessionById).toHaveBeenCalledWith(
@@ -706,7 +704,6 @@ describe('chatSessionStore', () => {
         expect.any(String),
         [mockMessage],
         originalSession.completionSettings,
-        undefined,
         'pal',
       );
       expect(chatSessionStore.sessions.length).toBe(2);
@@ -844,7 +841,6 @@ describe('chatSessionStore', () => {
         'Original Session - Copy',
         [mockMessage],
         originalSession.completionSettings,
-        undefined,
         'pal',
       );
       expect(chatSessionStore.sessions.length).toBe(2);
@@ -1084,7 +1080,6 @@ describe('chatSessionStore', () => {
         'New Session',
         [],
         customSettings,
-        undefined,
         'pal',
       );
       expect(chatSessionStore.sessions[0].completionSettings).toEqual(
@@ -1501,89 +1496,12 @@ describe('chatSessionStore', () => {
     });
   });
 
-  describe('pal management', () => {
-    it('gets active pal ID from active session', () => {
-      const session = {
-        id: 'session1',
-        title: 'Session 1',
-        date: new Date().toISOString(),
-        messages: [],
-        completionSettings: defaultCompletionSettings,
-        activePalId: 'pal1',
-        settingsSource: 'pal' as 'pal' | 'custom',
-      };
-      chatSessionStore.sessions = [session];
-      chatSessionStore.activeSessionId = 'session1';
-
-      expect(chatSessionStore.activePalId).toBe('pal1');
-    });
-
-    it('gets active pal ID from newChatPalId when no active session', () => {
-      chatSessionStore.newChatPalId = 'pal2';
-
-      expect(chatSessionStore.activePalId).toBe('pal2');
-    });
-
-    it('sets active pal ID for active session', async () => {
-      const session = {
-        id: 'session1',
-        title: 'Session 1',
-        date: new Date().toISOString(),
-        messages: [],
-        completionSettings: defaultCompletionSettings,
-        settingsSource: 'pal' as 'pal' | 'custom',
-      };
-      chatSessionStore.sessions = [session];
-      chatSessionStore.activeSessionId = 'session1';
-
-      await chatSessionStore.setActivePal('pal1');
-
-      expect(chatSessionStore.sessions[0].activePalId).toBe('pal1');
-    });
-
-    it('sets newChatPalId when no active session', async () => {
-      await chatSessionStore.setActivePal('pal2');
-
-      expect(chatSessionStore.newChatPalId).toBe('pal2');
-    });
-
-    it('preserves active pal ID when resetting active session', () => {
-      const session = {
-        id: 'session1',
-        title: 'Session 1',
-        date: new Date().toISOString(),
-        messages: [],
-        completionSettings: defaultCompletionSettings,
-        activePalId: 'pal1',
-        settingsSource: 'pal' as 'pal' | 'custom',
-      };
-      chatSessionStore.sessions = [session];
-      chatSessionStore.activeSessionId = 'session1';
-
-      chatSessionStore.resetActiveSession();
-
-      expect(chatSessionStore.newChatPalId).toBe('pal1');
-      expect(chatSessionStore.activeSessionId).toBeNull();
-    });
-
-    it('applies newChatPalId when creating a new session', async () => {
-      chatSessionStore.newChatPalId = 'pal1';
-
-      await chatSessionStore.createNewSession('New Session');
-
-      expect(chatSessionStore.sessions[0].activePalId).toBe('pal1');
-      expect(chatSessionStore.newChatPalId).toBeUndefined();
-    });
-  });
-
   describe('newChatThinkingOverride — session-creation handoff & clears', () => {
     beforeEach(() => {
-      chatSessionStore.newChatPalId = undefined;
       chatSessionStore.newChatThinkingOverride = undefined;
-      chatSessionStore.newChatSettingsSource = 'pal';
     });
 
-    it("births session as 'custom' when override is staged (overrides 'pal' source) — memory + DB", async () => {
+    it("births session as 'custom' when override is staged — memory + DB", async () => {
       const mockNewSession = {
         id: 'new-session-override',
         title: 'With Override',
@@ -1597,8 +1515,6 @@ describe('chatSessionStore', () => {
         completionSettings: {getSettings: () => defaultCompletionSettings},
       });
 
-      chatSessionStore.newChatPalId = 'palX';
-      chatSessionStore.newChatSettingsSource = 'pal';
       chatSessionStore.newChatThinkingOverride = false;
 
       await chatSessionStore.createNewSession('With Override');
@@ -1610,15 +1526,13 @@ describe('chatSessionStore', () => {
         'With Override',
         [],
         defaultCompletionSettings,
-        'palX',
         'custom',
       );
-      // Override is one-shot — cleared in the same code block as newChatPalId.
+      // Override is one-shot — cleared once the session exists.
       expect(chatSessionStore.newChatThinkingOverride).toBeUndefined();
-      expect(chatSessionStore.newChatPalId).toBeUndefined();
     });
 
-    it('births session with newChatSettingsSource when override is undefined (regression guard)', async () => {
+    it("births session as 'pal' (global settings) when override is undefined (regression guard)", async () => {
       const mockNewSession = {
         id: 'new-session-default',
         title: 'No Override',
@@ -1632,8 +1546,6 @@ describe('chatSessionStore', () => {
         completionSettings: {getSettings: () => defaultCompletionSettings},
       });
 
-      chatSessionStore.newChatPalId = 'palX';
-      chatSessionStore.newChatSettingsSource = 'pal';
       chatSessionStore.newChatThinkingOverride = undefined;
 
       await chatSessionStore.createNewSession('No Override');
@@ -1643,7 +1555,6 @@ describe('chatSessionStore', () => {
         'No Override',
         [],
         defaultCompletionSettings,
-        'palX',
         'pal',
       );
     });
@@ -2443,7 +2354,6 @@ describe('chatSessionStore', () => {
       chatSessionStore.lastCompletionResult = undefined;
       chatSessionStore.dismissedBannerVariants = new Set();
       chatSessionStore.consecutiveFullFailures = 0;
-      chatSessionStore.palLoadHintSeen = new Set();
     });
 
     describe('recordCompletionSnapshot', () => {
@@ -2514,25 +2424,8 @@ describe('chatSessionStore', () => {
       });
     });
 
-    describe('markPalLoadHintSeen', () => {
-      it('records a signature once', () => {
-        chatSessionStore.markPalLoadHintSeen('pal-1|2048|render_html');
-        expect(
-          chatSessionStore.palLoadHintSeen.has('pal-1|2048|render_html'),
-        ).toBe(true);
-      });
-
-      it('is idempotent for an already-seen signature', () => {
-        chatSessionStore.markPalLoadHintSeen('sig');
-        const first = chatSessionStore.palLoadHintSeen;
-        chatSessionStore.markPalLoadHintSeen('sig');
-        expect(chatSessionStore.palLoadHintSeen).toBe(first);
-        expect(chatSessionStore.palLoadHintSeen.size).toBe(1);
-      });
-    });
-
     describe('clear triggers', () => {
-      it('resetActiveSession clears all four ephemeral banner fields', () => {
+      it('resetActiveSession clears all three ephemeral banner fields', () => {
         chatSessionStore.lastCompletionResult = {
           used: 4096,
           contextFull: true,
@@ -2540,14 +2433,12 @@ describe('chatSessionStore', () => {
         };
         chatSessionStore.setBannerDismissed('context-warning');
         chatSessionStore.consecutiveFullFailures = 3;
-        chatSessionStore.markPalLoadHintSeen('sig');
 
         chatSessionStore.resetActiveSession();
 
         expect(chatSessionStore.lastCompletionResult).toBeUndefined();
         expect(chatSessionStore.dismissedBannerVariants.size).toBe(0);
         expect(chatSessionStore.consecutiveFullFailures).toBe(0);
-        expect(chatSessionStore.palLoadHintSeen.size).toBe(0);
       });
 
       it('deleteSession clears dismissedBannerVariants', async () => {

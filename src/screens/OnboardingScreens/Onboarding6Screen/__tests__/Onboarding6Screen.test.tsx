@@ -5,8 +5,8 @@ import {fireEvent, render, waitFor} from '../../../../../jest/test-utils';
 
 import {L10nContext} from '../../../../utils';
 import {l10n} from '../../../../locales';
-import {uiStore, modelStore, palStore} from '../../../../store';
-import {TOPIC_TO_PAL} from '../../../../store/onboarding/onboardingPals';
+import {uiStore, modelStore} from '../../../../store';
+import {FALLBACK_MODELS} from '../../../../store/onboarding/fallbackModels';
 import type {Model} from '../../../../utils/types';
 
 import {Onboarding6Screen} from '../Onboarding6Screen';
@@ -41,13 +41,12 @@ describe('Onboarding6Screen (single full-screen auto-setup, no pal, no chrome)',
       modelStore.tierPresetIds = [];
       modelStore.rulesSettled = true;
     });
-    palStore.pals = [];
 
-    // registerOnboardingPalModel materialises the picked entry into
+    // registerOnboardingModel materialises the picked entry into
     // modelStore.models (mirrors addHFModel's real side effect), so the
     // screen's `when(() => model.isDownloaded)` wait has something to
     // observe.
-    (modelStore.registerOnboardingPalModel as jest.Mock).mockImplementation(
+    (modelStore.registerOnboardingModel as jest.Mock).mockImplementation(
       async (entry: {
         repo: string;
         filename: string;
@@ -90,13 +89,13 @@ describe('Onboarding6Screen (single full-screen auto-setup, no pal, no chrome)',
     );
   });
 
-  it('auto-registers the recommended entry (else/Pip tier list) and starts the download without any tap', async () => {
-    const recommended = TOPIC_TO_PAL.else.models.find(m => m.recommended)!;
+  it('auto-registers the recommended fallback entry and starts the download without any tap', async () => {
+    const recommended = FALLBACK_MODELS.find(m => m.recommended)!;
 
     renderScreen();
 
     await waitFor(() => {
-      expect(modelStore.registerOnboardingPalModel).toHaveBeenCalledWith(
+      expect(modelStore.registerOnboardingModel).toHaveBeenCalledWith(
         recommended,
       );
       expect(modelStore.checkSpaceAndDownload).toHaveBeenCalled();
@@ -125,19 +124,8 @@ describe('Onboarding6Screen (single full-screen auto-setup, no pal, no chrome)',
         modelId: preset.id,
       });
     });
-    expect(modelStore.registerOnboardingPalModel).not.toHaveBeenCalled();
+    expect(modelStore.registerOnboardingModel).not.toHaveBeenCalled();
     expect(modelStore.checkSpaceAndDownload).toHaveBeenCalledWith(preset.id);
-  });
-
-  it('never creates or touches a pal — the model is bound directly, no persona', async () => {
-    renderScreen();
-
-    await waitFor(() => {
-      expect(uiStore.completeOnboarding).toHaveBeenCalled();
-    });
-    expect(palStore.createPal).not.toHaveBeenCalled();
-    expect(palStore.updatePal).not.toHaveBeenCalled();
-    expect(palStore.pals).toHaveLength(0);
   });
 
   it('loads the model into memory (selectModel) before completing onboarding, not just downloads it', async () => {

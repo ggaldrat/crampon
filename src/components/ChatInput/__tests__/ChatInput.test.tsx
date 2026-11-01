@@ -9,7 +9,7 @@ import {l10n} from '../../../locales';
 import {UserContext} from '../../../utils';
 import {ChatInput} from '../ChatInput';
 import {render} from '../../../../jest/test-utils';
-import {palStore, chatSessionStore, modelStore} from '../../../store';
+import {chatSessionStore, modelStore} from '../../../store';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
 // Mock react-native-image-picker
@@ -351,152 +351,25 @@ describe('input', () => {
     expect(plusButton.props.accessibilityState.disabled).toBe(false);
   });
 
-  it('shows pal selector button', () => {
+  it('shows model selector button', () => {
     expect.assertions(1);
     const onSendPress = jest.fn();
-    const onPalBtnPress = jest.fn();
+    const onModelBtnPress = jest.fn();
     const {getByLabelText} = render(
       <UserContext.Provider value={user}>
         <ChatInput
           {...{
             onSendPress,
-            onPalBtnPress,
+            onModelBtnPress,
             sendButtonVisibilityMode: 'editing',
           }}
         />
       </UserContext.Provider>,
     );
 
-    const palButton = getByLabelText('Select Pal');
-    fireEvent.press(palButton);
-    expect(onPalBtnPress).toHaveBeenCalledTimes(1);
-  });
-
-  it('shows video button for video pal type', async () => {
-    expect.assertions(1);
-
-    // Create a video pal and set it as active
-    const videoPal = await palStore.createPal({
-      type: 'local',
-      name: 'Test Video Pal',
-      systemPrompt: 'Test video pal',
-      originalSystemPrompt: 'Test video pal',
-      isSystemPromptChanged: false,
-      useAIPrompt: false,
-      parameters: {captureInterval: '3000'},
-      parameterSchema: [
-        {
-          key: 'captureInterval',
-          type: 'text',
-          label: 'Capture Interval',
-          required: true,
-        },
-      ],
-      source: 'local',
-      capabilities: {video: true},
-    });
-
-    // Mock the activePalId getter to return our video pal's ID
-    const originalActivePalId = Object.getOwnPropertyDescriptor(
-      chatSessionStore,
-      'activePalId',
-    );
-    Object.defineProperty(chatSessionStore, 'activePalId', {
-      get: jest.fn(() => videoPal.id),
-      configurable: true,
-    });
-
-    const onSendPress = jest.fn();
-    const onStartCamera = jest.fn();
-    const {getByText, unmount} = render(
-      <UserContext.Provider value={user}>
-        <ChatInput
-          {...{
-            onSendPress,
-            onStartCamera,
-            sendButtonVisibilityMode: 'editing',
-          }}
-        />
-      </UserContext.Provider>,
-    );
-
-    const videoButton = getByText('Start Camera');
-    fireEvent.press(videoButton);
-    expect(onStartCamera).toHaveBeenCalledTimes(1);
-
-    // Cleanup: restore original activePalId mock
-    unmount();
-    if (originalActivePalId) {
-      Object.defineProperty(
-        chatSessionStore,
-        'activePalId',
-        originalActivePalId,
-      );
-    }
-  });
-
-  it('handles prompt text change for video pal', async () => {
-    expect.assertions(1);
-
-    // Create a video pal and set it as active
-    const videoPal = await palStore.createPal({
-      type: 'local',
-      name: 'Test Video Pal',
-      systemPrompt: 'Test video pal',
-      originalSystemPrompt: 'Test video pal',
-      isSystemPromptChanged: false,
-      useAIPrompt: false,
-      parameters: {captureInterval: '3000'},
-      parameterSchema: [
-        {
-          key: 'captureInterval',
-          type: 'text',
-          label: 'Capture Interval',
-          required: true,
-        },
-      ],
-      source: 'local',
-      capabilities: {video: true},
-    });
-
-    // Mock the activePalId getter to return our video pal's ID
-    const originalActivePalId = Object.getOwnPropertyDescriptor(
-      chatSessionStore,
-      'activePalId',
-    );
-    Object.defineProperty(chatSessionStore, 'activePalId', {
-      get: jest.fn(() => videoPal.id),
-      configurable: true,
-    });
-
-    const onSendPress = jest.fn();
-    const onPromptTextChange = jest.fn();
-    const {getByPlaceholderText, unmount} = render(
-      <UserContext.Provider value={user}>
-        <ChatInput
-          {...{
-            onSendPress,
-            onPromptTextChange,
-            promptText: 'initial text',
-            sendButtonVisibilityMode: 'editing',
-          }}
-        />
-      </UserContext.Provider>,
-    );
-
-    const textInput = getByPlaceholderText(l10n.en.video.promptPlaceholder);
-    fireEvent.changeText(textInput, 'new text');
-    expect(onPromptTextChange).toHaveBeenCalledWith('new text');
-
-    // Cleanup: restore original activePalId mock
-    unmount();
-    if (originalActivePalId) {
-      Object.defineProperty(
-        chatSessionStore,
-        'activePalId',
-        originalActivePalId,
-      );
-    }
+    const modelButton = getByLabelText('Select model');
+    fireEvent.press(modelButton);
+    expect(onModelBtnPress).toHaveBeenCalledTimes(1);
   });
 
   it('disables plus button when vision is not enabled', () => {

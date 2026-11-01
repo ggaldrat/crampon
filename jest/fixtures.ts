@@ -69,6 +69,3 @@ export const derivedTextMessage: MessageType.DerivedText = {
 export const user: User = {
   id: 'userId',
 };
-
-// Re-export pal fixtures
-export * from './fixtures/pals';

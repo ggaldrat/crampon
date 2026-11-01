@@ -84,31 +84,6 @@
     "importButton": "Importar",
     "importSuccess": "Se importaron {{count}} sesiones de chat con éxito.",
     "importError": "Error al importar las sesiones de chat. Revisa el formato del archivo.",
-    "internetSearch": {
-      "title": "Búsqueda en Internet",
-      "description": "Permite que los Pals busquen en la web con sus propias herramientas. Usa tu propia clave de API — PocketPal nunca almacena tus claves ni enruta tus consultas.",
-      "providerLabel": "Proveedor de búsqueda",
-      "providerGated": "Próximamente",
-      "keyLabel": "Clave de API",
-      "keyIsSet": "Clave configurada para {{provider}}.",
-      "keyNotSet": "Sin clave configurada para {{provider}}.",
-      "setKeyButton": "Establecer clave",
-      "updateKeyButton": "Actualizar clave",
-      "clearKeyButton": "Borrar clave",
-      "keyInputPlaceholder": "Pega tu clave de API de {{provider}}",
-      "keyUpdateError": "No se pudo actualizar la clave. Inténtalo de nuevo.",
-      "showKeyAccessibilityLabel": "Mostrar la clave de API",
-      "hideKeyAccessibilityLabel": "Ocultar la clave de API",
-      "resultCountLabel": "Resultados por búsqueda",
-      "resultCountDescription": "Un menor número de resultados conserva más espacio en el contexto del modelo.",
-      "consentTitle": "Las búsquedas salen de tu dispositivo",
-      "consentDescription": "Cuando un Pal busca en la web, tu consulta se envía al proveedor seleccionado a través de internet. Cuando un Pal lee una página, la URL y su contenido pueden enviarse en su lugar a un servicio de lectura predeterminado (r.jina.ai) si el proveedor seleccionado no cuenta con un lector nativo. Las claves y las consultas nunca se envían a PocketPal.",
-      "consentAccept": "Entendido",
-      "consentRequired": "Acepta la declaración anterior para ingresar una clave y habilitar la búsqueda.",
-      "consentGivenTitle": "La búsqueda en la web está activada",
-      "consentGivenDescription": "Las consultas y la lectura de páginas pueden salir de tu dispositivo como se describe arriba.",
-      "consentRevoke": "Retirar"
-    },
     "serverUrlRequired": "Se requiere la URL del servidor",
     "serverUrlInvalid": "Formato de URL no válido",
     "serverUrlHttpWarning": "iOS requiere HTTPS para servidores no locales. Usa https:// o una dirección de red local.",
@@ -602,9 +577,7 @@
       "activateModelTitle": "Activa un modelo para empezar",
       "activateModelDescription": "Selecciona el modelo y descárgalo. Después de descargarlo, toca \"Cargar\" junto al modelo y empieza a chatear.",
       "activateModelButton": "Seleccionar modelo",
-      "loading": "Cargando...",
-      "gettingReadyTitle": "{{name}} se está preparando",
-      "gettingReadyDescription": "Te avisaremos en cuanto PocketPal (tu amigo de bolsillo) pueda chatear. Toca el banner de arriba para ver cómo va."
+      "loading": "Cargando..."
     },
     "chatInput": {
       "inputPlaceholder": "Mensaje",
@@ -690,7 +663,6 @@
         "title": "Éxito",
         "message": "Estos ajustes se aplicarán a todas las sesiones futuras"
       },
-      "palSettings": "Ajustes de Pal",
       "settingsSource": "Origen de los ajustes"
     },
     "systemPromptSection": {
@@ -721,39 +693,14 @@
         "promptChanged": "El prompt del sistema ha sido modificado manualmente"
       }
     },
-    "palGenerationSettingsSheet": {
-      "title": "Ajustes de generación - {{palName}}",
-      "invalidValues": "Valores no válidos",
-      "invalidNumericValuesMessage": "Debe ser un número válido",
-      "pleaseCorrect": "Por favor corrige lo siguiente:",
-      "ok": "Aceptar",
-      "error": "Error",
-      "failedToSave": "No se pudieron guardar los ajustes de Pal",
-      "resetToGlobal": "Restablecer a los valores predeterminados globales",
-      "resetToSystem": "Restablecer a los valores predeterminados del sistema",
-      "clearPalSettings": "Borrar ajustes de Pal",
-      "customSettingsFor": "Ajustes personalizados para {{palName}}",
-      "inheritedSettingsFor": "Ajustes heredados para {{palName}}"
-    },
     "chatHeaderTitle": {
       "defaultTitle": "Chat"
     },
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Archivo"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Modelos",
-      "palsTab": "Pals",
-      "noPal": "Ningún Pal",
-      "disablePal": "Desactivar Pal activo",
-      "noDescription": "Sin descripción",
-      "assistantType": "Asistente",
-      "roleplayType": "Juego de roles",
-      "videoType": "Video",
-      "confirmationTitle": "Confirmación",
-      "modelSwitchMessage": "Este Pal tiene un modelo predeterminado diferente ({{modelName}}). ¿Quieres cambiar al modelo predeterminado del Pal?",
-      "keepButton": "Conservar",
-      "switchButton": "Cambiar"
+    "chatModelPickerSheet": {
+      "modelsTab": "Modelos"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Error de descarga",
@@ -802,62 +749,6 @@
       "proceedWithReset": "Continuar con el restablecimiento",
       "confirmReset": "Confirmar restablecimiento"
     },
-    "palSheet": {
-      "title": {
-        "edit": "Editar Pal",
-        "newPal": "Nuevo Pal",
-        "newVideoPal": "Nuevo Video Pal"
-      },
-      "description": "Descripción",
-      "descriptionPlaceholder": "Introduce una breve descripción de tu Pal",
-      "parameters": "Parámetros",
-      "generationSettings": "Ajustes de generación",
-      "configureGenerationSettings": "Configurar ajustes de generación",
-      "validation": {
-        "nameRequired": "El nombre es obligatorio",
-        "generatingPromptRequired": "El mensaje de generación es obligatorio al usar el prompt de IA",
-        "promptModelRequired": "El modelo de generación de prompts es obligatorio al usar el prompt de IA"
-      },
-      "talents": "Talentos",
-      "talentNames": {
-        "render_html": "Vista previa HTML",
-        "calculate": "Expresiones matemáticas",
-        "datetime": "Fecha y hora",
-        "web_search": "Búsqueda en la web",
-        "read_url": "Leer página web"
-      },
-      "talentDescriptions": {
-        "render_html": "Renderizar documentos HTML en línea en el chat",
-        "calculate": "Evaluar expresiones matemáticas",
-        "datetime": "Obtener la fecha y la hora actuales",
-        "web_search": "Buscar información actual en internet (requiere una clave de API en Configuración)",
-        "read_url": "Leer el contenido completo de una página web (requiere una clave de API en Configuración)"
-      },
-      "greeting": {
-        "sectionLabel": "Saludo",
-        "textLabel": "Mensaje de saludo",
-        "textPlaceholder": "¿Qué debería decir este Pal en un chat vacío?",
-        "suggestedPromptsLabel": "Mensajes sugeridos",
-        "addPromptButton": "Añadir prompt",
-        "promptPlaceholder": "Un prompt corto para el chip",
-        "removePromptLabel": "Eliminar prompt"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Crear asistente Pal",
-        "edit": "Editar asistente Pal"
-      },
-      "palName": "Nombre del Pal",
-      "palNamePlaceholder": "Nombre",
-      "defaultModel": "Modelo predeterminado",
-      "defaultModelPlaceholder": "Seleccionar modelo",
-      "validation": {
-        "generatingPromptRequired": "El prompt de generación es obligatorio",
-        "promptModelRequired": "El modelo de generación de prompts es obligatorio"
-      },
-      "create": "Crear"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "No tienes ningún modelo descargado todavía. Por favor, descarga un modelo primero.",
       "downloadAModel": "Descargar un modelo",
@@ -866,50 +757,6 @@
       "recommendedModel": "Modelo recomendado",
       "cancelDownload": "Cancelar descarga",
       "download": "Descargar"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Crear Pal de Juegos de Rol",
-        "edit": "Editar Pal de Juegos de Rol"
-      },
-      "palName": "Nombre del Pal",
-      "palNamePlaceholder": "Nombre",
-      "defaultModel": "Modelo predeterminado",
-      "defaultModelPlaceholder": "Seleccionar modelo",
-      "descriptionSection": "Descripción",
-      "world": "Mundo",
-      "worldPlaceholder": "Fantasía",
-      "location": "Ubicación",
-      "locationPlaceholder": "Bosque encantado",
-      "locationSublabel": "¿Dónde se desarrolla la historia?",
-      "aiRole": "Rol de la IA",
-      "aiRolePlaceholder": "Eldara, un travieso espíritu del bosque",
-      "aiRoleSublabel": "Establece el rol del personaje",
-      "userRole": "Rol del usuario",
-      "userRolePlaceholder": "Sir Elandor, un valiente caballero",
-      "userRoleSublabel": "¿Quién eres?",
-      "situation": "Situación",
-      "situationPlaceholder": "Misión de rescate, resolver un misterio",
-      "toneStyle": "Tono / Estilo",
-      "toneStylePlaceholder": "Serio",
-      "validation": {
-        "promptModelRequired": "El modelo de generación de prompts es obligatorio"
-      },
-      "create": "Crear"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Crear Lookie Pal",
-        "edit": "Editar Lookie Pal"
-      },
-      "palName": "Nombre del Pal",
-      "palNamePlaceholder": "Introduce un nombre para tu Pal",
-      "visionModel": "Modelo de visión",
-      "visionModelPlaceholder": "Selecciona un modelo de visión",
-      "requiredModelsSection": "Modelos necesarios",
-      "captureInterval": "Intervalo de captura",
-      "captureIntervalHelper": "Tiempo entre capturas automáticas en milisegundos",
-      "create": "Crear"
     },
     "sendButton": {
       "accessibilityLabel": "Enviar"
@@ -975,60 +822,12 @@
         "reportContent": "Reportar contenido"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "Exportar todos los pals",
-      "importPals": "Importar pals",
-      "importSuccess": "Se importaron {{count}} pal(s) con éxito.",
-      "importError": "No se pudieron importar los pals. Revisa el formato del archivo."
-    },
     "completionSettings": {
       "serverDefault": "predeterminado del servidor",
       "usingServerDefault": "Usando el valor predeterminado del servidor: {{value}}",
       "usingServerDefaultUnreported": "Usando el valor predeterminado del servidor (no indicado)",
       "resetToServerDefault": "Predeterminado del servidor: {{value}} · Restablecer",
       "resetToServerDefaultAccessibilityLabel": "Restablecer {{name}} al valor predeterminado del servidor, {{value}}"
-    }
-  },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "Mis pals (locales)",
-      "myLibrary": "Mi biblioteca (palshub.ai)",
-      "discoverPals": "Descubrir pals (palshub.ai)"
-    },
-    "systemPrompt": "Prompt del sistema",
-    "videoAnalysis": "Análisis de video",
-    "videoAnalysisDescription": "Este es un asistente de IA basado en video que ofrece comentarios en tiempo real sobre transmisiones de video de la cámara de tu dispositivo.",
-    "captureInterval": "Intervalo de captura",
-    "captureIntervalUnit": "ms",
-    "world": "Mundo",
-    "toneStyle": "Tono / Estilo",
-    "aiRole": "Rol de la IA",
-    "userRole": "Mi Rol",
-    "prompt": "Prompt",
-    "assistant": "Asistente",
-    "roleplay": "Juego de rol",
-    "video": "Video",
-    "deletePal": "Eliminar Pal",
-    "deletePalMessage": "¿Seguro que quieres eliminar este Pal?",
-    "missingModel": "Modelo no encontrado",
-    "missingModelMessage": "El modelo predeterminado \"{{modelName}}\" para este Pal (amigo) no está disponible. Descárgalo en la pantalla de edición o selecciona otro modelo.",
-    "search": "Buscar",
-    "addPal": "Agregar amigo (Pal)",
-    "deletePalConfirmation": "¿Seguro que quieres eliminar a \"{{palName}}\"?",
-    "filters": {
-      "all": "Todos",
-      "myPals": "Mis Pals",
-      "local": "Local",
-      "video": "Video",
-      "free": "Gratis",
-      "premium": "Premium"
-    },
-    "labels": {
-      "free": "Gratis",
-      "premium": "Premium",
-      "private": "Privado",
-      "download": "Descargar",
-      "getFree": "Obtener gratis"
     }
   },
   "validation": {
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "¿Qué quieres saber sobre esta imagen?",
     "takePhoto": "Cámara"
   },
-  "video": {
-    "permissionTitle": "Permiso de cámara requerido",
-    "permissionMessage": "PocketPal necesita acceso a la cámara para el análisis de video",
-    "requestingPermission": "Solicitando permiso de cámara...",
-    "noDevice": "No se encontró ningún dispositivo de cámara",
-    "errorTitle": "Error de cámara",
-    "errorMessage": "Ocurrió un error con la cámara",
-    "flip": "Voltear",
-    "analyzing": "Analizando video...",
-    "startCamera": "Iniciar cámara",
-    "stopCamera": "Detener cámara",
-    "promptPlaceholder": "¿Qué quieres saber sobre este video?",
-    "captureInterval": "Intervalo de captura",
-    "captureIntervalUnit": "ms",
-    "liveCommentary": "Comentarios en vivo",
-    "emptyPlaceholder": {
-      "title": "Te damos la bienvenida a Lookie",
-      "subtitle": "Análisis de video en tiempo real, privado y en el dispositivo",
-      "experimentalNotice": "Esta es una función experimental. La precisión depende del modelo seleccionado, la velocidad depende de las especificaciones de tu dispositivo y algunos modelos podrían fallar.",
-      "howToUse": "Cómo usar:",
-      "step1": "• Edita la instrucción (opcional) para guiar el análisis",
-      "step2": "• Toca el botón de la cámara para iniciar el análisis de video en vivo",
-      "step3": "• Ajusta la frecuencia de las capturas mientras la cámara esté activa",
-      "step4": "• Cambia a otro amigo para chatear con texto normal"
-    }
-  },
   "screenTitles": {
     "chat": "Chat",
     "models": "Modelos",
-    "pals": "Pals (experimental)",
     "benchmark": "Prueba de rendimiento",
     "settings": "Ajustes",
     "appInfo": "Información de la aplicación",
@@ -1104,7 +876,6 @@
     "pleaseLoadModel": "Carga un modelo para chatear.",
     "multimodalNotEnabled": "El modo multimodal no está habilitado para este modelo. Las imágenes se mostrarán pero la IA no las procesará.",
     "cannotSendWithoutModel": "Carga un modelo primero",
-    "toolCompatWarning": "Es posible que este modelo no sea compatible con el uso de herramientas. Los resultados pueden no ser confiables.",
     "softCapWarning": "Inicia un nuevo chat para obtener el mejor rendimiento.",
     "contextWarning": "Esta conversación se está alargando y pronto podría quedarse sin espacio.",
     "contextRemoteHedged": "Es posible que esta respuesta se haya cortado. Prueba a enviarla de nuevo o a acortar la solicitud.",
@@ -1140,21 +911,10 @@
     "increaseContextReloading": "Recargando el modelo con un contexto mayor…",
     "increaseContextSuccess": "Contexto ampliado a {{target}} tokens.",
     "increaseContextFailure": "No se pudo aumentar el tamaño del contexto. Se restauró tu configuración anterior.",
-    "palLoadHint": "Este asistente (pal) suele necesitar más espacio del que permite el tamaño del contexto actual.",
     "generatingPreview": "Generando vista previa… ({{tokens}} tokens)",
     "generatingPreviewPending": "Generando vista previa…",
     "toolUsedChip": "{{name}} utilizado",
-    "toolErrorBlock": "{{name}} falló",
-    "webSearch": {
-      "searched": "Búsqueda realizada: {{query}}",
-      "noResults": "Sin resultados",
-      "noResultsFor": "No hay resultados para {{query}}",
-      "resultsCount": "{{count}} resultados",
-      "resultsCountOne": "1 resultado",
-      "searchResultsTitle": "Resultados de búsqueda",
-      "showResultsAccessibilityLabel": "Mostrar resultados de búsqueda de {{query}}",
-      "openLinkError": "No se pudo abrir este enlace."
-    }
+    "toolErrorBlock": "{{name}} falló"
   },
   "htmlPreview": {
     "defaultTitle": "Vista previa",
@@ -1470,28 +1230,10 @@
         "balanced": "Equilibrado",
         "best": "El mejor"
       },
-      "subtitleTemplate": "{{name}} cree que usar un modelo de IA pequeño en tu teléfono es ideal; elige uno que se adapte.",
-      "pal": {
-        "pip": {
-          "body": "Encontramos un amigo perfecto para ti: un compañero amigable para el día a día. Lo suficientemente inteligente para casi todo y lo bastante ligero para cualquier teléfono."
-        },
-        "codie": {
-          "body": "Conoce a Codie: tu programador en pareja local. Lee código, escribe código y explica las partes complicadas sin salir nunca de tu teléfono."
-        },
-        "sage": {
-          "body": "Sage es paciente, curioso y te guía paso a paso por las ideas. Un compañero de estudio que llevas en el bolsillo."
-        },
-        "echo": {
-          "body": "Echo es un compañero versátil para juegos de roles: se mantiene en el personaje, describe escenas y te sigue allá donde tu historia te lleve."
-        },
-        "muse": {
-          "body": "Muse te ayuda a escribir. Sugiere frases, encuentra el ritmo y mantiene intacto tu tono."
-        }
-      }
+      "subtitleTemplate": "{{name}} cree que usar un modelo de IA pequeño en tu teléfono es ideal; elige uno que se adapte."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} se está descargando",
     "titleByModel": "{{name}} se está descargando",
     "extraInProgress": "+{{count}} más en progreso",
     "failedTitle": "La descarga no se completó",

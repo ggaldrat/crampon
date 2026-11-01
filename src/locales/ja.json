@@ -158,31 +158,6 @@
     "requestTimeoutPlaceholder": "任意 - 空欄でデフォルト",
     "serverType": "サーバータイプ",
     "serverTypeHelp": "自動検出されます。誤っている場合は変更してください。",
-    "internetSearch": {
-      "title": "インターネット検索",
-      "description": "Palが自分のツールでウェブを検索できるようにします。APIキーはご自身のものをご用意ください。PocketPalがキーを保持したり、クエリを中継したりすることは一切ありません。",
-      "providerLabel": "検索プロバイダー",
-      "providerGated": "近日公開",
-      "keyLabel": "APIキー",
-      "keyIsSet": "{{provider}}のキーが設定されています。",
-      "keyNotSet": "{{provider}}のキーは設定されていません。",
-      "setKeyButton": "キーを設定",
-      "updateKeyButton": "キーを更新",
-      "clearKeyButton": "キーをクリア",
-      "keyInputPlaceholder": "{{provider}}のAPIキーを貼り付けてください",
-      "keyUpdateError": "キーを更新できませんでした。もう一度お試しください。",
-      "showKeyAccessibilityLabel": "APIキーを表示",
-      "hideKeyAccessibilityLabel": "APIキーを非表示",
-      "resultCountLabel": "検索ごとの結果数",
-      "resultCountDescription": "結果数を減らすと、モデルのコンテキストに余裕が生まれます。",
-      "consentTitle": "検索はデバイスの外に送信されます",
-      "consentDescription": "Palがウェブを検索すると、クエリはインターネット経由で選択したプロバイダーに送信されます。Palがページを読み取る際、選択したプロバイダーに独自のリーダーがない場合は、代わりにURLとページの内容がデフォルトのリーダーサービス（r.jina.ai）に送信されることがあります。キーとクエリがPocketPalに送信されることは一切ありません。",
-      "consentAccept": "理解しました",
-      "consentRequired": "キーを設定して検索を有効にするには、上記の説明に同意してください。",
-      "consentGivenTitle": "ウェブ検索が有効になっています",
-      "consentGivenDescription": "上記のとおり、クエリとページの読み取りがデバイスの外に送信されることがあります。",
-      "consentRevoke": "取り消す"
-    },
     "languageSheetTitle": "言語",
     "languageSearchPlaceholder": "言語を検索",
     "speculativeDecoding": "投機的デコード",
@@ -581,9 +556,7 @@
       "activateModelTitle": "開始するにはモデルを有効化してください",
       "activateModelDescription": "モデルを選択してダウンロードしてください、ダウンロード後、モデルの横にある読み込みをタップしてチャットを開始します",
       "activateModelButton": "モデルを選択",
-      "loading": "読み込み中...",
-      "gettingReadyTitle": "{{name}}が準備中です",
-      "gettingReadyDescription": "パルがチャットできるようになったらすぐにお知らせします。上部のバナーをタップすると進み具合を確認できます。"
+      "loading": "読み込み中..."
     },
     "chatInput": {
       "inputPlaceholder": "メッセージを入力",
@@ -669,22 +642,7 @@
         "title": "保存完了",
         "message": "これらの設定は今後すべてのセッションに適用されます"
       },
-      "palSettings": "Pal設定",
       "settingsSource": "設定ソース"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "生成設定 - {{palName}}",
-      "invalidValues": "無効な値",
-      "invalidNumericValuesMessage": "有効な数値を入力してください",
-      "pleaseCorrect": "以下を修正してください：",
-      "ok": "OK",
-      "error": "エラー",
-      "failedToSave": "Pal設定の保存に失敗しました",
-      "resetToGlobal": "グローバル設定に戻す",
-      "resetToSystem": "システム設定に戻す",
-      "clearPalSettings": "Pal設定をクリア",
-      "customSettingsFor": "{{palName}}のカスタム設定",
-      "inheritedSettingsFor": "{{palName}}の継承設定"
     },
     "chatHeaderTitle": {
       "defaultTitle": "チャット"
@@ -692,19 +650,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "ファイル"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "モデル",
-      "palsTab": "アシスタント",
-      "noPal": "アシスタントなし",
-      "disablePal": "現在のアシスタントを無効化",
-      "noDescription": "説明なし",
-      "assistantType": "アシスタント",
-      "roleplayType": "ロールプレイ",
-      "videoType": "ビデオ",
-      "confirmationTitle": "確認",
-      "modelSwitchMessage": "このアシスタントには別のデフォルトモデル({{modelName}})があります、アシスタントのデフォルトモデルに切り替えますか？",
-      "keepButton": "現在のモデルを使用",
-      "switchButton": "切り替える"
+    "chatModelPickerSheet": {
+      "modelsTab": "モデル"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "ダウンロード失敗",
@@ -753,62 +700,6 @@
       "proceedWithReset": "リセットする",
       "confirmReset": "リセットの確認"
     },
-    "palSheet": {
-      "title": {
-        "edit": "アシスタントを編集",
-        "newPal": "新しいアシスタント",
-        "newVideoPal": "新しいビデオアシスタント"
-      },
-      "description": "説明",
-      "descriptionPlaceholder": "アシスタントの簡単な説明を入力",
-      "parameters": "パラメータ",
-      "generationSettings": "生成設定",
-      "configureGenerationSettings": "生成設定を構成",
-      "validation": {
-        "nameRequired": "名前は必須です",
-        "generatingPromptRequired": "AIプロンプトを使用する場合、生成プロンプトが必要です",
-        "promptModelRequired": "AIプロンプトを使用する場合、プロンプト生成モデルが必要です"
-      },
-      "talents": "能力",
-      "talentNames": {
-        "render_html": "HTMLプレビュー",
-        "calculate": "数式",
-        "datetime": "日付と時刻",
-        "web_search": "ウェブ検索",
-        "read_url": "ウェブページを読み取る"
-      },
-      "talentDescriptions": {
-        "render_html": "HTMLドキュメントをチャット内にインライン表示します",
-        "calculate": "数式を計算します",
-        "datetime": "現在の日付と時刻を取得します",
-        "web_search": "最新情報をインターネットで検索します（設定でAPIキーが必要です）",
-        "read_url": "ウェブページの全内容を読み取ります（設定でAPIキーが必要です）"
-      },
-      "greeting": {
-        "sectionLabel": "あいさつ",
-        "textLabel": "あいさつメッセージ",
-        "textPlaceholder": "このPalが空のチャットで話す内容は？",
-        "suggestedPromptsLabel": "おすすめプロンプト",
-        "addPromptButton": "プロンプトを追加",
-        "promptPlaceholder": "チップ用の短いプロンプト",
-        "removePromptLabel": "プロンプトを削除"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "アシスタントを作成",
-        "edit": "アシスタントを編集"
-      },
-      "palName": "アシスタント名",
-      "palNamePlaceholder": "名前",
-      "defaultModel": "デフォルトモデル",
-      "defaultModelPlaceholder": "モデルを選択",
-      "validation": {
-        "generatingPromptRequired": "生成プロンプトが必要です",
-        "promptModelRequired": "プロンプト生成モデルが必要です"
-      },
-      "create": "作成する"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "モデルがダウンロードされていません、先にモデルをダウンロードしてください",
       "downloadAModel": "モデルをダウンロード",
@@ -817,50 +708,6 @@
       "recommendedModel": "推奨モデル",
       "cancelDownload": "キャンセル",
       "download": "ダウンロード"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "ロールプレイを作成",
-        "edit": "ロールプレイを編集"
-      },
-      "palName": "名前",
-      "palNamePlaceholder": "名前",
-      "defaultModel": "デフォルトモデル",
-      "defaultModelPlaceholder": "モデルを選択",
-      "descriptionSection": "説明",
-      "world": "世界観",
-      "worldPlaceholder": "ファンタジー",
-      "location": "場所",
-      "locationPlaceholder": "魔法の森",
-      "locationSublabel": "物語の舞台はどこですか？",
-      "aiRole": "AIの役割",
-      "aiRolePlaceholder": "エルダラ、いたずら好きな森の精霊",
-      "aiRoleSublabel": "キャラクター設定",
-      "userRole": "ユーザーの役割",
-      "userRolePlaceholder": "エランドール卿、勇敢な騎士",
-      "userRoleSublabel": "あなたは誰を演じますか？",
-      "situation": "状況",
-      "situationPlaceholder": "救出ミッション、謎解き",
-      "toneStyle": "雰囲気/スタイル",
-      "toneStylePlaceholder": "真面目",
-      "validation": {
-        "promptModelRequired": "プロンプト生成モデルが必要です"
-      },
-      "create": "作成する"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Lookieアシスタントを作成",
-        "edit": "Lookieアシスタントを編集"
-      },
-      "palName": "アシスタント名",
-      "palNamePlaceholder": "Lookieアシスタントの名前を入力",
-      "visionModel": "ビジョンモデル",
-      "visionModelPlaceholder": "ビジョンモデルを選択",
-      "requiredModelsSection": "必要なモデル",
-      "captureInterval": "キャプチャ間隔",
-      "captureIntervalHelper": "自動キャプチャ間の時間（ミリ秒）",
-      "create": "作成する"
     },
     "sendButton": {
       "accessibilityLabel": "送信"
@@ -954,12 +801,6 @@
         "reportContent": "コンテンツを報告"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "すべてのアシスタントをエクスポート",
-      "importPals": "アシスタントをインポート",
-      "importSuccess": "{{count}}個のアシスタントをインポートしました。",
-      "importError": "アシスタントのインポートに失敗しました。ファイル形式を確認してください。"
-    },
     "bubble": {
       "msPerToken": "{{value}}ms/トークン",
       "tokensPerSec": "{{value}} トークン/秒",
@@ -989,48 +830,6 @@
       "resetToServerDefaultAccessibilityLabel": "{{name}}をサーバーのデフォルト（{{value}}）にリセット"
     }
   },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "マイアシスタント (ローカル)",
-      "myLibrary": "マイライブラリ (palshub.ai)",
-      "discoverPals": "アシスタントを探す (palshub.ai)"
-    },
-    "systemPrompt": "システムプロンプト",
-    "videoAnalysis": "動画解析",
-    "videoAnalysisDescription": "デバイスのカメラからの動画ストリームにリアルタイムでコメントを提供する動画ベースのAIアシスタントです",
-    "captureInterval": "キャプチャ間隔",
-    "captureIntervalUnit": "ミリ秒",
-    "world": "世界観",
-    "toneStyle": "雰囲気/スタイル",
-    "aiRole": "AIの役割",
-    "userRole": "ユーザーの役割",
-    "prompt": "プロンプト",
-    "assistant": "アシスタント",
-    "roleplay": "ロールプレイ",
-    "video": "動画",
-    "deletePal": "Palを削除",
-    "deletePalMessage": "このPalを削除してもよろしいですか？",
-    "missingModel": "モデルが見つかりません",
-    "missingModelMessage": "このPalのデフォルトモデル「{{modelName}}」が利用できません、編集シートでダウンロードするか、別のモデルを選択してください",
-    "search": "検索",
-    "addPal": "Palを追加",
-    "deletePalConfirmation": "「{{palName}}」を削除してもよろしいですか？",
-    "filters": {
-      "all": "すべて",
-      "myPals": "マイPal",
-      "local": "ローカル",
-      "video": "動画",
-      "free": "無料",
-      "premium": "プレミアム"
-    },
-    "labels": {
-      "free": "無料",
-      "premium": "プレミアム",
-      "private": "プライベート",
-      "download": "ダウンロード",
-      "getFree": "無料で入手"
-    }
-  },
   "validation": {
     "nameRequired": "名前を入力してください",
     "systemPromptRequired": "システムプロンプトを入力してください",
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "この画像について何を知りたいですか？",
     "takePhoto": "カメラ"
   },
-  "video": {
-    "permissionTitle": "カメラ許可が必要",
-    "permissionMessage": "PocketPalが動画を分析するにはカメラへのアクセスが必要です",
-    "requestingPermission": "カメラの許可をリクエスト中...",
-    "noDevice": "カメラデバイスが見つかりません",
-    "errorTitle": "カメラエラー",
-    "errorMessage": "カメラでエラーが発生しました",
-    "flip": "反転",
-    "analyzing": "動画を分析中...",
-    "startCamera": "カメラを起動",
-    "stopCamera": "カメラを停止",
-    "promptPlaceholder": "この動画について何を知りたいですか？",
-    "captureInterval": "キャプチャ間隔",
-    "captureIntervalUnit": "ミリ秒",
-    "liveCommentary": "ライブ解説",
-    "emptyPlaceholder": {
-      "title": "Lookieへようこそ",
-      "subtitle": "プライベート・オンデバイス・リアルタイム動画解析",
-      "experimentalNotice": "これは実験的な機能です、精度は選択したモデルに依存し、速度はデバイスの性能に依存し、一部のモデルは失敗する可能性があります",
-      "howToUse": "使い方：",
-      "step1": "• プロンプトを編集（任意）して解析を誘導",
-      "step2": "• カメラボタンをタップしてライブ動画解析を開始",
-      "step3": "• カメラ起動中にスナップショット頻度を調整",
-      "step4": "• 通常のテキストチャットには別のアシスタントに切り替え"
-    }
-  },
   "screenTitles": {
     "chat": "チャット",
     "models": "モデル",
-    "pals": "アシスタント（実験的）",
     "benchmark": "ベンチマーク",
     "settings": "設定",
     "appInfo": "アプリ情報",
@@ -1103,7 +875,6 @@
     "multimodalNotEnabled": "このモデルではマルチモーダル機能が有効になっていません、画像は表示されますが、AIによって処理されません",
     "cannotSendWithoutModel": "モデルを読み込んでください",
     "toolCallTruncated": "ツール呼び出しが途中で停止しました — モデルの空き容量が不足した可能性があります。コンテキストを大きくするか、リクエストを小さくしてお試しください。",
-    "toolCompatWarning": "このモデルはツール呼び出しに対応していない可能性があります。結果が不正確になる場合があります。",
     "softCapWarning": "最適なパフォーマンスのために新しいチャットを開始してください。",
     "contextWarning": "この会話が長くなっており、まもなく空き容量が不足する可能性があります。",
     "contextRemoteHedged": "返信が途中で切れた可能性があります。もう一度送信するか、リクエストを短くしてみてください。",
@@ -1138,21 +909,10 @@
     "increaseContextReloading": "より大きなコンテキストでモデルを再読み込み中…",
     "increaseContextSuccess": "コンテキストを{{target}}トークンに増やしました。",
     "increaseContextFailure": "コンテキストサイズを増やせませんでした。以前の設定に戻しました。",
-    "palLoadHint": "このアシスタントは、現在のコンテキストサイズよりも多くの余裕を必要とする傾向があります。",
     "generatingPreview": "プレビューを生成中...（{{tokens}}トークン）",
     "generatingPreviewPending": "プレビューを生成中…",
     "toolUsedChip": "{{name}}を使用",
     "toolErrorBlock": "{{name}}が失敗しました",
-    "webSearch": {
-      "searched": "検索しました：{{query}}",
-      "noResults": "結果なし",
-      "noResultsFor": "{{query}}の結果が見つかりません",
-      "resultsCount": "{{count}}件の結果",
-      "resultsCountOne": "1件の結果",
-      "searchResultsTitle": "検索結果",
-      "showResultsAccessibilityLabel": "{{query}}のウェブ検索結果を表示",
-      "openLinkError": "このリンクを開けませんでした。"
-    },
     "contextFullRemote": "会話の余裕がなくなりました。新しいチャットを始めてください。",
     "speculativeInitFailed": "このデバイスではこのモデルの投機的デコードを開始できませんでした。ドラフトコンテキスト用のメモリが不足している可能性が高いです。設定 → 詳細設定で投機的デコードをオフにして、もう一度お試しください。"
   },
@@ -1470,28 +1230,10 @@
         "balanced": "バランス",
         "best": "最高品質"
       },
-      "subtitleTemplate": "{{name}}はスマホ上の小さなAIモデルを使って考えます。ぴったりのものを選んでください。",
-      "pal": {
-        "pip": {
-          "body": "あなたにぴったりのパルが見つかりました。毎日使えるフレンドリーな相棒です。たいていのことに対応できる賢さで、どんなスマホでも動く軽さです。"
-        },
-        "codie": {
-          "body": "Codieを紹介します。あなたのローカルなペアプログラマーです。コードを読み、コードを書き、難しい部分を解説します。すべてスマホの中だけで完結します。"
-        },
-        "sage": {
-          "body": "Sageは辛抱強く、好奇心旺盛で、アイデアを一歩ずつ一緒に考えてくれます。ポケットに入る学習の相棒です。"
-        },
-        "echo": {
-          "body": "Echoは多才なロールプレイの相棒です。キャラクターを保ち、情景を描き、物語の行く先までどこまでもついていきます。"
-        },
-        "muse": {
-          "body": "Museは文章作成を手伝います。言い回しを提案し、リズムを見つけ、あなたのトーンをそのまま保ちます。"
-        }
-      }
+      "subtitleTemplate": "{{name}}はスマホ上の小さなAIモデルを使って考えます。ぴったりのものを選んでください。"
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}}をダウンロード中",
     "titleByModel": "{{name}}をダウンロード中",
     "extraInProgress": "他に{{count}}件進行中",
     "failedTitle": "ダウンロードが完了しませんでした",

@@ -158,31 +158,6 @@
     "requestTimeoutPlaceholder": "Opsional - kosongkan untuk pakai bawaan",
     "serverType": "Jenis Server",
     "serverTypeHelp": "Terdeteksi otomatis; ubah jika keliru.",
-    "internetSearch": {
-      "title": "Pencarian Internet",
-      "description": "Izinkan Pal mencari di web dengan alat mereka sendiri. Bawa kunci API Anda sendiri — PocketPal tidak pernah menyimpan kunci Anda atau merutekan kueri Anda.",
-      "providerLabel": "Penyedia pencarian",
-      "providerGated": "Segera hadir",
-      "keyLabel": "Kunci API",
-      "keyIsSet": "Kunci telah diatur untuk {{provider}}.",
-      "keyNotSet": "Tidak ada kunci yang diatur untuk {{provider}}.",
-      "setKeyButton": "Atur Kunci",
-      "updateKeyButton": "Perbarui Kunci",
-      "clearKeyButton": "Hapus Kunci",
-      "keyInputPlaceholder": "Tempel kunci API {{provider}} Anda",
-      "keyUpdateError": "Gagal memperbarui kunci. Silakan coba lagi.",
-      "showKeyAccessibilityLabel": "Tampilkan kunci API",
-      "hideKeyAccessibilityLabel": "Sembunyikan kunci API",
-      "resultCountLabel": "Hasil per pencarian",
-      "resultCountDescription": "Lebih sedikit hasil menyisakan lebih banyak ruang dalam konteks model.",
-      "consentTitle": "Pencarian meninggalkan perangkat Anda",
-      "consentDescription": "Saat Pal mencari di web, kueri Anda dikirim ke penyedia yang dipilih melalui internet. Saat Pal membaca halaman, URL dan konten halaman dapat dikirim ke layanan pembaca default (r.jina.ai) jika penyedia yang dipilih tidak memiliki pembaca bawaan. Kunci dan kueri tidak pernah dikirim ke PocketPal.",
-      "consentAccept": "Saya mengerti",
-      "consentRequired": "Terima pengungkapan di atas untuk mengatur kunci dan mengaktifkan pencarian.",
-      "consentGivenTitle": "Pencarian web diaktifkan",
-      "consentGivenDescription": "Kueri dan pembacaan halaman dapat meninggalkan perangkat Anda seperti dijelaskan di atas.",
-      "consentRevoke": "Cabut"
-    },
     "languageSheetTitle": "Bahasa",
     "languageSearchPlaceholder": "Cari bahasa",
     "speculativeDecoding": "Decoding Spekulatif",
@@ -581,9 +556,7 @@
       "activateModelTitle": "Aktifkan Model untuk Memulai",
       "activateModelDescription": "Pilih model dan unduh. Setelah diunduh, ketuk Muat di sebelah model dan mulai mengobrol.",
       "activateModelButton": "Pilih Model",
-      "loading": "Memuat...",
-      "gettingReadyTitle": "{{name}} sedang bersiap",
-      "gettingReadyDescription": "Kami akan memberi tahu saat pal Anda siap mengobrol. Ketuk banner di atas untuk melihat perkembangannya."
+      "loading": "Memuat..."
     },
     "chatInput": {
       "inputPlaceholder": "Pesan",
@@ -669,22 +642,7 @@
         "title": "Berhasil",
         "message": "Pengaturan ini akan diterapkan ke semua sesi mendatang"
       },
-      "palSettings": "Pengaturan Pal",
       "settingsSource": "Sumber Pengaturan"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "Pengaturan Generasi - {{palName}}",
-      "invalidValues": "Nilai Tidak Valid",
-      "invalidNumericValuesMessage": "Harus berupa angka yang valid",
-      "pleaseCorrect": "Harap perbaiki hal berikut:",
-      "ok": "OK",
-      "error": "Kesalahan",
-      "failedToSave": "Gagal menyimpan pengaturan pal",
-      "resetToGlobal": "Atur Ulang ke Default Global",
-      "resetToSystem": "Atur Ulang ke Default Sistem",
-      "clearPalSettings": "Hapus Pengaturan Pal",
-      "customSettingsFor": "Pengaturan khusus untuk {{palName}}",
-      "inheritedSettingsFor": "Pengaturan warisan untuk {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "Obrolan"
@@ -692,19 +650,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "File"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Model",
-      "palsTab": "Pal",
-      "noPal": "Tidak Ada Pal",
-      "disablePal": "Nonaktifkan pal aktif",
-      "noDescription": "Tidak ada deskripsi",
-      "assistantType": "Asisten",
-      "roleplayType": "Bermain Peran",
-      "videoType": "Video",
-      "confirmationTitle": "Konfirmasi",
-      "modelSwitchMessage": "Pal ini memiliki model default berbeda ({{modelName}}). Apakah Anda ingin beralih ke model default pal tersebut?",
-      "keepButton": "Pertahankan",
-      "switchButton": "Alihkan"
+    "chatModelPickerSheet": {
+      "modelsTab": "Model"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Unduhan Gagal",
@@ -753,62 +700,6 @@
       "proceedWithReset": "Lanjutkan Atur Ulang",
       "confirmReset": "Konfirmasi Atur Ulang"
     },
-    "palSheet": {
-      "title": {
-        "edit": "Sunting Pal",
-        "newPal": "Pal Baru",
-        "newVideoPal": "Pal Video Baru"
-      },
-      "description": "Deskripsi",
-      "descriptionPlaceholder": "Masukkan deskripsi singkat Pal Anda",
-      "parameters": "Parameter",
-      "generationSettings": "Pengaturan Generasi",
-      "configureGenerationSettings": "Konfigurasi Pengaturan Generasi",
-      "validation": {
-        "nameRequired": "Nama wajib diisi",
-        "generatingPromptRequired": "Prompt generasi wajib diisi saat menggunakan prompt AI",
-        "promptModelRequired": "Model generasi prompt wajib diisi saat menggunakan prompt AI"
-      },
-      "talents": "Talenta",
-      "talentNames": {
-        "render_html": "Pratinjau HTML",
-        "calculate": "Ekspresi matematika",
-        "datetime": "Tanggal & waktu",
-        "web_search": "Pencarian web",
-        "read_url": "Baca halaman web"
-      },
-      "talentDescriptions": {
-        "render_html": "Render dokumen HTML secara inline di chat",
-        "calculate": "Evaluasi ekspresi matematika",
-        "datetime": "Dapatkan tanggal dan waktu saat ini",
-        "web_search": "Cari di internet untuk informasi terkini (memerlukan kunci API di Pengaturan)",
-        "read_url": "Baca konten lengkap halaman web (memerlukan kunci API di Pengaturan)"
-      },
-      "greeting": {
-        "sectionLabel": "Sapaan",
-        "textLabel": "Pesan sapaan",
-        "textPlaceholder": "Apa yang sebaiknya dikatakan teman ini pada chat kosong?",
-        "suggestedPromptsLabel": "Prompt yang disarankan",
-        "addPromptButton": "Tambahkan prompt",
-        "promptPlaceholder": "Prompt singkat untuk chip",
-        "removePromptLabel": "Hapus prompt"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Buat Pal Asisten",
-        "edit": "Edit Pal Asisten"
-      },
-      "palName": "Nama Pal",
-      "palNamePlaceholder": "Nama",
-      "defaultModel": "Model Default",
-      "defaultModelPlaceholder": "Pilih model",
-      "validation": {
-        "generatingPromptRequired": "Prompt generasi wajib diisi",
-        "promptModelRequired": "Model generasi prompt wajib diisi"
-      },
-      "create": "Buat"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "Anda belum mengunduh model apa pun. Harap unduh model terlebih dahulu.",
       "downloadAModel": "Unduh model",
@@ -817,50 +708,6 @@
       "recommendedModel": "Model yang Direkomendasikan",
       "cancelDownload": "Batalkan unduhan",
       "download": "Unduh"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Buat Pal Bermain Peran",
-        "edit": "Edit Pal Bermain Peran"
-      },
-      "palName": "Nama Pal",
-      "palNamePlaceholder": "Nama",
-      "defaultModel": "Model Default",
-      "defaultModelPlaceholder": "Pilih model",
-      "descriptionSection": "Deskripsi",
-      "world": "Dunia",
-      "worldPlaceholder": "Fantasi",
-      "location": "Lokasi",
-      "locationPlaceholder": "Hutan Ajaib",
-      "locationSublabel": "Di mana cerita berlangsung?",
-      "aiRole": "Peran AI",
-      "aiRolePlaceholder": "Eldara, peri hutan yang nakal",
-      "aiRoleSublabel": "Tentukan peran karakter",
-      "userRole": "Peran Pengguna",
-      "userRolePlaceholder": "Sir Elandor, ksatria pemberani",
-      "userRoleSublabel": "Siapa Anda?",
-      "situation": "Situasi",
-      "situationPlaceholder": "Misi penyelamatan, memecahkan misteri",
-      "toneStyle": "Nada/Gaya",
-      "toneStylePlaceholder": "Serius",
-      "validation": {
-        "promptModelRequired": "Model generasi prompt wajib diisi"
-      },
-      "create": "Buat"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Buat Pal Lookie",
-        "edit": "Edit Pal Lookie"
-      },
-      "palName": "Nama Pal",
-      "palNamePlaceholder": "Masukkan nama untuk Pal Lookie Anda",
-      "visionModel": "Model Visi",
-      "visionModelPlaceholder": "Pilih model visi",
-      "requiredModelsSection": "Model yang Diperlukan",
-      "captureInterval": "Interval Tangkapan",
-      "captureIntervalHelper": "Waktu antar tangkapan otomatis dalam milidetik",
-      "create": "Buat"
     },
     "sendButton": {
       "accessibilityLabel": "Kirim"
@@ -954,12 +801,6 @@
         "reportContent": "Laporkan Konten"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "Ekspor semua pal",
-      "importPals": "Impor pal",
-      "importSuccess": "Berhasil mengimpor {{count}} pal.",
-      "importError": "Gagal mengimpor pal. Harap periksa format file."
-    },
     "bubble": {
       "msPerToken": "{{value}}md/token",
       "tokensPerSec": "{{value}} token/detik",
@@ -989,48 +830,6 @@
       "resetToServerDefaultAccessibilityLabel": "Atur ulang {{name}} ke bawaan server, {{value}}"
     }
   },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "Pal Saya (lokal)",
-      "myLibrary": "Pustaka Saya (palshub.ai)",
-      "discoverPals": "Temukan Pal (palshub.ai)"
-    },
-    "systemPrompt": "Prompt Sistem",
-    "videoAnalysis": "Analisis Video",
-    "videoAnalysisDescription": "Ini adalah asisten AI berbasis video yang memberikan komentar real-time pada aliran video dari kamera perangkat Anda.",
-    "captureInterval": "Interval Tangkapan",
-    "captureIntervalUnit": "ms",
-    "world": "Dunia",
-    "toneStyle": "Nada/Gaya",
-    "aiRole": "Peran AI",
-    "userRole": "Peran Saya",
-    "prompt": "Perintah",
-    "assistant": "Asisten",
-    "roleplay": "Bermain Peran",
-    "video": "Video",
-    "deletePal": "Hapus Pal",
-    "deletePalMessage": "Yakin ingin menghapus pal ini?",
-    "missingModel": "Model Tidak Ditemukan",
-    "missingModelMessage": "Model default \"{{modelName}}\" untuk pal ini tidak tersedia. Harap unduh di lembar edit atau pilih model lain.",
-    "search": "Cari",
-    "addPal": "Tambah Pal",
-    "deletePalConfirmation": "Yakin ingin menghapus \"{{palName}}\"?",
-    "filters": {
-      "all": "Semua",
-      "myPals": "Pal Saya",
-      "local": "Lokal",
-      "video": "Video",
-      "free": "Gratis",
-      "premium": "Premium"
-    },
-    "labels": {
-      "free": "Gratis",
-      "premium": "Premium",
-      "private": "Pribadi",
-      "download": "Unduh",
-      "getFree": "Dapatkan Gratis"
-    }
-  },
   "validation": {
     "nameRequired": "Nama wajib diisi",
     "systemPromptRequired": "Prompt sistem wajib diisi",
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "Apa yang ingin Anda ketahui tentang gambar ini?",
     "takePhoto": "Kamera"
   },
-  "video": {
-    "permissionTitle": "Izin Kamera Diperlukan",
-    "permissionMessage": "PocketPal memerlukan akses kamera untuk analisis video",
-    "requestingPermission": "Meminta izin kamera...",
-    "noDevice": "Tidak ditemukan perangkat kamera",
-    "errorTitle": "Kesalahan Kamera",
-    "errorMessage": "Terjadi kesalahan dengan kamera",
-    "flip": "Balik",
-    "analyzing": "Menganalisis video...",
-    "startCamera": "Mulai Kamera",
-    "stopCamera": "Hentikan Kamera",
-    "promptPlaceholder": "Apa yang ingin Anda ketahui tentang video ini?",
-    "captureInterval": "Interval Tangkapan",
-    "captureIntervalUnit": "ms",
-    "liveCommentary": "Komentar Langsung",
-    "emptyPlaceholder": {
-      "title": "Selamat Datang di Lookie",
-      "subtitle": "Analisis Video Real-time On-Device Pribadi",
-      "experimentalNotice": "Ini adalah fitur eksperimental. Akurasi tergantung pada model yang dipilih, kecepatan tergantung pada spesifikasi perangkat Anda, dan beberapa model mungkin gagal.",
-      "howToUse": "Cara menggunakan:",
-      "step1": "• Edit prompt (opsional) untuk memandu analisis",
-      "step2": "• Ketuk tombol kamera untuk memulai analisis video langsung",
-      "step3": "• Sesuaikan frekuensi tangkapan saat kamera aktif",
-      "step4": "• Beralih ke pal lain untuk obrolan teks biasa"
-    }
-  },
   "screenTitles": {
     "chat": "Obrolan",
     "models": "Model",
-    "pals": "Pal (eksperimental)",
     "benchmark": "Benchmark",
     "settings": "Pengaturan",
     "appInfo": "Info Aplikasi",
@@ -1103,7 +875,6 @@
     "multimodalNotEnabled": "Multimodal tidak diaktifkan untuk model ini. Gambar akan ditampilkan tetapi tidak diproses oleh AI.",
     "cannotSendWithoutModel": "Muat model terlebih dahulu",
     "toolCallTruncated": "Pemanggilan alat terpotong — model kemungkinan kehabisan ruang. Coba konteks yang lebih besar atau permintaan yang lebih kecil.",
-    "toolCompatWarning": "Model ini mungkin tidak mendukung pemanggilan alat. Hasil mungkin tidak andal.",
     "softCapWarning": "Mulai chat baru untuk performa terbaik.",
     "generatingPreview": "Membuat pratinjau… ({{tokens}} token)",
     "generatingPreviewPending": "Membuat pratinjau…",
@@ -1142,17 +913,6 @@
     "increaseContextReloading": "Memuat ulang model dengan konteks yang lebih besar…",
     "increaseContextSuccess": "Konteks ditingkatkan menjadi {{target}} token.",
     "increaseContextFailure": "Gagal meningkatkan ukuran konteks. Pengaturan sebelumnya telah dipulihkan.",
-    "palLoadHint": "Pal ini cenderung membutuhkan lebih banyak ruang daripada yang diizinkan ukuran konteks saat ini.",
-    "webSearch": {
-      "searched": "Dicari: {{query}}",
-      "noResults": "Tidak ada hasil",
-      "noResultsFor": "Tidak ada hasil untuk {{query}}",
-      "resultsCount": "{{count}} hasil",
-      "resultsCountOne": "1 hasil",
-      "searchResultsTitle": "Hasil pencarian",
-      "showResultsAccessibilityLabel": "Tampilkan hasil pencarian web untuk {{query}}",
-      "openLinkError": "Tidak dapat membuka tautan ini."
-    },
     "contextFullRemote": "Percakapan kehabisan ruang. Mulai obrolan baru.",
     "speculativeInitFailed": "Perangkat ini tidak dapat memulai decoding spekulatif untuk model ini — kemungkinan besar tidak ada cukup memori untuk konteks draf. Matikan Decoding spekulatif di Pengaturan → Pengaturan Lanjutan dan coba lagi."
   },
@@ -1470,28 +1230,10 @@
         "balanced": "Seimbang",
         "best": "Terbaik"
       },
-      "subtitleTemplate": "{{name}} berpikir menggunakan model AI kecil di ponsel Anda — pilih yang cocok.",
-      "pal": {
-        "pip": {
-          "body": "Kami menemukan pal yang sempurna untuk Anda — teman sehari-hari yang ramah. Cukup pintar untuk sebagian besar hal, cukup ringan untuk ponsel mana pun."
-        },
-        "codie": {
-          "body": "Kenali Codie — pair-programmer lokal Anda. Membaca kode, menulis kode, menjelaskan bagian rumit tanpa meninggalkan ponsel Anda."
-        },
-        "sage": {
-          "body": "Sage sabar, ingin tahu, dan membimbing Anda melalui ide-ide langkah demi langkah. Teman belajar yang Anda simpan di saku."
-        },
-        "echo": {
-          "body": "Echo adalah teman bermain peran yang serbaguna — tetap dalam karakter, melukiskan suasana, mengikuti ke mana pun cerita Anda berlanjut."
-        },
-        "muse": {
-          "body": "Muse membantu Anda menulis. Menyarankan frasa, menemukan ritme, dan menjaga nada Anda tetap utuh."
-        }
-      }
+      "subtitleTemplate": "{{name}} berpikir menggunakan model AI kecil di ponsel Anda — pilih yang cocok."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} sedang mengunduh",
     "titleByModel": "{{name}} sedang mengunduh",
     "extraInProgress": "+{{count}} lainnya sedang berlangsung",
     "failedTitle": "Unduhan tidak selesai",

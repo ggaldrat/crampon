@@ -10,7 +10,7 @@ import {Alert, Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {deepLinkService, DeepLinkParams} from '../services/DeepLinkService';
 import {isHubLink, parseHubRunURL} from '../services/hubRunLink';
-import {chatSessionStore, palStore, deepLinkStore, uiStore} from '../store';
+import {deepLinkStore, uiStore} from '../store';
 import {ROUTES} from '../utils/navigationConstants';
 import {
   isBenchmarkRunnerUrl,
@@ -25,43 +25,12 @@ export const useDeepLinking = () => {
   const navigation = useNavigation();
 
   const handleChatDeepLink = useCallback(
-    async (palId: string, palName?: string, message?: string) => {
-      try {
-        // Find the pal
-        const pal = palStore.pals.find(p => p.id === palId);
-
-        if (!pal) {
-          console.error(`Pal not found: ${palId} (${palName})`);
-
-          // Show user-friendly error message
-          Alert.alert(
-            'Pal Not Found',
-            `The pal "${palName || palId}" could not be found. It may have been deleted or is not available on this device.`,
-            [{text: 'OK'}],
-          );
-          return;
-        }
-
-        // Store message to prefill if provided
-        if (message) {
-          deepLinkStore.setPendingMessage(message);
-        }
-
-        // Set the pal as active
-        await chatSessionStore.setActivePal(pal.id);
-
-        // Navigate to chat screen with proper typing
-        (navigation as any).navigate(ROUTES.CHAT);
-      } catch (error) {
-        console.error('Error handling chat deep link:', error);
-
-        // Show user-friendly error message
-        Alert.alert(
-          'Error Opening Chat',
-          'An error occurred while trying to open the chat. Please try again.',
-          [{text: 'OK'}],
-        );
+    (message?: string) => {
+      // Store message to prefill if provided
+      if (message) {
+        deepLinkStore.setPendingMessage(message);
       }
+      (navigation as any).navigate(ROUTES.CHAT);
     },
     [navigation],
   );
@@ -99,11 +68,7 @@ export const useDeepLinking = () => {
 
       // Handle chat deep links
       if (params.host === 'chat' && params.queryParams) {
-        const {palId, palName, message} = params.queryParams;
-
-        if (palId) {
-          await handleChatDeepLink(palId, palName, message);
-        }
+        handleChatDeepLink(params.queryParams.message);
       }
 
       // Handle hub/run download deep links (iOS native-emitter path). Only the

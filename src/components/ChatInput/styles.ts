@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 import {Theme} from '../../utils/types';
-import {fontStyles} from '../../utils/theme';
 
 export const createStyles = ({
   theme,
@@ -141,27 +140,6 @@ export const createStyles = ({
       paddingVertical: 20,
       marginTop: isEditMode ? 28 : 0,
     },
-    palNameWrapper: {
-      ...fontStyles.regular,
-      color: theme.colors.inverseOnSurface,
-      fontSize: 12,
-    },
-    palName: {
-      fontSize: 12,
-      color: theme.colors.inverseOnSurface,
-      ...fontStyles.semibold,
-    },
-    // New compact pal name styles for control bar
-    palNameCompact: {
-      fontSize: 10,
-      ...fontStyles.regular,
-      color: theme.colors.inverseOnSurface,
-    },
-    palNameValueCompact: {
-      fontSize: 10,
-      ...fontStyles.semibold,
-      color: theme.colors.inverseOnSurface,
-    },
     // Image preview styles
     imagePreviewContainer: {
       marginVertical: 8,
@@ -223,30 +201,6 @@ export const createStyles = ({
       justifyContent: 'center',
       alignItems: 'center',
       marginBottom: 8,
-    },
-
-    // Compact Video Button (for right side)
-    compactVideoButton: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingHorizontal: 14,
-      paddingVertical: 8,
-      borderRadius: 16,
-      gap: 6,
-      minWidth: 85,
-    },
-    compactButtonText: {
-      color: 'white',
-      fontSize: 12,
-      fontWeight: '600',
-    },
-    // Prompt Label for Video Pals
-    promptLabel: {
-      marginBottom: 4,
-    },
-    inputWithLabel: {
-      marginTop: 0,
     },
     // Helper text for model not loaded warning
     helperTextContainer: {

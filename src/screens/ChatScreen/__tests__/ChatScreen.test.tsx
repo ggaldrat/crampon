@@ -239,20 +239,6 @@ describe('ChatScreen', () => {
   });
 
   describe('thinking toggle in no-session chat', () => {
-    const palStore = require('../../../store').palStore;
-    const thinkingPal = {
-      id: 'pal-thinking',
-      type: 'assistant' as const,
-      name: 'Thinker',
-      systemPrompt: '',
-      parameters: {},
-      parameterSchema: [],
-      isSystemPromptChanged: false,
-      useAIPrompt: false,
-      source: 'local' as const,
-      completionSettings: {enable_thinking: true},
-    };
-
     let savedModels: any[];
 
     beforeEach(() => {
@@ -277,14 +263,12 @@ describe('ChatScreen', () => {
         modelStore.activeModelId = 'thinking-model-id';
         modelStore.context = new LlamaContext(mockLlamaContextParams);
         chatSessionStore.activeSessionId = null;
-        chatSessionStore.newChatPalId = thinkingPal.id;
         chatSessionStore.newChatThinkingOverride = undefined;
       });
       modelStore.engine = {
         completion: jest.fn(),
         stopCompletion: jest.fn(),
       };
-      palStore.pals = [thinkingPal];
     });
 
     afterEach(() => {
@@ -316,103 +300,6 @@ describe('ChatScreen', () => {
 
       // Negative guard: global no-chat settings were NOT mutated.
       expect(setGlobalSpy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('tool-compatibility banner', () => {
-    const palStore = require('../../../store').palStore;
-    const uiStore = require('../../../store').uiStore;
-
-    const palWithTalents = {
-      id: 'pal-with-talents',
-      type: 'assistant' as const,
-      name: 'Tool Pal',
-      systemPrompt: '',
-      parameters: {},
-      parameterSchema: [],
-      isSystemPromptChanged: false,
-      useAIPrompt: false,
-      source: 'local' as const,
-      pact: {talents: [{name: 'calculate'}]},
-    };
-
-    const buildContextWithCaps = (caps: {
-      defaultTools?: boolean;
-      defaultToolCalls?: boolean;
-      toolUse?: boolean;
-      toolUseCaps?: boolean;
-    }) => {
-      const ctx = new LlamaContext(mockLlamaContextParams);
-      (ctx as any).model = {
-        ...mockLlamaContextParams.model,
-        chatTemplates: {
-          llamaChat: false,
-          jinja: {
-            default: true,
-            defaultCaps: {
-              tools: !!caps.defaultTools,
-              toolCalls: !!caps.defaultToolCalls,
-              systemRole: false,
-              parallelToolCalls: false,
-            },
-            toolUse: !!caps.toolUse,
-            toolUseCaps: caps.toolUseCaps
-              ? {
-                  tools: true,
-                  toolCalls: true,
-                  systemRole: false,
-                  parallelToolCalls: false,
-                }
-              : undefined,
-          },
-        },
-      };
-      return ctx;
-    };
-
-    const renderWithToolPal = (ctx: LlamaContext) => {
-      runInAction(() => {
-        modelStore.activeModelId = 'tool-model-id';
-        modelStore.context = ctx;
-      });
-      palStore.pals = [palWithTalents];
-      jest
-        .spyOn(require('../../../store').chatSessionStore, 'activePalId', 'get')
-        .mockReturnValue(palWithTalents.id);
-      return render(<ChatScreen />, {withNavigation: true});
-    };
-
-    beforeEach(() => {
-      uiStore.setChatWarning.mockClear();
-      uiStore.hasWarnedToolCompat.mockReturnValue(false);
-    });
-
-    it('does NOT warn when defaultCaps.tools is true (Ministral-style)', () => {
-      renderWithToolPal(buildContextWithCaps({defaultTools: true}));
-      expect(uiStore.setChatWarning).not.toHaveBeenCalled();
-    });
-
-    it('does NOT warn when defaultCaps.toolCalls is true', () => {
-      renderWithToolPal(buildContextWithCaps({defaultToolCalls: true}));
-      expect(uiStore.setChatWarning).not.toHaveBeenCalled();
-    });
-
-    it('does NOT warn when toolUse is true (Qwen3-style)', () => {
-      renderWithToolPal(buildContextWithCaps({toolUse: true}));
-      expect(uiStore.setChatWarning).not.toHaveBeenCalled();
-    });
-
-    it('does NOT warn when toolUseCaps object is present', () => {
-      renderWithToolPal(buildContextWithCaps({toolUseCaps: true}));
-      expect(uiStore.setChatWarning).not.toHaveBeenCalled();
-    });
-
-    it('warns once when all four capability slots are absent', () => {
-      renderWithToolPal(buildContextWithCaps({}));
-      expect(uiStore.setChatWarning).toHaveBeenCalledTimes(1);
-      expect(uiStore.markToolCompatWarned).toHaveBeenCalledWith(
-        'tool-model-id',
-      );
     });
   });
 });

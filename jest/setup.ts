@@ -56,12 +56,10 @@ import {
   mockDefaultCompletionSettings,
 } from '../__mocks__/stores/chatSessionStore';
 import {benchmarkStore as mockBenchmarkStore} from '../__mocks__/stores/benchmarkStore';
-import {mockPalStore} from '../__mocks__/stores/palStore';
 import {deepLinkStore as mockDeepLinkStore} from '../__mocks__/stores/deepLinkStore';
 import {mockServerStore} from '../__mocks__/stores/serverStore';
 import {mockRouterStore} from '../__mocks__/stores/routerStore';
 import {mockTTSStore} from '../__mocks__/stores/ttsStore';
-import {mockSearchProviderStore} from '../__mocks__/stores/searchProviderStore';
 
 jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);
 
@@ -116,12 +114,10 @@ jest.mock('../src/store', () => {
     NEW_CHAT_DRAFT_KEY: '__new_chat__',
     hfStore: mockHFStore,
     benchmarkStore: mockBenchmarkStore,
-    palStore: mockPalStore,
     deepLinkStore: mockDeepLinkStore,
     serverStore: mockServerStore,
     routerStore: mockRouterStore,
     ttsStore: mockTTSStore,
-    searchProviderStore: mockSearchProviderStore,
     defaultCompletionSettings: mockDefaultCompletionSettings,
     NEW_SESSION_TITLE: 'New Session',
   };

@@ -127,31 +127,6 @@
     "importButton": "استيراد",
     "importSuccess": "تم استيراد {{count}} من جلسات المحادثات بنجاح.",
     "importError": "تعذّر استيراد جلسات المحادثات. يُرجى التحقق من تنسيق الملف.",
-    "internetSearch": {
-      "title": "البحث على الإنترنت",
-      "description": "اسمح لـ Pals بالبحث على الإنترنت باستخدام أدواتها الخاصة. استخدم مفتاح API الخاص بك — لا يحتفظ PocketPal بمفاتيحك ولا يمرّر استعلاماتك عبر خوادمه.",
-      "providerLabel": "موفّر البحث",
-      "providerGated": "قريبًا",
-      "keyLabel": "مفتاح API",
-      "keyIsSet": "تم تعيين المفتاح لـ {{provider}}.",
-      "keyNotSet": "لم يتم تعيين مفتاح لـ {{provider}}.",
-      "setKeyButton": "تعيين المفتاح",
-      "updateKeyButton": "تحديث المفتاح",
-      "clearKeyButton": "مسح المفتاح",
-      "keyInputPlaceholder": "ألصق مفتاح API الخاص بـ {{provider}}",
-      "keyUpdateError": "تعذّر تحديث المفتاح. يُرجى المحاولة مرة أخرى.",
-      "showKeyAccessibilityLabel": "إظهار مفتاح API",
-      "hideKeyAccessibilityLabel": "إخفاء مفتاح API",
-      "resultCountLabel": "عدد النتائج لكل بحث",
-      "resultCountDescription": "تقليل عدد النتائج يوفّر مساحة أكبر في سياق النموذج.",
-      "consentTitle": "تغادر عمليات البحث جهازك",
-      "consentDescription": "عندما يبحث أحد Pals على الإنترنت، يُرسل استعلام البحث إلى الموفّر المحدد عبر الإنترنت. وعند قراءة صفحة، قد يُرسل عنوان URL ومحتوى الصفحة إلى خدمة القراءة الافتراضية (r.jina.ai) إذا لم يكن لدى الموفّر المحدد قارئ خاص به. لا تُرسل مفاتيح API أو استعلامات البحث إلى PocketPal.",
-      "consentAccept": "أفهم ذلك",
-      "consentRequired": "وافق على الإفصاح أعلاه لتعيين مفتاح الـ API و تفعيل البحث.",
-      "consentGivenTitle": "تم تفعيل البحث على الإنترنت",
-      "consentGivenDescription": "قد تغادر استعلامات البحث وعمليات قراءة الصفحات جهازك كما هو موضح أعلاه.",
-      "consentRevoke": "إلغاء"
-    },
     "cacheStorageTitle": "التخزين المؤقت والتخزين",
     "clearPalCaches": "مسح ذاكرة التخزين المؤقت للاختصارات",
     "clearPalCachesDescription": "يمسح البيانات المخزّنة مؤقتًا لتسريع الاختصارات. لن يؤثر ذلك على Pals أو سجل المحادثات.",
@@ -602,9 +577,7 @@
       "activateModelTitle": "فعّل النموذج للبدء",
       "activateModelDescription": "اختر النموذج ونزّله. بعد التنزيل، اضغط على \"تحميل\" بجانب النموذج وابدأ الدردشة.",
       "activateModelButton": "اختر النموذج",
-      "loading": "جارٍ التحميل...",
-      "gettingReadyTitle": "{{name}} يستعد",
-      "gettingReadyDescription": "سنُعلمك في اللحظة التي يصبح فيها رفيقك جاهزًا للدردشة. اضغط على الشريط في الأعلى لمتابعة سير العمل."
+      "loading": "جارٍ التحميل..."
     },
     "chatInput": {
       "inputPlaceholder": "رسالة",
@@ -697,22 +670,7 @@
         "title": "نجاح",
         "message": "سيتم تطبيق هذه الإعدادات على جميع الجلسات المستقبلية"
       },
-      "palSettings": "إعدادات الرفيق",
       "settingsSource": "مصدر الإعدادات"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "إعدادات التوليد - {{palName}}",
-      "invalidValues": "قيم غير صالحة",
-      "invalidNumericValuesMessage": "يجب أن يكون رقمًا صالحًا",
-      "pleaseCorrect": "‏يرجى تصحيح ما يلي:",
-      "ok": "حسنًا",
-      "error": "خطأ",
-      "failedToSave": "تعذّر حفظ إعدادات الرفيق",
-      "resetToGlobal": "إعادة التعيين إلى الإعدادات الافتراضية العامة",
-      "resetToSystem": "إعادة التعيين إلى إعدادات النظام الافتراضية",
-      "clearPalSettings": "‎مسح إعدادات الرفيق",
-      "customSettingsFor": "إعدادات مخصصة لـ {{palName}}",
-      "inheritedSettingsFor": "إعدادات موروثة لـ {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "دردشة"
@@ -720,19 +678,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "ملف"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "النماذج",
-      "palsTab": "الرفاق",
-      "noPal": "لا يوجد رفيق",
-      "disablePal": "تعطيل الرفيق النشط",
-      "noDescription": "لا يوجد وصف",
-      "assistantType": "‏المساعد",
-      "roleplayType": "لعب الأدوار",
-      "videoType": "فيديو",
-      "confirmationTitle": "تأكيد",
-      "modelSwitchMessage": "هذا الرفيق له نموذج افتراضي مختلف ({{modelName}}). هل تريد التبديل إلى النموذج الافتراضي للرفيق؟",
-      "keepButton": "‎إبقاء",
-      "switchButton": "تبديل"
+    "chatModelPickerSheet": {
+      "modelsTab": "النماذج"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "فشل التنزيل",
@@ -781,62 +728,6 @@
       "proceedWithReset": "المتابعة بإعادة التعيين",
       "confirmReset": "تأكيد إعادة التعيين"
     },
-    "palSheet": {
-      "title": {
-        "edit": "تحرير الرفيق",
-        "newPal": "رفيق جديد",
-        "newVideoPal": "رفيق فيديو جديد"
-      },
-      "description": "الوصف",
-      "descriptionPlaceholder": "أدخل وصفًا موجزًا لرفيقك",
-      "parameters": "المعاملات",
-      "generationSettings": "إعدادات التوليد",
-      "configureGenerationSettings": "تكوين إعدادات التوليد",
-      "validation": {
-        "nameRequired": "الاسم مطلوب",
-        "generatingPromptRequired": "إنشاء prompt مطلوب عند استخدام prompt الذكاء الاصطناعي",
-        "promptModelRequired": "نموذج توليد الـ prompt مطلوب عند استخدام prompt الذكاء الاصطناعي"
-      },
-      "talents": "المهارات",
-      "talentNames": {
-        "render_html": "‏معاينة HTML",
-        "calculate": "‎التعبيرات الرياضية",
-        "datetime": "التاريخ والوقت",
-        "web_search": "البحث في الويب",
-        "read_url": "قراءة صفحة ويب"
-      },
-      "talentDescriptions": {
-        "render_html": "عرض مستندات HTML مباشرةً في الدردشة",
-        "calculate": "تقييم التعبيرات الرياضية",
-        "datetime": "الحصول على التاريخ والوقت الحاليين",
-        "web_search": "البحث في الإنترنت عن معلومات حديثة (يتطلب مفتاح API في الإعدادات)",
-        "read_url": "قراءة المحتوى الكامل لصفحة ويب (يتطلب مفتاح API في الإعدادات)"
-      },
-      "greeting": {
-        "sectionLabel": "التحية",
-        "textLabel": "رسالة التحية",
-        "textPlaceholder": "ماذا يجب أن يقول هذا الرفيق في دردشة فارغة؟",
-        "suggestedPromptsLabel": "الـ prompts المقترحة",
-        "addPromptButton": "إضافة prompt",
-        "promptPlaceholder": "prompt قصير للشريحة",
-        "removePromptLabel": "إزالة الـ prompt"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "إنشاء رفيق مساعد",
-        "edit": "تحرير الرفيق المساعد"
-      },
-      "palName": "اسم الرفيق",
-      "palNamePlaceholder": "الاسم",
-      "defaultModel": "‎النموذج الافتراضي",
-      "defaultModelPlaceholder": "اختر النموذج",
-      "create": "‎إنشاء",
-      "validation": {
-        "generatingPromptRequired": "إنشاء prompt مطلوب",
-        "promptModelRequired": "نموذج توليد الـ prompt مطلوب"
-      }
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "‎ليس لديك أي نماذج مُنزَّلة بعد. يرجى تنزيل نموذج أولاً.",
       "downloadAModel": "تنزيل نموذج",
@@ -845,50 +736,6 @@
       "recommendedModel": "النموذج الموصى به",
       "cancelDownload": "إلغاء التنزيل",
       "download": "تنزيل"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "إنشاء رفيق لعب الأدوار",
-        "edit": "تحرير رفيق لعب الأدوار"
-      },
-      "palName": "اسم الرفيق",
-      "palNamePlaceholder": "الاسم",
-      "defaultModel": "النموذج الافتراضي",
-      "defaultModelPlaceholder": "اختر النموذج",
-      "descriptionSection": "الوصف",
-      "world": "العالم",
-      "worldPlaceholder": "فانتازيا",
-      "location": "الموقع",
-      "locationPlaceholder": "الغابة المسحورة",
-      "locationSublabel": "أين تدور القصة؟",
-      "aiRole": "دور الذكاء الاصطناعي",
-      "aiRolePlaceholder": "إلدارا، روح غابة مؤذية",
-      "aiRoleSublabel": "‎حدّد الدور للشخصية",
-      "userRole": "دور المستخدم",
-      "userRolePlaceholder": "السير إلاندور، فارس شجاع",
-      "userRoleSublabel": "من أنت؟",
-      "situation": "الموقف",
-      "situationPlaceholder": "مهمة إنقاذ، حلّ لغز",
-      "toneStyle": "النبرة/الأسلوب",
-      "toneStylePlaceholder": "جدّي",
-      "create": "إنشاء",
-      "validation": {
-        "promptModelRequired": "نموذج توليد Prompt مطلوب"
-      }
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "إنشاء الرفيق Lookie",
-        "edit": "تحرير الرفيق Lookie"
-      },
-      "palName": "اسم الرفيق",
-      "palNamePlaceholder": "أدخل اسمًا لرفيق Lookie الخاص بك",
-      "visionModel": "نموذج الرؤية",
-      "visionModelPlaceholder": "اختر نموذج رؤية",
-      "requiredModelsSection": "النماذج المطلوبة",
-      "captureInterval": "فترة الالتقاط",
-      "captureIntervalHelper": "الوقت بين عمليات الالتقاط التلقائي بالمللي ثانية",
-      "create": "إنشاء"
     },
     "sendButton": {
       "accessibilityLabel": "إرسال"
@@ -981,55 +828,7 @@
         "edit": "تعديل",
         "reportContent": "الإبلاغ عن المحتوى"
       }
-    },
-    "palHeaderRight": {
-      "exportAllPals": "تصدير جميع الرفاق",
-      "importPals": "‏استيراد الرفاق",
-      "importSuccess": "تم استيراد {{count}} رفيق بنجاح.",
-      "importError": "تعذّر استيراد الرفاق. يرجى التحقق من تنسيق الملف."
     }
-  },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "رفاقي (محلي)",
-      "myLibrary": "مكتبتي (palshub.ai)",
-      "discoverPals": "استكشف الرفاق (palshub.ai)"
-    },
-    "videoAnalysis": "تحليل الفيديو",
-    "videoAnalysisDescription": "هذا مساعد ذكاء اصطناعي قائم على الفيديو يقدم تعليقًا فوريًا على تدفقات الفيديو من كاميرا جهازك.",
-    "captureInterval": "فترة الالتقاط",
-    "captureIntervalUnit": "مللي ثانية",
-    "world": "العالم",
-    "toneStyle": "النبرة/الأسلوب",
-    "aiRole": "دور الذكاء الاصطناعي",
-    "userRole": "دوري",
-    "assistant": "المساعد",
-    "roleplay": "لعب الأدوار",
-    "video": "فيديو",
-    "deletePal": "حذف الرفيق",
-    "deletePalMessage": "هل أنت متأكد أنك تريد حذف هذا الرفيق؟",
-    "missingModel": "نموذج مفقود",
-    "missingModelMessage": "النموذج الافتراضي \"{{modelName}}\" لهذا الرفيق غير متاح. يرجى تنزيله في نافذة التعديل أو اختيار نموذج مختلف.",
-    "search": "بحث",
-    "addPal": "إضافة رفيق",
-    "deletePalConfirmation": "هل أنت متأكد أنك تريد حذف \"{{palName}}\"؟",
-    "filters": {
-      "all": "الكل",
-      "myPals": "‬رفاقي",
-      "local": "محلي",
-      "video": "فيديو",
-      "free": "مجاني",
-      "premium": "مدفوع"
-    },
-    "labels": {
-      "free": "مجاني",
-      "premium": "مدفوع",
-      "private": "خاص",
-      "download": "تنزيل",
-      "getFree": "احصل عليه مجانًا"
-    },
-    "systemPrompt": "Prompt النظام",
-    "prompt": "Prompt"
   },
   "validation": {
     "nameRequired": "الاسم مطلوب",
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "ماذا تريد أن تعرفه حول هذه الصورة؟",
     "takePhoto": "الكاميرا"
   },
-  "video": {
-    "permissionTitle": "إذن الكاميرا مطلوب",
-    "permissionMessage": "يحتاج PocketPal إلى الوصول إلى الكاميرا لتحليل الفيديو",
-    "requestingPermission": "جارٍ طلب إذن الكاميرا...",
-    "noDevice": "لم يتم العثور على كاميرا",
-    "errorTitle": "خطأ في الكاميرا",
-    "errorMessage": "حدث خطأ في الكاميرا",
-    "flip": "قلب",
-    "analyzing": "جارٍ تحليل الفيديو...",
-    "startCamera": "تشغيل الكاميرا",
-    "stopCamera": "إيقاف الكاميرا",
-    "promptPlaceholder": "ماذا تريد أن تعرف عن هذا الفيديو؟",
-    "captureInterval": "فترة الالتقاط",
-    "captureIntervalUnit": "مللي ثانية",
-    "liveCommentary": "تعليق مباشر",
-    "emptyPlaceholder": {
-      "title": "مرحبًا بك في Lookie",
-      "subtitle": "تحليل فيديو فوري خاص على الجهاز",
-      "experimentalNotice": "هذه ميزة تجريبية. تعتمد الدقة على النموذج المحدد، وتعتمد السرعة على مواصفات جهازك، وقد يفشل بعض النماذج.",
-      "howToUse": "‎كيفية الاستخدام:",
-      "step2": "• اضغط على زر الكاميرا لبدء تحليل الفيديو المباشر",
-      "step3": "• اضبط تكرار اللقطات أثناء تشغيل الكاميرا",
-      "step4": "‏• انتقل إلى رفيق آخر للدردشة النصية العادية",
-      "step1": "• حرّر الـ prompt (اختياري) لتوجيه التحليل"
-    }
-  },
   "screenTitles": {
     "chat": "‎الدردشة",
     "models": "النماذج",
-    "pals": "الرفاق (تجريبي)",
     "benchmark": "اختبار الأداء",
     "settings": "الإعدادات",
     "appInfo": "معلومات التطبيق",
@@ -1104,7 +876,6 @@
     "pleaseLoadModel": "حمّل نموذجًا لبدء الدردشة.",
     "multimodalNotEnabled": "الوضع متعدد الوسائط غير مفعّل لهذا النموذج. سيتم عرض الصور لكن لن يعالجها الذكاء الاصطناعي.",
     "cannotSendWithoutModel": "حمّل نموذجًا أولاً",
-    "toolCompatWarning": "‎قد لا يدعم هذا النموذج استدعاء الأدوات. قد تكون النتائج غير موثوقة.",
     "softCapWarning": "ابدأ دردشة جديدة للحصول على أفضل أداء.",
     "contextWarning": "هذه المحادثة تطول وقد تنفد المساحة قريبًا.",
     "contextRemoteHedged": "ربما تم قطع هذا الرد. جرّب الإرسال مرة أخرى أو اختصر الطلب.",
@@ -1140,21 +911,10 @@
     "increaseContextReloading": "جارٍ إعادة تحميل النموذج بسياق أكبر…",
     "increaseContextSuccess": "تمت زيادة السياق إلى {{target}} رمز.",
     "increaseContextFailure": "تعذّرت زيادة حجم السياق. تمت استعادة إعدادك السابق.",
-    "palLoadHint": "‏يميل هذا الرفيق إلى الحاجة إلى مساحة أكبر مما يسمح به حجم السياق الحالي.",
     "generatingPreview": "جارٍ إنشاء المعاينة… ({{tokens}} رمز)",
     "generatingPreviewPending": "جارٍ إنشاء المعاينة…",
     "toolUsedChip": "استُخدم {{name}}",
-    "toolErrorBlock": "فشل {{name}}",
-    "webSearch": {
-      "searched": "تم البحث: {{query}}",
-      "noResults": "لا توجد نتائج",
-      "noResultsFor": "لا توجد نتائج لـ {{query}}",
-      "resultsCount": "{{count}} نتيجة",
-      "resultsCountOne": "نتيجة واحدة",
-      "searchResultsTitle": "نتائج البحث",
-      "showResultsAccessibilityLabel": "عرض نتائج البحث في الويب عن {{query}}",
-      "openLinkError": "تعذّر فتح هذا الرابط."
-    }
+    "toolErrorBlock": "فشل {{name}}"
   },
   "htmlPreview": {
     "defaultTitle": "معاينة",
@@ -1470,28 +1230,10 @@
         "balanced": "متوازن",
         "best": "الأفضل"
       },
-      "subtitleTemplate": "يستخدم {{name}} نموذج ذكاء اصطناعي صغير على هاتفك — اختر واحدًا يناسبك.",
-      "pal": {
-        "pip": {
-          "body": "وجدنا لك رفيقًا مثاليًا — رفيق يومي ودود. ذكي بما يكفي لمعظم الأمور، وخفيف بما يكفي لأي هاتف."
-        },
-        "codie": {
-          "body": "تعرّف على Codie — مبرمجك المحلي المرافق. يقرأ الكود، ويكتب الكود، ويشرح الأجزاء الصعبة دون مغادرة هاتفك أبدًا."
-        },
-        "sage": {
-          "body": "Sage صبور وفضولي، ويرشدك عبر الأفكار خطوة بخطوة. رفيق دراسة تحمله في جيبك."
-        },
-        "echo": {
-          "body": "Echo رفيق متعدد الاستخدامات للعب الأدوار — يبقى في الشخصية، ويرسم المشاهد، ويتبع قصتك حيثما تأخذك."
-        },
-        "muse": {
-          "body": "‎Muse يساعدك على الكتابة. يقترح الصياغة، ويجد الإيقاع، ويحافظ على نبرتك كما هي."
-        }
-      }
+      "subtitleTemplate": "يستخدم {{name}} نموذج ذكاء اصطناعي صغير على هاتفك — اختر واحدًا يناسبك."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} قيد التنزيل",
     "titleByModel": "{{name}} قيد التنزيل",
     "extraInProgress": "+{{count}} أخرى قيد التقدم",
     "failedTitle": "لم يكتمل التنزيل",

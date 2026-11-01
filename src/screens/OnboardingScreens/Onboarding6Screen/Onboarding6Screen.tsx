@@ -13,7 +13,7 @@ import {ProgressBar, Text} from 'react-native-paper';
 import {modelStore, uiStore} from '../../../store';
 import {useTheme} from '../../../hooks';
 import {L10nContext} from '../../../utils';
-import {resolvePalForTopic} from '../../../store/onboarding/onboardingPals';
+import {FALLBACK_MODELS} from '../../../store/onboarding/fallbackModels';
 import {OnboardingScaffold} from '../components/OnboardingScaffold';
 import {OnboardingContent} from '../components/OnboardingContent';
 import {ItalicAccentTitle} from '../components/ItalicAccentTitle';
@@ -32,11 +32,9 @@ const RULES_WAIT_MS = 12_000;
 
 type Phase = 'preparing' | 'downloading' | 'activating' | 'ready' | 'error';
 
-// There is no topic picker — this always resolves to the `else` tier
-// list (general-purpose models), independent of any named persona. No
-// Pal is ever created from it: the model is bound directly. Fallback only:
-// the device tier's first rule preset is preferred (see pickModel).
-const RECOMMENDED_MODELS = resolvePalForTopic(null).models;
+// General-purpose models, fallback only: the device tier's first rule
+// preset is preferred (see pickModel).
+const RECOMMENDED_MODELS = FALLBACK_MODELS;
 
 /**
  * Crampon: the model to auto-install is the first candidate of the device's
@@ -57,7 +55,7 @@ const pickModel = async () => {
   }
   const entry =
     RECOMMENDED_MODELS.find(m => m.recommended) ?? RECOMMENDED_MODELS[0];
-  return entry ? modelStore.registerOnboardingPalModel(entry) : null;
+  return entry ? modelStore.registerOnboardingModel(entry) : null;
 };
 
 /**

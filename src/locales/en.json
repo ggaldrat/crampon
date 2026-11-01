@@ -128,34 +128,9 @@
     "importButton": "Import",
     "importSuccess": "Successfully imported {{count}} chat session(s).",
     "importError": "Failed to import chat sessions. Please check the file format.",
-    "internetSearch": {
-      "title": "Internet Search",
-      "description": "Let Pals search the web with their own tools. Bring your own API key — PocketPal never holds your keys or routes your queries.",
-      "providerLabel": "Search provider",
-      "providerGated": "Coming soon",
-      "keyLabel": "API key",
-      "keyIsSet": "Key is set for {{provider}}.",
-      "keyNotSet": "No key set for {{provider}}.",
-      "setKeyButton": "Set Key",
-      "updateKeyButton": "Update Key",
-      "clearKeyButton": "Clear Key",
-      "keyInputPlaceholder": "Paste your {{provider}} API key",
-      "keyUpdateError": "Couldn't update the key. Please try again.",
-      "showKeyAccessibilityLabel": "Show API key",
-      "hideKeyAccessibilityLabel": "Hide API key",
-      "resultCountLabel": "Results per search",
-      "resultCountDescription": "Fewer results keep more room in the model's context.",
-      "consentTitle": "Searches leave your device",
-      "consentDescription": "When a Pal searches the web, your query is sent to the selected provider over the internet. When a Pal reads a page, the URL and page content may instead be sent to a default reader service (r.jina.ai) if the selected provider has no native reader. Keys and queries are never sent to PocketPal.",
-      "consentAccept": "I understand",
-      "consentRequired": "Accept the disclosure above to set a key and enable search.",
-      "consentGivenTitle": "Searching the web is enabled",
-      "consentGivenDescription": "Queries and page reads may leave your device as described above.",
-      "consentRevoke": "Revoke"
-    },
     "cacheStorageTitle": "Cache & Storage",
     "clearPalCaches": "Clear Shortcuts Caches",
-    "clearPalCachesDescription": "Clears cached data used to speed up Shortcuts. This won't affect your Pals or chat history.",
+    "clearPalCachesDescription": "Clears cached data used to speed up Shortcuts. This won't affect your chat history.",
     "clearCachesButton": "Clear Caches",
     "clearCachesConfirmTitle": "Clear Shortcuts Caches?",
     "clearCachesConfirmMessage": "This will clear all cached session data ({{fileCount}} files, {{size}}). Shortcuts may be slower on first use after clearing. This won't affect your Pals or chat history.",
@@ -622,9 +597,7 @@
       "activateModelTitle": "Activate Model To Get Started",
       "activateModelDescription": "Select the model and download it. After downloading, tap Load next to the model and start chatting.",
       "activateModelButton": "Select Model",
-      "loading": "Loading...",
-      "gettingReadyTitle": "{{name}} is getting ready",
-      "gettingReadyDescription": "We’ll let you know the moment your pal can chat. Tap the banner up top to see how it’s going."
+      "loading": "Loading..."
     },
     "chatInput": {
       "inputPlaceholder": "Message",
@@ -717,22 +690,7 @@
         "title": "Success",
         "message": "These settings will be applied to all future sessions"
       },
-      "palSettings": "Pal Settings",
       "settingsSource": "Settings Source"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "Generation Settings - {{palName}}",
-      "invalidValues": "Invalid Values",
-      "invalidNumericValuesMessage": "Must be a valid number",
-      "pleaseCorrect": "Please correct the following:",
-      "ok": "OK",
-      "error": "Error",
-      "failedToSave": "Failed to save pal settings",
-      "resetToGlobal": "Reset to Global Defaults",
-      "resetToSystem": "Reset to System Defaults",
-      "clearPalSettings": "Clear Pal Settings",
-      "customSettingsFor": "Custom settings for {{palName}}",
-      "inheritedSettingsFor": "Inherited settings for {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "Chat"
@@ -740,19 +698,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "File"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Models",
-      "palsTab": "Pals",
-      "noPal": "No Pal",
-      "disablePal": "Disable active pal",
-      "noDescription": "No description",
-      "assistantType": "Assistant",
-      "roleplayType": "Roleplay",
-      "videoType": "Video",
-      "confirmationTitle": "Confirmation",
-      "modelSwitchMessage": "This pal has a different default model ({{modelName}}). Would you like to switch to the pal's default model?",
-      "keepButton": "Keep",
-      "switchButton": "Switch"
+    "chatModelPickerSheet": {
+      "modelsTab": "Models"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Download Failed",
@@ -803,62 +750,6 @@
       "proceedWithReset": "Proceed with Reset",
       "confirmReset": "Confirm Reset"
     },
-    "palSheet": {
-      "title": {
-        "edit": "Edit Pal",
-        "newPal": "New Pal",
-        "newVideoPal": "New Video Pal"
-      },
-      "description": "Description",
-      "descriptionPlaceholder": "Enter a brief description of your pal",
-      "parameters": "Parameters",
-      "generationSettings": "Generation Settings",
-      "configureGenerationSettings": "Configure Generation Settings",
-      "validation": {
-        "nameRequired": "Name is required",
-        "generatingPromptRequired": "Generating prompt is required when using AI prompt",
-        "promptModelRequired": "Prompt generation model is required when using AI prompt"
-      },
-      "talents": "Talents",
-      "talentNames": {
-        "render_html": "HTML preview",
-        "calculate": "Math expressions",
-        "datetime": "Date & time",
-        "web_search": "Web search",
-        "read_url": "Read web page"
-      },
-      "talentDescriptions": {
-        "render_html": "Render HTML documents inline in chat",
-        "calculate": "Evaluate mathematical expressions",
-        "datetime": "Get the current date and time",
-        "web_search": "Search the internet for current information (requires API key in Settings)",
-        "read_url": "Read the full content of a web page (requires API key in Settings)"
-      },
-      "greeting": {
-        "sectionLabel": "Greeting",
-        "textLabel": "Greeting message",
-        "textPlaceholder": "What should this pal say on an empty chat?",
-        "suggestedPromptsLabel": "Suggested prompts",
-        "addPromptButton": "Add prompt",
-        "promptPlaceholder": "A short prompt for the chip",
-        "removePromptLabel": "Remove prompt"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Create Assistant Pal",
-        "edit": "Edit Assistant Pal"
-      },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Name",
-      "defaultModel": "Default Model",
-      "defaultModelPlaceholder": "Select model",
-      "validation": {
-        "generatingPromptRequired": "Generating prompt is required",
-        "promptModelRequired": "Prompt generation model is required"
-      },
-      "create": "Create"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "You do not have any models downloaded yet. Please download a model first.",
       "downloadAModel": "Download a model",
@@ -867,50 +758,6 @@
       "recommendedModel": "Recommended Model",
       "cancelDownload": "Cancel download",
       "download": "Download"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Create Roleplay Pal",
-        "edit": "Edit Roleplay Pal"
-      },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Name",
-      "defaultModel": "Default Model",
-      "defaultModelPlaceholder": "Select model",
-      "descriptionSection": "Description",
-      "world": "World",
-      "worldPlaceholder": "Fantasy",
-      "location": "Location",
-      "locationPlaceholder": "Enchanted Forest",
-      "locationSublabel": "Where does the story take place?",
-      "aiRole": "AI's Role",
-      "aiRolePlaceholder": "Eldara, a mischievous forest sprite",
-      "aiRoleSublabel": "Set the role for character",
-      "userRole": "User Role",
-      "userRolePlaceholder": "Sir Elandor, a brave knight",
-      "userRoleSublabel": "Who are you?",
-      "situation": "Situation",
-      "situationPlaceholder": "Rescue mission, solving a mystery",
-      "toneStyle": "Tone/Style",
-      "toneStylePlaceholder": "Serious",
-      "validation": {
-        "promptModelRequired": "Prompt generation model is required"
-      },
-      "create": "Create"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Create Lookie Pal",
-        "edit": "Edit Lookie Pal"
-      },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Enter a name for your Lookie Pal",
-      "visionModel": "Vision Model",
-      "visionModelPlaceholder": "Select a vision model",
-      "requiredModelsSection": "Required Models",
-      "captureInterval": "Capture Interval",
-      "captureIntervalHelper": "Time between automatic captures in milliseconds",
-      "create": "Create"
     },
     "sendButton": {
       "accessibilityLabel": "Send"
@@ -999,54 +846,6 @@
         "edit": "Edit",
         "reportContent": "Report Content"
       }
-    },
-    "palHeaderRight": {
-      "exportAllPals": "Export all pals",
-      "importPals": "Import pals",
-      "importSuccess": "Successfully imported {{count}} pal(s).",
-      "importError": "Failed to import pals. Please check the file format."
-    }
-  },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "My Pals (local)",
-      "myLibrary": "My Library (palshub.ai)",
-      "discoverPals": "Discover Pals (palshub.ai)"
-    },
-    "systemPrompt": "System Prompt",
-    "videoAnalysis": "Video Analysis",
-    "videoAnalysisDescription": "This is a video-based AI assistant that provides real-time commentary on video streams from your device's camera.",
-    "captureInterval": "Capture Interval",
-    "captureIntervalUnit": "ms",
-    "world": "World",
-    "toneStyle": "Tone/Style",
-    "aiRole": "AI's Role",
-    "userRole": "My Role",
-    "prompt": "Prompt",
-    "assistant": "Assistant",
-    "roleplay": "Roleplay",
-    "video": "Video",
-    "deletePal": "Delete Pal",
-    "deletePalMessage": "Are you sure you want to delete this pal?",
-    "missingModel": "Missing Model",
-    "missingModelMessage": "The default model \"{{modelName}}\" for this pal is not available. Please download it in the edit sheet or select a different model.",
-    "search": "Search",
-    "addPal": "Add Pal",
-    "deletePalConfirmation": "Are you sure you want to delete \"{{palName}}\"?",
-    "filters": {
-      "all": "All",
-      "myPals": "My Pals",
-      "local": "Local",
-      "video": "Video",
-      "free": "Free",
-      "premium": "Premium"
-    },
-    "labels": {
-      "free": "Free",
-      "premium": "Premium",
-      "private": "Private",
-      "download": "Download",
-      "getFree": "Get Free"
     }
   },
   "validation": {
@@ -1073,36 +872,9 @@
     "promptPlaceholder": "What do you want to know about this image?",
     "takePhoto": "Camera"
   },
-  "video": {
-    "permissionTitle": "Camera Permission Required",
-    "permissionMessage": "PocketPal needs camera access for video analysis",
-    "requestingPermission": "Requesting camera permission...",
-    "noDevice": "No camera device found",
-    "errorTitle": "Camera Error",
-    "errorMessage": "An error occurred with the camera",
-    "flip": "Flip",
-    "analyzing": "Analyzing video...",
-    "startCamera": "Start Camera",
-    "stopCamera": "Stop Camera",
-    "promptPlaceholder": "What do you want to know about this video?",
-    "captureInterval": "Capture Interval",
-    "captureIntervalUnit": "ms",
-    "liveCommentary": "Live Commentary",
-    "emptyPlaceholder": {
-      "title": "Welcome to Lookie",
-      "subtitle": "Private On-Device Real-time Video Analysis",
-      "experimentalNotice": "This is an experimental feature. Accuracy depends on the selected model, speed depends on your device specs, and some models might fail.",
-      "howToUse": "How to use:",
-      "step1": "• Edit the prompt (optional) to guide the analysis",
-      "step2": "• Tap the camera button to start live video analysis",
-      "step3": "• Adjust snapshot frequency while camera is active",
-      "step4": "• Switch to another pal for normal text chat"
-    }
-  },
   "screenTitles": {
     "chat": "Chat",
     "models": "Models",
-    "pals": "Pals (experimental)",
     "benchmark": "Benchmark",
     "settings": "Settings",
     "appInfo": "App Info",
@@ -1122,7 +894,6 @@
     "pleaseLoadModel": "Load a model to chat.",
     "multimodalNotEnabled": "Multimodal is not enabled for this model. Images will be displayed but not processed by the AI.",
     "cannotSendWithoutModel": "Load a model first",
-    "toolCompatWarning": "This model may not support tool calling. Results may be unreliable.",
     "softCapWarning": "Start a new chat for best performance.",
     "contextWarning": "This conversation is getting long and may soon run out of room.",
     "contextRemoteHedged": "This reply may have been cut off. Try sending again or shortening the request.",
@@ -1158,21 +929,10 @@
     "increaseContextReloading": "Reloading model with a larger context…",
     "increaseContextSuccess": "Context increased to {{target}} tokens.",
     "increaseContextFailure": "Could not increase the context size. Your previous setting was restored.",
-    "palLoadHint": "This pal tends to need more room than the current context size allows.",
     "generatingPreview": "Generating preview… ({{tokens}} tokens)",
     "generatingPreviewPending": "Generating preview…",
     "toolUsedChip": "used {{name}}",
     "toolErrorBlock": "{{name}} failed",
-    "webSearch": {
-      "searched": "Searched: {{query}}",
-      "noResults": "No results",
-      "noResultsFor": "No results for {{query}}",
-      "resultsCount": "{{count}} results",
-      "resultsCountOne": "1 result",
-      "searchResultsTitle": "Search results",
-      "showResultsAccessibilityLabel": "Show web search results for {{query}}",
-      "openLinkError": "Couldn't open this link."
-    },
     "routerLoading": "Loading model…",
     "routerLoadingPercent": "Loading model · {{percent}}%"
   },
@@ -1495,28 +1255,10 @@
         "balanced": "Balanced",
         "best": "Best"
       },
-      "subtitleTemplate": "{{name}} thinks using a small AI model on your phone - pick one that fits.",
-      "pal": {
-        "pip": {
-          "body": "We found a perfect pal for you - a friendly everyday companion. Smart enough for most things, light enough for any phone."
-        },
-        "codie": {
-          "body": "Meet Codie — your local pair-programmer. Reads code, writes code, explains tricky bits without ever leaving your phone."
-        },
-        "sage": {
-          "body": "Sage is patient, curious, and walks you through ideas step by step. A study buddy you keep in your pocket."
-        },
-        "echo": {
-          "body": "Echo is a versatile roleplay companion — stays in character, paints scenes, follows wherever your story leads."
-        },
-        "muse": {
-          "body": "Muse helps you write. Suggests phrasing, finds the rhythm, and keeps your tone intact."
-        }
-      }
+      "subtitleTemplate": "{{name}} thinks using a small AI model on your phone - pick one that fits."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} is downloading",
     "titleByModel": "{{name}} is downloading",
     "extraInProgress": "+{{count}} more in progress",
     "failedTitle": "Download didn't finish",

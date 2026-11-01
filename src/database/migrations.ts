@@ -163,5 +163,10 @@ export default schemaMigrations({
         ),
       ],
     },
+    // Migration to version 10: Crampon has a single assistant, no Pals
+    {
+      toVersion: 10,
+      steps: [unsafeExecuteSql('DROP TABLE IF EXISTS local_pals;')],
+    },
   ],
 });

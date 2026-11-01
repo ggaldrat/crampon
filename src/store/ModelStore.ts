@@ -48,7 +48,7 @@ import {getRecommendedProjectionModel} from '../utils/multimodalHelpers';
 import {isDraftOnlyModel} from '../utils/mtp';
 import {getOriginalModelName} from '../utils/formatters';
 import {stopQuietly} from '../utils/stopQuietly';
-import type {OnboardingPalModelEntry} from './onboarding/onboardingPals';
+import type {OnboardingModelEntry} from './onboarding/fallbackModels';
 
 import {downloadManager, DownloadCancelledError} from '../services/downloads';
 import {classify, ClassifyPlatform} from '../services/deviceRules/classify';
@@ -243,7 +243,7 @@ class ModelStore {
   inferencing: boolean = false;
   isStreaming: boolean = false;
 
-  // The in-flight chat run or VideoPal completion; release aborts it and
+  // The in-flight chat run; release aborts it and
   // waits for it to end before freeing the context.
   private generationSlot = new GenerationSlot();
   private isReleasingContext = false;
@@ -2946,15 +2946,15 @@ class ModelStore {
   };
 
   /**
-   * Lazy-register a curated onboarding-pal HF entry into `models`.
+   * Lazy-register a curated onboarding HF entry into `models`.
    * Single writer for HF-origin onboarding picks; only call site is
    * `useOnboardingHandlers.finish`. Synthesizes the minimal
    * `{hfModel, modelFile}` pair and delegates to `addHFModel`, which
    * provides idempotency. `siblings: []` keeps `isVisionRepo` false so
    * no projection model materializes (text-only by design).
    */
-  registerOnboardingPalModel = async (
-    entry: OnboardingPalModelEntry,
+  registerOnboardingModel = async (
+    entry: OnboardingModelEntry,
   ): Promise<Model | undefined> => {
     const modelFile: ModelFile = {
       rfilename: entry.filename,

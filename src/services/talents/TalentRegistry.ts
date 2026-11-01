@@ -3,9 +3,8 @@ import {TalentEngine} from './types';
 /**
  * Name-keyed registry for talent engines.
  *
- * Any Pal that declares a talent in its `pact.talents` can invoke an engine
- * registered under that name. There is NO Pal-id coupling: engines are generic
- * across Pals, and a Pal opts in by naming the talent.
+ * A run that advertises a talent (its tool schema) can invoke the engine
+ * registered under that name.
  */
 export class TalentRegistry {
   private engines = new Map<string, TalentEngine>();

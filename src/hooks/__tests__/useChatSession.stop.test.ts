@@ -9,7 +9,7 @@ import {
 } from '../../../jest/fixtures/models';
 
 import {useChatSession} from '../useChatSession';
-import {chatSessionStore, modelStore, palStore} from '../../store';
+import {chatSessionStore, modelStore} from '../../store';
 import type {
   CompletionResult,
   CompletionStreamData,
@@ -62,7 +62,6 @@ function renderSession() {
 }
 
 beforeEach(() => {
-  palStore.pals = [] as any;
   chatSessionStore.sessions = sessionFixtures as any;
   chatSessionStore.activeSessionId = 'session-1';
   modelStore.models = modelsList as any;

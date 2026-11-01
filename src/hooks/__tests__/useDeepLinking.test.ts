@@ -19,7 +19,7 @@ import {renderHook} from '@testing-library/react-native';
 import {useDeepLinking} from '../useDeepLinking';
 import {ROUTES} from '../../utils/navigationConstants';
 import {deepLinkService} from '../../services/DeepLinkService';
-import {chatSessionStore, palStore} from '../../store';
+import {deepLinkStore} from '../../store';
 
 // Stable navigate spy that we re-assert across the file. The hook reads
 // `useNavigation()` once per render, so capturing the function from a
@@ -308,15 +308,15 @@ describe('useDeepLinking — deep-link routing', () => {
     jest.spyOn(Linking, 'getInitialURL').mockResolvedValue(null);
   });
 
-  it('routes the chat host link to the Pal', async () => {
-    (palStore as any).pals = [{id: 'p1'}];
+  it('prefills the chat host link message and opens the chat', async () => {
     renderHook(() => useDeepLinking());
     await getHandler()({
-      url: 'pocketpal://chat?palId=p1',
+      url: 'pocketpal://chat?message=hello',
       scheme: 'pocketpal',
       host: 'chat',
-      queryParams: {palId: 'p1'},
+      queryParams: {message: 'hello'},
     });
-    expect(chatSessionStore.setActivePal).toHaveBeenCalledWith('p1');
+    expect(deepLinkStore.setPendingMessage).toHaveBeenCalledWith('hello');
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.CHAT);
   });
 });

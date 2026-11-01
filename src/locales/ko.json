@@ -159,7 +159,6 @@
     "multimodalNotEnabled": "이 모델은 멀티모달 기능이 활성화되지 않았습니다. 이미지는 표시되지만 AI가 처리하지는 않습니다.",
     "cannotSendWithoutModel": "모델을 먼저 로드해 주세요",
     "toolCallTruncated": "도구 호출 중단됨 — 모델의 컨텍스트 용량이 부족한 것으로 보입니다. 더 큰 컨텍스트를 지정하거나 요청 크기를 줄이십시오.",
-    "toolCompatWarning": "이 모델은 도구 호출을 지원하지 않을 수 있어, 결과가 정확하지 않을 수 있습니다.",
     "softCapWarning": "최상의 성능을 위해 새로운 대화를 시작하세요.",
     "generatingPreview": "미리보기 생성 중… ({{tokens}} 토큰)",
     "generatingPreviewPending": "미리보기 생성 중…",
@@ -198,17 +197,6 @@
     "increaseContextReloading": "더 큰 컨텍스트로 모델을 다시 불러오는 중…",
     "increaseContextSuccess": "컨텍스트가 {{target}} 토큰으로 늘어났습니다.",
     "increaseContextFailure": "컨텍스트 크기를 늘릴 수 없습니다. 이전 설정으로 복원되었습니다.",
-    "palLoadHint": "이 Pal은 현재 컨텍스트 크기보다 더 많은 공간이 필요한 편입니다.",
-    "webSearch": {
-      "searched": "검색함: {{query}}",
-      "noResults": "결과 없음",
-      "noResultsFor": "{{query}}에 대한 결과 없음",
-      "resultsCount": "결과 {{count}}개",
-      "resultsCountOne": "결과 1개",
-      "searchResultsTitle": "검색 결과",
-      "showResultsAccessibilityLabel": "{{query}}에 대한 웹 검색 결과 표시",
-      "openLinkError": "이 링크를 열 수 없습니다."
-    },
     "contextFullRemote": "대화 공간이 가득 찼습니다. 새 채팅을 시작하세요.",
     "speculativeInitFailed": "이 기기에서 이 모델의 추측 디코딩을 시작할 수 없어요 — 드래프트 컨텍스트에 필요한 메모리가 부족한 것 같아요. 설정 → 고급 설정에서 추측 디코딩을 끄고 다시 시도해 주세요."
   },
@@ -288,9 +276,7 @@
       "activateModelTitle": "시작하려면 모델을 활성화하세요",
       "loading": "로딩 중...",
       "activateModelDescription": "모델을 선택하고 다운로드하세요. 다운로드가 완료되면 모델 옆의 불러오기 버튼을 눌러 채팅을 시작할 수 있습니다.",
-      "activateModelButton": "모델 선택",
-      "gettingReadyTitle": "{{name}}이 준비 중임",
-      "gettingReadyDescription": "Pal이 채팅할 수 있게 준비되면 바로 알려드릴게요. 위쪽 배너를 탭하여 진행 상황을 확인하세요."
+      "activateModelButton": "모델 선택"
     },
     "chatInput": {
       "inputPlaceholder": "메시지",
@@ -318,7 +304,6 @@
         "title": "성공",
         "message": "변경사항이 향후 모든 세션에 적용됩니다."
       },
-      "palSettings": "Pal 설정",
       "settingsSource": "설정 소스"
     },
     "modelsResetDialog": {
@@ -337,19 +322,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "파일"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "모델",
-      "palsTab": "Pals",
-      "noPal": "Pal 없음",
-      "disablePal": "활성화된 Pal 해제",
-      "noDescription": "설명 없음",
-      "assistantType": "어시스턴트",
-      "roleplayType": "역할극",
-      "confirmationTitle": "확인",
-      "modelSwitchMessage": "해당 Pal에 설정된 기본 모델({{modelName}})이 현재 모델과 다릅니다. 모델을 전환하겠습니까?",
-      "keepButton": "유지",
-      "switchButton": "전환",
-      "videoType": "비디오"
+    "chatModelPickerSheet": {
+      "modelsTab": "모델"
     },
     "headerRight": {
       "deleteChatTitle": "채팅 삭제하기",
@@ -381,51 +355,6 @@
         "xhigh": "매우 높음",
         "max": "최대"
       }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "어시스턴트 Pal 만들기",
-        "edit": "어시스턴트 Pal 편집"
-      },
-      "palName": "Pal 이름",
-      "palNamePlaceholder": "이름",
-      "defaultModel": "기본 모델",
-      "defaultModelPlaceholder": "모델 선택",
-      "validation": {
-        "generatingPromptRequired": "답변 생성 프롬프트를 입력해 주세요",
-        "promptModelRequired": "프롬프트 생성을 위한 모델을 선택해 주세요"
-      },
-      "create": "만들기"
-    },
-    "roleplayPalSheet": {
-      "palName": "Pal 이름",
-      "palNamePlaceholder": "이름",
-      "defaultModel": "기본 모델",
-      "defaultModelPlaceholder": "모델 선택",
-      "title": {
-        "create": "역할극 Pal 만들기",
-        "edit": "역할극 Pal 편집"
-      },
-      "descriptionSection": "설명",
-      "world": "세계관",
-      "worldPlaceholder": "판타지",
-      "location": "위치",
-      "locationPlaceholder": "마법의 숲",
-      "locationSublabel": "이야기의 배경은 어디인가요?",
-      "aiRole": "AI의 역할",
-      "aiRolePlaceholder": "엘다라, 장난기 가득한 숲의 요정",
-      "aiRoleSublabel": "캐릭터의 역할을 설정하세요",
-      "userRole": "사용자 역할",
-      "userRolePlaceholder": "엘란도르 경, 용감한 기사",
-      "userRoleSublabel": "당신은 누구인가요?",
-      "situation": "상황",
-      "situationPlaceholder": "구조 임무, 미스터리 해결 등",
-      "toneStyle": "말투 및 스타일",
-      "toneStylePlaceholder": "진지하게",
-      "validation": {
-        "promptModelRequired": "프롬프트 생성을 위한 모델을 선택해 주세요"
-      },
-      "create": "만들기"
     },
     "modelNotAvailable": {
       "noModelsDownloaded": "아직 다운로드된 모델이 없습니다. 먼저 모델을 다운로드해 주세요.",
@@ -600,80 +529,11 @@
         "message": "리포트 제출에 실패했습니다. 나중에 다시 시도해 주세요."
       }
     },
-    "palGenerationSettingsSheet": {
-      "title": "생성 설정 - {{palName}}",
-      "invalidValues": "유효하지 않은 값",
-      "invalidNumericValuesMessage": "유효한 숫자를 입력해 주세요",
-      "pleaseCorrect": "아래 내용을 수정해 주세요:",
-      "ok": "확인",
-      "error": "오류",
-      "failedToSave": "Pal 설정 저장에 실패했습니다.",
-      "resetToGlobal": "전체 기본값으로 재설정",
-      "resetToSystem": "시스템 기본값으로 초기화",
-      "clearPalSettings": "Pal 설정 지우기",
-      "customSettingsFor": "{{palName}} 개별 설정",
-      "inheritedSettingsFor": "{{palName}}에 적용된 기본 설정"
-    },
     "downloadErrorDialog": {
       "downloadFailedTitle": "다운로드 실패",
       "downloadFailedMessage": "모델 다운로드 실패: {{message}}",
       "tryAgain": "다시 시도",
       "viewOnHuggingFace": "HF에서 모델 보기 ↗"
-    },
-    "palSheet": {
-      "title": {
-        "edit": "Pal 수정",
-        "newPal": "새 Pal 만들기",
-        "newVideoPal": "새 Video Pal 만들기"
-      },
-      "description": "설명",
-      "descriptionPlaceholder": "Pal에 대한 간단한 설명을 입력해 주세요",
-      "parameters": "파라미터",
-      "generationSettings": "생성 설정",
-      "configureGenerationSettings": "생성 설정 구성",
-      "validation": {
-        "nameRequired": "이름을 입력해 주세요",
-        "generatingPromptRequired": "AI 프롬프트를 사용한다면 답변 생성 프롬프트를 입력해 주세요",
-        "promptModelRequired": "AI 프롬프트를 사용한다면 프롬프트 생성을 위한 모델를 선택해 주세요"
-      },
-      "talents": "능력",
-      "talentNames": {
-        "render_html": "HTML 미리보기",
-        "calculate": "수학 표현식",
-        "datetime": "날짜와 시간",
-        "web_search": "웹 검색",
-        "read_url": "웹 페이지 읽기"
-      },
-      "talentDescriptions": {
-        "render_html": "채팅 내 HTML 문서 인라인 렌더링",
-        "calculate": "수학 표현식 계산",
-        "datetime": "현재 날짜와 시간 가져오기",
-        "web_search": "최신 정보를 인터넷에서 검색 (설정에서 API 키 필요)",
-        "read_url": "웹 페이지의 전체 내용 읽기 (설정에서 API 키 필요)"
-      },
-      "greeting": {
-        "removePromptLabel": "프롬프트 제거",
-        "sectionLabel": "인사말",
-        "textLabel": "환영 메시지",
-        "textPlaceholder": "채팅 시작 전 이 Pal이 뭐라고 말해야 할까요?",
-        "suggestedPromptsLabel": "제안된 프롬프트",
-        "addPromptButton": "프롬프트 추가",
-        "promptPlaceholder": "칩에 대한 짧은 프롬프트"
-      }
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Lookie Pal 만들기",
-        "edit": "Lookie Pal 수정"
-      },
-      "palName": "Pal 이름",
-      "palNamePlaceholder": "Lookie Pal의 이름을 입력하세요",
-      "visionModel": "시각 모델",
-      "visionModelPlaceholder": "시각 모델을 선택하세요",
-      "requiredModelsSection": "필요한 모델",
-      "captureInterval": "촬영 간격",
-      "captureIntervalHelper": "자동 촬영이 진행되는 시간(밀리세컨드 단위) 간격입니다.",
-      "create": "만들기"
     },
     "chatView": {
       "menuItems": {
@@ -683,12 +543,6 @@
         "edit": "수정",
         "reportContent": "콘텐츠 리포트"
       }
-    },
-    "palHeaderRight": {
-      "exportAllPals": "모든 Pal 내보내기",
-      "importPals": "Pal 가져오기",
-      "importSuccess": "{{count}}개의 Pal을 성공적으로 가져왔습니다.",
-      "importError": "Pal을 가져오지 못했습니다. 파일 형식을 확인해 주세요."
     },
     "bubble": {
       "msPerToken": "{{value}}ms/토큰",
@@ -1020,7 +874,6 @@
   "screenTitles": {
     "chat": "채팅",
     "models": "모델",
-    "pals": "Pals (실험 기능)",
     "benchmark": "벤치마크",
     "settings": "설정",
     "appInfo": "앱 정보",
@@ -1150,31 +1003,6 @@
     "requestTimeoutPlaceholder": "선택 사항 - 비워 두면 기본값 적용",
     "serverType": "서버 유형",
     "serverTypeHelp": "자동으로 감지된 설정입니다. 틀린 부분이 있다면 변경해 주세요.",
-    "internetSearch": {
-      "title": "인터넷 검색",
-      "description": "Pal이 자체 도구로 웹을 검색할 수 있도록 해보세요. 본인의 API 키만 가져오시면 됩니다 — PocketPal은 사용자의 키를 저장하거나 쿼리를 라우팅하지 않습니다.",
-      "providerLabel": "검색 제공자",
-      "providerGated": "출시 예정",
-      "keyLabel": "API 키",
-      "keyIsSet": "{{provider}}의 키가 설정되었습니다.",
-      "keyNotSet": "{{provider}}의 키가 설정되지 않았습니다.",
-      "setKeyButton": "키 설정",
-      "updateKeyButton": "키 업데이트",
-      "clearKeyButton": "키 삭제",
-      "keyInputPlaceholder": "{{provider}}의 API 키를 붙여넣으세요",
-      "keyUpdateError": "키를 업데이트하지 못했어요. 다시 시도해 주세요.",
-      "showKeyAccessibilityLabel": "API 키 표시",
-      "hideKeyAccessibilityLabel": "API 키 숨기기",
-      "resultCountLabel": "검색당 결과 수",
-      "resultCountDescription": "결과가 적을수록 모델의 컨텍스트에 더 많은 공간이 유지됩니다.",
-      "consentTitle": "검색어는 기기 외부로 전송됩니다",
-      "consentDescription": "Pal이 웹을 검색하면 여러분의 검색어가 인터넷을 통해 선택한 제공자로 전송돼요. Pal이 페이지를 읽을 때, 선택한 제공자에 자체 리더가 없으면 URL과 페이지 내용이 대신 기본 리더 서비스(r.jina.ai)로 전송될 수 있어요. 키와 검색어는 절대 PocketPal로 전송되지 않아요.",
-      "consentAccept": "확인했습니다",
-      "consentRequired": "키를 설정하고 검색을 활성화하려면 위 고지에 동의해 주세요.",
-      "consentGivenTitle": "웹 검색이 활성화됨",
-      "consentGivenDescription": "위에서 설명한 대로 쿼리와 페이지 읽기 결과가 기기를 벗어날 수 있습니다.",
-      "consentRevoke": "동의 철회"
-    },
     "languageSheetTitle": "언어",
     "languageSearchPlaceholder": "언어 검색",
     "speculativeDecoding": "추측 디코딩",
@@ -1205,74 +1033,6 @@
     "userRoleRequired": "사용자 역할을 입력해 주세요",
     "situationRequired": "상황을 입력해 주세요",
     "toneStyleRequired": "말투 및 스타일을 입력해 주세요"
-  },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "내 Pal (로컬)",
-      "myLibrary": "내 라이브러리 (palshub.ai)",
-      "discoverPals": "Pals 둘러보기 (palshub.ai)"
-    },
-    "systemPrompt": "시스템 프롬프트",
-    "videoAnalysis": "비디오 분석",
-    "videoAnalysisDescription": "기기 카메라의 비디오 스트림을 실시간으로 분석하고 해설해 주는 비디오 기반 AI 어시스턴트입니다.",
-    "captureInterval": "촬영 간격",
-    "captureIntervalUnit": "ms",
-    "world": "세계관",
-    "toneStyle": "말투 및 스타일",
-    "aiRole": "AI의 역할",
-    "userRole": "내 역할",
-    "roleplay": "역할극",
-    "prompt": "프롬프트",
-    "assistant": "어시스턴트",
-    "video": "비디오",
-    "deletePal": "Pal 삭제",
-    "deletePalMessage": "이 Pal을 삭제하시겠습니까?",
-    "missingModel": "모델 없음",
-    "missingModelMessage": "이 Pal의 기본 모델 \"{{modelName}}\"은(는) 사용할 수 없습니다. 편집 시트에서 다운로드하시거나 다른 모델을 선택해 주세요.",
-    "search": "검색",
-    "addPal": "Pal 만들기",
-    "deletePalConfirmation": "\"{{palName}}\"을(를) 삭제하시겠습니까?",
-    "filters": {
-      "all": "전체",
-      "myPals": "내 Pal",
-      "local": "로컬",
-      "video": "비디오",
-      "free": "무료",
-      "premium": "프리미엄"
-    },
-    "labels": {
-      "free": "무료",
-      "premium": "프리미엄",
-      "private": "비공개",
-      "download": "다운로드",
-      "getFree": "무료로 얻기"
-    }
-  },
-  "video": {
-    "captureInterval": "촬영 간격",
-    "captureIntervalUnit": "ms",
-    "permissionTitle": "카메라 권한 필요",
-    "permissionMessage": "PocketPal은 비디오 분석을 위해 카메라 접근 권한이 필요합니다.",
-    "requestingPermission": "카메라 권한 요청 중...",
-    "noDevice": "카메라 기기를 찾을 수 없습니다",
-    "errorTitle": "카메라 오류",
-    "errorMessage": "카메라에 오류가 발생했습니다.",
-    "startCamera": "카메라 시작",
-    "stopCamera": "카메라 중지",
-    "emptyPlaceholder": {
-      "step2": "• 카메라 버튼을 눌러 실시간 비디오 분석을 시작하십시오.",
-      "step3": "• 카메라가 활성화된 동안 스냅샷 빈도를 조정하십시오.",
-      "title": "Lookie에 오신 것을 환영합니다",
-      "subtitle": "비공개 온디바이스 실시간 비디오 분석",
-      "experimentalNotice": "이 기능은 실험적 기능입니다. 정확도는 선택한 모델에 따라 다를 수 있으며, 기기 사양에 따라 속도에 차이가 있을 수 있습니다. 또한 일부 모델은 작동하지 않을 수 있습니다.",
-      "howToUse": "사용 방법:",
-      "step1": "• 분석 방향을 설정하려면 프롬프트를 수정하세요. (선택 사항)",
-      "step4": "• 일반적인 텍스트 기반의 대화를 원하시면 다른 Pal로 전환해 보세요."
-    },
-    "flip": "회전",
-    "analyzing": "비디오 분석 중...",
-    "promptPlaceholder": "이 비디오에 대해 무엇을 알고 싶나요?",
-    "liveCommentary": "실시간 해설"
   },
   "camera": {
     "permissionTitle": "카메라 권한 필요",
@@ -1470,28 +1230,10 @@
         "balanced": "균형",
         "best": "최고"
       },
-      "subtitleTemplate": "{{name}}은(는) 휴대폰에서 작은 AI 모델로 생각해요 - 잘 맞는 모델을 골라 주세요.",
-      "pal": {
-        "pip": {
-          "body": "여러분에게 딱 맞는 Pal을 찾았어요 - 친근한 일상 동반자예요. 대부분의 일을 똑똑하게 처리하면서도, 어떤 휴대폰에서나 가볍게 돌아가요."
-        },
-        "codie": {
-          "body": "Codie를 소개할게요 — 휴대폰 안의 페어 프로그래머예요. 코드를 읽고, 코드를 쓰고, 까다로운 부분을 설명해 줘요. 그 모든 일이 휴대폰을 벗어나지 않아요."
-        },
-        "sage": {
-          "body": "Sage는 인내심 있고 호기심 많아서, 개념을 하나씩 차근차근 안내해 줘요. 주머니 속에 두는 학습 친구예요."
-        },
-        "echo": {
-          "body": "Echo는 다재다능한 역할극 동반자예요 — 캐릭터를 끝까지 유지하고, 장면을 생생하게 그려내며, 이야기가 어디로 흘러가든 함께해요."
-        },
-        "muse": {
-          "body": "Muse는 글쓰기를 도와줘요. 표현을 제안하고, 리듬을 찾아주며, 여러분의 어조를 그대로 살려줘요."
-        }
-      }
+      "subtitleTemplate": "{{name}}은(는) 휴대폰에서 작은 AI 모델로 생각해요 - 잘 맞는 모델을 골라 주세요."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}}이 다운로드 중",
     "titleByModel": "{{name}}이 다운로드 중",
     "extraInProgress": "+{{count}}개 추가 진행 중",
     "failedTitle": "다운로드가 완료되지 않았습니다",

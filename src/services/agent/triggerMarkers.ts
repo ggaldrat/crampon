@@ -43,7 +43,7 @@ function extractTextMarkers(
 
 export function createTriggerMarkerCache(): TriggerMarkerCache {
   // Map key: `${contextId}::${sortedToolNames.join(',')}`. Tools list is
-  // part of the key because different Pals advertise different schemas
+  // part of the key because different runs may advertise different schemas
   // and the resulting grammar may differ across them.
   const cache = new Map<string, string[]>();
 

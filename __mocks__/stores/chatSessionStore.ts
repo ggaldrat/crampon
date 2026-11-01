@@ -77,7 +77,6 @@ export const mockChatSessionStore = {
   duplicateSession: jest.fn().mockResolvedValue(undefined),
   setNewChatCompletionSettings: jest.fn().mockResolvedValue(undefined),
   resetNewChatCompletionSettings: jest.fn().mockResolvedValue(undefined),
-  setActivePal: jest.fn().mockResolvedValue(undefined),
   resolveCompletionSettings: jest
     .fn()
     .mockResolvedValue(mockDefaultCompletionSettings),
@@ -132,10 +131,8 @@ export const mockChatSessionStore = {
   lastCompletionResult: undefined as CompletionResultSnapshot | undefined,
   dismissedBannerVariants: new Set<BannerVariant>(),
   consecutiveFullFailures: 0,
-  palLoadHintSeen: new Set<string>(),
   recordCompletionSnapshot: jest.fn(),
   setBannerDismissed: jest.fn(),
-  markPalLoadHintSeen: jest.fn(),
 };
 
 Object.defineProperty(mockChatSessionStore, 'isGeneratingToolCall', {
@@ -147,11 +144,6 @@ Object.defineProperty(mockChatSessionStore, 'isGeneratingToolCall', {
 
 Object.defineProperty(mockChatSessionStore, 'currentSessionMessages', {
   get: jest.fn(() => []),
-  configurable: true,
-});
-
-Object.defineProperty(mockChatSessionStore, 'activePalId', {
-  get: jest.fn(() => null),
   configurable: true,
 });
 

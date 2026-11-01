@@ -158,31 +158,6 @@
     "requestTimeoutPlaceholder": "اختیاری - برای مقدار پیش‌فرض خالی بگذارید",
     "serverType": "نوع سرور",
     "serverTypeHelp": "به‌صورت خودکار تشخیص داده می‌شود؛ اگر درست نیست تغییرش بدهید.",
-    "internetSearch": {
-      "title": "جستجوی اینترنتی",
-      "description": "بگذارید پَل‌ها با ابزارهای خودشان در وب جستجو کنند. کلید API خودتان را بیاورید — PocketPal هرگز کلیدهای شما را نگه نمی‌دارد و درخواست‌هایتان را هدایت نمی‌کند.",
-      "providerLabel": "ارائه‌دهنده جستجو",
-      "providerGated": "به‌زودی",
-      "keyLabel": "کلید API",
-      "keyIsSet": "کلید برای {{provider}} تنظیم شده است.",
-      "keyNotSet": "کلیدی برای {{provider}} تنظیم نشده است.",
-      "setKeyButton": "تنظیم کلید",
-      "updateKeyButton": "به‌روزرسانی کلید",
-      "clearKeyButton": "پاک کردن کلید",
-      "keyInputPlaceholder": "کلید API {{provider}} خود را جای‌گذاری کنید",
-      "keyUpdateError": "به‌روزرسانی کلید ممکن نشد. لطفاً دوباره تلاش کنید.",
-      "showKeyAccessibilityLabel": "نمایش کلید API",
-      "hideKeyAccessibilityLabel": "مخفی کردن کلید API",
-      "resultCountLabel": "تعداد نتایج در هر جستجو",
-      "resultCountDescription": "نتایج کمتر فضای بیشتری در context مدل باقی می‌گذارد.",
-      "consentTitle": "جستجوها از دستگاه شما خارج می‌شوند",
-      "consentDescription": "وقتی یک پَل در وب جستجو می‌کند، درخواست شما از طریق اینترنت به ارائه‌دهنده انتخاب‌شده ارسال می‌شود. وقتی یک پَل صفحه‌ای را می‌خواند، اگر ارائه‌دهنده انتخاب‌شده خواننده اختصاصی نداشته باشد، ممکن است به‌جای آن آدرس و محتوای صفحه به یک سرویس خواننده پیش‌فرض (r.jina.ai) ارسال شود. کلیدها و درخواست‌ها هرگز به PocketPal ارسال نمی‌شوند.",
-      "consentAccept": "متوجه شدم",
-      "consentRequired": "برای تنظیم کلید و فعال‌سازی جستجو، توضیحات بالا را بپذیرید.",
-      "consentGivenTitle": "جستجوی وب فعال است",
-      "consentGivenDescription": "همان‌طور که در بالا توضیح داده شد، درخواست‌ها و خواندن صفحات ممکن است از دستگاه شما خارج شوند.",
-      "consentRevoke": "لغو دسترسی"
-    },
     "languageSheetTitle": "زبان",
     "languageSearchPlaceholder": "جستجوی زبان‌ها",
     "speculativeDecoding": "رمزگشایی گمانه‌زنانه",
@@ -581,9 +556,7 @@
       "activateModelTitle": "برای شروع یک مدل را فعال کنید",
       "activateModelDescription": "مدل را انتخاب و دانلود کنید. بعد از دانلود، روی بارگذاری کنار مدل بزنید و گفتگو را شروع کنید.",
       "activateModelButton": "انتخاب مدل",
-      "loading": "در حال بارگذاری...",
-      "gettingReadyTitle": "{{name}} در حال آماده‌شدن است",
-      "gettingReadyDescription": "همین که پَل شما آماده گفتگو شد به شما خبر می‌دهیم. روی نوار بالای صفحه بزنید تا روند کار را ببینید."
+      "loading": "در حال بارگذاری..."
     },
     "chatInput": {
       "inputPlaceholder": "پیام",
@@ -669,22 +642,7 @@
         "title": "انجام شد",
         "message": "این تنظیمات روی تمام جلسات آینده اعمال خواهد شد"
       },
-      "palSettings": "تنظیمات پَل",
       "settingsSource": "منبع تنظیمات"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "تنظیمات تولید متن - {{palName}}",
-      "invalidValues": "مقادیر نامعتبر",
-      "invalidNumericValuesMessage": "باید یک عدد معتبر باشد",
-      "pleaseCorrect": "لطفاً موارد زیر را اصلاح کنید:",
-      "ok": "باشه",
-      "error": "خطا",
-      "failedToSave": "ذخیره تنظیمات پَل ممکن نشد",
-      "resetToGlobal": "بازنشانی به پیش‌فرض کلی",
-      "resetToSystem": "بازنشانی به پیش‌فرض سیستم",
-      "clearPalSettings": "پاک‌سازی تنظیمات پَل",
-      "customSettingsFor": "تنظیمات سفارشی برای {{palName}}",
-      "inheritedSettingsFor": "تنظیمات ارثی برای {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "چت"
@@ -692,19 +650,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "فایل"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "مدل‌ها",
-      "palsTab": "پَل‌ها",
-      "noPal": "بدون پَل",
-      "disablePal": "غیرفعال‌سازی پَل فعال",
-      "noDescription": "بدون توضیحات",
-      "assistantType": "دستیار",
-      "roleplayType": "نقش‌آفرینی",
-      "videoType": "ویدیو",
-      "confirmationTitle": "تأیید",
-      "modelSwitchMessage": "این پَل مدل پیش‌فرض متفاوتی دارد ({{modelName}}). می‌خواهید به مدل پیش‌فرض پَل تغییر دهید؟",
-      "keepButton": "نگه‌دار",
-      "switchButton": "تغییر بده"
+    "chatModelPickerSheet": {
+      "modelsTab": "مدل‌ها"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "دانلود ناموفق",
@@ -753,62 +700,6 @@
       "proceedWithReset": "ادامه بازنشانی",
       "confirmReset": "تأیید بازنشانی"
     },
-    "palSheet": {
-      "title": {
-        "edit": "ویرایش پَل",
-        "newPal": "پَل جدید",
-        "newVideoPal": "پَل ویدیویی جدید"
-      },
-      "description": "توضیحات",
-      "descriptionPlaceholder": "یک توضیح کوتاه درباره پَل خود بنویسید",
-      "parameters": "پارامترها",
-      "generationSettings": "تنظیمات تولید",
-      "configureGenerationSettings": "پیکربندی تنظیمات تولید",
-      "validation": {
-        "nameRequired": "نام الزامی است",
-        "generatingPromptRequired": "هنگام استفاده از پرامپت هوش مصنوعی، پرامپت تولید الزامی است",
-        "promptModelRequired": "هنگام استفاده از پرامپت هوش مصنوعی، مدل تولید پرامپت الزامی است"
-      },
-      "talents": "توانایی‌ها",
-      "talentNames": {
-        "render_html": "پیش‌نمایش HTML",
-        "calculate": "عبارت‌های ریاضی",
-        "datetime": "تاریخ و زمان",
-        "web_search": "جستجوی وب",
-        "read_url": "خواندن صفحه وب"
-      },
-      "talentDescriptions": {
-        "render_html": "نمایش اسناد HTML به‌صورت درون‌خطی در چت",
-        "calculate": "محاسبه عبارت‌های ریاضی",
-        "datetime": "دریافت تاریخ و زمان فعلی",
-        "web_search": "جستجوی اینترنت برای اطلاعات به‌روز (به کلید API در تنظیمات نیاز دارد)",
-        "read_url": "خواندن کامل محتوای یک صفحه وب (به کلید API در تنظیمات نیاز دارد)"
-      },
-      "greeting": {
-        "sectionLabel": "خوش‌آمدگویی",
-        "textLabel": "پیام خوش‌آمدگویی",
-        "textPlaceholder": "این پَل در چت خالی چه بگوید؟",
-        "suggestedPromptsLabel": "پرامپت‌های پیشنهادی",
-        "addPromptButton": "افزودن پرامپت",
-        "promptPlaceholder": "یک پرامپت کوتاه برای چیپ",
-        "removePromptLabel": "حذف پرامپت"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "ایجاد پَل دستیار",
-        "edit": "ویرایش پَل دستیار"
-      },
-      "palName": "نام پَل",
-      "palNamePlaceholder": "نام",
-      "defaultModel": "مدل پیش‌فرض",
-      "defaultModelPlaceholder": "انتخاب مدل",
-      "validation": {
-        "generatingPromptRequired": "پرامپت تولید الزامی است",
-        "promptModelRequired": "مدل تولید پرامپت الزامی است"
-      },
-      "create": "ایجاد"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "هنوز هیچ مدلی دانلود نکرده‌اید. لطفاً ابتدا یک مدل دانلود کنید.",
       "downloadAModel": "دانلود یک مدل",
@@ -817,50 +708,6 @@
       "recommendedModel": "مدل پیشنهادی",
       "cancelDownload": "لغو دانلود",
       "download": "دانلود"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "ایجاد پَل نقش‌آفرینی",
-        "edit": "ویرایش پَل نقش‌آفرینی"
-      },
-      "palName": "نام پَل",
-      "palNamePlaceholder": "نام",
-      "defaultModel": "مدل پیش‌فرض",
-      "defaultModelPlaceholder": "انتخاب مدل",
-      "descriptionSection": "توضیحات",
-      "world": "دنیا",
-      "worldPlaceholder": "فانتزی",
-      "location": "مکان",
-      "locationPlaceholder": "جنگل افسون‌شده",
-      "locationSublabel": "داستان کجا اتفاق می‌افتد؟",
-      "aiRole": "نقش هوش مصنوعی",
-      "aiRolePlaceholder": "الدارا، یک پری شیطون جنگل",
-      "aiRoleSublabel": "نقش شخصیت را تعیین کنید",
-      "userRole": "نقش کاربر",
-      "userRolePlaceholder": "سِر الاندور، یک شوالیه شجاع",
-      "userRoleSublabel": "شما چه کسی هستید؟",
-      "situation": "موقعیت",
-      "situationPlaceholder": "مأموریت نجات، حل یک معما",
-      "toneStyle": "لحن/سبک",
-      "toneStylePlaceholder": "جدی",
-      "validation": {
-        "promptModelRequired": "مدل تولید پرامپت الزامی است"
-      },
-      "create": "ایجاد"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "ایجاد پَل Lookie",
-        "edit": "ویرایش پَل Lookie"
-      },
-      "palName": "نام پَل",
-      "palNamePlaceholder": "یک نام برای پَل Lookie خود وارد کنید",
-      "visionModel": "مدل بینایی",
-      "visionModelPlaceholder": "یک مدل بینایی انتخاب کنید",
-      "requiredModelsSection": "مدل‌های مورد نیاز",
-      "captureInterval": "فاصله زمانی عکس‌برداری",
-      "captureIntervalHelper": "زمان بین عکس‌برداری‌های خودکار بر حسب میلی‌ثانیه",
-      "create": "ایجاد"
     },
     "sendButton": {
       "accessibilityLabel": "ارسال"
@@ -954,12 +801,6 @@
         "reportContent": "گزارش محتوا"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "خروجی از همه پَل‌ها",
-      "importPals": "وارد کردن پَل‌ها",
-      "importSuccess": "{{count}} پَل با موفقیت وارد شد.",
-      "importError": "وارد کردن پَل‌ها انجام نشد. لطفاً فرمت فایل را بررسی کنید."
-    },
     "bubble": {
       "msPerToken": "{{value}}ms/توکن",
       "tokensPerSec": "{{value}} توکن/ثانیه",
@@ -989,48 +830,6 @@
       "resetToServerDefaultAccessibilityLabel": "بازنشانی {{name}} به پیش‌فرض سرور، {{value}}"
     }
   },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "پَل‌های من (محلی)",
-      "myLibrary": "کتابخانه من (palshub.ai)",
-      "discoverPals": "کشف پَل‌ها (palshub.ai)"
-    },
-    "systemPrompt": "پرامپت سیستم",
-    "videoAnalysis": "تحلیل ویدیو",
-    "videoAnalysisDescription": "این یک دستیار هوش مصنوعی مبتنی بر ویدیو است که تحلیل لحظه‌ای از استریم ویدیویی دوربین دستگاه شما ارائه می‌دهد.",
-    "captureInterval": "فاصله زمانی تصویربرداری",
-    "captureIntervalUnit": "ms",
-    "world": "دنیا",
-    "toneStyle": "لحن/سبک",
-    "aiRole": "نقش هوش مصنوعی",
-    "userRole": "نقش من",
-    "prompt": "پرامپت",
-    "assistant": "دستیار",
-    "roleplay": "نقش‌آفرینی",
-    "video": "ویدیو",
-    "deletePal": "حذف پَل",
-    "deletePalMessage": "آیا مطمئنید می‌خواهید این پَل را حذف کنید؟",
-    "missingModel": "مدل موجود نیست",
-    "missingModelMessage": "مدل پیش‌فرض «{{modelName}}» برای این پَل در دسترس نیست. لطفاً آن را در صفحه ویرایش دانلود کنید یا مدل دیگری انتخاب کنید.",
-    "search": "جستجو",
-    "addPal": "افزودن پَل",
-    "deletePalConfirmation": "آیا مطمئنید می‌خواهید «{{palName}}» را حذف کنید؟",
-    "filters": {
-      "all": "همه",
-      "myPals": "پَل‌های من",
-      "local": "محلی",
-      "video": "ویدیو",
-      "free": "رایگان",
-      "premium": "ویژه"
-    },
-    "labels": {
-      "free": "رایگان",
-      "premium": "ویژه",
-      "private": "خصوصی",
-      "download": "دانلود",
-      "getFree": "دریافت رایگان"
-    }
-  },
   "validation": {
     "nameRequired": "نام الزامی است",
     "systemPromptRequired": "پرامپت سیستم الزامی است",
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "درباره این تصویر چه می‌خواهید بدانید؟",
     "takePhoto": "دوربین"
   },
-  "video": {
-    "permissionTitle": "دسترسی به دوربین لازم است",
-    "permissionMessage": "PocketPal برای تحلیل ویدیو به دسترسی دوربین نیاز دارد",
-    "requestingPermission": "درخواست دسترسی به دوربین...",
-    "noDevice": "دوربینی یافت نشد",
-    "errorTitle": "خطای دوربین",
-    "errorMessage": "خطایی در دوربین رخ داد",
-    "flip": "چرخش",
-    "analyzing": "در حال تحلیل ویدیو...",
-    "startCamera": "شروع دوربین",
-    "stopCamera": "توقف دوربین",
-    "promptPlaceholder": "درباره این ویدیو چه می‌خواهید بدانید؟",
-    "captureInterval": "فاصله زمانی تصویربرداری",
-    "captureIntervalUnit": "ms",
-    "liveCommentary": "تفسیر زنده",
-    "emptyPlaceholder": {
-      "title": "به Lookie خوش آمدید",
-      "subtitle": "تحلیل ویدیوی لحظه‌ای و خصوصی روی دستگاه",
-      "experimentalNotice": "این یک قابلیت آزمایشی است. دقت به مدل انتخاب‌شده، سرعت به مشخصات دستگاه شما بستگی دارد و برخی مدل‌ها ممکن است کار نکنند.",
-      "howToUse": "نحوه استفاده:",
-      "step1": "• پرامپت را ویرایش کنید (اختیاری) تا تحلیل را هدایت کنید",
-      "step2": "• دکمه دوربین را بزنید تا تحلیل زنده ویدیو شروع شود",
-      "step3": "• فرکانس تصویربرداری را هنگام فعال بودن دوربین تنظیم کنید",
-      "step4": "• به پَل دیگری بروید برای چت متنی معمولی"
-    }
-  },
   "screenTitles": {
     "chat": "چت",
     "models": "مدل‌ها",
-    "pals": "پَل‌ها (آزمایشی)",
     "benchmark": "بنچمارک",
     "settings": "تنظیمات",
     "appInfo": "درباره برنامه",
@@ -1103,7 +875,6 @@
     "multimodalNotEnabled": "قابلیت چندرسانه‌ای برای این مدل فعال نیست. تصاویر نمایش داده می‌شوند اما توسط هوش مصنوعی پردازش نمی‌شوند.",
     "cannotSendWithoutModel": "ابتدا یک مدل بارگذاری کنید",
     "toolCallTruncated": "فراخوانی ابزار قطع شد — احتمالاً فضای مدل تمام شده. context بزرگ‌تری امتحان کنید یا درخواست کوچک‌تری بدهید.",
-    "toolCompatWarning": "ممکن است این مدل از فراخوانی ابزار پشتیبانی نکند. نتایج ممکن است قابل اعتماد نباشند.",
     "softCapWarning": "برای بهترین عملکرد، یک چت جدید شروع کنید.",
     "contextWarning": "این مکالمه طولانی شده و ممکن است به‌زودی فضایش تمام شود.",
     "contextRemoteHedged": "ممکن است این پاسخ قطع شده باشد. دوباره ارسال کنید یا درخواست را کوتاه‌تر کنید.",
@@ -1138,21 +909,10 @@
     "increaseContextReloading": "در حال بارگذاری مجدد مدل با context بزرگ‌تر…",
     "increaseContextSuccess": "context به {{target}} توکن افزایش یافت.",
     "increaseContextFailure": "افزایش اندازه context ممکن نشد. تنظیم قبلی شما بازگردانده شد.",
-    "palLoadHint": "این پَل معمولاً به فضای بیشتری از اندازه context فعلی نیاز دارد.",
     "generatingPreview": "در حال تولید پیش‌نمایش… ({{tokens}} توکن)",
     "generatingPreviewPending": "در حال تولید پیش‌نمایش…",
     "toolUsedChip": "از {{name}} استفاده شد",
     "toolErrorBlock": "{{name}} ناموفق بود",
-    "webSearch": {
-      "searched": "جستجو شد: {{query}}",
-      "noResults": "نتیجه‌ای یافت نشد",
-      "noResultsFor": "نتیجه‌ای برای {{query}} یافت نشد",
-      "resultsCount": "{{count}} نتیجه",
-      "resultsCountOne": "۱ نتیجه",
-      "searchResultsTitle": "نتایج جستجو",
-      "showResultsAccessibilityLabel": "نمایش نتایج جستجوی وب برای {{query}}",
-      "openLinkError": "باز کردن این لینک ممکن نشد."
-    },
     "contextFullRemote": "گنجایش گفتگو پر شد. یک چت جدید شروع کنید.",
     "speculativeInitFailed": "این دستگاه نتوانست رمزگشایی گمانه‌زنانه را برای این مدل شروع کند — به‌احتمال زیاد حافظه کافی برای context پیش‌نویس وجود ندارد. رمزگشایی گمانه‌زنانه را از مسیر تنظیمات → تنظیمات پیشرفته خاموش کنید و دوباره تلاش کنید."
   },
@@ -1470,28 +1230,10 @@
         "balanced": "متعادل",
         "best": "بهترین"
       },
-      "subtitleTemplate": "{{name}} با یک مدل هوش مصنوعی کوچک روی گوشی‌ات فکر می‌کند - یکی را که مناسب است انتخاب کن.",
-      "pal": {
-        "pip": {
-          "body": "یک پَل عالی برایت پیدا کردیم - یک همراه صمیمی روزمره. به اندازه کافی باهوش برای بیشتر کارها، و به اندازه کافی سبک برای هر گوشی."
-        },
-        "codie": {
-          "body": "با Codie آشنا شو — هم‌برنامه‌نویس محلی تو. کد می‌خواند، کد می‌نویسد و بخش‌های پیچیده را توضیح می‌دهد، بدون اینکه هرگز از گوشی‌ات بیرون برود."
-        },
-        "sage": {
-          "body": "Sage صبور و کنجکاو است و ایده‌ها را قدم‌به‌قدم برایت توضیح می‌دهد. یک همدرس که توی جیبت داری."
-        },
-        "echo": {
-          "body": "Echo یک همراه همه‌فن‌حریف برای نقش‌آفرینی است — در نقش می‌ماند، صحنه‌ها را می‌سازد و هر جا داستانت برود همراهت می‌آید."
-        },
-        "muse": {
-          "body": "Muse در نوشتن کمکت می‌کند. عبارت‌ها را پیشنهاد می‌دهد، ریتم را پیدا می‌کند و لحن تو را حفظ می‌کند."
-        }
-      }
+      "subtitleTemplate": "{{name}} با یک مدل هوش مصنوعی کوچک روی گوشی‌ات فکر می‌کند - یکی را که مناسب است انتخاب کن."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} در حال دانلود است",
     "titleByModel": "{{name}} در حال دانلود است",
     "extraInProgress": "+{{count}} مورد دیگر در حال انجام",
     "failedTitle": "دانلود کامل نشد",

@@ -13,8 +13,6 @@ export interface DeepLinkParams {
   scheme: string;
   host: string;
   queryParams?: {
-    palId?: string;
-    palName?: string;
     message?: string;
     [key: string]: string | undefined;
   };

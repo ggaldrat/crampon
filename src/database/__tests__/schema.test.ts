@@ -29,6 +29,18 @@ describe('database schema and migrations agree', () => {
     for (const table of (schema as any).tables) {
       tables[table.name] = table;
     }
+    // Tables a later migration drops no longer have to be in the schema.
+    const dropped = new Set(
+      migrationList.flatMap(m =>
+        m.steps
+          .filter((step: any) => step.type === 'sql')
+          .flatMap((step: any) =>
+            [...step.sql.matchAll(/DROP TABLE IF EXISTS (\w+);/g)].map(
+              (match: RegExpMatchArray) => match[1],
+            ),
+          ),
+      ),
+    );
 
     for (const migration of migrationList) {
       for (const step of migration.steps) {
@@ -36,6 +48,9 @@ describe('database schema and migrations agree', () => {
           continue;
         }
         const {table, columns} = stepPayload(step);
+        if (dropped.has(table)) {
+          continue;
+        }
 
         expect(tables[table]).toBeDefined();
 
@@ -69,5 +84,14 @@ describe('database schema and migrations agree', () => {
         (schema as any).tables.find((t: any) => t.name === name),
       ).toBeUndefined();
     }
+  });
+
+  it('drops the Pals table at version 10', () => {
+    const v10 = migrationList.find(m => m.toVersion === 10);
+    const sql = v10.steps.map((step: any) => step.sql).join(' ');
+    expect(sql).toContain('DROP TABLE IF EXISTS local_pals;');
+    expect(
+      (schema as any).tables.find((t: any) => t.name === 'local_pals'),
+    ).toBeUndefined();
   });
 });

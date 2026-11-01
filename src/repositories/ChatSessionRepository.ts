@@ -62,9 +62,6 @@ class ChatSessionRepository {
             .create((record: any) => {
               record.title = session.title;
               record.date = session.date;
-              if (session.activePalId) {
-                record.activePalId = session.activePalId;
-              }
             });
 
           // Ensure the completion settings have a version
@@ -247,7 +244,6 @@ class ChatSessionRepository {
     title: string,
     initialMessages: MessageType.Any[] = [],
     completionSettings: CompletionParams = defaultCompletionSettings,
-    activePalId?: string,
     settingsSource?: 'pal' | 'custom',
   ): Promise<ChatSession> {
     let newSession: any;
@@ -259,9 +255,6 @@ class ChatSessionRepository {
         .create((record: any) => {
           record.title = title;
           record.date = new Date().toISOString();
-          if (activePalId) {
-            record.activePalId = activePalId;
-          }
           if (settingsSource) {
             record.settingsSource = settingsSource;
           }
@@ -653,24 +646,6 @@ class ChatSessionRepository {
     await database.write(async () => {
       await session.update((record: any) => {
         record.pinned = pinned;
-      });
-    });
-  }
-
-  // Set active pal for a session
-  async setSessionActivePal(sessionId: string, palId?: string): Promise<void> {
-    const session = await database.collections
-      .get('chat_sessions')
-      .find(sessionId)
-      .catch(() => null);
-
-    if (!session) {
-      return;
-    }
-
-    await database.write(async () => {
-      await session.update((record: any) => {
-        record.activePalId = palId || null;
       });
     });
   }

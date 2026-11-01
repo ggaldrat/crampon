@@ -6,7 +6,7 @@ import {render} from '../../../../jest/test-utils';
 import {createModel} from '../../../../jest/fixtures/models';
 
 import {DownloadBanner} from '../DownloadBanner';
-import {modelStore, palStore, uiStore} from '../../../store';
+import {modelStore, uiStore} from '../../../store';
 import {downloadManager} from '../../../services/downloads';
 import {createErrorState} from '../../../utils/errors';
 import {ROUTES} from '../../../utils/navigationConstants';
@@ -58,7 +58,6 @@ describe('DownloadBanner', () => {
     runInAction(() => {
       modelStore.models = [failedModel, runningModel];
       modelStore.downloadError = null;
-      palStore.pals = [];
     });
   });
 
@@ -77,27 +76,6 @@ describe('DownloadBanner', () => {
     expect(getByText("Download didn't finish")).toBeTruthy();
     expect(getByText('Failed Model')).toBeTruthy();
     expect(getByTestId('download-banner-retry')).toBeTruthy();
-  });
-
-  it('names a failed pal download after the pal, like the progress row', () => {
-    runInAction(() => {
-      palStore.pals = [
-        {
-          id: 'pal-1',
-          name: 'Pip',
-          source: 'local',
-          defaultModel: failedModel,
-        } as any,
-      ];
-    });
-    failWith(failedModel.id);
-
-    const {getByText, queryByText} = render(<DownloadBanner />, {
-      withNavigation: true,
-    });
-
-    expect(getByText('Pip')).toBeTruthy();
-    expect(queryByText('Failed Model')).toBeNull();
   });
 
   it('takes precedence over a progress row and counts active downloads', () => {

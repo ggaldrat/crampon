@@ -160,31 +160,6 @@
     "remoteIndicator": "Zdalny",
     "languageSheetTitle": "Język",
     "languageSearchPlaceholder": "Wyszukaj języki",
-    "internetSearch": {
-      "title": "Wyszukiwanie w internecie",
-      "description": "Pozwól Kumplom przeszukiwać internet za pomocą własnych narzędzi. Użyj własnego klucza API — PocketPal nigdy nie przechowuje Twoich kluczy ani nie przekazuje Twoich zapytań.",
-      "providerLabel": "Dostawca wyszukiwania",
-      "providerGated": "Wkrótce",
-      "keyLabel": "Klucz API",
-      "keyIsSet": "Klucz dla {{provider}} jest ustawiony.",
-      "keyNotSet": "Brak klucza dla {{provider}}.",
-      "setKeyButton": "Ustaw klucz",
-      "updateKeyButton": "Zaktualizuj klucz",
-      "clearKeyButton": "Wyczyść klucz",
-      "keyInputPlaceholder": "Wklej swój klucz API dla {{provider}}",
-      "keyUpdateError": "Nie udało się zaktualizować klucza. Spróbuj ponownie.",
-      "showKeyAccessibilityLabel": "Pokaż klucz API",
-      "hideKeyAccessibilityLabel": "Ukryj klucz API",
-      "resultCountLabel": "Liczba wyników na wyszukiwanie",
-      "resultCountDescription": "Mniej wyników zostawia więcej miejsca w kontekście modelu.",
-      "consentTitle": "Wyszukiwania opuszczają Twoje urządzenie",
-      "consentDescription": "Gdy Kumpel przeszukuje internet, Twoje zapytanie jest wysyłane przez internet do wybranego dostawcy. Gdy Kumpel odczytuje stronę, jej adres URL i zawartość mogą zostać wysłane do domyślnej usługi odczytu (r.jina.ai), jeśli wybrany dostawca nie ma własnego mechanizmu odczytu. Klucze i zapytania nigdy nie są wysyłane do PocketPal.",
-      "consentAccept": "Rozumiem",
-      "consentRequired": "Zaakceptuj powyższą informację, aby ustawić klucz i włączyć wyszukiwanie.",
-      "consentGivenTitle": "Wyszukiwanie w internecie jest włączone",
-      "consentGivenDescription": "Zapytania i odczyty stron mogą opuszczać Twoje urządzenie w sposób opisany powyżej.",
-      "consentRevoke": "Cofnij zgodę"
-    },
     "speculativeDecoding": "Dekodowanie spekulatywne",
     "speculativeDecodingDescription": "Użyj małego modelu roboczego (lub wbudowanego modelu MTP) do przewidywania tokenów i przyspieszenia generowania. Eksperymentalne.",
     "speculativeNotMTPCapable": "Aktywny model nie obsługuje dekodowania spekulatywnego i nie ma sparowanego zgodnego modelu roboczego, więc funkcja pozostaje dla niego wyłączona i nie działa. Włącza się automatycznie w modelach, które ją obsługują.",
@@ -638,22 +613,7 @@
         "title": "Sukces",
         "message": "Te ustawienia zostaną zastosowane do wszystkich przyszłych sesji"
       },
-      "palSettings": "Ustawienia Kumpla",
       "settingsSource": "Źródło Ustawień"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "Ustawienia Generowania - {{palName}}",
-      "invalidValues": "Nieprawidłowe Wartości",
-      "invalidNumericValuesMessage": "Musi to być prawidłowa liczba",
-      "pleaseCorrect": "Proszę poprawić następujące elementy:",
-      "ok": "OK",
-      "error": "Błąd",
-      "failedToSave": "Nie udało się zapisać ustawień Kumpla",
-      "resetToGlobal": "Przywróć Globalne Wartości Domyślne",
-      "resetToSystem": "Przywróć Wartości Domyślne",
-      "clearPalSettings": "Wyczyść Ustawienia Kumpla",
-      "customSettingsFor": "Ustawienia niestandardowe dla {{palName}}",
-      "inheritedSettingsFor": "Ustawienia odziedziczone dla {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "Czat"
@@ -661,19 +621,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Plik"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Modele",
-      "palsTab": "Kumple",
-      "noPal": "Brak Kumpli",
-      "disablePal": "Wyłącz aktywnego Kumpla",
-      "noDescription": "Brak opisu",
-      "assistantType": "Asystent",
-      "roleplayType": "Odgrywanie ról",
-      "videoType": "Wideo",
-      "confirmationTitle": "Potwierdzenie",
-      "modelSwitchMessage": "Ten Kumpel ma inny model domyślny ({{modelName}}). Czy chcesz przełączyć się na model domyślny tego Kumpla?",
-      "keepButton": "Zachowaj",
-      "switchButton": "Przełącz"
+    "chatModelPickerSheet": {
+      "modelsTab": "Modele"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Błąd Pobierania",
@@ -722,52 +671,9 @@
       "proceedWithReset": "Wykonaj Reset",
       "confirmReset": "Potwierdź Reset"
     },
-    "palSheet": {
-      "title": {
-        "edit": "Edytuj Kumpla",
-        "newPal": "Nowy Kumpel",
-        "newVideoPal": "Nowy Kumpel Wideo"
-      },
-      "talentNames": {
-        "datetime": "Data i czas",
-        "render_html": "Podgląd HTML",
-        "calculate": "Wyrażenia matematyczne",
-        "web_search": "Wyszukiwanie w internecie",
-        "read_url": "Odczyt strony internetowej"
-      },
-      "validation": {
-        "promptModelRequired": "Do skorzystania z funkcji Promptu AI niezbędny jest model generujący podpowiedzi",
-        "nameRequired": "Nazwa jest wymagana",
-        "generatingPromptRequired": "Do skorzystania z promptu AI konieczny jest prompt generowania"
-      },
-      "talents": "Talenty",
-      "talentDescriptions": {
-        "render_html": "Wyświetlanie dokumentów HTML bezpośrednio w czacie",
-        "calculate": "Obliczanie wyrażeń matematycznych",
-        "datetime": "Pobierz aktualną datę i godzinę",
-        "web_search": "Przeszukiwanie internetu w poszukiwaniu aktualnych informacji (wymaga klucza API w Ustawieniach)",
-        "read_url": "Odczyt pełnej zawartości strony internetowej (wymaga klucza API w Ustawieniach)"
-      },
-      "greeting": {
-        "sectionLabel": "Przywitanie",
-        "textLabel": "Wiadomość powitalna",
-        "textPlaceholder": "Co ten kumpel powinien napisać na pustym czacie?",
-        "suggestedPromptsLabel": "Proponowane prompty",
-        "addPromptButton": "Dodaj prompt",
-        "removePromptLabel": "Usuń prompt",
-        "promptPlaceholder": "Krótki prompt dla chipu"
-      },
-      "description": "Opis",
-      "descriptionPlaceholder": "Wpisz krótki opis swojego kumpla",
-      "parameters": "Parametry",
-      "generationSettings": "Ustawienia Generowania",
-      "configureGenerationSettings": "Skonfiguruj Ustawienia Generowania"
-    },
     "chatEmptyPlaceholder": {
       "loading": "Ładowanie...",
       "activateModelButton": "Wybierz Model",
-      "gettingReadyTitle": "{{name}} przygotowuje się",
-      "gettingReadyDescription": "Poinformujemy Cię, gdy tylko Twój kumpel będzie mógł rozpocząć czat. Kliknij baner u góry, aby sprawdzić, jak mu idzie.",
       "noModelsTitle": "Brak Dostępnych Modeli",
       "noModelsDescription": "Pobierz model, aby rozpocząć rozmowę w PocketPal",
       "noModelsButton": "Pobierz Model",
@@ -793,50 +699,6 @@
       "download": "Pobierz",
       "noModelsDownloaded": "Nie masz jeszcze żadnych pobranych modeli. Najpierw pobierz model.",
       "downloadAModel": "Pobierz model"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Stwórz Kumpla do Odgrywania ról",
-        "edit": "Edytuj Kumpla do Odgrywania ról"
-      },
-      "palName": "Nazwa Kumpla",
-      "palNamePlaceholder": "Nazwa",
-      "defaultModel": "Domyślny Model",
-      "defaultModelPlaceholder": "Wybierz model",
-      "descriptionSection": "Opis",
-      "world": "Świat",
-      "worldPlaceholder": "Fantasy",
-      "location": "Lokalizacja",
-      "locationPlaceholder": "Zaczarowany Las",
-      "locationSublabel": "Gdzie rozgrywa się ta historia?",
-      "aiRole": "Rola AI",
-      "aiRolePlaceholder": "Eldara, psotna leśna wróżka",
-      "aiRoleSublabel": "Ustal rolę postaci",
-      "userRole": "Rola Użytkownika",
-      "userRolePlaceholder": "Sir Elandor, dzielny rycerz",
-      "userRoleSublabel": "Kim jesteś?",
-      "situation": "Sytuacja",
-      "situationPlaceholder": "Misja ratunkowa, rozwiązanie zagadki",
-      "toneStyle": "Ton/Styl",
-      "toneStylePlaceholder": "Poważny",
-      "validation": {
-        "promptModelRequired": "Wymagany jest model generujący prompty"
-      },
-      "create": "Utwórz"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Utwórz Kumpla Lookie",
-        "edit": "Edytuj Kumpla Lookie"
-      },
-      "palName": "Nazwa Kumpla",
-      "palNamePlaceholder": "Wpisz nazwę dla swojego Kumpla Lookie",
-      "visionModel": "Model Wizji",
-      "visionModelPlaceholder": "Wybierz model wizji",
-      "requiredModelsSection": "Wymagane Modele",
-      "captureInterval": "Częstotliwość Rejestrowania",
-      "captureIntervalHelper": "Czas między automatycznymi zdjęciami w milisekundach",
-      "create": "Utwórz"
     },
     "sendButton": {
       "accessibilityLabel": "Wyślij"
@@ -930,27 +792,6 @@
         "reportContent": "Zgłoś Zawartość"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "Eksportuj wszystkich kumpli",
-      "importPals": "Importuj kumpli",
-      "importSuccess": "Pomyślnie zaimportowano {{count}} kumpla(i).",
-      "importError": "Nie udało się zaimportować kumpli. Sprawdź format pliku."
-    },
-    "assistantPalSheet": {
-      "validation": {
-        "generatingPromptRequired": "Prompt generowania jest wymagany",
-        "promptModelRequired": "Model generowania promptów jest wymagany"
-      },
-      "create": "Utwórz",
-      "title": {
-        "create": "Stwórz Kumpla Asystenta",
-        "edit": "Edytuj Kumpla Asystenta"
-      },
-      "palName": "Nazwa Kumpla",
-      "palNamePlaceholder": "Nazwa",
-      "defaultModel": "Domyślny Model",
-      "defaultModelPlaceholder": "Wybierz model"
-    },
     "toolMetrics": {
       "elapsed": "{{seconds}} sek.",
       "tokens": "{{count}} tokenów"
@@ -962,48 +803,6 @@
       "resetToServerDefault": "Domyślna wartość serwera: {{value}} · Zresetuj",
       "resetToServerDefaultAccessibilityLabel": "Zresetuj {{name}} do domyślnej wartości serwera, {{value}}"
     }
-  },
-  "palsScreen": {
-    "captureInterval": "Częstotliwość Rejestrowania",
-    "captureIntervalUnit": "ms",
-    "toneStyle": "Ton/Styl",
-    "aiRole": "Rola AI",
-    "userRole": "Moja Rola",
-    "prompt": "Prompt",
-    "assistant": "Asystent",
-    "roleplay": "Odgrywanie ról",
-    "video": "Wideo",
-    "deletePal": "Usuń Kumpla",
-    "deletePalMessage": "Czy jesteś pewien że chcesz usunąć tego Kumpla?",
-    "missingModel": "Brakujący Model",
-    "missingModelMessage": "Domyślny model \"{{modelName}}\" dla tego Kumpla nie jest dostępny. Pobierz go w arkuszu edycji lub wybierz inny model.",
-    "search": "Szukaj",
-    "addPal": "Dodaj Kumpla",
-    "deletePalConfirmation": "Czy na pewno chcesz usunąć \"{{palName}}\"?",
-    "filters": {
-      "all": "Wszystko",
-      "myPals": "Moi Kumple",
-      "local": "Lokalne",
-      "video": "Wideo",
-      "free": "Darmowe",
-      "premium": "Premium"
-    },
-    "labels": {
-      "free": "Darmowe",
-      "premium": "Premium",
-      "private": "Prywatne",
-      "download": "Pobierz",
-      "getFree": "Pobierz za darmo"
-    },
-    "sectionTitles": {
-      "myPalsLocal": "Moi Kumple (lokalni)",
-      "myLibrary": "Moja Biblioteka (palshub.ai)",
-      "discoverPals": "Odkryj Kumpli (palshub.ai)"
-    },
-    "systemPrompt": "Prompt Systemowy",
-    "videoAnalysis": "Analiza Wideo",
-    "videoAnalysisDescription": "Jest to asystent oparty na sztucznej inteligencji, który na bieżąco komentuje strumienie wideo z kamery Twojego urządzenia.",
-    "world": "Świat"
   },
   "validation": {
     "nameRequired": "Nazwa jest wymagana",
@@ -1028,32 +827,6 @@
     "stopCamera": "Wyłącz Aparat",
     "promptPlaceholder": "Co chcesz wiedzieć o tym zdjęciu?",
     "takePhoto": "Aparat"
-  },
-  "video": {
-    "permissionTitle": "Dostęp do Aparatu Wymagany",
-    "permissionMessage": "Aplikacja PocketPal potrzebuje dostępu do aparatu w celu analizy wideo",
-    "requestingPermission": "Prośba o dostęp do aparatu...",
-    "noDevice": "Nie znaleziono aparatu",
-    "errorTitle": "Błąd Aparatu",
-    "errorMessage": "Wystąpił błąd związany z aparatem",
-    "flip": "Obróć",
-    "analyzing": "Analizowanie wideo...",
-    "startCamera": "Włącz Aparat",
-    "stopCamera": "Wyłącz Aparat",
-    "promptPlaceholder": "Co chcesz wiedzieć o tym filmie?",
-    "captureInterval": "Częstotliwość Rejestrowania",
-    "captureIntervalUnit": "ms",
-    "liveCommentary": "Komentarz na żywo",
-    "emptyPlaceholder": {
-      "title": "Witaj w Lookie",
-      "subtitle": "Prywatna analiza wideo w czasie rzeczywistym, bezpośrednio na urządzeniu",
-      "experimentalNotice": "Jest to funkcja eksperymentalna. Dokładność zależy od wybranego modelu, szybkość zależy od parametrów technicznych urządzenia, a niektóre modele mogą nie działać prawidłowo.",
-      "howToUse": "Sposób użycia:",
-      "step1": "• Edytuj prompt (opcjonalnie) aby ukierunkować analizę",
-      "step2": "• Naciśnij przycisk aparatu, aby rozpocząć analizę wideo na żywo",
-      "step3": "• Dostosuj częstotliwość tworzenia migawek, gdy kamera jest włączona",
-      "step4": "• Przejdź do innego kumpla, aby prowadzić zwykły czat tekstowy"
-    }
   },
   "benchmark": {
     "dialogs": {
@@ -1324,24 +1097,7 @@
         "balanced": "Zrównoważony",
         "best": "Najlepszy"
       },
-      "subtitleTemplate": "{{name}} myśli za pomocą niewielkiego modelu sztucznej inteligencji na telefonie – wybierz taki, który Ci odpowiada.",
-      "pal": {
-        "pip": {
-          "body": "Znaleźliśmy dla Ciebie idealnego kumpla - przyjaznego towarzysza na co dzień. Wystarczająco inteligentny, by poradzić sobie z większością zadań, i wystarczająco lekki, by pasować do każdego telefonu."
-        },
-        "codie": {
-          "body": "Poznaj Codie — Twojego lokalnego partnera do programowania. Czyta kod, pisze kod i wyjaśnia skomplikowane fragmenty, nie opuszczając przy tym nigdy Twojego telefonu."
-        },
-        "sage": {
-          "body": "Sage jest cierpliwy, ciekawy świata i krok po kroku wyjaśnia różne pomysły. To taki kolega do nauki, którego zawsze masz pod ręką."
-        },
-        "echo": {
-          "body": "Echo to wszechstronny towarzysz w grach fabularnych — pozostaje w charakterze swojej postaci, maluje sceny i podąża za Tobą, dokądkolwiek zaprowadzi cię Twoja historia."
-        },
-        "muse": {
-          "body": "Muse pomaga w pisaniu. Sugeruje sformułowania, nadaje tekstowi rytm i pozwala zachować odpowiedni ton."
-        }
-      }
+      "subtitleTemplate": "{{name}} myśli za pomocą niewielkiego modelu sztucznej inteligencji na telefonie – wybierz taki, który Ci odpowiada."
     },
     "back": "Wróć",
     "skip": "Pomiń",
@@ -1410,7 +1166,6 @@
   "screenTitles": {
     "chat": "Czat",
     "models": "Modele",
-    "pals": "Kumple (w fazie testów)",
     "benchmark": "Benchmark",
     "settings": "Ustawienia",
     "appInfo": "Informacje o Aplikacji",
@@ -1429,7 +1184,6 @@
     "pleaseLoadModel": "Załaduj model, aby rozpocząć czat.",
     "multimodalNotEnabled": "W tym modelu funkcja multimodalna nie jest włączona. Obrazy będą wyświetlane, ale nie będą przetwarzane przez sztuczną inteligencję.",
     "cannotSendWithoutModel": "Najpierw załaduj model",
-    "toolCompatWarning": "Ten model może nie obsługiwać wywołań narzędzi. Wyniki mogą być niedokładne.",
     "softCapWarning": "Aby uzyskać najlepszą wydajność, rozpocznij nową rozmowę.",
     "contextWarning": "Ta rozmowa się przedłuża i wkrótce może zabraknąć miejsca.",
     "contextRemoteHedged": "Ta odpowiedź mogła zostać ucięta. Spróbuj wysłać ją ponownie lub skrócić zapytanie.",
@@ -1458,7 +1212,6 @@
     "increaseContextReloading": "Przeładowywanie modelu z uwzględnieniem szerszego kontekstu…",
     "increaseContextSuccess": "Kontekst został zwiększony do {{target}} tokenów.",
     "increaseContextFailure": "Nie udało się zwiększyć rozmiaru kontekstu. Przywrócono poprzednie ustawienie.",
-    "palLoadHint": "Ten kumpel zazwyczaj wymaga więcej miejsca, niż pozwala na to obecny rozmiar kontekstu.",
     "generatingPreview": "Generowanie podglądu… ({{tokens}} tokenów)",
     "generatingPreviewPending": "Generowanie podglądu…",
     "toolUsedChip": "użyto {{name}}",
@@ -1470,16 +1223,6 @@
     "increaseContextSliderA11yValue": "{{tokens}} tokenów",
     "increaseContextConfirmSize": "Ustaw na {{size}}",
     "contextFullRemote": "W rozmowie zabrakło miejsca. Rozpocznij nowy czat.",
-    "webSearch": {
-      "searched": "Wyszukano: {{query}}",
-      "noResults": "Brak wyników",
-      "noResultsFor": "Brak wyników dla {{query}}",
-      "resultsCount": "Wyniki: {{count}}",
-      "resultsCountOne": "1 wynik",
-      "searchResultsTitle": "Wyniki wyszukiwania",
-      "showResultsAccessibilityLabel": "Pokaż wyniki wyszukiwania w internecie dla {{query}}",
-      "openLinkError": "Nie udało się otworzyć tego linku."
-    },
     "speculativeInitFailed": "To urządzenie nie mogło uruchomić dekodowania spekulatywnego dla tego modelu — najprawdopodobniej brakuje pamięci na kontekst modelu roboczego. Wyłącz Dekodowanie spekulatywne w Ustawienia → Ustawienia Zaawansowane i spróbuj ponownie."
   },
   "htmlPreview": {
@@ -1491,7 +1234,6 @@
     "openFullscreen": "Otwórz w trybie pełnoekranowym: {{title}}"
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} jest w trakcie pobierania",
     "titleByModel": "{{name}} jest w trakcie pobierania",
     "extraInProgress": "+{{count}} kolejnych w trakcie realizacji",
     "failedTitle": "Pobieranie nie zostało zakończone",

@@ -200,11 +200,7 @@ export const BannerRow: React.FC<BannerRowProps> = observer(
     }
 
     // context-full (dismissable per draft).
-    const talentNames = l10n.components.palSheet.talentNames;
-    const heavyTalentLabel = heavyTalentName
-      ? (talentNames[heavyTalentName as keyof typeof talentNames] ??
-        heavyTalentName)
-      : undefined;
+    const heavyTalentLabel = heavyTalentName;
     // Remote wins over every local variant: the escalated and heavy-talent
     // copies both carry the "increase the context size" advice, but a remote
     // model has no in-app context control, so remote always gets the single

@@ -158,31 +158,6 @@
     "requestTimeoutPlaceholder": "可选 - 留空则使用默认值",
     "serverType": "服务器类型",
     "serverTypeHelp": "已自动检测；如有误请手动更改。",
-    "internetSearch": {
-      "title": "联网搜索",
-      "description": "让 Pal 用自己的工具搜索网络。需自备 API 密钥——PocketPal 绝不保存您的密钥，也不会转发您的查询。",
-      "providerLabel": "搜索服务供应商",
-      "providerGated": "即将推出",
-      "keyLabel": "API 密钥",
-      "keyIsSet": "已为 {{provider}} 设置密钥。",
-      "keyNotSet": "尚未为 {{provider}} 设置密钥。",
-      "setKeyButton": "设置密钥",
-      "updateKeyButton": "更新密钥",
-      "clearKeyButton": "清除密钥",
-      "keyInputPlaceholder": "粘贴您的 {{provider}} API 密钥",
-      "keyUpdateError": "无法更新密钥，请重试。",
-      "showKeyAccessibilityLabel": "显示 API 密钥",
-      "hideKeyAccessibilityLabel": "隐藏 API 密钥",
-      "resultCountLabel": "每次搜索的结果数",
-      "resultCountDescription": "结果越少，模型的上下文就能保留更多空间。",
-      "consentTitle": "搜索会离开您的设备",
-      "consentDescription": "当 Pal 搜索网络时，您的查询会通过互联网发送给所选服务商。当 Pal 读取网页时，如果所选服务商没有自带的阅读器，网址和网页内容可能会改为发送给默认阅读服务（r.jina.ai）。密钥和查询绝不会发送给 PocketPal。",
-      "consentAccept": "我已了解",
-      "consentRequired": "同意以上声明后，可设置密钥并启用搜索。",
-      "consentGivenTitle": "联网搜索已启用",
-      "consentGivenDescription": "如上所述，查询和网页读取可能会离开您的设备。",
-      "consentRevoke": "撤销"
-    },
     "languageSheetTitle": "语言",
     "languageSearchPlaceholder": "搜索语言",
     "speculativeDecoding": "推测解码",
@@ -581,9 +556,7 @@
       "activateModelTitle": "在您开始聊天前，请先激活模型",
       "activateModelDescription": "选择模型并下载。下载完成后，点击模型旁边的“加载”按钮，即可开始聊天。",
       "activateModelButton": "选择模型",
-      "loading": "加载中...",
-      "gettingReadyTitle": "{{name}} 正在准备中",
-      "gettingReadyDescription": "我们会在您的 Pal 可以开始聊天时通知您，点击顶部的横幅可以查看进度。"
+      "loading": "加载中..."
     },
     "chatInput": {
       "inputPlaceholder": "消息",
@@ -669,22 +642,7 @@
         "title": "成功",
         "message": "这些设置将应用于所有未来的会话"
       },
-      "palSettings": "Pal设置",
       "settingsSource": "设置来源"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "生成设置 - {{palName}}",
-      "invalidValues": "无效值",
-      "invalidNumericValuesMessage": "必须是有效数字",
-      "pleaseCorrect": "请纠正以下内容：",
-      "ok": "确定",
-      "error": "错误",
-      "failedToSave": "保存 Pal 设置失败",
-      "resetToGlobal": "重置为全局默认值",
-      "resetToSystem": "重置为系统默认值",
-      "clearPalSettings": "清除 Pal 设置",
-      "customSettingsFor": "{{palName}} 的自定义设置",
-      "inheritedSettingsFor": "{{palName}} 的继承设置"
     },
     "chatHeaderTitle": {
       "defaultTitle": "聊天"
@@ -692,19 +650,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "文件"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "模型",
-      "palsTab": "Pal",
-      "noPal": "没有 Pal",
-      "disablePal": "禁用当前 Pal",
-      "noDescription": "没有描述",
-      "assistantType": "Pal",
-      "roleplayType": "角色扮演",
-      "videoType": "视频",
-      "confirmationTitle": "确认",
-      "modelSwitchMessage": "此 Pal 具有不同的默认模型 ({{modelName}})，要切换到 Pal 的默认模型吗？",
-      "keepButton": "保持",
-      "switchButton": "切换"
+    "chatModelPickerSheet": {
+      "modelsTab": "模型"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "下载失败",
@@ -753,62 +700,6 @@
       "proceedWithReset": "继续重置",
       "confirmReset": "确认重置"
     },
-    "palSheet": {
-      "title": {
-        "edit": "编辑Pal",
-        "newPal": "新建Pal",
-        "newVideoPal": "新建视频Pal"
-      },
-      "description": "描述",
-      "descriptionPlaceholder": "输入 Pal 的简要描述",
-      "parameters": "参数",
-      "generationSettings": "生成设置",
-      "configureGenerationSettings": "配置生成设置",
-      "validation": {
-        "nameRequired": "名称为必填项",
-        "generatingPromptRequired": "使用 AI 提示词时需要生成提示词",
-        "promptModelRequired": "使用 AI 提示词时需要提示词生成模型"
-      },
-      "talents": "技能",
-      "talentNames": {
-        "render_html": "HTML 预览",
-        "calculate": "数学表达式",
-        "datetime": "日期和时间",
-        "web_search": "网络搜索",
-        "read_url": "读取网页"
-      },
-      "talentDescriptions": {
-        "render_html": "在聊天中内联渲染 HTML 文档",
-        "calculate": "计算数学表达式",
-        "datetime": "获取当前日期和时间",
-        "web_search": "在互联网上搜索最新信息（需在设置中填写 API 密钥）",
-        "read_url": "读取网页的完整内容（需在设置中填写 API 密钥）"
-      },
-      "greeting": {
-        "sectionLabel": "问候语",
-        "textLabel": "问候消息",
-        "textPlaceholder": "聊天为空时，这个 Pal 该说些什么？",
-        "suggestedPromptsLabel": "建议提示词",
-        "addPromptButton": "添加提示词",
-        "promptPlaceholder": "用于快捷标签的简短提示词",
-        "removePromptLabel": "删除提示词"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "创建助手Pal",
-        "edit": "编辑助手Pal"
-      },
-      "palName": "Pal名",
-      "palNamePlaceholder": "名称",
-      "defaultModel": "默认模型",
-      "defaultModelPlaceholder": "选择模型",
-      "validation": {
-        "generatingPromptRequired": "需要生成提示词",
-        "promptModelRequired": "需要提示词生成模型"
-      },
-      "create": "创建"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "您还没有下载任何模型，请先下载一个模型。",
       "downloadAModel": "下载模型",
@@ -817,50 +708,6 @@
       "recommendedModel": "推荐模型",
       "cancelDownload": "取消下载",
       "download": "下载"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "创建角色扮演Pal",
-        "edit": "编辑角色扮演Pal"
-      },
-      "palName": "Pal名",
-      "palNamePlaceholder": "名称",
-      "defaultModel": "默认模型",
-      "defaultModelPlaceholder": "选择模型",
-      "descriptionSection": "描述",
-      "world": "世界",
-      "worldPlaceholder": "奇幻",
-      "location": "位置",
-      "locationPlaceholder": "魔法森林",
-      "locationSublabel": "故事发生在哪里？",
-      "aiRole": "AI的角色",
-      "aiRolePlaceholder": "埃尔达拉，一个顽皮的森林精灵",
-      "aiRoleSublabel": "设置角色",
-      "userRole": "用户角色",
-      "userRolePlaceholder": "埃拉德爵士，勇敢的骑士",
-      "userRoleSublabel": "你是谁？",
-      "situation": "情况",
-      "situationPlaceholder": "救援任务，解开谜团",
-      "toneStyle": "语气/风格",
-      "toneStylePlaceholder": "严肃",
-      "validation": {
-        "promptModelRequired": "需要提示词生成模型"
-      },
-      "create": "创建"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "创建Lookie Pal",
-        "edit": "编辑Lookie Pal"
-      },
-      "palName": "Pal名",
-      "palNamePlaceholder": "输入您的 Lookie Pal 名称",
-      "visionModel": "视觉模型",
-      "visionModelPlaceholder": "选择视觉模型",
-      "requiredModelsSection": "必需模型",
-      "captureInterval": "捕获间隔",
-      "captureIntervalHelper": "自动捕获之间的时间（毫秒）",
-      "create": "创建"
     },
     "sendButton": {
       "accessibilityLabel": "发送"
@@ -954,12 +801,6 @@
         "reportContent": "举报内容"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "导出所有 Pal",
-      "importPals": "导入 Pal",
-      "importSuccess": "成功导入 {{count}} 个 Pal。",
-      "importError": "导入 Pal 失败，请检查文件格式。"
-    },
     "bubble": {
       "msPerToken": "{{value}}毫秒/token",
       "tokensPerSec": "{{value}} tokens/秒",
@@ -989,48 +830,6 @@
       "resetToServerDefaultAccessibilityLabel": "将 {{name}} 重置为服务器默认值 {{value}}"
     }
   },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "我的 Pal (本地)",
-      "myLibrary": "我的库 (palshub.ai)",
-      "discoverPals": "发现 Pal (palshub.ai)"
-    },
-    "systemPrompt": "系统提示词",
-    "videoAnalysis": "视频分析",
-    "videoAnalysisDescription": "这是一个基于视频的 AI 助手，可以对来自设备摄像头的视频流提供实时评论。",
-    "captureInterval": "捕获间隔",
-    "captureIntervalUnit": "毫秒",
-    "world": "世界",
-    "toneStyle": "音调/风格",
-    "aiRole": "AI的角色",
-    "userRole": "用户角色",
-    "prompt": "提示词",
-    "assistant": "助手",
-    "roleplay": "角色扮演",
-    "video": "视频",
-    "deletePal": "删除Pal",
-    "deletePalMessage": "您确定要删除此 Pal 吗？",
-    "missingModel": "缺少模型",
-    "missingModelMessage": "此 Pal 的默认模型\"{{modelName}}\"不可用，请在编辑表中下载它或选择其他模型。",
-    "search": "搜索",
-    "addPal": "添加Pal",
-    "deletePalConfirmation": "您确定要删除\"{{palName}}\"吗？",
-    "filters": {
-      "all": "全部",
-      "myPals": "我的Pal",
-      "local": "本地",
-      "video": "视频",
-      "free": "免费",
-      "premium": "高级"
-    },
-    "labels": {
-      "free": "免费",
-      "premium": "高级",
-      "private": "私人",
-      "download": "下载",
-      "getFree": "免费获取"
-    }
-  },
   "validation": {
     "nameRequired": "需要填写名称",
     "systemPromptRequired": "需要填写系统提示词",
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "你想了解这张图片的什么信息？",
     "takePhoto": "摄像头"
   },
-  "video": {
-    "permissionTitle": "需要摄像头权限",
-    "permissionMessage": "PocketPal 需要访问摄像头来分析视频",
-    "requestingPermission": "请求摄像头权限...",
-    "noDevice": "未找到摄像头设备",
-    "errorTitle": "摄像头错误",
-    "errorMessage": "摄像头出现错误",
-    "flip": "翻转",
-    "analyzing": "分析视频中...",
-    "startCamera": "启动摄像头",
-    "stopCamera": "停止摄像头",
-    "promptPlaceholder": "你想了解这个视频的什么信息？",
-    "captureInterval": "捕获间隔",
-    "captureIntervalUnit": "毫秒",
-    "liveCommentary": "实时解说",
-    "emptyPlaceholder": {
-      "title": "欢迎使用 Lookie",
-      "subtitle": "私密设备端实时视频分析",
-      "experimentalNotice": "这是一个实验性功能，准确性取决于所选模型，速度取决于您的设备性能；并且某些模型可能无法正常运行。",
-      "howToUse": "使用方法：",
-      "step1": "• 编辑提示词（可选）来指导分析",
-      "step2": "• 点击摄像头按钮开始实时视频分析",
-      "step3": "• 在摄像头激活时调整快照频率",
-      "step4": "• 切换到其他助手进行正常文本聊天"
-    }
-  },
   "screenTitles": {
     "chat": "聊天",
     "models": "模型",
-    "pals": "Pals（实验性）",
     "benchmark": "基准测试",
     "settings": "设置",
     "appInfo": "关于",
@@ -1103,7 +875,6 @@
     "multimodalNotEnabled": "此模型未启用多模态功能，图片将显示但不会被 AI 处理。",
     "cannotSendWithoutModel": "请先加载模型",
     "toolCallTruncated": "工具调用被截断 — 可能是模型空间不足。请尝试增大上下文或精简请求。",
-    "toolCompatWarning": "此模型可能不支持工具调用，结果可能不可靠。",
     "softCapWarning": "为获得最佳性能，请新建聊天。",
     "contextWarning": "此对话已经很长，可能很快就会空间不足。",
     "contextRemoteHedged": "此回复可能已被截断，请重新发送或缩短请求。",
@@ -1138,21 +909,10 @@
     "increaseContextReloading": "正在以更大的上下文重新加载模型…",
     "increaseContextSuccess": "上下文已增大至 {{target}} token。",
     "increaseContextFailure": "无法增大上下文长度，已恢复您之前的设置。",
-    "palLoadHint": "此 Pal 通常需要的空间超出当前上下文长度的限制。",
     "generatingPreview": "正在生成预览…（{{tokens}} token）",
     "generatingPreviewPending": "正在生成预览…",
     "toolUsedChip": "已使用 {{name}}",
     "toolErrorBlock": "{{name}} 失败",
-    "webSearch": {
-      "searched": "已搜索： {{query}}",
-      "noResults": "没有结果",
-      "noResultsFor": "找不到 {{query}} 的结果",
-      "resultsCount": "{{count}} 条结果",
-      "resultsCountOne": "1 条结果",
-      "searchResultsTitle": "搜索结果",
-      "showResultsAccessibilityLabel": "显示 {{query}} 的网络搜索结果",
-      "openLinkError": "无法打开此链接。"
-    },
     "contextFullRemote": "对话空间已满，请新建聊天。",
     "speculativeInitFailed": "此设备无法为该模型启动推测解码 — 很可能是草稿上下文的内存不足。请在“设置 → 高级设置”中关闭推测解码后重试。"
   },
@@ -1470,28 +1230,10 @@
         "balanced": "均衡",
         "best": "最佳"
       },
-      "subtitleTemplate": "{{name}} 靠手机上的小型 AI 模型来思考——挑一个适合的吧。",
-      "pal": {
-        "pip": {
-          "body": "我们为您找到了一个完美的 Pal — 贴心的日常小伙伴。够聪明，能应付大多数事情；够轻量，适配任何手机。"
-        },
-        "codie": {
-          "body": "认识一下 Codie — 您本地的结对编程伙伴。读代码、写代码、讲解难点，全程都不会离开您的手机。"
-        },
-        "sage": {
-          "body": "Sage 耐心又好奇，会一步步带您理清思路。一个揣在口袋里的学习搭档。"
-        },
-        "echo": {
-          "body": "Echo 是个多才多艺的角色扮演伙伴 — 始终入戏、描绘场景，无论您的故事走向何方都紧紧跟随。"
-        },
-        "muse": {
-          "body": "Muse 帮您写作。提供措辞建议、找准节奏，并保持您独有的语气。"
-        }
-      }
+      "subtitleTemplate": "{{name}} 靠手机上的小型 AI 模型来思考——挑一个适合的吧。"
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} 正在下载",
     "titleByModel": "{{name}} 正在下载",
     "extraInProgress": "另有 {{count}} 个正在进行",
     "failedTitle": "下载未完成",

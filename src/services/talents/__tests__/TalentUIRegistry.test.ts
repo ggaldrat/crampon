@@ -1,14 +1,9 @@
-import {TalentUIRegistry, talentUIRegistry} from '../TalentUIRegistry';
-import {RenderHtmlTalentUI} from '../RenderHtmlTalentUI';
-import {
-  registerDefaultTalentUIs,
-  resetRegisteredTalentUIsFlag,
-} from '../registerTalentUIs';
+import {TalentUIRegistry} from '../TalentUIRegistry';
 
 describe('TalentUIRegistry', () => {
   it('registers and retrieves UIs by name', () => {
     const reg = new TalentUIRegistry();
-    const ui = new RenderHtmlTalentUI();
+    const ui = {name: 'render_html'};
     reg.register(ui);
     expect(reg.has('render_html')).toBe(true);
     expect(reg.get('render_html')).toBe(ui);
@@ -31,37 +26,8 @@ describe('TalentUIRegistry', () => {
 
   it('reset() clears all UIs', () => {
     const reg = new TalentUIRegistry();
-    reg.register(new RenderHtmlTalentUI());
+    reg.register({name: 'render_html'});
     reg.reset();
     expect(reg.has('render_html')).toBe(false);
-  });
-
-  describe('registerDefaultTalentUIs registers UIs', () => {
-    beforeEach(() => {
-      talentUIRegistry.reset();
-      resetRegisteredTalentUIsFlag();
-    });
-
-    it('registers the render_html UI', () => {
-      registerDefaultTalentUIs();
-      expect(talentUIRegistry.has('render_html')).toBe(true);
-    });
-
-    it('is idempotent across calls — same UI instance', () => {
-      registerDefaultTalentUIs();
-      const firstInstance = talentUIRegistry.get('render_html');
-      registerDefaultTalentUIs();
-      const secondInstance = talentUIRegistry.get('render_html');
-      expect(firstInstance).toBe(secondInstance);
-      expect(talentUIRegistry.has('render_html')).toBe(true);
-    });
-
-    it('re-registers after reset + resetRegisteredTalentUIsFlag', () => {
-      registerDefaultTalentUIs();
-      talentUIRegistry.reset();
-      resetRegisteredTalentUIsFlag();
-      registerDefaultTalentUIs();
-      expect(talentUIRegistry.has('render_html')).toBe(true);
-    });
   });
 });

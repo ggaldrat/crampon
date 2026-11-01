@@ -56,14 +56,12 @@ class ChatSessionRepository {
     title,
     initialMessages = [],
     completionSettings = defaultCompletionSettings,
-    activePalId,
     settingsSource,
   ) {
     return {
       id: 'mock-session-id',
       title,
       date: new Date().toISOString(),
-      activePalId,
     };
   }
 
@@ -102,10 +100,6 @@ class ChatSessionRepository {
   }
 
   async deleteMessage(id) {
-    return; // Mock: do nothing
-  }
-
-  async setSessionActivePal(sessionId, palId) {
     return; // Mock: do nothing
   }
 

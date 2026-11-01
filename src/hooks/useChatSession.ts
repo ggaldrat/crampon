@@ -10,7 +10,6 @@ import {
   chatSessionStore,
   modelStore,
   NEW_SESSION_TITLE,
-  palStore,
   serverStore,
   ttsStore,
   uiStore,
@@ -41,7 +40,6 @@ import {
 } from '../utils/completionTypes';
 import {
   collectSystemPromptFragments,
-  seedReadUrlAllowlist,
   talentRegistry,
 } from '../services/talents';
 import type {ToolDefinition} from '../services/talents/types';
@@ -137,7 +135,7 @@ const prepareCompletion = async ({
     });
   }
 
-  // Talent-contributed system-prompt fragments (e.g. search grounding). Kept on
+  // Talent-contributed system-prompt fragments. Kept on
   // the initial messages array so they persist across every follow-up tool turn.
   const sessionToolNames = (
     (sessionCompletionSettings?.tools as ToolDefinition[] | undefined) ?? []
@@ -151,10 +149,6 @@ const prepareCompletion = async ({
     ...chatMessages,
     {role: 'user', content: userMessageContent},
   ]);
-
-  // Reseed the read_url exfiltration allowlist for this run; the trust policy
-  // (which sources count) lives in the talents module.
-  seedReadUrlAllowlist(messages, currentMessages);
 
   const completionParamsWithAppProps = {
     ...sessionCompletionSettings,
@@ -658,15 +652,7 @@ export const useChatSession = (
       }
     }
 
-    const activeSession = chatSessionStore.sessions.find(
-      s => s.id === chatSessionStore.activeSessionId,
-    );
-    const pal = activeSession?.activePalId
-      ? palStore.pals.find(p => p.id === activeSession.activePalId)
-      : null;
-
     const systemMessages = resolveSystemMessages({
-      pal,
       model: modelStore.activeModel,
     });
 
@@ -684,9 +670,11 @@ export const useChatSession = (
 
     currentMessageInfo.current = messageInfo;
 
-    // Allowed talent names for this Pal. The runner rejects any
-    // tool call whose function.name isn't in this list.
-    const palTalents = (pal?.pact?.talents ?? []).map(t => t.name);
+    // Allowed talent names: the tools advertised for this run. The runner
+    // rejects any tool call whose function.name isn't in this list.
+    const allowedTalentNames = (
+      (cleanCompletionParams.tools as ToolDefinition[] | undefined) ?? []
+    ).map(tool => tool.function?.name ?? '');
 
     const completionStartTime = Date.now();
     const timeToFirstTokenMs: {value: number | null} = {value: null};
@@ -739,7 +727,7 @@ export const useChatSession = (
       const events = runAgent({
         engine,
         initialParams: cleanCompletionParams as ApiCompletionParams,
-        allowedTalentNames: palTalents,
+        allowedTalentNames,
         talentLookup: name => talentRegistry.get(name),
         triggerMarkers,
         messageId: messageInfo.id,

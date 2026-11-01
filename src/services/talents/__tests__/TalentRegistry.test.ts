@@ -1,18 +1,32 @@
 import {TalentRegistry} from '../TalentRegistry';
-import {RenderHtmlEngine} from '../RenderHtmlEngine';
 import {
-  registerDefaultTalents,
-  resetRegisteredFlag,
+  collectSystemPromptFragments,
+  deriveToolSchemas,
   talentRegistry,
 } from '../index';
+import type {TalentEngine} from '../types';
+
+const fakeEngine = (name: string, fragment?: string): TalentEngine => ({
+  name,
+  execute: jest.fn(async () => ({type: 'text' as const, summary: name})),
+  toToolDefinition: () => ({
+    type: 'function',
+    function: {
+      name,
+      description: `${name} tool`,
+      parameters: {type: 'object', properties: {}},
+    },
+  }),
+  ...(fragment ? {systemPromptFragment: () => fragment} : {}),
+});
 
 describe('TalentRegistry', () => {
   it('registers and retrieves engines by name', () => {
     const reg = new TalentRegistry();
-    const engine = new RenderHtmlEngine();
+    const engine = fakeEngine('echo');
     reg.register(engine);
-    expect(reg.has('render_html')).toBe(true);
-    expect(reg.get('render_html')).toBe(engine);
+    expect(reg.has('echo')).toBe(true);
+    expect(reg.get('echo')).toBe(engine);
   });
 
   it('returns undefined for unknown names', () => {
@@ -23,52 +37,49 @@ describe('TalentRegistry', () => {
 
   it('overwrites engines registered under the same name (last wins)', () => {
     const reg = new TalentRegistry();
-    const a = {name: 'render_html', execute: jest.fn()} as any;
-    const b = {name: 'render_html', execute: jest.fn()} as any;
+    const a = fakeEngine('echo');
+    const b = fakeEngine('echo');
     reg.register(a);
     reg.register(b);
-    expect(reg.get('render_html')).toBe(b);
+    expect(reg.get('echo')).toBe(b);
   });
 
   it('reset() clears all engines', () => {
     const reg = new TalentRegistry();
-    reg.register(new RenderHtmlEngine());
+    reg.register(fakeEngine('echo'));
     reg.reset();
-    expect(reg.has('render_html')).toBe(false);
+    expect(reg.has('echo')).toBe(false);
+  });
+});
+
+describe('talent helpers', () => {
+  beforeEach(() => {
+    talentRegistry.reset();
   });
 
-  describe('registerDefaultTalents', () => {
-    beforeEach(() => {
-      talentRegistry.reset();
-      resetRegisteredFlag();
-    });
+  it('ships no built-in talents', () => {
+    expect(deriveToolSchemas()).toEqual([]);
+  });
 
-    it('registers the built-in talents', () => {
-      registerDefaultTalents();
-      expect(talentRegistry.has('render_html')).toBe(true);
-      expect(talentRegistry.has('calculate')).toBe(true);
-      expect(talentRegistry.has('datetime')).toBe(true);
-      expect(talentRegistry.has('web_search')).toBe(true);
-      expect(talentRegistry.has('read_url')).toBe(true);
-    });
+  it('derives schemas for registered engines, filtered by name', () => {
+    talentRegistry.register(fakeEngine('alpha'));
+    talentRegistry.register(fakeEngine('beta'));
+    expect(deriveToolSchemas().map(s => s.function.name)).toEqual([
+      'alpha',
+      'beta',
+    ]);
+    expect(
+      deriveToolSchemas(['beta', 'unknown']).map(s => s.function.name),
+    ).toEqual(['beta']);
+  });
 
-    it('is idempotent across calls', () => {
-      registerDefaultTalents();
-      registerDefaultTalents();
-      registerDefaultTalents();
-      expect(talentRegistry.has('render_html')).toBe(true);
-      expect(talentRegistry.has('calculate')).toBe(true);
-      expect(talentRegistry.has('datetime')).toBe(true);
-    });
-
-    it('re-registers after reset + resetRegisteredFlag', () => {
-      registerDefaultTalents();
-      talentRegistry.reset();
-      resetRegisteredFlag();
-      registerDefaultTalents();
-      expect(talentRegistry.has('render_html')).toBe(true);
-      expect(talentRegistry.has('calculate')).toBe(true);
-      expect(talentRegistry.has('datetime')).toBe(true);
-    });
+  it('collects non-empty fragments of the requested talents only', () => {
+    talentRegistry.register(fakeEngine('alpha', 'use alpha'));
+    talentRegistry.register(fakeEngine('beta', '   '));
+    talentRegistry.register(fakeEngine('gamma', 'use gamma'));
+    const ctx = {now: new Date(), maxToolTurns: 5};
+    expect(collectSystemPromptFragments(['alpha', 'beta'], ctx)).toEqual([
+      'use alpha',
+    ]);
   });
 });

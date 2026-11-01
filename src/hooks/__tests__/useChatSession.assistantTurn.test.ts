@@ -9,11 +9,16 @@ import {
 } from '../../../jest/fixtures/models';
 
 import {useChatSession} from '../useChatSession';
-import {chatSessionStore, modelStore, palStore, serverStore} from '../../store';
+import {
+  chatSessionStore,
+  defaultCompletionSettings,
+  modelStore,
+  serverStore,
+} from '../../store';
 import {resolveBannerVariant} from '../../utils/bannerVariantResolver';
 import {ModelOrigin} from '../../utils/types';
 import {assistant} from '../../utils/chat';
-import {talentRegistry} from '../../services/talents';
+import {deriveToolSchemas, talentRegistry} from '../../services/talents';
 import type {MessageType} from '../../utils/types';
 import type {TalentEngine, TalentResult} from '../../services/talents/types';
 
@@ -22,7 +27,6 @@ const mockAssistant = {id: 'h3o3lc5xj'};
 beforeEach(() => {
   jest.clearAllMocks();
 
-  palStore.pals = [] as any;
   chatSessionStore.sessions = sessionFixtures as any;
   chatSessionStore.activeSessionId = 'session-1';
   chatSessionStore.agentUiState = {
@@ -425,21 +429,13 @@ describe('useChatSession — AssistantTurn integration', () => {
       }),
     };
     talentRegistry.register(fakeTalent);
-    // Pal advertises calculate so allowedTalentNames includes it.
-    palStore.pals = [
-      {
-        id: 'pal-1',
-        type: 'local',
-        name: 'Calc Pal',
-        systemPrompt: '',
-        parameters: {},
-        parameterSchema: [],
-        isSystemPromptChanged: false,
-        useAIPrompt: false,
-        source: 'local',
-        pact: {talents: [{name: 'calculate', necessity: 'optional'}]},
-      } as any,
-    ];
+    // Advertise the talents so allowedTalentNames includes them.
+    (
+      chatSessionStore.getCurrentCompletionSettings as jest.Mock
+    ).mockResolvedValueOnce({
+      ...defaultCompletionSettings,
+      tools: deriveToolSchemas(['calculate']),
+    });
     chatSessionStore.sessions = [
       {
         id: 'session-1',
@@ -448,7 +444,6 @@ describe('useChatSession — AssistantTurn integration', () => {
         messages: [],
         completionSettings: {},
         settingsSource: 'pal',
-        activePalId: 'pal-1',
       } as any,
     ];
     chatSessionStore.activeSessionId = 'session-1';
@@ -510,20 +505,13 @@ describe('useChatSession — AssistantTurn integration', () => {
       }),
     };
     talentRegistry.register(fakeTalent);
-    palStore.pals = [
-      {
-        id: 'pal-1',
-        type: 'local',
-        name: 'Calc Pal',
-        systemPrompt: '',
-        parameters: {},
-        parameterSchema: [],
-        isSystemPromptChanged: false,
-        useAIPrompt: false,
-        source: 'local',
-        pact: {talents: [{name: 'calculate', necessity: 'optional'}]},
-      } as any,
-    ];
+    // Advertise the talents so allowedTalentNames includes them.
+    (
+      chatSessionStore.getCurrentCompletionSettings as jest.Mock
+    ).mockResolvedValueOnce({
+      ...defaultCompletionSettings,
+      tools: deriveToolSchemas(['calculate']),
+    });
     chatSessionStore.sessions = [
       {
         id: 'session-1',
@@ -532,7 +520,6 @@ describe('useChatSession — AssistantTurn integration', () => {
         messages: [],
         completionSettings: {},
         settingsSource: 'pal',
-        activePalId: 'pal-1',
       } as any,
     ];
     chatSessionStore.activeSessionId = 'session-1';
@@ -667,25 +654,13 @@ describe('useChatSession — AssistantTurn integration', () => {
     };
     talentRegistry.register(calcTalent);
     talentRegistry.register(dtTalent);
-    palStore.pals = [
-      {
-        id: 'pal-1',
-        type: 'local',
-        name: 'Multi Pal',
-        systemPrompt: '',
-        parameters: {},
-        parameterSchema: [],
-        isSystemPromptChanged: false,
-        useAIPrompt: false,
-        source: 'local',
-        pact: {
-          talents: [
-            {name: 'calculate', necessity: 'optional'},
-            {name: 'datetime', necessity: 'optional'},
-          ],
-        },
-      } as any,
-    ];
+    // Advertise the talents so allowedTalentNames includes them.
+    (
+      chatSessionStore.getCurrentCompletionSettings as jest.Mock
+    ).mockResolvedValueOnce({
+      ...defaultCompletionSettings,
+      tools: deriveToolSchemas(['calculate', 'datetime']),
+    });
     chatSessionStore.sessions = [
       {
         id: 'session-1',
@@ -694,7 +669,6 @@ describe('useChatSession — AssistantTurn integration', () => {
         messages: [],
         completionSettings: {},
         settingsSource: 'pal',
-        activePalId: 'pal-1',
       } as any,
     ];
     chatSessionStore.activeSessionId = 'session-1';
@@ -797,25 +771,13 @@ describe('useChatSession — AssistantTurn integration', () => {
     };
     talentRegistry.register(calcTalent);
     talentRegistry.register(dtTalent);
-    palStore.pals = [
-      {
-        id: 'pal-1',
-        type: 'local',
-        name: 'Multi Pal',
-        systemPrompt: '',
-        parameters: {},
-        parameterSchema: [],
-        isSystemPromptChanged: false,
-        useAIPrompt: false,
-        source: 'local',
-        pact: {
-          talents: [
-            {name: 'calculate', necessity: 'optional'},
-            {name: 'datetime', necessity: 'optional'},
-          ],
-        },
-      } as any,
-    ];
+    // Advertise the talents so allowedTalentNames includes them.
+    (
+      chatSessionStore.getCurrentCompletionSettings as jest.Mock
+    ).mockResolvedValueOnce({
+      ...defaultCompletionSettings,
+      tools: deriveToolSchemas(['calculate', 'datetime']),
+    });
     chatSessionStore.sessions = [
       {
         id: 'session-1',
@@ -824,7 +786,6 @@ describe('useChatSession — AssistantTurn integration', () => {
         messages: [],
         completionSettings: {},
         settingsSource: 'pal',
-        activePalId: 'pal-1',
       } as any,
     ];
     chatSessionStore.activeSessionId = 'session-1';
@@ -922,20 +883,13 @@ describe('useChatSession — AssistantTurn integration', () => {
       }),
     };
     talentRegistry.register(slowTalent);
-    palStore.pals = [
-      {
-        id: 'pal-1',
-        type: 'local',
-        name: 'Slow Pal',
-        systemPrompt: '',
-        parameters: {},
-        parameterSchema: [],
-        isSystemPromptChanged: false,
-        useAIPrompt: false,
-        source: 'local',
-        pact: {talents: [{name: 'calculate', necessity: 'optional'}]},
-      } as any,
-    ];
+    // Advertise the talents so allowedTalentNames includes them.
+    (
+      chatSessionStore.getCurrentCompletionSettings as jest.Mock
+    ).mockResolvedValueOnce({
+      ...defaultCompletionSettings,
+      tools: deriveToolSchemas(['calculate']),
+    });
     chatSessionStore.sessions = [
       {
         id: 'session-1',
@@ -944,7 +898,6 @@ describe('useChatSession — AssistantTurn integration', () => {
         messages: [],
         completionSettings: {},
         settingsSource: 'pal',
-        activePalId: 'pal-1',
       } as any,
     ];
     chatSessionStore.activeSessionId = 'session-1';

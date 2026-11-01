@@ -95,7 +95,7 @@ export const initialAgentUiState: AgentUiState = {
 export interface AgentRunOptions {
   engine: CompletionEngine;
   initialParams: ApiCompletionParams;
-  /** Names of talents this Pal advertises; outcomes for any other
+  /** Names of talents advertised for this run; outcomes for any other
    * talent the model invents are rejected with an error. */
   allowedTalentNames: string[];
   talentLookup: (name: string) => TalentEngine | undefined;

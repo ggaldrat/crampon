@@ -375,18 +375,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Fichier"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Modèles",
-      "palsTab": "Pals",
-      "noPal": "Pas d'assistant",
-      "disablePal": "Désactiver l'assistant actif",
-      "noDescription": "Pas de description",
-      "assistantType": "Assistant",
-      "roleplayType": "Jeu de rôle",
-      "confirmationTitle": "Confirmation",
-      "modelSwitchMessage": "Cet assistant a un modèle par défaut différent ({{modelName}}). Voulez-vous passer au modèle par défaut de l'assistant ?",
-      "keepButton": "Garder",
-      "switchButton": "Changer"
+    "chatModelPickerSheet": {
+      "modelsTab": "Modèles"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Échec du téléchargement",
@@ -423,57 +413,12 @@
       "proceedWithReset": "Procéder à la réinitialisation",
       "confirmReset": "Confirmer la réinitialisation"
     },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Créer un assistant",
-        "edit": "Modifier un assistant"
-      },
-      "palName": "Nom de l'assistant",
-      "palNamePlaceholder": "Nom",
-      "defaultModel": "Modèle par défaut",
-      "defaultModelPlaceholder": "Sélectionner un modèle",
-      "validation": {
-        "generatingPromptRequired": "L'invite de génération est requise",
-        "promptModelRequired": "Le modèle de génération d'invites est requis"
-      },
-      "create": "Créer"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "Vous n'avez encore téléchargé aucun modèle. Veuillez d'abord télécharger un modèle.",
       "downloadAModel": "Télécharger un modèle",
       "defaultModelNotDownloaded": "Le modèle par défaut n'est pas encore téléchargé. Veuillez d'abord le télécharger.",
       "cancelDownload": "Annuler le téléchargement",
       "download": "Télécharger"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Créer un assistant de jeu de rôle",
-        "edit": "Modifier un assistant de jeu de rôle"
-      },
-      "palName": "Nom de l'assistant",
-      "palNamePlaceholder": "Nom",
-      "defaultModel": "Modèle par défaut",
-      "defaultModelPlaceholder": "Sélectionner un modèle",
-      "descriptionSection": "Description",
-      "world": "Monde",
-      "worldPlaceholder": "Fantaisie",
-      "location": "Lieu",
-      "locationPlaceholder": "Forêt enchantée",
-      "locationSublabel": "Où se déroule l'histoire ?",
-      "aiRole": "Rôle de l'IA",
-      "aiRolePlaceholder": "Eldara, un esprit malicieux de la forêt",
-      "aiRoleSublabel": "Définir le rôle du personnage",
-      "userRole": "Rôle de l'utilisateur",
-      "userRolePlaceholder": "Sir Elandor, un chevalier courageux",
-      "userRoleSublabel": "Qui êtes-vous ?",
-      "situation": "Situation",
-      "situationPlaceholder": "Mission de sauvetage, résolution d'un mystère",
-      "toneStyle": "Ton/Style",
-      "toneStylePlaceholder": "Sérieux",
-      "validation": {
-        "promptModelRequired": "Le modèle de génération d'invites est requis"
-      },
-      "create": "Créer"
     },
     "sendButton": {
       "accessibilityLabel": "Envoyer"
@@ -556,7 +501,6 @@
   "screenTitles": {
     "chat": "Discussion",
     "models": "Modèles",
-    "pals": "Assistants (expérimental)",
     "benchmark": "Benchmark",
     "settings": "Paramètres",
     "appInfo": "Info application",

@@ -61,26 +61,6 @@
     "displayMemoryUsage": "Паказваць выкарыстанне памяці",
     "exportButton": "Экспартаваць",
     "importButton": "Імпартаваць",
-    "internetSearch": {
-      "title": "Пошук у інтэрнэце",
-      "setKeyButton": "Задаць ключ",
-      "updateKeyButton": "Абнавіць ключ",
-      "clearKeyButton": "Выдаліць ключ",
-      "keyInputPlaceholder": "Устаўце свой ключ API {{provider}}",
-      "keyUpdateError": "Не ўдалося абнавіць ключ. Паспрабуйце зноў.",
-      "showKeyAccessibilityLabel": "Паказаць ключ API",
-      "hideKeyAccessibilityLabel": "Схаваць ключ API",
-      "consentRevoke": "Адклікаць",
-      "consentAccept": "Я разумею",
-      "keyLabel": "Ключ API",
-      "keyIsSet": "Для {{provider}} зададзены ключ.",
-      "keyNotSet": "Для {{provider}} не зададзена ключа.",
-      "consentGivenTitle": "Пошук у інтэрнэце ўключаны",
-      "consentTitle": "Пошукавыя запыты выходзяць за межы вашай прылады",
-      "providerLabel": "Сэрвіс пошуку",
-      "providerGated": "Ужо хутка",
-      "resultCountLabel": "Вынікаў на пошукавы запыт"
-    },
     "cacheStorageTitle": "Кэш і сховішча",
     "serverType": "Тып сервера",
     "yourServers": "Вашы серверы",
@@ -258,11 +238,6 @@
   },
   "chat": {
     "increaseContextCancel": "Не зараз",
-    "webSearch": {
-      "noResults": "Няма рэзультатаў",
-      "searchResultsTitle": "Рэзультаты пошуку",
-      "resultsCountOne": "1 рэзультат"
-    },
     "increaseContextReloadingShort": "Ідзе перазагрузка…",
     "increaseContextSliderA11yLabel": "Памер кантэксту",
     "increaseContextSliderA11yValue": "Токенаў: {{tokens}}",

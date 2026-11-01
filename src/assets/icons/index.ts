@@ -43,7 +43,6 @@ export {default as LinkExternalIcon} from './link-external.svg';
 export {default as MenuIcon} from './menu.svg';
 export {default as ModelIcon} from './model.svg';
 export {default as MoonIcon} from './moon.svg';
-export {default as PalIcon} from './pal.svg';
 export {default as PencilLineIcon} from './pencil-line.svg';
 export {default as PlaceholderIcon} from './placeholder.svg';
 export {default as PlayIcon} from './play.svg';

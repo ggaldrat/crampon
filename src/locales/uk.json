@@ -158,31 +158,6 @@
     "requestTimeoutPlaceholder": "Необов’язкове — залиште порожнім, щоб використовувати значення за замовчуванням",
     "serverType": "Тип сервера",
     "serverTypeHelp": "Визначається автоматично; змініть, якщо неправильно.",
-    "internetSearch": {
-      "title": "Пошук в інтернеті",
-      "description": "Дозвольте Pals шукати в інтернеті за допомогою власних інструментів. Використовуйте власний ключ API — PocketPal ніколи не зберігає ваші ключі й не маршрутизує ваші запити.",
-      "providerLabel": "Постачальник пошуку",
-      "providerGated": "Незабаром",
-      "keyLabel": "Ключ API",
-      "keyIsSet": "Ключ для {{provider}} встановлено.",
-      "keyNotSet": "Для {{provider}} не встановлено ключ.",
-      "setKeyButton": "Встановити ключ",
-      "updateKeyButton": "Оновити ключ",
-      "clearKeyButton": "Очистити ключ",
-      "keyInputPlaceholder": "Вставте свій ключ API для {{provider}}",
-      "keyUpdateError": "Не вдалося оновити ключ. Спробуйте ще раз.",
-      "showKeyAccessibilityLabel": "Показати ключ API",
-      "hideKeyAccessibilityLabel": "Сховати ключ API",
-      "resultCountLabel": "Результатів на пошук",
-      "resultCountDescription": "Менша кількість результатів залишає більше місця в контексті моделі.",
-      "consentTitle": "Пошукові запити залишають ваш пристрій",
-      "consentDescription": "Коли Pal шукає в інтернеті, ваш запит надсилається вибраному постачальнику через інтернет. Коли Pal читає сторінку, URL-адреса та вміст сторінки можуть натомість надсилатися до стандартного сервісу читання (r.jina.ai), якщо у вибраного постачальника немає власного засобу читання. Ключі та запити ніколи не надсилаються до PocketPal.",
-      "consentAccept": "Зрозуміло",
-      "consentRequired": "Прийміть застереження вище, щоб встановити ключ і ввімкнути пошук.",
-      "consentGivenTitle": "Пошук в інтернеті ввімкнено",
-      "consentGivenDescription": "Запити та читання сторінок можуть залишати ваш пристрій, як описано вище.",
-      "consentRevoke": "Відкликати"
-    },
     "languageSheetTitle": "Мова",
     "languageSearchPlaceholder": "Пошук мов",
     "speculativeDecoding": "Спекулятивне декодування",
@@ -591,9 +566,7 @@
       "activateModelTitle": "Активуйте модель, щоб розпочати роботу",
       "activateModelDescription": "Виберіть модель і завантажте її. Після завантаження натисніть «Завантажити» поруч із моделлю та почніть спілкуватися.",
       "activateModelButton": "Вибрати модель",
-      "loading": "Завантаження...",
-      "gettingReadyTitle": "{{name}} готується",
-      "gettingReadyDescription": "Ми повідомимо вас, щойно ваш Pal зможе почати чат. Натисніть на банер у верхній частині екрана, щоб дізнатися, як просуваються справи."
+      "loading": "Завантаження..."
     },
     "chatInput": {
       "inputPlaceholder": "Повідомлення",
@@ -679,22 +652,7 @@
         "title": "Успіх",
         "message": "Ці налаштування будуть застосовані до всіх майбутніх сеансів"
       },
-      "palSettings": "Налаштування Pal",
       "settingsSource": "Джерело налаштувань"
-    },
-    "palGenerationSettingsSheet": {
-      "title": "Налаштування генеранції — {{palName}}",
-      "invalidValues": "Недопустимі значення",
-      "invalidNumericValuesMessage": "Номер повинен бути дійсним",
-      "pleaseCorrect": "Будь ласка, виправте наступне:",
-      "ok": "Гаразд",
-      "error": "Помилка",
-      "failedToSave": "Не вдалося зберегти налаштування друзів",
-      "resetToGlobal": "Скинути до загальних налаштувань за замовчуванням",
-      "resetToSystem": "Відновити заводські налаштування",
-      "clearPalSettings": "Очистити налаштування Pal",
-      "customSettingsFor": "Налаштування для {{palName}}",
-      "inheritedSettingsFor": "Універсальні налаштування для {{palName}}"
     },
     "chatHeaderTitle": {
       "defaultTitle": "Чат"
@@ -702,19 +660,8 @@
     "fileMessage": {
       "fileButtonAccessibilityLabel": "Файл"
     },
-    "chatPalModelPickerSheet": {
-      "modelsTab": "Моделі",
-      "palsTab": "Палички",
-      "noPal": "Немає палички",
-      "disablePal": "Вимкнути активного паличках",
-      "noDescription": "Опис відсутній",
-      "assistantType": "Асистент",
-      "roleplayType": "Рольова гра",
-      "videoType": "Відео",
-      "confirmationTitle": "Підтвердження",
-      "modelSwitchMessage": "Цей pal має іншу модель за замовчуванням ({{modelName}}). Чи хочете ви перейти на модель за замовчуванням цього pal?",
-      "keepButton": "Зберігати",
-      "switchButton": "Перемикач"
+    "chatModelPickerSheet": {
+      "modelsTab": "Моделі"
     },
     "downloadErrorDialog": {
       "downloadFailedTitle": "Завантаження не вдалося",
@@ -763,62 +710,6 @@
       "proceedWithReset": "Продовжити скидання",
       "confirmReset": "Підтвердити скидання"
     },
-    "palSheet": {
-      "title": {
-        "edit": "Редагувати Pal",
-        "newPal": "Новий Pal",
-        "newVideoPal": "Новий відео Pal"
-      },
-      "description": "Опис",
-      "descriptionPlaceholder": "Введіть короткий опис свого друга",
-      "parameters": "Параметри",
-      "generationSettings": "Налаштування генеранції",
-      "configureGenerationSettings": "Налаштувати параметри генерації",
-      "validation": {
-        "nameRequired": "Ім'я вводити обов'язково",
-        "generatingPromptRequired": "При використанні підказки ШІ необхідно ввести підказку",
-        "promptModelRequired": "При використанні підказки ШІ необхідна модель генерації підказок"
-      },
-      "talents": "Таланти",
-      "talentNames": {
-        "render_html": "Попередній перегляд HTML",
-        "calculate": "Математичні вирази",
-        "datetime": "Дата й час",
-        "web_search": "Пошук в інтернеті",
-        "read_url": "Читання веб-сторінки"
-      },
-      "talentDescriptions": {
-        "render_html": "Відображати HTML-документи вбудовано в чаті",
-        "calculate": "Обчислення математичних виразів",
-        "datetime": "Отримати поточну дату й час",
-        "web_search": "Пошук актуальної інформації в інтернеті (потрібен ключ API в налаштуваннях)",
-        "read_url": "Читання повного вмісту веб-сторінки (потрібен ключ API в налаштуваннях)"
-      },
-      "greeting": {
-        "sectionLabel": "Привіт",
-        "textLabel": "Вітальне повідомлення",
-        "textPlaceholder": "Що б сказав цей приятель у порожньому чаті?",
-        "suggestedPromptsLabel": "Рекомендовані запити",
-        "addPromptButton": "Додати підказку",
-        "promptPlaceholder": "Коротка підказка для чипа",
-        "removePromptLabel": "Прибрати підказку"
-      }
-    },
-    "assistantPalSheet": {
-      "title": {
-        "create": "Створити помічника Pal",
-        "edit": "Редагувати помічника Pal"
-      },
-      "palName": "Ім'я Pal",
-      "palNamePlaceholder": "Ім'я",
-      "defaultModel": "Модель за замовчуванням",
-      "defaultModelPlaceholder": "Виберіть модель",
-      "validation": {
-        "generatingPromptRequired": "Необхідно ввести підказку",
-        "promptModelRequired": "Потрібна модель генерації підказок"
-      },
-      "create": "Створити"
-    },
     "modelNotAvailable": {
       "noModelsDownloaded": "Ви ще не завантажили жодної моделі. Будь ласка, спочатку завантажте модель.",
       "downloadAModel": "Завантажити модель",
@@ -827,50 +718,6 @@
       "recommendedModel": "Рекомендована модель",
       "cancelDownload": "Скасувати завантаження",
       "download": "Завантажити"
-    },
-    "roleplayPalSheet": {
-      "title": {
-        "create": "Створити друга для рольової pal",
-        "edit": "Редагувати рольову груPal"
-      },
-      "palName": "Ім'я Pal",
-      "palNamePlaceholder": "Ім'я",
-      "defaultModel": "Модель за замовчуванням",
-      "defaultModelPlaceholder": "Виберіть модель",
-      "descriptionSection": "Опис",
-      "world": "Світ",
-      "worldPlaceholder": "Фантастика",
-      "location": "Місцезнаходження",
-      "locationPlaceholder": "Зачарований ліс",
-      "locationSublabel": "Де відбувається дія цієї історії?",
-      "aiRole": "Роль штучного інтелекту",
-      "aiRolePlaceholder": "Ельдара, пустотлива лісова фея",
-      "aiRoleSublabel": "Визначити роль персонажа",
-      "userRole": "Роль користувача",
-      "userRolePlaceholder": "Сер Еландор, хоробрий лицар",
-      "userRoleSublabel": "Хто ти?",
-      "situation": "Ситуація",
-      "situationPlaceholder": "Рятувальна операція, розгадка таємниці",
-      "toneStyle": "Тон/Стиль",
-      "toneStylePlaceholder": "Серйозний",
-      "validation": {
-        "promptModelRequired": "Потрібна модель генерації підказок"
-      },
-      "create": "Створити"
-    },
-    "lookiePalSheet": {
-      "title": {
-        "create": "Створити Lookie Pal",
-        "edit": "Редагувати Lookie Pal"
-      },
-      "palName": "Ім'я Pal",
-      "palNamePlaceholder": "Введіть ім'я для свого Lookie Pal",
-      "visionModel": "Модель бачення",
-      "visionModelPlaceholder": "Виберіть модель зору",
-      "requiredModelsSection": "Необхідні моделі",
-      "captureInterval": "Інтервал зйомки",
-      "captureIntervalHelper": "Інтервал між автоматичними знімками в мілісекундах",
-      "create": "Створити"
     },
     "sendButton": {
       "accessibilityLabel": "Надіслати"
@@ -964,12 +811,6 @@
         "reportContent": "Зміст звіту"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "Експортувати всіх pal",
-      "importPals": "Імпортувати pals",
-      "importSuccess": "Успішно імпортовано {{count}} pal.",
-      "importError": "Не вдалося імпортувати контакти. Перевірте формат файлу."
-    },
     "pendingIndicator": {
       "preparingTool": "Підготовка інструмента",
       "buildingPage": "Створення сторінки",
@@ -987,48 +828,6 @@
       "usingServerDefaultUnreported": "Використовується значення сервера за замовчуванням (не вказано)",
       "resetToServerDefault": "Значення сервера за замовчуванням: {{value}} · Скинути",
       "resetToServerDefaultAccessibilityLabel": "Скинути {{name}} до значення сервера за замовчуванням, {{value}}"
-    }
-  },
-  "palsScreen": {
-    "sectionTitles": {
-      "myPalsLocal": "Мої Pal (місцеві)",
-      "myLibrary": "Моя бібліотека (palshub.ai)",
-      "discoverPals": "Відкрийте для себе Pals (palshub.ai)"
-    },
-    "systemPrompt": "Системне повідомлення",
-    "videoAnalysis": "Аналіз відео",
-    "videoAnalysisDescription": "Це відео-помічник на базі штучного інтелекту, який надає коментарі в режимі реального часу до відеопотоків з камери вашого пристрою.",
-    "captureInterval": "Інтервал зйомки",
-    "captureIntervalUnit": "мс",
-    "world": "Світ",
-    "toneStyle": "Тон/Стиль",
-    "aiRole": "Роль штучного інтелекту",
-    "userRole": "Мій роль",
-    "prompt": "Підказка",
-    "assistant": "Асистент",
-    "roleplay": "Рольова гра",
-    "video": "Відео",
-    "deletePal": "Видалити Pal",
-    "deletePalMessage": "Ти впевнений, що хочеш видалити цього pal?",
-    "missingModel": "Відсутня модель",
-    "missingModelMessage": "Стандартна модель «{{modelName}}» для цього палетки недоступна. Завантажте її у вікні редагування або виберіть іншу модель.",
-    "search": "Пошук",
-    "addPal": "Додати Pal",
-    "deletePalConfirmation": "Ви впевнені, що хочете видалити «{{palName}}»?",
-    "filters": {
-      "all": "Всі",
-      "myPals": "Мій Pals",
-      "local": "Локальний",
-      "video": "Відео",
-      "free": "Безкоштовно",
-      "premium": "Преміум"
-    },
-    "labels": {
-      "free": "Безкоштовно",
-      "premium": "Преміум",
-      "private": "Приватне",
-      "download": "Завантажити",
-      "getFree": "Отримати Безкоштовно"
     }
   },
   "validation": {
@@ -1055,36 +854,9 @@
     "promptPlaceholder": "Що ви хочете дізнатися про це зображення?",
     "takePhoto": "Камера"
   },
-  "video": {
-    "permissionTitle": "Потрібен доступ до камери",
-    "permissionMessage": "PocketPal потребує доступу до камери для аналізу відео",
-    "requestingPermission": "Запит на дозвіл на використання камери...",
-    "noDevice": "Камера не знайдено",
-    "errorTitle": "Помилка камери",
-    "errorMessage": "Сталася помилка з камерою",
-    "flip": "Перевернути",
-    "analyzing": "Аналізується відео...",
-    "startCamera": "Запустити камеру",
-    "stopCamera": "Зупинити камеру",
-    "promptPlaceholder": "Що ви хочете дізнатися про це відео?",
-    "captureInterval": "Інтервал зйомки",
-    "captureIntervalUnit": "мс",
-    "liveCommentary": "Пряма трансляція",
-    "emptyPlaceholder": {
-      "title": "Ласкаво просимо до Lookie",
-      "subtitle": "Приватний аналіз відео в режимі реального часу безпосередньо на пристрої",
-      "experimentalNotice": "Це експериментальна функція. Точність залежить від обраної моделі, швидкість — від технічних характеристик вашого пристрою, а деякі моделі можуть не працювати.",
-      "howToUse": "Спосіб застосування:",
-      "step1": "• Відредагуйте підказку (за бажанням), щоб скерувати аналіз",
-      "step2": "• Натисніть кнопку камери, щоб розпочати аналіз відео в режимі реального часу",
-      "step3": "• Налаштувати частоту створення знімків, коли камера увімкнена",
-      "step4": "• Перейдіть до іншого друга, щоб вести звичайний текстовий чат"
-    }
-  },
   "screenTitles": {
     "chat": "Чпт",
     "models": "Моделі",
-    "pals": "Pals (експериментальний)",
     "benchmark": "Бенчмарк",
     "settings": "Налаштування",
     "appInfo": "Про додаток",
@@ -1103,7 +875,6 @@
     "multimodalNotEnabled": "Для цієї моделі функція «Мультимодальність» не увімкнена. Зображення будуть відображатися, але штучний інтелект їх не оброблятиме.",
     "cannotSendWithoutModel": "Спочатку завантажте модель",
     "toolCallTruncated": "Виклик інструмента перервано — ймовірно, моделі бракує місця в контексті. Спробуйте збільшити контекст або скоротити запит.",
-    "toolCompatWarning": "Ця модель може не підтримувати виклики інструментів. Результати можуть бути ненадійними.",
     "softCapWarning": "Почніть новий чат для кращої продуктивності.",
     "generatingPreview": "Створення попереднього перегляду… ({{tokens}} ток.)",
     "generatingPreviewPending": "Створення попереднього перегляду…",
@@ -1142,17 +913,6 @@
     "increaseContextReloading": "Перезавантаження моделі з більшим контекстом…",
     "increaseContextSuccess": "Контекст збільшено до {{target}} токенів.",
     "increaseContextFailure": "Не вдалося збільшити розмір контексту. Було відновлено попереднє значення.",
-    "palLoadHint": "Цей pal зазвичай потребує більше місця, ніж дозволяє поточний розмір контексту.",
-    "webSearch": {
-      "searched": "Виконано пошук: {{query}}",
-      "noResults": "Немає результатів",
-      "noResultsFor": "Немає результатів для {{query}}",
-      "resultsCount": "{{count}} результатів",
-      "resultsCountOne": "1 результат",
-      "searchResultsTitle": "Результати пошуку",
-      "showResultsAccessibilityLabel": "Показати результати веб-пошуку для {{query}}",
-      "openLinkError": "Не вдалося відкрити це посилання."
-    },
     "contextFullRemote": "У розмові закінчилося місце. Почніть новий чат.",
     "speculativeInitFailed": "Цьому пристрою не вдалося запустити спекулятивне декодування для цієї моделі — найімовірніше, бракує пам'яті для контексту чернетки. Вимкніть спекулятивне декодування в розділі «Налаштування» → «Розширені налаштування» та спробуйте ще раз."
   },
@@ -1470,28 +1230,10 @@
         "balanced": "Збалансована",
         "best": "Найкраща"
       },
-      "subtitleTemplate": "{{name}} думає за допомогою невеликої моделі ШІ у вашому телефоні — виберіть ту, що підходить.",
-      "pal": {
-        "pip": {
-          "body": "Ми знайшли для вас ідеального приятеля — дружнього супутника на щодень. Достатньо кмітливий для більшості завдань і достатньо легкий для будь-якого телефона."
-        },
-        "codie": {
-          "body": "Знайомтеся з Codie — вашим локальним напарником-програмістом. Читає код, пише код і пояснює складні моменти, не залишаючи ваш телефон."
-        },
-        "sage": {
-          "body": "Sage терплячий, допитливий і проводить вас крізь ідеї крок за кроком. Напарник у навчанні, якого ви тримаєте в кишені."
-        },
-        "echo": {
-          "body": "Echo — універсальний супутник для рольових ігор: тримається ролі, змальовує сцени та йде туди, куди веде ваша історія."
-        },
-        "muse": {
-          "body": "Muse допомагає вам писати. Підказує формулювання, знаходить ритм і зберігає ваш стиль."
-        }
-      }
+      "subtitleTemplate": "{{name}} думає за допомогою невеликої моделі ШІ у вашому телефоні — виберіть ту, що підходить."
     }
   },
   "downloadBanner": {
-    "titleByPal": "{{name}} завантажується",
     "titleByModel": "{{name}} завантажується",
     "extraInProgress": "+{{count}} ще триває",
     "failedTitle": "Завантаження не завершилося",
