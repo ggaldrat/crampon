@@ -5,7 +5,7 @@ import {useNavigation, NavigationProp} from '@react-navigation/native';
 
 import {XIcon} from '../../assets/icons';
 import {useTheme} from '../../hooks';
-import {modelStore, uiStore} from '../../store';
+import {modelStore, modelUpdateStore, uiStore} from '../../store';
 import {L10nContext} from '../../utils';
 import {ROUTES} from '../../utils/navigationConstants';
 import {bannerStyles as createStyles} from './styles';
@@ -39,9 +39,11 @@ export const DownloadBanner: React.FC = observer(() => {
   const navigation = useNavigation<NavigationProp<any>>();
   const l10n = useContext(L10nContext);
 
+  // Automatic model updates download silently.
+  const silentId = modelUpdateStore.pendingId;
   const failedId = modelStore.downloadError?.metadata?.modelId;
   const failedModel =
-    failedId && !modelStore.isDownloading(failedId)
+    failedId && failedId !== silentId && !modelStore.isDownloading(failedId)
       ? modelStore.models.find(m => m.id === failedId)
       : undefined;
   if (failedModel) {
@@ -119,7 +121,8 @@ export const DownloadBanner: React.FC = observer(() => {
     );
   }
 
-  const visible = modelStore.activeDownloads.find(
+  const shown = modelStore.activeDownloads.filter(d => d.modelId !== silentId);
+  const visible = shown.find(
     d => !uiStore.isDownloadBannerDismissed(d.modelId),
   );
   if (!visible) {
@@ -132,7 +135,7 @@ export const DownloadBanner: React.FC = observer(() => {
   );
   const eta = visible.etaLabel || formatSize(visible.bytesTotal);
   const clamped = Math.max(0, Math.min(100, visible.progress));
-  const extraCount = Math.max(0, modelStore.activeDownloads.length - 1);
+  const extraCount = Math.max(0, shown.length - 1);
   const extraLabel = l10n.downloadBanner.extraInProgress.replace(
     '{{count}}',
     String(extraCount),

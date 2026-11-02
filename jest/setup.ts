@@ -60,6 +60,7 @@ import {deepLinkStore as mockDeepLinkStore} from '../__mocks__/stores/deepLinkSt
 import {mockServerStore} from '../__mocks__/stores/serverStore';
 import {mockRouterStore} from '../__mocks__/stores/routerStore';
 import {mockTTSStore} from '../__mocks__/stores/ttsStore';
+import {mockModelUpdateStore} from '../__mocks__/stores/modelUpdateStore';
 
 jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);
 
@@ -118,6 +119,7 @@ jest.mock('../src/store', () => {
     serverStore: mockServerStore,
     routerStore: mockRouterStore,
     ttsStore: mockTTSStore,
+    modelUpdateStore: mockModelUpdateStore,
     defaultCompletionSettings: mockDefaultCompletionSettings,
     NEW_SESSION_TITLE: 'New Session',
   };

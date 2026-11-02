@@ -60,6 +60,8 @@
     "valueCacheType": "Type de cache valeur",
     "valueCacheTypeDescription": "Sélectionnez le type de cache pour le calcul des valeurs",
     "valueCacheTypeDisabledDescription": "Activez Flash Attention pour modifier le type de cache",
+    "autoUpdateModel": "Mise à jour automatique du modèle",
+    "autoUpdateModelDescription": "Télécharge un meilleur modèle pour ce téléphone quand il en sort un, et l'utilise à la prochaine nouvelle conversation.",
     "modelLoadingSettings": "Paramètres de chargement du modèle",
     "autoOffloadLoad": "Déchargement/Chargement auto",
     "autoOffloadLoadDescription": "Décharger le modèle quand l'application est en arrière-plan.",

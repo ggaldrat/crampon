@@ -31,6 +31,7 @@ import {
   MoonIcon,
   CpuChipIcon,
   LinkExternalIcon,
+  RefreshIcon,
   VolumeOnIcon,
 } from '../../assets/icons';
 
@@ -47,7 +48,7 @@ import {useTheme} from '../../hooks';
 import {createStyles} from './styles';
 import {CacheTypeMenuRow, useMenuAnchor} from './CacheTypeMenuRow';
 
-import {modelStore, uiStore, ttsStore} from '../../store';
+import {modelStore, modelUpdateStore, uiStore, ttsStore} from '../../store';
 
 import {CacheType, ModelType} from '../../utils/types';
 import {
@@ -398,6 +399,31 @@ export const SettingsScreen: React.FC = observer(() => {
                     testID="tts-availability-switch"
                     value={ttsStore.isTTSAvailable}
                     onValueChange={value => ttsStore.setUserTTSOverride(value)}
+                  />
+                </View>
+
+                <Divider />
+                <View style={styles.switchContainer}>
+                  <View style={styles.textContainer}>
+                    <View style={styles.labelWithIconContainer}>
+                      <RefreshIcon
+                        width={20}
+                        height={20}
+                        style={styles.settingIcon}
+                        stroke={theme.colors.onSurface}
+                      />
+                      <Text variant="titleMedium" style={styles.textLabel}>
+                        {l10n.settings.autoUpdateModel}
+                      </Text>
+                    </View>
+                    <Text variant="labelSmall" style={styles.textDescription}>
+                      {l10n.settings.autoUpdateModelDescription}
+                    </Text>
+                  </View>
+                  <Switch
+                    testID="auto-update-model-switch"
+                    value={modelUpdateStore.enabled}
+                    onValueChange={value => modelUpdateStore.setEnabled(value)}
                   />
                 </View>
 
