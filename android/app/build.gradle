@@ -6,7 +6,6 @@ apply plugin: "com.facebook.react"
 // Add the Google Services plugin dependency
 // This is used exclusively for sending benchmarks (with user consent) to Hugging Face Spaces via Firebase.
 // Firebase is used for App Check functionality, allowing unauthenticated users to submit their benchmark data securely.
-apply plugin: "com.google.gms.google-services"
 
 apply from: "../../node_modules/react-native-config/android/dotenv.gradle"
 
@@ -78,6 +77,14 @@ def enableProguardInReleaseBuilds = false
  * give correct results when using with locales other than en-US. Note that
  * this variant is about 6MiB larger per architecture than default.
  */
+/**
+ * ABIs to package, from the reactNativeArchitectures Gradle property.
+ */
+def reactNativeArchitectures() {
+    def value = project.getProperties().get("reactNativeArchitectures")
+    return value ? value.split(",") : ["arm64-v8a"]
+}
+
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 android {
@@ -87,13 +94,18 @@ android {
 
     namespace "com.pocketpal"
     defaultConfig {
-        applicationId "com.pocketpalai"
+        applicationId "com.blandystudio.crampon"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 150
+        // Crampon self-updates: every build must carry a higher versionCode
+        // than the installed one, so it is the build time in minutes since
+        // 2026-01-01 UTC (override with -PcramponVersionCode=N).
+        versionCode(project.hasProperty("cramponVersionCode")
+            ? project.property("cramponVersionCode").toInteger()
+            : (int) (System.currentTimeMillis() / 60000L - 29453760L))
         versionName "1.19.1"
         ndk {
-            abiFilters "arm64-v8a", "x86_64"
+            abiFilters(*reactNativeArchitectures())
         }
     }
     externalNativeBuild {
@@ -113,15 +125,17 @@ android {
             keyPassword 'android'
         }
         release {
-            // Read signing credentials from .env file or environment variables
-            def releaseStorePassword = project.env.get("APP_RELEASE_STORE_PASSWORD") ?: System.getenv("APP_RELEASE_STORE_PASSWORD")
-            def releaseKeyPassword = project.env.get("APP_RELEASE_KEY_PASSWORD") ?: System.getenv("APP_RELEASE_KEY_PASSWORD")
-
-            if (releaseStorePassword && releaseKeyPassword) {
-                storeFile file("pocketpal-release-key.keystore")
-                storePassword releaseStorePassword
-                keyAlias "pocketpal_key_alias"
-                keyPassword releaseKeyPassword
+            // Crampon key, kept outside the repo (default ~/crampon/keys,
+            // override with CRAMPON_SIGNING=/path/to/signing.properties).
+            def signingFile = file(System.getenv("CRAMPON_SIGNING")
+                ?: "${System.getProperty('user.home')}/crampon/keys/signing.properties")
+            if (signingFile.exists()) {
+                def props = new Properties()
+                signingFile.withInputStream { props.load(it) }
+                storeFile file(props.storeFile)
+                storePassword props.storePassword
+                keyAlias props.keyAlias
+                keyPassword props.keyPassword
             }
         }
     }
@@ -174,12 +188,12 @@ android {
     productFlavors {
         prod {
             dimension "distribution"
-            // applicationId stays as defaultConfig: com.pocketpalai
+            // applicationId stays as defaultConfig: com.blandystudio.crampon
         }
         e2e {
             dimension "distribution"
             applicationIdSuffix ".e2e"
-            // Effective applicationId: com.pocketpalai.e2e
+            // Effective applicationId: com.blandystudio.crampon.e2e
             // Separate sandbox; installs side-by-side with prod.
         }
     }
@@ -212,12 +226,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    // The Firebase Android BoM (Bill of Materials) lets you manage all your Firebase library versions 
-    // by specifying only one version — the BoM's version.
-    implementation platform('com.google.firebase:firebase-bom:34.4.0')
-    implementation 'com.google.firebase:firebase-appcheck-playintegrity'
-    implementation 'com.google.firebase:firebase-appcheck-debug'
 
     // Room dependencies for DownloadModule
     def room_version = "2.8.2"

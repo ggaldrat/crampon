@@ -6,7 +6,6 @@ export * from './ChatInput';
 export * from './ChatView';
 export * from './ChatHeader';
 export * from './ChatEmptyPlaceholder';
-export * from './ModelErrorReportSheet';
 export * from './Checkbox';
 export * from './CircularActivityIndicator';
 export * from './DatabaseMigration';

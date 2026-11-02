@@ -8,8 +8,6 @@ import Slider from '@react-native-community/slider';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, Button, Card, ActivityIndicator, Icon} from 'react-native-paper';
 
-import {submitBenchmark} from '../../api/benchmark';
-
 import {Menu, Dialog, Checkbox} from '../../components';
 
 import {useTheme} from '../../hooks';
@@ -247,14 +245,8 @@ export const BenchmarkScreen: React.FC = observer(() => {
     if (result.submitted) {
       throw new Error('This benchmark has already been submitted');
     }
-    try {
-      const response = await submitBenchmark(deviceInfo, result);
-      console.log('Benchmark submitted successfully:', response);
-      benchmarkStore.markAsSubmitted(result.uuid);
-    } catch (error) {
-      console.error('Failed to submit benchmark:', error);
-      throw error;
-    }
+    // Crampon sends nothing to PocketPal's servers.
+    throw new Error('Sharing benchmarks is disabled');
   };
 
   const handleSharePress = async (result: BenchmarkResult) => {

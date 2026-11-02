@@ -1,12 +1,7 @@
 import React from 'react';
 import {Alert, Linking, Platform} from 'react-native';
-import {
-  render as baseRender,
-  fireEvent,
-  act,
-} from '../../../../jest/test-utils';
+import {render as baseRender, fireEvent} from '../../../../jest/test-utils';
 import {AboutScreen} from '../AboutScreen';
-import {submitFeedback} from '../../../api/feedback';
 import {l10n} from '../../../locales';
 
 const render = (ui: React.ReactElement, options: any = {}) =>
@@ -26,11 +21,6 @@ jest.mock('@react-native-clipboard/clipboard', () => ({
 // Mock Linking - need to spy on the actual Linking object
 const mockOpenURL = jest.fn().mockImplementation(() => Promise.resolve());
 jest.spyOn(Linking, 'openURL').mockImplementation(mockOpenURL);
-
-// Mock feedback API
-jest.mock('../../../api/feedback', () => ({
-  submitFeedback: jest.fn().mockResolvedValue(undefined),
-}));
 
 jest.spyOn(Alert, 'alert');
 
@@ -86,115 +76,7 @@ describe('AboutScreen', () => {
       expect(queryByText('Become a Sponsor')).toBeNull();
       expect(queryByText('or')).toBeNull();
       expect(getByText(l10n.en.about.githubButton)).toBeTruthy();
-      expect(getByText(l10n.en.about.orBy)).toBeTruthy();
-      expect(getByText(l10n.en.feedback.shareThoughtsButton)).toBeTruthy();
+      expect(queryByText(l10n.en.feedback.shareThoughtsButton)).toBeNull();
     });
-  });
-
-  it('opens feedback form when share thoughts button is pressed', async () => {
-    const {getByText, findByText} = render(<AboutScreen />);
-
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    expect(await findByText(l10n.en.feedback.useCase.label)).toBeTruthy();
-    expect(
-      await findByText(l10n.en.feedback.featureRequests.label),
-    ).toBeTruthy();
-    expect(
-      await findByText(l10n.en.feedback.generalFeedback.label),
-    ).toBeTruthy();
-    expect(
-      await findByText(l10n.en.feedback.usageFrequency.label),
-    ).toBeTruthy();
-  });
-
-  it('submits feedback successfully', async () => {
-    const {findByText, getByText, findByPlaceholderText} = render(
-      <AboutScreen />,
-    );
-
-    // Open feedback form
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    const useCaseInput = await findByPlaceholderText(
-      l10n.en.feedback.useCase.placeholder,
-    );
-    fireEvent.changeText(useCaseInput, 'Test use case');
-
-    const featureRequestsInput = await findByPlaceholderText(
-      l10n.en.feedback.featureRequests.placeholder,
-    );
-    fireEvent.changeText(featureRequestsInput, 'Test feature request');
-
-    const generalFeedbackInput = await findByPlaceholderText(
-      l10n.en.feedback.generalFeedback.placeholder,
-    );
-    fireEvent.changeText(generalFeedbackInput, 'Test feedback');
-
-    const dailyButton = await findByText(
-      l10n.en.feedback.usageFrequency.options.daily,
-    );
-    fireEvent.press(dailyButton);
-
-    // Submit form
-    const submitButton = await findByText(l10n.en.feedback.submit);
-    await act(async () => {
-      fireEvent.press(submitButton);
-    });
-
-    expect(submitFeedback).toHaveBeenCalledWith({
-      useCase: 'Test use case',
-      featureRequests: 'Test feature request',
-      generalFeedback: 'Test feedback',
-      usageFrequency: 'daily',
-    });
-
-    expect(Alert.alert).toHaveBeenCalledWith(
-      'Success',
-      'Thank you for your feedback!',
-    );
-  });
-
-  it('shows validation error when submitting empty feedback', async () => {
-    const {getByText, findByText} = render(<AboutScreen />);
-
-    // Open feedback form
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    // Submit empty form
-    const submitButton = await findByText(l10n.en.feedback.submit);
-    await act(async () => {
-      fireEvent.press(submitButton);
-    });
-
-    expect(Alert.alert).toHaveBeenCalledWith(
-      l10n.en.feedback.validation.required,
-    );
-    expect(submitFeedback).not.toHaveBeenCalled();
-  });
-
-  it('handles feedback submission error', async () => {
-    (submitFeedback as jest.Mock).mockRejectedValueOnce(new Error('API Error'));
-
-    const {getByText, findByText, findByPlaceholderText} = render(
-      <AboutScreen />,
-    );
-
-    // Open feedback form
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    // Fill out form
-    fireEvent.changeText(
-      await findByPlaceholderText(l10n.en.feedback.useCase.placeholder),
-      'Test use case',
-    );
-
-    // Submit form
-    const submitButton = await findByText(l10n.en.feedback.submit);
-    await act(async () => {
-      fireEvent.press(submitButton);
-    });
-
-    expect(Alert.alert).toHaveBeenCalledWith('Error', 'API Error');
   });
 });

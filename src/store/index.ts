@@ -9,3 +9,4 @@ export * from './ServerStore';
 export * from './RouterStore';
 export * from './TTSStore';
 export * from './ModelUpdateStore';
+export * from './AppUpdateStore';
