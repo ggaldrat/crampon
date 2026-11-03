@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
 //const localPackagePaths = ['localpath/code/llama.rn'];
@@ -17,12 +19,12 @@ const config = {
     //nodeModulesPaths: [...localPackagePaths], // update to resolver
     assetExts: assetExts.filter(ext => ext !== 'svg'),
     sourceExts: [...sourceExts, 'svg'],
-    // Crampon : node_modules est un lien symbolique vers /data (la partition
-    // racine, 20 Go, est trop petite pour les 4+ Go de deps RN/natives).
-    // Metro ne suit pas les symlinks hors-projet sans ce flag explicite.
+    // Crampon: on BlandyStudio node_modules is a symlink to /data (the root
+    // partition is too small for the RN/native deps). Metro only follows
+    // symlinks out of the project with this flag and the real path watched.
     unstable_enableSymlinks: true,
   },
-  watchFolders: ['/data/crampon-build/node_modules'],
+  watchFolders: [fs.realpathSync(path.join(__dirname, 'node_modules'))],
   transformer: {
     babelTransformerPath: require.resolve(
       'react-native-svg-transformer/react-native',
