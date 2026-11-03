@@ -49,7 +49,7 @@ jest
   });
 
 // Required after the mocks above exist (imports are hoisted).
-const {AppUpdateStore, APP_MANIFEST_URL} = require('../AppUpdateStore');
+const {AppUpdateStore, APP_MANIFEST_URLS} = require('../AppUpdateStore');
 
 const HASH = 'abc123';
 const manifest = (versionCode: number) => ({
@@ -95,10 +95,9 @@ describe('AppUpdateStore', () => {
     store.appState = 'active';
     const done = store.run();
     await flush();
-    expect(global.fetch).toHaveBeenCalledWith(
-      APP_MANIFEST_URL,
-      expect.anything(),
-    );
+    for (const url of APP_MANIFEST_URLS) {
+      expect(global.fetch).toHaveBeenCalledWith(url, expect.anything());
+    }
     expect(mockFs.downloadFile).toHaveBeenCalled();
     expect(mockUpdater.install).not.toHaveBeenCalled();
 
@@ -129,6 +128,17 @@ describe('AppUpdateStore', () => {
     });
     await done;
     expect(mockUpdater.install).toHaveBeenCalled();
+  });
+
+  it('takes the newest version among the sources, ignoring one that fails', async () => {
+    (global as any).fetch = jest
+      .fn()
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce({ok: true, json: async () => manifest(300)});
+    const store = new AppUpdateStore();
+    store.appState = 'background';
+    await store.run();
+    expect(store.installingVersion).toBe(300);
   });
 
   it('does nothing when up to date or switched off', async () => {

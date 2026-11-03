@@ -1,0 +1,141 @@
+# Crampon: test, build, sign and publish the Android app on every change to
+# main. The phone reads version.json from the latest release
+# (src/store/AppUpdateStore.ts) and updates itself. Adapted from PocketPal's
+# release.yml, without the version bump, Firebase, Play upload and iOS.
+name: Crampon release
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'veille/**'
+      - '**.md'
+  workflow_dispatch:
+
+concurrency:
+  group: crampon-release
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RNLLAMA_SKIP_POSTINSTALL: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.21.0'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn typecheck
+      - run: yarn test --coverage
+
+  android:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the release
+    env:
+      # llama.rn's own gradle.properties beats the root project's, so only an
+      # environment property wins (see PocketPal's release.yml).
+      ORG_GRADLE_PROJECT_rnllamaBuildFromSource: 'true'
+      RNLLAMA_SKIP_POSTINSTALL: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      # Must precede setup-java and setup-node, which install under
+      # /opt/hostedtoolcache. The Hexagon SDK adds ~3.1 GB.
+      - name: Maximize build space
+        run: sudo rm -rf /usr/share/dotnet /opt/ghc /opt/hostedtoolcache
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.21.0'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+
+      - name: Derive the rnllama variant allowlist from the payload manifest
+        run: |
+          set -euo pipefail
+          VARIANTS=$(node scripts/verify-android-payload.js --print-variants)
+          echo "ORG_GRADLE_PROJECT_rnllamaVariants=$VARIANTS" >> "$GITHUB_ENV"
+
+      - name: Set up the Hexagon SDK
+        uses: ./.github/actions/setup-hexagon-sdk
+
+      # Never ship a debug-signed build: the phone would refuse it, and it
+      # would be marked as failed there for good.
+      - name: Set up the Crampon signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.CRAMPON_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.CRAMPON_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.CRAMPON_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.CRAMPON_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "$KEYSTORE_BASE64" ] || [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "::error::Crampon signing secrets are missing."
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/crampon.keystore"
+          {
+            echo "storeFile=$RUNNER_TEMP/crampon.keystore"
+            echo "storePassword=$KEYSTORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > "$RUNNER_TEMP/signing.properties"
+          echo "CRAMPON_SIGNING=$RUNNER_TEMP/signing.properties" >> "$GITHUB_ENV"
+
+      - name: Build the APK
+        working-directory: android
+        env:
+          GRADLE_USER_HOME: ${{ runner.temp }}/.gradle
+        run: |
+          set -euo pipefail
+          ./gradlew assembleProdRelease 2>&1 | tee android-build.log
+
+      # COUPLING: the grepped string is printed by llama.rn's android/build.gradle.
+      - name: Verify the variant allowlist reached the llama.rn build
+        run: |
+          set -euo pipefail
+          VARIANTS=$(node scripts/verify-android-payload.js --print-variants)
+          grep -qF "Building rnllama variants: $VARIANTS" android/android-build.log
+
+      - name: Verify the Android payload
+        run: |
+          node scripts/verify-android-payload.js \
+            --apk android/app/build/outputs/apk/prod/release/app-prod-release.apk \
+            --report payload-report.txt
+
+      - name: Check the signature is the Crampon key
+        run: |
+          set -euo pipefail
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
+          "$APKSIGNER" verify --print-certs android/app/build/outputs/apk/prod/release/app-prod-release.apk | tee certs.txt
+          grep -q "CN=Crampon" certs.txt
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          OUT=android/app/build/outputs/apk/prod/release
+          CODE=$(jq '.elements[0].versionCode' "$OUT/output-metadata.json")
+          NAME=$(jq -r '.elements[0].versionName' "$OUT/output-metadata.json")
+          TAG="v$NAME-$CODE"
+          cp "$OUT/app-prod-release.apk" crampon.apk
+          SHA=$(sha256sum crampon.apk | cut -d' ' -f1)
+          URL="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/crampon.apk"
+          jq -n --argjson c "$CODE" --arg u "$URL" --arg s "$SHA" \
+            '{versionCode: $c, url: $u, sha256: $s}' > version.json
+          cat version.json
+          gh release create "$TAG" crampon.apk version.json payload-report.txt \
+            --target "$GITHUB_SHA" --latest \
+            --title "Crampon $NAME ($CODE)" \
+            --notes "Commit $GITHUB_SHA. sha256 $SHA."

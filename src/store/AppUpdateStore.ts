@@ -11,10 +11,17 @@ import {modelStore} from './ModelStore';
 import {modelUpdateStore} from './ModelUpdateStore';
 import {uiStore} from './UIStore';
 
-export const APP_MANIFEST_URL =
-  'https://crampon.blandy-studio.com/version.json';
+/**
+ * Where version.json is published: the GitHub release built by
+ * .github/workflows/crampon-release.yml, and BlandyStudio as a fallback.
+ * The newest version found wins, so a source that lags behind is harmless.
+ */
+export const APP_MANIFEST_URLS = [
+  'https://github.com/ggaldrat/crampon/releases/latest/download/version.json',
+  'https://crampon.blandy-studio.com/version.json',
+];
 
-/** Published next to the APK by doc/deploy_apk.sh. */
+/** Published next to the APK. */
 export type AppManifest = {
   versionCode: number;
   url: string;
@@ -139,18 +146,34 @@ export class AppUpdateStore {
   }
 
   private async fetchManifest(): Promise<AppManifest | null> {
-    const response = await fetch(APP_MANIFEST_URL, {
-      headers: {'Cache-Control': 'no-cache'},
-    });
-    if (!response.ok) {
+    const manifests = await Promise.all(
+      APP_MANIFEST_URLS.map(url => this.fetchManifestFrom(url)),
+    );
+    return manifests.reduce<AppManifest | null>(
+      (newest, m) =>
+        m && (!newest || m.versionCode > newest.versionCode) ? m : newest,
+      null,
+    );
+  }
+
+  /** null when the source is unreachable or serves something else. */
+  private async fetchManifestFrom(url: string): Promise<AppManifest | null> {
+    try {
+      const response = await fetch(url, {
+        headers: {'Cache-Control': 'no-cache'},
+      });
+      if (!response.ok) {
+        return null;
+      }
+      const manifest = await response.json();
+      return typeof manifest?.versionCode === 'number' &&
+        typeof manifest?.url === 'string' &&
+        typeof manifest?.sha256 === 'string'
+        ? manifest
+        : null;
+    } catch {
       return null;
     }
-    const manifest = await response.json();
-    return typeof manifest?.versionCode === 'number' &&
-      typeof manifest?.url === 'string' &&
-      typeof manifest?.sha256 === 'string'
-      ? manifest
-      : null;
   }
 
   /** Downloads the APK unless already there; true once its hash matches. */
