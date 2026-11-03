@@ -1,4 +1,4 @@
-import {DatetimeEngine} from '../DatetimeEngine';
+import {DatetimeEngine, deviceClockNote} from '../DatetimeEngine';
 
 describe('DatetimeEngine', () => {
   const engine = new DatetimeEngine();
@@ -35,5 +35,12 @@ describe('DatetimeEngine', () => {
     if (result.type === 'error') {
       expect(result.errorMessage).toBeDefined();
     }
+  });
+
+  it('writes the phone clock as a prompt note', () => {
+    const note = deviceClockNote(new Date('2026-11-03T07:15:00Z'));
+    expect(note).toMatch(
+      /^Current date and time on the user's phone: [A-Z][a-z]+day 2026-11-0[2-4], \d{2}:\d{2} \([^)]+\)\. /,
+    );
   });
 });

@@ -20,6 +20,8 @@ const DATE_TIME =
 const FACT_QUESTION =
   /\b(?:qui (?:est|était|a|sont|étaient|fut)|qu'est[- ]ce (?:que|qu)|c'est quoi|que (?:signifie|veut dire)|d[ée]finition|histoire d[eu']|biographie|quand (?:est|a|fut|était|s'est)|o[ùu] (?:est|se trouve|se situe)|capitale d[eu']|parle[- ]moi d[eu']|who (?:is|was|are|were)|what (?:is|was|are) (?:a |an |the )?[A-Z]|when (?:was|did|is)|where is|tell me about)\b/i;
 
+const TIME_ZONE = /\b(?:fuseau|time ?zone)/i;
+
 /** A capitalized word after the first one: likely a proper noun. */
 const PROPER_NOUN = /\s[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]{2,}/;
 
@@ -35,7 +37,12 @@ export const selectTalents = (question: string): string[] => {
   if (CALCULATION.test(text)) {
     talents.push('calculate');
   }
-  if (DATE_TIME.test(text)) {
+  // The phone's own time is in the prompt (asksDateOrTime): the tool is only
+  // for another place's time.
+  if (
+    DATE_TIME.test(text) &&
+    (PROPER_NOUN.test(text) || TIME_ZONE.test(text))
+  ) {
     talents.push('datetime');
   }
   if (
@@ -46,3 +53,7 @@ export const selectTalents = (question: string): string[] => {
   }
   return talents;
 };
+
+/** The question is about the date or time: the phone's clock goes in the prompt. */
+export const asksDateOrTime = (question: string): boolean =>
+  DATE_TIME.test(question.trim());

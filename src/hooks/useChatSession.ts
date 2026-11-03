@@ -39,8 +39,10 @@ import {
   CompletionResultSnapshot,
 } from '../utils/completionTypes';
 import {
+  asksDateOrTime,
   collectSystemPromptFragments,
   deriveToolSchemas,
+  deviceClockNote,
   seedReadUrlAllowlist,
   selectTalents,
   talentRegistry,
@@ -145,10 +147,14 @@ const prepareCompletion = async ({
 
   // Talent-contributed system-prompt fragments. Kept on
   // the initial messages array so they persist across every follow-up tool turn.
-  const systemPromptFragments = collectSystemPromptFragments(talentNames, {
-    now: new Date(),
-    maxToolTurns: DEFAULT_MAX_TURNS,
-  });
+  const now = new Date();
+  const systemPromptFragments = [
+    ...collectSystemPromptFragments(talentNames, {
+      now,
+      maxToolTurns: DEFAULT_MAX_TURNS,
+    }),
+    ...(asksDateOrTime(message.text) ? [deviceClockNote(now)] : []),
+  ];
 
   const messages = assembleMessages(systemMessages, systemPromptFragments, [
     ...chatMessages,

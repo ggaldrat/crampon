@@ -8,7 +8,8 @@ import {WikipediaEngine} from './WikipediaEngine';
 // Crampon's tools all run from the phone: date and calculator locally,
 // Wikipedia and page reading by direct requests (no relay server).
 export {TalentRegistry, talentRegistry} from './TalentRegistry';
-export {selectTalents} from './router';
+export {asksDateOrTime, selectTalents} from './router';
+export {deviceClockNote} from './DatetimeEngine';
 export {seedReadUrlAllowlist, isReadUrlAllowed} from './readUrlAllowlist';
 export {TalentUIRegistry, talentUIRegistry} from './TalentUIRegistry';
 export type {TalentUI} from './TalentUIRegistry';

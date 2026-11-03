@@ -14,6 +14,7 @@ import type {
   TokenDelta,
 } from './AgentRunner.types';
 import type {TalentResult} from '../talents/types';
+import {isRepeating} from './repetition';
 
 export const DEFAULT_MAX_TURNS = 5;
 
@@ -302,6 +303,9 @@ export async function* runAgent(
       // `marker_seen` events because each iteration redeclares these.
       let accumulatedText = '';
       let markerSeenThisStep = false;
+      // Set once the answer loops: the engine is stopped and its remaining
+      // chunks are dropped, like after an abort.
+      let repeating = false;
       // Per-step generation metrics (post-hoc display in chip / preview
       // footer). Counts streaming `token` events that carry tool_calls
       // and tracks the time between the first such event and step
@@ -326,7 +330,7 @@ export async function* runAgent(
           // llama.rn's stopCompletion is non-blocking — native can keep
           // firing this callback for seconds after Stop. Drop the chunk
           // so the consumer pipeline doesn't churn during wind-down.
-          if (signal?.aborted) {
+          if (signal?.aborted || repeating) {
             return;
           }
           const delta = projectStreamChunk(data);
@@ -349,6 +353,10 @@ export async function* runAgent(
             }
             if (delta.content) {
               accumulatedText += delta.content;
+              if (isRepeating(accumulatedText)) {
+                repeating = true;
+                stopEngine();
+              }
               // Forced final has no tools, so a marker-shaped string in the
               // answer must not flip the UI into tool-call mode.
               if (

@@ -1693,3 +1693,30 @@ describe('runAgent', () => {
     });
   });
 });
+
+describe('runAgent repetition guard', () => {
+  it('stops the engine when the answer loops on one sentence', async () => {
+    const sentence = 'Je vais vérifier le moment actuel sur votre appareil. ';
+    const engine = makeScriptedEngine({
+      scripts: [
+        {
+          tokens: Array.from({length: 50}, () => ({content: sentence})),
+          result: {text: sentence, content: sentence},
+        },
+      ],
+    });
+    const events = await collect(
+      runAgent({
+        engine,
+        initialParams: baseParams,
+        allowedTalentNames: [],
+        talentLookup: () => undefined,
+        triggerMarkers: [],
+        messageId: 'm1',
+      } as any),
+    );
+    expect(engine.stopCompletion).toHaveBeenCalled();
+    expect(events.filter(e => e.type === 'token')).toHaveLength(4);
+    expect(events[events.length - 1].type).toBe('run_finished');
+  });
+});
