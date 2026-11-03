@@ -135,7 +135,7 @@ describe('useChatSession', () => {
     if (modelStore.context) {
       modelStore.context.completion = jest
         .fn()
-        .mockRejectedValueOnce(new Error('failed to create MTP draft context'));
+        .mockRejectedValueOnce(new Error('failed to create draft context'));
     }
 
     const {result} = renderHook(() =>

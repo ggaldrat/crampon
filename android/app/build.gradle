@@ -103,7 +103,7 @@ android {
         versionCode(project.hasProperty("cramponVersionCode")
             ? project.property("cramponVersionCode").toInteger()
             : (int) (System.currentTimeMillis() / 60000L - 29453760L))
-        versionName "1.19.1"
+        versionName "1.22.0"
         ndk {
             abiFilters(*reactNativeArchitectures())
         }
