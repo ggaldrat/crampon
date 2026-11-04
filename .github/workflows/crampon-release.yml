@@ -107,10 +107,20 @@ jobs:
           VARIANTS=$(node scripts/verify-android-payload.js --print-variants)
           grep -qF "Building rnllama variants: $VARIANTS" android/android-build.log
 
+      # Crampon ships arm64-v8a only (android/gradle.properties), so the
+      # upstream x86_64 entry is dropped from the manifest checked here.
       - name: Verify the Android payload
         run: |
+          set -euo pipefail
+          node -e '
+            const fs = require("fs");
+            const m = require("./scripts/android-payload-manifest.json");
+            m.abis = m.abis.filter(a => a.abi === "arm64-v8a");
+            fs.writeFileSync(process.env.RUNNER_TEMP + "/payload-manifest.json", JSON.stringify(m));
+          '
           node scripts/verify-android-payload.js \
             --apk android/app/build/outputs/apk/prod/release/app-prod-release.apk \
+            --manifest "$RUNNER_TEMP/payload-manifest.json" \
             --report payload-report.txt
 
       - name: Check the signature is the Crampon key
