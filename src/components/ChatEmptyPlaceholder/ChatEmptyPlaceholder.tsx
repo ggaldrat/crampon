@@ -5,9 +5,7 @@ import {observer} from 'mobx-react';
 
 import {useTheme} from '../../hooks';
 import {createStyles} from './styles';
-import {modelStore} from '../../store';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '@react-navigation/native';
+import {modelStore, uiStore} from '../../store';
 import {L10nContext} from '../../utils';
 
 interface ChatEmptyPlaceholderProps {
@@ -17,7 +15,6 @@ interface ChatEmptyPlaceholderProps {
 export const ChatEmptyPlaceholder = observer(
   ({bottomComponentHeight}: ChatEmptyPlaceholderProps) => {
     const theme = useTheme();
-    const navigation = useNavigation<NavigationProp<any>>();
     const l10n = useContext(L10nContext);
     const styles = createStyles({theme});
 
@@ -29,9 +26,20 @@ export const ChatEmptyPlaceholder = observer(
           title: l10n.components.chatEmptyPlaceholder.noModelsTitle,
           description: l10n.components.chatEmptyPlaceholder.noModelsDescription,
           buttonText: l10n.components.chatEmptyPlaceholder.noModelsButton,
+          // No models screen: the intro installs the phone's model again
           onPress: () => {
-            navigation.navigate('Models');
+            uiStore.replayOnboarding();
           },
+        };
+      }
+
+      // The last used model reloads by itself at launch (ModelStore)
+      if (modelStore.isContextLoading) {
+        return {
+          title: l10n.components.chatEmptyPlaceholder.loadingModelTitle,
+          description: '',
+          buttonText: '',
+          onPress: () => {},
         };
       }
 

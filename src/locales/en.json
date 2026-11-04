@@ -562,11 +562,12 @@
     },
     "chatEmptyPlaceholder": {
       "noModelsTitle": "No Models Available",
-      "noModelsDescription": "Download a model to start chatting with PocketPal",
-      "noModelsButton": "Download Model",
-      "activateModelTitle": "Activate Model To Get Started",
-      "activateModelDescription": "Select the model and download it. After downloading, tap Load next to the model and start chatting.",
-      "activateModelButton": "Select Model",
+      "noModelsDescription": "Crampon will install the best model for this phone.",
+      "noModelsButton": "Install a model",
+      "activateModelTitle": "Your model is not loaded",
+      "activateModelDescription": "It is already on the phone: loading takes a few seconds.",
+      "activateModelButton": "Load the model",
+      "loadingModelTitle": "Loading the model…",
       "loading": "Loading..."
     },
     "chatInput": {

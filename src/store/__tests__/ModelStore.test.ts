@@ -2228,6 +2228,48 @@ describe('ModelStore', () => {
     });
   });
 
+  describe('loadLastUsedModelAtLaunch', () => {
+    const originalSelectModel = modelStore.selectModel;
+    let select: jest.Mock;
+
+    beforeEach(() => {
+      select = jest.fn().mockResolvedValue(undefined);
+      modelStore.selectModel = select;
+    });
+
+    afterEach(() => {
+      modelStore.selectModel = originalSelectModel;
+      modelStore.lastUsedModelId = undefined;
+    });
+
+    it('reloads the last used model when none is active', async () => {
+      const model = {...presetModelFixture, isDownloaded: true};
+      modelStore.models = [model];
+      modelStore.lastUsedModelId = model.id;
+      await modelStore.loadLastUsedModelAtLaunch();
+
+      expect(select).toHaveBeenCalledWith(model);
+    });
+
+    it('leaves an already active model alone', async () => {
+      const model = {...presetModelFixture, isDownloaded: true};
+      modelStore.models = [model];
+      modelStore.lastUsedModelId = model.id;
+      modelStore.activeModelId = model.id;
+      await modelStore.loadLastUsedModelAtLaunch();
+
+      expect(select).not.toHaveBeenCalled();
+    });
+
+    it('does nothing without a downloaded last used model', async () => {
+      modelStore.models = [presetModelFixture];
+      modelStore.lastUsedModelId = presetModelFixture.id;
+      await modelStore.loadLastUsedModelAtLaunch();
+
+      expect(select).not.toHaveBeenCalled();
+    });
+  });
+
   // Add tests for inferencing and streaming flags
   describe('inferencing and streaming flags', () => {
     it('should set and get inferencing flag', () => {

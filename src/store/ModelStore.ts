@@ -862,8 +862,26 @@ class ModelStore {
     // Load missing GGUF metadata for downloaded models (background, non-blocking)
     this.loadMissingGGUFMetadata();
 
-    // Check if we need to reload an auto-released model (for app restarts)
-    this.checkAndReloadAutoReleasedModel();
+    // Check if we need to reload an auto-released model (for app restarts),
+    // then fall back to the last used one.
+    this.checkAndReloadAutoReleasedModel().then(this.loadLastUsedModelAtLaunch);
+  };
+
+  /**
+   * Crampon has no model picker: a cold start reloads the model the user was
+   * chatting with instead of leaving the chat on the "activate model" screen.
+   */
+  loadLastUsedModelAtLaunch = async () => {
+    const model = this.lastUsedModel;
+    if (!model || this.activeModelId || this.isContextLoading) {
+      return;
+    }
+    try {
+      await this.selectModel(model);
+    } catch (error) {
+      // The chat placeholder still offers a manual load.
+      console.warn('[ModelStore] launch reload failed:', error);
+    }
   };
 
   // Synthesize the minimal {hfModel, modelFile} pair the unchanged hfAsModel
