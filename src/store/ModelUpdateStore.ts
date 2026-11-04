@@ -1,6 +1,7 @@
 import {makeAutoObservable, runInAction, when} from 'mobx';
 import {makePersistable} from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DeviceInfo from 'react-native-device-info';
 
 import {chatSessionStore} from './ChatSessionStore';
 import {modelStore} from './ModelStore';
@@ -13,15 +14,17 @@ import {Model, ModelOrigin} from '../utils/types';
  * device's tier (online rules, refreshed at each launch). The newer model is
  * downloaded silently in the background, swapped in when no conversation is
  * open (launch or new chat), checked with a tiny completion, and only then is
- * the previous one deleted. A model that fails to load or answer is never
- * retried and the previous one stays; a failed download is retried at the
- * next launch.
+ * the previous one deleted. A model that fails to load or answer is not
+ * retried until the app itself updates (a newer engine may read it), and the
+ * previous one stays; a failed download is retried at the next launch.
  */
 export class ModelUpdateStore {
   /** User switch in Settings. */
   enabled = true;
-  /** Models that failed to load or answer: never retried. */
+  /** Models that failed to load or answer: retried after an app update. */
   failedIds: string[] = [];
+  /** App build that recorded failedIds. */
+  failedBuild: string | null = null;
   /** Model being downloaded or waiting to be swapped in (hidden from the UI). */
   pendingId: string | null = null;
 
@@ -31,11 +34,19 @@ export class ModelUpdateStore {
     makeAutoObservable(this, {}, {autoBind: true});
     makePersistable(this, {
       name: 'ModelUpdateStore',
-      properties: ['enabled', 'failedIds', 'pendingId'],
+      properties: ['enabled', 'failedIds', 'failedBuild', 'pendingId'],
       storage: AsyncStorage,
     }).then(() => {
+      if (this.failedBuild !== DeviceInfo.getBuildNumber()) {
+        runInAction(() => {
+          this.failedIds = [];
+        });
+      }
       when(
-        () => modelStore.rulesSettled && uiStore.hasCompletedOnboarding,
+        () =>
+          modelStore.rulesSettled &&
+          modelStore.launchReloadSettled &&
+          uiStore.hasCompletedOnboarding,
         () => this.run(),
       );
     });
@@ -135,7 +146,13 @@ export class ModelUpdateStore {
 
   private async swap(target: Model): Promise<void> {
     const previous = this.currentModel;
-    if (await this.loadAndCheck(target)) {
+    const result = await this.loadAndCheck(target);
+    if (result === 'replaced') {
+      // Something else loaded a model meanwhile: not the target's fault, so
+      // keep both files and try again at the next launch.
+      return;
+    }
+    if (result === 'ok') {
       if (previous && previous.origin !== ModelOrigin.LOCAL) {
         await modelStore.deleteModel(previous).catch(() => {});
       }
@@ -151,15 +168,21 @@ export class ModelUpdateStore {
   }
 
   /** Load the model and have it produce a few tokens. */
-  private async loadAndCheck(target: Model): Promise<boolean> {
+  private async loadAndCheck(
+    target: Model,
+  ): Promise<'ok' | 'failed' | 'replaced'> {
     try {
       await modelStore.selectModel(target);
-      if (modelStore.activeModelId !== target.id) {
-        return false;
-      }
+    } catch {
+      return 'failed';
+    }
+    if (modelStore.activeModelId !== target.id) {
+      return 'replaced';
+    }
+    try {
       const lease = await modelStore.acquireGeneration();
       if (!lease) {
-        return false;
+        return 'failed';
       }
       try {
         const result = await lease.engine.completion({
@@ -167,16 +190,17 @@ export class ModelUpdateStore {
           n_predict: 8,
           enable_thinking: false,
         });
-        return !!result.text?.trim() || !!result.content?.trim();
+        return result.text?.trim() || result.content?.trim() ? 'ok' : 'failed';
       } finally {
         lease.end();
       }
     } catch {
-      return false;
+      return 'failed';
     }
   }
 
   private markFailed(id: string) {
+    this.failedBuild = DeviceInfo.getBuildNumber();
     if (!this.failedIds.includes(id)) {
       this.failedIds.push(id);
     }

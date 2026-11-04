@@ -6,6 +6,7 @@ const mockModelStore: any = observable(
     tierPresetIds: [] as string[],
     rulesSettled: true,
     rulesFetched: true,
+    launchReloadSettled: true,
     activeModelId: undefined as string | undefined,
     downloadError: null as any,
     isGenerationBusy: false,
@@ -150,6 +151,24 @@ describe('ModelUpdateStore', () => {
       expect.objectContaining({id: OLD}),
     );
     expect(store.target).toBeUndefined();
+  });
+
+  it('keeps both models when another load replaces the target meanwhile', async () => {
+    runInAction(() => {
+      mockModelStore.models[1].isDownloaded = true;
+    });
+    // The launch reload of the old model wins the race.
+    mockModelStore.selectModel.mockImplementation(async () => {
+      runInAction(() => {
+        mockModelStore.activeModelId = OLD;
+      });
+    });
+    const store = new ModelUpdateStore();
+    await store.run();
+
+    expect(store.failedIds).toEqual([]);
+    expect(mockModelStore.deleteModel).not.toHaveBeenCalled();
+    expect(store.target?.id).toBe(NEW);
   });
 
   it('gives up silently on a download error, to retry at next launch', async () => {

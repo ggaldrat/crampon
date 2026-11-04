@@ -196,6 +196,9 @@ class ModelStore {
   // Crampon: true when tierPresetIds come from the online rules, not the
   // bundled PocketPal floor. Model updates follow only those. Not persisted.
   rulesFetched: boolean = false;
+  // Crampon: true once the launch reload of the last used model is over, so a
+  // model update never loads its model at the same time. Not persisted.
+  launchReloadSettled: boolean = false;
 
   /**
    * Returns models with projection models filtered out for display purposes
@@ -876,14 +879,17 @@ class ModelStore {
    */
   loadLastUsedModelAtLaunch = async () => {
     const model = this.lastUsedModel;
-    if (!model || this.activeModelId || this.isContextLoading) {
-      return;
-    }
     try {
-      await this.selectModel(model);
+      if (model && !this.activeModelId && !this.isContextLoading) {
+        await this.selectModel(model);
+      }
     } catch (error) {
       // The chat placeholder still offers a manual load.
       console.warn('[ModelStore] launch reload failed:', error);
+    } finally {
+      runInAction(() => {
+        this.launchReloadSettled = true;
+      });
     }
   };
 
