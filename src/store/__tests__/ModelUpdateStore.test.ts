@@ -5,6 +5,7 @@ const mockModelStore: any = observable(
     models: [] as any[],
     tierPresetIds: [] as string[],
     rulesSettled: true,
+    rulesFetched: true,
     activeModelId: undefined as string | undefined,
     downloadError: null as any,
     isGenerationBusy: false,
@@ -176,6 +177,17 @@ describe('ModelUpdateStore', () => {
       mockModelStore.tierPresetIds = [OLD];
     });
     await store.run();
+    expect(mockModelStore.checkSpaceAndDownload).not.toHaveBeenCalled();
+  });
+
+  it('ignores the bundled floor when the online rules could not be read', async () => {
+    runInAction(() => {
+      mockModelStore.rulesFetched = false;
+    });
+    await new ModelUpdateStore().run();
+    runInAction(() => {
+      mockModelStore.rulesFetched = true;
+    });
     expect(mockModelStore.checkSpaceAndDownload).not.toHaveBeenCalled();
   });
 });

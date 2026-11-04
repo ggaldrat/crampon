@@ -53,7 +53,11 @@ export class ModelUpdateStore {
     return modelStore.activeModel ?? modelStore.lastUsedModel;
   }
 
-  /** First preset of the tier when it differs from the current model. */
+  /**
+   * First preset of the tier when it differs from the current model. Only
+   * from the online rules: when the fetch fails (slow network), the bundled
+   * PocketPal floor ranks other models first and must not trigger a swap.
+   */
   get target(): Model | undefined {
     const current = this.currentModel;
     const target = modelStore.models.find(
@@ -61,6 +65,7 @@ export class ModelUpdateStore {
     );
     if (
       !this.enabled ||
+      !modelStore.rulesFetched ||
       !current ||
       !target ||
       target.id === current.id ||

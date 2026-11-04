@@ -193,6 +193,9 @@ class ModelStore {
   // Crampon: true once the online rules fetch has finished (success or not),
   // so onboarding can pick from the freshest rule set. Not persisted.
   rulesSettled: boolean = false;
+  // Crampon: true when tierPresetIds come from the online rules, not the
+  // bundled PocketPal floor. Model updates follow only those. Not persisted.
+  rulesFetched: boolean = false;
 
   /**
    * Returns models with projection models filtered out for display purposes
@@ -1038,6 +1041,7 @@ class ModelStore {
         this.deviceTier = tier;
         this.rulesVersion = fetched.rulesVersion;
         this.tierPresetIds = llmPresetIds(presets);
+        this.rulesFetched = true;
       });
       this.reconcilePresets(presets);
     } catch (error) {
