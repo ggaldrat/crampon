@@ -1,16 +1,21 @@
-import {getRulesUrl} from '../rulesUrls';
+import {getRulesUrls} from '../rulesUrls';
 
-describe('getRulesUrl', () => {
+describe('getRulesUrls', () => {
   it.each([
     [
       'android',
-      'https://crampon.blandy-studio.com/rules/rules.android.v2.json',
+      [
+        'https://raw.githubusercontent.com/ggaldrat/crampon/veille-data/rules/rules.android.v2.json',
+        'https://crampon.blandy-studio.com/rules/rules.android.v2.json',
+      ],
     ],
     [
       'ios',
-      'https://cdn.jsdelivr.net/gh/a-ghorbani/pocketpal-device-rules@main/rules.ios.v2.json',
+      [
+        'https://cdn.jsdelivr.net/gh/a-ghorbani/pocketpal-device-rules@main/rules.ios.v2.json',
+      ],
     ],
-  ] as const)('points %s at the v2 rules file', (platform, url) => {
-    expect(getRulesUrl(platform)).toBe(url);
+  ] as const)('points %s at the v2 rules files', (platform, urls) => {
+    expect(getRulesUrls(platform)).toEqual(urls);
   });
 });

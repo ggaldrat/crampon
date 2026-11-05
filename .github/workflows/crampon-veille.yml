@@ -1,0 +1,71 @@
+name: Crampon model watch
+
+# Every 6 hours: list the GGUF models on Hugging Face, read the Artificial
+# Analysis phone benchmark, and publish the app's rules. Scripts live in
+# veille/ on main; their data and the published rules live on the veille-data
+# branch, so the watch never adds commits to main.
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: crampon-veille
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  veille:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          ref: veille-data
+          path: veille-data
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install requests
+
+      # The watch compares each model's architecture with the llama.cpp the app
+      # embeds. Only that one file is needed, not a full yarn install.
+      - name: Fetch the embedded llama.cpp architecture list
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p 'require("./package.json").dependencies["llama.rn"]')
+          DEST=node_modules/llama.rn/vendor/llama.cpp/src
+          mkdir -p "$DEST"
+          curl -sfL "$(npm view "llama.rn@$VERSION" dist.tarball)" \
+            | tar xz -O package/vendor/llama.cpp/src/llama-arch.cpp > "$DEST/llama-arch.cpp"
+          grep -c LLM_ARCH_ "$DEST/llama-arch.cpp"
+
+      - name: Run the watch
+        env:
+          CRAMPON_VEILLE_DATA: ${{ github.workspace }}/veille-data
+        run: |
+          set -euo pipefail
+          python3 veille/refresh_hf_catalogue.py
+          # A failed benchmark read keeps the previous CSV.
+          python3 veille/refresh_mobile_benchmark.py || echo "::warning::benchmark read failed, previous scores kept"
+          python3 veille/compute_recommendations.py
+
+      - name: Publish the data
+        working-directory: veille-data
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+          else
+            git commit -q -m "chore: model watch $(date -u '+%Y-%m-%d %H:%M')"
+            git push -q origin HEAD:veille-data
+          fi

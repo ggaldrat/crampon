@@ -103,6 +103,17 @@ describe('fetchRules', () => {
     expect(await fetchRules('1.17.2', 'android')).toBeNull();
   });
 
+  it('falls back to the next source when the first one fails', async () => {
+    const fetchMock = jest
+      .fn()
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce({ok: true, json: async () => newSchemaDoc});
+    (global as unknown as {fetch: jest.Mock}).fetch = fetchMock;
+    expect(await fetchRules('1.17.3', 'android')).not.toBeNull();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1][0]).toContain('crampon.blandy-studio.com');
+  });
+
   it('returns null for garbage JSON that fails to parse', async () => {
     mockFetch(() => ({ok: true, json: async () => ({not: 'rules'})}));
     expect(await fetchRules('1.17.3', 'android')).toBeNull();
