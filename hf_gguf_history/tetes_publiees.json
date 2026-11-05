@@ -1,0 +1,14 @@
+{
+ "low": {
+  "publie": "openbmb/MiniCPM5-1B-GGUF/MiniCPM5-1B-Q4_K_M.gguf"
+ },
+ "mid": {
+  "publie": "lmstudio-community/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf"
+ },
+ "high": {
+  "publie": "lmstudio-community/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf"
+ },
+ "flagship": {
+  "publie": "lmstudio-community/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf"
+ }
+}

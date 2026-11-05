@@ -1,0 +1,14 @@
+6 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-03
+
+XHToken/Spark-X2.6-1.7B
+  1.7 Md param., archi spark2_5 (supporte), licence=apache-2.0, depots : bartowski/Spark-X2.6-1.7B-GGUF
+aimeri/name-generator
+  3.4 Md param., archi mistral3 (supporte), licence=apache-2.0, depots : bartowski/aimeri_name-generator-GGUF
+zzzekryo/Oprius-3.0-1.1B
+  1.1 Md param., archi llama (supporte), licence=apache-2.0, depots : bartowski/zzzekryo_Oprius-3.0-1.1B-GGUF
+K-Ai-Official/MiRAI-4B
+  4.0 Md param., archi qwen3 (supporte), licence=apache-2.0, depots : bartowski/K-Ai-Official_MiRAI-4B-GGUF
+officialmobai/Rostam-S1-4B
+  4.1 Md param., archi spark2_5 (supporte), licence=apache-2.0, depots : bartowski/officialmobai_Rostam-S1-4B-GGUF
+Vortecks/LFM3-1.7B-Heretic-Abliterated
+  1.7 Md param., archi lfm3 (PAS supporte par le llama.cpp de l'appli), licence=other, depots : bartowski/Vortecks_LFM3-1.7B-Heretic-Abliterated-GGUF

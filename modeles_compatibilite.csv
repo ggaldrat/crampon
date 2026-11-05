@@ -1,0 +1,6 @@
+model,moteur,compatibilite,date,source
+LFM2.5-2.6B,litert-lm,echec,2026-10-13,"testé sur téléphone : la session de chat n'atteint jamais SessionState.Ready (litertlm-kmp, commit c8f2eae)"
+Qwen3 0.6B,litert-lm,confirme,2026-10-13,"tok/s mesurés dans ce moteur (litertlm-kmp/BENCHMARKS.md)"
+DeepSeek-R1 Distill 1.5B,litert-lm,confirme,2026-10-13,"tok/s mesurés dans ce moteur (litertlm-kmp/BENCHMARKS.md)"
+Gemma 4 E2B,litert-lm,confirme,2026-10-13,"tok/s mesurés dans ce moteur (litertlm-kmp/BENCHMARKS.md)"
+openbmb/MiniCPM5-1B,llama.cpp,confirme,2026-11-01,"installé automatiquement par l'accueil (APK 9e64540518), chat fonctionnel sur le téléphone de Guillaume"
