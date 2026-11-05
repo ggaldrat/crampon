@@ -1238,9 +1238,14 @@ describe('ModelStore', () => {
         }
       });
 
-      it('fetches the online rules with it', async () => {
+      it('fetches the online rules with it, and the last signing time accepted', async () => {
+        modelStore.rulesSignedAt = '2026-11-05T21:00:00Z';
         await (modelStore as any).upgradeToFetchedRules();
-        expect(fetchRules).toHaveBeenCalledWith('4.5.6');
+        expect(fetchRules).toHaveBeenCalledWith(
+          '4.5.6',
+          undefined,
+          '2026-11-05T21:00:00Z',
+        );
       });
 
       it('drops only the gated floor presets when the app version is unknown', async () => {

@@ -188,6 +188,8 @@ class ModelStore {
   version: number | undefined = undefined; // Persisted version
   deviceTier: Tier | null = null; // resolved device classification
   rulesVersion: string | null = null; // provenance of the preset list
+  /** Crampon: signing time of the last online rules accepted; older ones are refused. */
+  rulesSignedAt: string | null = null;
   // Crampon: ordered LLM preset ids of the current tier (first = the tier's
   // primary recommendation, auto-installed by onboarding). Not persisted.
   tierPresetIds: string[] = [];
@@ -311,6 +313,7 @@ class ModelStore {
         'version',
         'deviceTier',
         'rulesVersion',
+        'rulesSignedAt',
         'useAutoRelease',
         'contextInitParams',
         'lastUsedModelId',
@@ -1033,7 +1036,11 @@ class ModelStore {
   // already-applied bundled presets in place.
   private upgradeToFetchedRules = async (): Promise<void> => {
     try {
-      const fetched = await fetchRules(DeviceInfo.getVersion());
+      const fetched = await fetchRules(
+        DeviceInfo.getVersion(),
+        undefined,
+        this.rulesSignedAt,
+      );
       if (!fetched) {
         devReportStore.report('rules_unreachable');
         return;
@@ -1048,6 +1055,7 @@ class ModelStore {
       runInAction(() => {
         this.deviceTier = tier;
         this.rulesVersion = fetched.rulesVersion;
+        this.rulesSignedAt = fetched.signedAt ?? this.rulesSignedAt;
         this.tierPresetIds = llmPresetIds(presets);
         this.rulesFetched = true;
       });
@@ -1055,6 +1063,7 @@ class ModelStore {
       devReportStore.report('rules', {
         source: fetched.source,
         rulesVersion: fetched.rulesVersion,
+        signedAt: fetched.signedAt,
         tier,
         first: this.tierPresetIds[0],
       });

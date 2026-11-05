@@ -92,6 +92,8 @@ export interface DeviceRules {
   tiers: Record<Tier, {models: RuleCandidate[]}>;
   /** URL the rules were fetched from (unset for the bundled floor). */
   source?: string;
+  /** When Crampon signed them (Android online rules only). */
+  signedAt?: string;
 }
 
 export interface DeviceSignals {

@@ -1,5 +1,12 @@
 import {fetchRules} from '../rules';
 
+// The signature itself is tested in signature.test.ts: here a signature file
+// is valid when its `signature` is 'valid'.
+jest.mock('../signature', () => ({
+  verifyRules: (_text: string, sig: {signature: string; signedAt: string}) =>
+    sig.signature === 'valid' ? sig.signedAt : null,
+}));
+
 const thinCandidate = {
   model: 'gemma-3-1b-it',
   hf_repo: 'ggml-org/gemma-3-1b-it-GGUF',
@@ -39,12 +46,23 @@ const oldFatDoc = {
   },
 };
 
-const mockFetch = (
-  impl: () => Partial<Response> | Promise<Partial<Response>>,
-) => {
-  (global as unknown as {fetch: jest.Mock}).fetch = jest
+const validSig = {
+  sha256: 'x',
+  signedAt: '2026-11-05T21:00:00Z',
+  signature: 'valid',
+};
+
+// Serves `doc` as the rules and `sig` as <rules>.sig, at every source.
+const serve = (doc: unknown, sig: unknown = validSig) => {
+  const fetchMock = jest
     .fn()
-    .mockImplementation(async () => impl());
+    .mockImplementation(async (url: string) =>
+      url.endsWith('.sig')
+        ? {ok: true, json: async () => sig}
+        : {ok: true, text: async () => JSON.stringify(doc)},
+    );
+  (global as unknown as {fetch: jest.Mock}).fetch = fetchMock;
+  return fetchMock;
 };
 
 describe('fetchRules', () => {
@@ -54,73 +72,94 @@ describe('fetchRules', () => {
   });
 
   it('returns parsed rules for a valid thin candidates doc', async () => {
-    mockFetch(() => ({ok: true, json: async () => newSchemaDoc}));
+    serve(newSchemaDoc);
     const rules = await fetchRules('1.17.3', 'android');
     expect(rules).not.toBeNull();
     expect(rules?.tiers.mid.models).toHaveLength(1);
+    expect(rules?.signedAt).toBe(validSig.signedAt);
   });
 
   it.each(['1.2.0-draft', '3.0.0', '2', 'v2.0.0', 'two'])(
     'returns null (→ bundled floor) for schema_version %p',
     async schemaVersion => {
-      mockFetch(() => ({
-        ok: true,
-        json: async () => ({...newSchemaDoc, schema_version: schemaVersion}),
-      }));
+      serve({...newSchemaDoc, schema_version: schemaVersion});
       expect(await fetchRules('1.17.3', 'android')).toBeNull();
     },
   );
 
   it('returns null (→ bundled floor) for an old fat models[] schema doc', async () => {
-    mockFetch(() => ({ok: true, json: async () => oldFatDoc}));
+    serve(oldFatDoc);
     expect(await fetchRules('1.17.3', 'android')).toBeNull();
   });
 
   it('returns null (→ bundled floor) when every candidate is gated out', async () => {
-    mockFetch(() => ({
-      ok: true,
-      json: async () => ({
-        ...newSchemaDoc,
-        tiers: {
-          mid: {candidates: [{...thinCandidate, min_app_version: '99.0.0'}]},
-        },
-      }),
-    }));
+    serve({
+      ...newSchemaDoc,
+      tiers: {
+        mid: {candidates: [{...thinCandidate, min_app_version: '99.0.0'}]},
+      },
+    });
     expect(await fetchRules('1.17.3', 'android')).toBeNull();
   });
 
   it('passes the app version through to the gates', async () => {
-    mockFetch(() => ({
-      ok: true,
-      json: async () => ({
-        ...newSchemaDoc,
-        tiers: {
-          mid: {candidates: [{...thinCandidate, min_app_version: '1.17.3'}]},
-        },
-      }),
-    }));
+    serve({
+      ...newSchemaDoc,
+      tiers: {
+        mid: {candidates: [{...thinCandidate, min_app_version: '1.17.3'}]},
+      },
+    });
     expect(await fetchRules('1.17.3', 'android')).not.toBeNull();
     expect(await fetchRules('1.17.2', 'android')).toBeNull();
   });
 
   it('falls back to the next source when the first one fails', async () => {
-    const fetchMock = jest
-      .fn()
+    const fetchMock = serve(newSchemaDoc);
+    fetchMock
       .mockRejectedValueOnce(new Error('offline'))
-      .mockResolvedValueOnce({ok: true, json: async () => newSchemaDoc});
-    (global as unknown as {fetch: jest.Mock}).fetch = fetchMock;
-    expect(await fetchRules('1.17.3', 'android')).not.toBeNull();
-    expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(fetchMock.mock.calls[1][0]).toContain('crampon.blandy-studio.com');
+      .mockRejectedValueOnce(new Error('offline'));
+    const rules = await fetchRules('1.17.3', 'android');
+    expect(rules?.source).toContain('crampon.blandy-studio.com');
+  });
+
+  it('refuses unsigned or badly signed rules', async () => {
+    serve(newSchemaDoc, {...validSig, signature: 'forged'});
+    expect(await fetchRules('1.17.3', 'android')).toBeNull();
+
+    const fetchMock = serve(newSchemaDoc);
+    fetchMock.mockImplementation(async (url: string) =>
+      url.endsWith('.sig')
+        ? {ok: false, status: 404}
+        : {ok: true, text: async () => JSON.stringify(newSchemaDoc)},
+    );
+    expect(await fetchRules('1.17.3', 'android')).toBeNull();
+  });
+
+  it('refuses rules signed before the last ones accepted', async () => {
+    serve(newSchemaDoc);
+    expect(
+      await fetchRules('1.17.3', 'android', '2026-11-06T00:00:00Z'),
+    ).toBeNull();
+    expect(
+      await fetchRules('1.17.3', 'android', validSig.signedAt),
+    ).not.toBeNull();
+  });
+
+  it('needs no signature for the upstream iOS rules', async () => {
+    const fetchMock = serve({...newSchemaDoc, platform: 'ios'}, null);
+    expect(await fetchRules('1.17.3', 'ios')).not.toBeNull();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it('returns null for garbage JSON that fails to parse', async () => {
-    mockFetch(() => ({ok: true, json: async () => ({not: 'rules'})}));
+    serve({not: 'rules'});
     expect(await fetchRules('1.17.3', 'android')).toBeNull();
   });
 
   it('returns null on a non-2xx response', async () => {
-    mockFetch(() => ({ok: false, status: 404, json: async () => ({})}));
+    (global as unknown as {fetch: jest.Mock}).fetch = jest
+      .fn()
+      .mockResolvedValue({ok: false, status: 404});
     expect(await fetchRules('1.17.3', 'android')).toBeNull();
   });
 
@@ -132,10 +171,7 @@ describe('fetchRules', () => {
   });
 
   it('returns null on a platform mismatch', async () => {
-    mockFetch(() => ({
-      ok: true,
-      json: async () => ({...newSchemaDoc, platform: 'ios'}),
-    }));
+    serve({...newSchemaDoc, platform: 'ios'});
     expect(await fetchRules('1.17.3', 'android')).toBeNull();
   });
 });

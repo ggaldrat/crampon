@@ -56,6 +56,16 @@ jobs:
           python3 veille/refresh_mobile_benchmark.py || echo "::warning::benchmark read failed, previous scores kept"
           python3 veille/compute_recommendations.py
 
+      # The app only takes signed rules (src/services/deviceRules/signature.ts),
+      # so any server or peer can serve them.
+      - name: Sign the rules
+        env:
+          CRAMPON_RULES_SIGNING_KEY: ${{ secrets.CRAMPON_RULES_SIGNING_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$CRAMPON_RULES_SIGNING_KEY" || { echo "::error::CRAMPON_RULES_SIGNING_KEY secret missing"; exit 1; }
+          veille/sign_rules.sh veille-data/rules/rules.android.v2.json
+
       - name: Publish the data
         working-directory: veille-data
         run: |
