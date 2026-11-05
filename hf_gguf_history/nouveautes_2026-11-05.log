@@ -1,0 +1,6 @@
+2 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-05
+
+ResembleAI/chatterbox
+  0.5 Md param., archi llama (supporte), licence=mit, depots : ggml-org/chatterbox-GGUF
+ResembleAI/chatterbox-turbo
+  0.4 Md param., archi gpt2 (supporte), licence=mit, depots : ggml-org/chatterbox-turbo-GGUF

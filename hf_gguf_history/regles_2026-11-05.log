@@ -1,0 +1,4 @@
+Regles PocketPal : 2026-09-24.1 -> 2026-11-04.1 (2026-11-05)
+  mid : + ['spark-x2.6-1.7b']  - []
+  high : + ['spark-x2.6-1.7b']  - []
+  flagship : + ['spark-x2.6-4b']  - []
