@@ -14,6 +14,7 @@ import javax.microedition.khronos.egl.EGLContext
 import javax.microedition.khronos.egl.EGLDisplay
 import android.app.ActivityManager
 import android.content.Context
+import android.net.ConnectivityManager
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -40,6 +41,15 @@ class HardwareInfoModule(reactContext: ReactApplicationContext) :
         Build.HARDWARE.takeUnless { it.isNullOrEmpty() } ?: Build.BOARD
       }
       promise.resolve(chipset)
+    } catch (e: Exception) {
+      promise.reject("ERROR", e.message)
+    }
+  }
+
+  override fun isNetworkUnmetered(promise: Promise) {
+    try {
+      val cm = reactApplicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+      promise.resolve(cm.activeNetwork != null && !cm.isActiveNetworkMetered)
     } catch (e: Exception) {
       promise.reject("ERROR", e.message)
     }

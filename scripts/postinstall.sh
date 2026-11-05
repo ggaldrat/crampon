@@ -13,3 +13,6 @@ if [ ! -d "$OPENCL_HEADERS_DIR" ]; then
 else
     echo "OpenCL headers already present."
 fi
+
+# Architectures of the embedded llama.cpp, for the in-app model watch
+node scripts/gen-supported-archs.js

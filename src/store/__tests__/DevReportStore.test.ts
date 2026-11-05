@@ -12,6 +12,11 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 // that would otherwise keep Jest running.
 jest.useFakeTimers({doNotFake: ['setImmediate']});
 
+// Never the real network: the module's own instance sends its launch report
+// as soon as it loads, and Node has a working fetch.
+const offline = () => jest.fn().mockRejectedValue(new Error('no network'));
+(global as unknown as {fetch: jest.Mock}).fetch = offline();
+
 // jest/setup.ts mocks this store for every other suite.
 const {DevReportStore, REPORT_URL} = jest.requireActual('../DevReportStore');
 
@@ -28,7 +33,7 @@ describe('DevReportStore', () => {
 
   afterEach(() => {
     Object.assign(console, originalConsole);
-    delete (global as unknown as {fetch?: unknown}).fetch;
+    (global as unknown as {fetch: jest.Mock}).fetch = offline();
   });
 
   const sentEvents = () =>
