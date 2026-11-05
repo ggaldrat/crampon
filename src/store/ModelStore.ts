@@ -52,7 +52,11 @@ import {stopQuietly} from '../utils/stopQuietly';
 import type {OnboardingModelEntry} from './onboarding/fallbackModels';
 
 import {downloadManager, DownloadCancelledError} from '../services/downloads';
-import {classify, ClassifyPlatform} from '../services/deviceRules/classify';
+import {
+  classify,
+  ClassifyPlatform,
+  explainTier,
+} from '../services/deviceRules/classify';
 import {deriveUrl, parseDeviceRules} from '../services/deviceRules/parse';
 import {fetchRules} from '../services/deviceRules/rules';
 import {readDeviceSignals} from '../services/deviceRules/signals';
@@ -1065,6 +1069,16 @@ class ModelStore {
         rulesVersion: fetched.rulesVersion,
         signedAt: fetched.signedAt,
         tier,
+        ...explainTier(
+          signals,
+          fetched.classifier,
+          Platform.OS as ClassifyPlatform,
+        ),
+        socModel: signals.socModel,
+        hardware: signals.hardware,
+        cpuFeatures: signals.cpuFeatures,
+        maxFreqMhz: signals.maxFreqMhz,
+        ramBytes: signals.ramBytes,
         first: this.tierPresetIds[0],
       });
     } catch (error) {

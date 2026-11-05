@@ -1,4 +1,4 @@
-import {classify} from '../classify';
+import {classify, explainTier} from '../classify';
 import {Classifier, DeviceSignals} from '../types';
 
 const androidClassifier: Classifier = {
@@ -159,5 +159,16 @@ describe('classify', () => {
     // no features, no freq -> only {} rule matches -> budget; 6-8 budget has no
     // matrix entry here -> floor low
     expect(classify(signals, androidClassifier, 'android')).toBe('low');
+  });
+});
+
+describe('explainTier', () => {
+  it('gives the soc class and RAM band the tier comes from', () => {
+    // a phone sold as 8 GB shows about 7.3 GiB to Android
+    const signals: DeviceSignals = {ramBytes: 7825268736, socModel: 'SM4350'};
+    expect(explainTier(signals, androidClassifier, 'android')).toEqual({
+      socClass: 'budget',
+      ramBand: '6-8',
+    });
   });
 });

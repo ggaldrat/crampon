@@ -158,3 +158,18 @@ export function classify(
   // picker is never empty (totality invariant).
   return 'low';
 }
+
+/**
+ * Crampon: the two inputs of the tier matrix, for the development reports
+ * (why a phone lands in its tier).
+ */
+export function explainTier(
+  signals: DeviceSignals,
+  classifier: Classifier,
+  platform: ClassifyPlatform,
+): {socClass: SocClass | null; ramBand: string | null} {
+  return {
+    socClass: resolveSocClass(signals, classifier, platform),
+    ramBand: resolveRamBand(signals.ramBytes, classifier),
+  };
+}
