@@ -61,8 +61,15 @@ import {mockServerStore} from '../__mocks__/stores/serverStore';
 import {mockRouterStore} from '../__mocks__/stores/routerStore';
 import {mockTTSStore} from '../__mocks__/stores/ttsStore';
 import {mockModelUpdateStore} from '../__mocks__/stores/modelUpdateStore';
+import {mockDevReportStore} from '../__mocks__/stores/devReportStore';
 
 jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);
+
+// Stores import it directly (not through ../src/store): no reports, no
+// console capture and no flush timer in tests.
+jest.mock('../src/store/DevReportStore', () => ({
+  devReportStore: mockDevReportStore,
+}));
 
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
 
@@ -120,6 +127,7 @@ jest.mock('../src/store', () => {
     routerStore: mockRouterStore,
     ttsStore: mockTTSStore,
     modelUpdateStore: mockModelUpdateStore,
+    devReportStore: mockDevReportStore,
     defaultCompletionSettings: mockDefaultCompletionSettings,
     NEW_SESSION_TITLE: 'New Session',
   };

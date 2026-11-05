@@ -29,6 +29,8 @@ export interface TokenDelta {
 export interface AgentRunResult {
   steps: AgentStep[];
   hitMaxTurns: boolean;
+  /** True when a looping answer was cut short (repetition.ts). */
+  stoppedRepeating?: boolean;
   finalResult: CompletionResult;
 }
 

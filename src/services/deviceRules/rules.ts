@@ -22,7 +22,7 @@ export async function fetchRules(
   for (const url of getRulesUrls(platform)) {
     const rules = await fetchRulesFrom(url, appVersion, platform);
     if (rules) {
-      return rules;
+      return {...rules, source: url};
     }
   }
   return null;

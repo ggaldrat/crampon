@@ -13,6 +13,7 @@ import {
   serverStore,
   ttsStore,
   uiStore,
+  devReportStore,
 } from '../store';
 import type {GenerationLease} from '../store/generationLease';
 import type {PersistedTurnTimings} from '../utils/completionTypes';
@@ -416,6 +417,10 @@ async function applyEventToStore(
       // the active step from the preceding `token` event with toolCalls.
       return;
     case 'tool_call_finished':
+      devReportStore.noteTool(
+        event.outcome.toolName,
+        event.outcome.result.type !== 'error',
+      );
       await chatSessionStore.appendToolOutcome(
         ctx.messageId,
         ctx.sessionId,
@@ -467,6 +472,21 @@ async function applyEventToStore(
         },
       });
       chatSessionStore.recordCompletionSnapshot(snapshot);
+      devReportStore.finishAnswer(
+        {
+          model: modelStore.activeModelId,
+          tokensPerSecond: timings.predicted_per_second,
+          tokens: timings.predicted_n,
+          promptTokens: timings.prompt_n,
+          promptPerSecond: timings.prompt_per_second,
+          firstTokenMs: timings.time_to_first_token_ms,
+          finishReason: snapshot.finishReason,
+          contextFull: snapshot.contextFull,
+          stoppedRepeating: event.result.stoppedRepeating,
+          hitMaxTurns: event.result.hitMaxTurns,
+        },
+        finalResult.text ?? '',
+      );
       if (snapshot.isRemote) {
         modelStore.reprobeRemoteCapsAfterCompletion();
       }
@@ -686,6 +706,7 @@ export const useChatSession = (
     });
 
     currentMessageInfo.current = messageInfo;
+    devReportStore.startAnswer(message.text);
 
     // Allowed talent names: the tools advertised for this run. The runner
     // rejects any tool call whose function.name isn't in this list.
@@ -844,6 +865,7 @@ export const useChatSession = (
         console.warn('[useChatSession] TTS stop on error failed:', ttsErr);
       });
 
+      devReportStore.failAnswer(error, {model: modelStore.activeModelId});
       const errorMessage = (error as Error).message;
       // Native tool-call parser throws on truncated JSON when the model
       // ran out of context mid-args (most often `render_html` with a

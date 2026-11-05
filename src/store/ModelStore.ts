@@ -4,6 +4,7 @@ import DeviceInfo from 'react-native-device-info';
 import {v4 as uuidv4} from 'uuid';
 import 'react-native-get-random-values';
 import {makePersistable} from 'mobx-persist-store';
+import {devReportStore} from './DevReportStore';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 import {comparer, computed, makeAutoObservable, runInAction, toJS} from 'mobx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -1034,6 +1035,7 @@ class ModelStore {
     try {
       const fetched = await fetchRules(DeviceInfo.getVersion());
       if (!fetched) {
+        devReportStore.report('rules_unreachable');
         return;
       }
       const signals = await readDeviceSignals();
@@ -1050,6 +1052,12 @@ class ModelStore {
         this.rulesFetched = true;
       });
       this.reconcilePresets(presets);
+      devReportStore.report('rules', {
+        source: fetched.source,
+        rulesVersion: fetched.rulesVersion,
+        tier,
+        first: this.tierPresetIds[0],
+      });
     } catch (error) {
       console.warn('[ModelStore] fetched-rules upgrade failed:', error);
     } finally {
@@ -2792,10 +2800,24 @@ class ModelStore {
    * - Local models: calls initContext()
    */
   selectModel = async (model: Model): Promise<void> => {
-    if (model.origin === ModelOrigin.REMOTE) {
-      await this.setRemoteModel(model);
-    } else {
-      await this.initContext(model);
+    const start = Date.now();
+    try {
+      if (model.origin === ModelOrigin.REMOTE) {
+        await this.setRemoteModel(model);
+      } else {
+        await this.initContext(model);
+      }
+      devReportStore.report('model_load', {
+        model: model.id,
+        ms: Date.now() - start,
+        loaded: this.activeModelId === model.id,
+      });
+    } catch (error) {
+      devReportStore.reportError('model_load_error', error, {
+        model: model.id,
+        ms: Date.now() - start,
+      });
+      throw error;
     }
   };
 

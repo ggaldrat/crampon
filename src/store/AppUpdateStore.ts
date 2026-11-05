@@ -7,6 +7,7 @@ import * as RNFS from '@dr.pogodin/react-native-fs';
 import NativeAppUpdater from '../specs/NativeAppUpdater';
 
 import {chatSessionStore} from './ChatSessionStore';
+import {devReportStore} from './DevReportStore';
 import {modelStore} from './ModelStore';
 import {modelUpdateStore} from './ModelUpdateStore';
 import {uiStore} from './UIStore';
@@ -95,9 +96,21 @@ export class AppUpdateStore {
       ) {
         return;
       }
+      devReportStore.report('app_update_found', {
+        from: info.versionCode,
+        to: manifest.versionCode,
+        url: manifest.url,
+      });
       if (!(await this.download(manifest))) {
+        devReportStore.report('app_update_download_failed', {
+          to: manifest.versionCode,
+        });
         return;
       }
+      devReportStore.report('app_update_downloaded', {
+        to: manifest.versionCode,
+        selfInstalled: info.selfInstalled,
+      });
 
       if (info.selfInstalled) {
         await when(() => this.appState === 'background' && this.idle);
@@ -113,9 +126,11 @@ export class AppUpdateStore {
       runInAction(() => {
         this.installingVersion = manifest.versionCode;
       });
+      devReportStore.report('app_update_install', {to: manifest.versionCode});
       await NativeAppUpdater.install(APK_PATH);
     } catch (error) {
       console.warn('AppUpdateStore: update failed', error);
+      devReportStore.reportError('app_update_error', error);
     } finally {
       runInAction(() => {
         this.running = false;
@@ -131,10 +146,12 @@ export class AppUpdateStore {
       return;
     }
     if (versionCode >= tried) {
+      devReportStore.report('app_update_installed', {versionCode});
       await RNFS.unlink(APK_PATH).catch(() => {});
     } else if (error) {
       // Refused by Android (not just a dismissed confirmation): give up on it.
       console.warn('AppUpdateStore: install refused', error);
+      devReportStore.report('app_update_refused', {to: tried, error});
       runInAction(() => {
         this.failedVersions.push(tried);
       });

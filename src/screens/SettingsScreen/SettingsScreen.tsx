@@ -48,7 +48,13 @@ import {useTheme} from '../../hooks';
 import {createStyles} from './styles';
 import {CacheTypeMenuRow, useMenuAnchor} from './CacheTypeMenuRow';
 
-import {modelStore, modelUpdateStore, uiStore, ttsStore} from '../../store';
+import {
+  devReportStore,
+  modelStore,
+  modelUpdateStore,
+  uiStore,
+  ttsStore,
+} from '../../store';
 
 import {CacheType, ModelType} from '../../utils/types';
 import {
@@ -426,6 +432,42 @@ export const SettingsScreen: React.FC = observer(() => {
                     onValueChange={value => modelUpdateStore.setEnabled(value)}
                   />
                 </View>
+
+                <Divider />
+                <View style={styles.switchContainer}>
+                  <View style={styles.textContainer}>
+                    <Text variant="titleMedium" style={styles.textLabel}>
+                      {l10n.settings.devReports}
+                    </Text>
+                    <Text variant="labelSmall" style={styles.textDescription}>
+                      {l10n.settings.devReportsDescription}
+                    </Text>
+                  </View>
+                  <Switch
+                    testID="dev-reports-switch"
+                    value={devReportStore.enabled}
+                    onValueChange={value => devReportStore.setEnabled(value)}
+                  />
+                </View>
+                {devReportStore.enabled && (
+                  <View style={styles.switchContainer}>
+                    <View style={styles.textContainer}>
+                      <Text variant="titleMedium" style={styles.textLabel}>
+                        {l10n.settings.devReportsConversations}
+                      </Text>
+                      <Text variant="labelSmall" style={styles.textDescription}>
+                        {l10n.settings.devReportsConversationsDescription}
+                      </Text>
+                    </View>
+                    <Switch
+                      testID="dev-reports-conversations-switch"
+                      value={devReportStore.includeConversations}
+                      onValueChange={value =>
+                        devReportStore.setIncludeConversations(value)
+                      }
+                    />
+                  </View>
+                )}
 
                 {/* Display Memory Usage (iOS only) */}
                 {Platform.OS === 'ios' && (

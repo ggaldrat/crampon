@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DeviceInfo from 'react-native-device-info';
 
 import {chatSessionStore} from './ChatSessionStore';
+import {devReportStore} from './DevReportStore';
 import {modelStore} from './ModelStore';
 import {uiStore} from './UIStore';
 
@@ -97,8 +98,15 @@ export class ModelUpdateStore {
     runInAction(() => {
       this.pendingId = target.id;
     });
+    devReportStore.report('model_update_found', {
+      from: this.currentModel?.id,
+      to: target.id,
+      rulesVersion: modelStore.rulesVersion,
+      tier: modelStore.deviceTier,
+    });
     try {
       if (!(await this.download(target))) {
+        devReportStore.report('model_update_download_failed', {to: target.id});
         return;
       }
       // Never swap under an open conversation or a running generation.
@@ -147,6 +155,11 @@ export class ModelUpdateStore {
   private async swap(target: Model): Promise<void> {
     const previous = this.currentModel;
     const result = await this.loadAndCheck(target);
+    devReportStore.report('model_update_swap', {
+      from: previous?.id,
+      to: target.id,
+      result,
+    });
     if (result === 'replaced') {
       // Something else loaded a model meanwhile: not the target's fault, so
       // keep both files and try again at the next launch.

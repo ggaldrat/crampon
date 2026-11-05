@@ -90,6 +90,8 @@ export interface DeviceRules {
   rulesVersion: string;
   classifier: Classifier;
   tiers: Record<Tier, {models: RuleCandidate[]}>;
+  /** URL the rules were fetched from (unset for the bundled floor). */
+  source?: string;
 }
 
 export interface DeviceSignals {

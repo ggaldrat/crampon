@@ -283,6 +283,8 @@ export async function* runAgent(
   // type — without it, narrowing through the closure collapses to
   // `never`).
   let lastResult: CompletionResult | null = null as CompletionResult | null;
+  // Any step cut short because the answer looped (reported, not shown).
+  let stoppedRepeating = false;
   const callIdSeed = Date.now();
 
   try {
@@ -355,6 +357,7 @@ export async function* runAgent(
               accumulatedText += delta.content;
               if (isRepeating(accumulatedText)) {
                 repeating = true;
+                stoppedRepeating = true;
                 stopEngine();
               }
               // Forced final has no tools, so a marker-shaped string in the
@@ -511,6 +514,7 @@ export async function* runAgent(
       // useful fields.
       steps: [],
       hitMaxTurns: turn >= maxTurns,
+      stoppedRepeating,
       finalResult:
         lastResult ??
         ({
