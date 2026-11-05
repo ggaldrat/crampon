@@ -3,9 +3,7 @@ import {makeAutoObservable, runInAction, when} from 'mobx';
 import {makePersistable} from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNFS from '@dr.pogodin/react-native-fs';
-import DeviceInfo from 'react-native-device-info';
 
-import NativeHardwareInfo from '../specs/NativeHardwareInfo';
 import {runVeille} from '../services/veille';
 import type {Catalogue} from '../services/veille/catalogue';
 
@@ -18,8 +16,8 @@ const RETRY_MS = 60 * 60 * 1000;
 const CHECK_EVERY_MS = 15 * 60 * 1000;
 
 /**
- * Crampon: the model watch run by the phone itself, once a day, on Wi-Fi and
- * while charging, and compared with the reference published on GitHub (see
+ * Crampon: the model watch run by the phone itself, once a day whatever the
+ * network or battery (a few MB), and compared with the reference published on GitHub (see
  * services/veille). For now the result only goes to the development reports,
  * whose switch also turns the watch off: the rules still come from the
  * reference.
@@ -60,13 +58,7 @@ export class VeilleStore {
     ) {
       return;
     }
-    const [charging, unmetered] = await Promise.all([
-      DeviceInfo.isBatteryCharging().catch(() => false),
-      NativeHardwareInfo.isNetworkUnmetered?.().catch(() => false) ?? false,
-    ]);
-    if (charging && unmetered && !this.running) {
-      await this.run();
-    }
+    await this.run();
   }
 
   async run() {

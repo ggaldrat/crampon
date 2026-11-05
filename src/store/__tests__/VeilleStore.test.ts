@@ -1,7 +1,5 @@
 import {Platform} from 'react-native';
-import DeviceInfo from 'react-native-device-info';
 
-import NativeHardwareInfo from '../../specs/NativeHardwareInfo';
 import {runVeille} from '../../services/veille';
 import {devReportStore} from '../DevReportStore';
 import {VeilleStore} from '../VeilleStore';
@@ -31,7 +29,7 @@ describe('VeilleStore', () => {
     Object.defineProperty(Platform, 'OS', {value: originalOS});
   });
 
-  it('runs on Wi-Fi while charging and reports the comparison, not the rules', async () => {
+  it('runs once a day and reports the comparison, not the rules', async () => {
     const store = new VeilleStore();
     await store.maybeRun();
 
@@ -48,17 +46,6 @@ describe('VeilleStore', () => {
     // once a day
     await store.maybeRun();
     expect(runVeille).toHaveBeenCalledTimes(1);
-  });
-
-  it('waits while on mobile data or on battery', async () => {
-    const store = new VeilleStore();
-    (NativeHardwareInfo.isNetworkUnmetered as jest.Mock).mockResolvedValueOnce(
-      false,
-    );
-    await store.maybeRun();
-    (DeviceInfo.isBatteryCharging as jest.Mock).mockResolvedValueOnce(false);
-    await store.maybeRun();
-    expect(runVeille).not.toHaveBeenCalled();
   });
 
   it('reports a failure and retries an hour later', async () => {

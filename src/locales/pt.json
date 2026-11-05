@@ -466,24 +466,18 @@
   "about": {
     "screenTitle": "Sobre a App",
     "description": "Uma app que traz modelos de linguagem diretamente para o seu telemóvel. Construído sobre o llama.cpp e o llama.rn.",
-    "supportProject": "Apoie o Projeto",
-    "supportProjectDescription": "Se gosta de usar o PocketPal AI, considere apoiar o projeto:",
-    "githubButton": "Dar uma estrela no GitHub",
-    "orBy": "ou por",
     "versionCopiedTitle": "Versão copiada",
     "versionCopiedDescription": "As informações de versão foram copiadas para a área de transferência",
     "tour": "Tour",
-    "tourDescription": "Reveja os ecrãs de boas-vindas para ver o que o PocketPal AI oferece.",
-    "showIntroButton": "Mostrar introdução novamente",
-    "privacyPolicy": "Política de Privacidade",
-    "termsOfService": "Termos de Serviço"
+    "tourDescription": "Reveja os ecrãs de boas-vindas para ver o que o Crampon oferece.",
+    "showIntroButton": "Mostrar introdução novamente"
   },
   "feedback": {
     "title": "Enviar Feedback",
-    "description": "A sua opinião importa! Conte-nos como o PocketPal AI está a ajudá-lo e o que podemos fazer para fazê-lo ainda mais útil.",
+    "description": "A sua opinião importa! Conte-nos como o Crampon está a ajudá-lo e o que podemos fazer para fazê-lo ainda mais útil.",
     "shareThoughtsButton": "A partilhar as suas ideias",
     "useCase": {
-      "label": "Para que usa o PocketPal AI?",
+      "label": "Para que usa o Crampon?",
       "placeholder": "ex.: resumo, interpretação de personagem, etc."
     },
     "featureRequests": {
@@ -495,7 +489,7 @@
       "placeholder": "Partilhe quaisquer outras ideias que tenha."
     },
     "usageFrequency": {
-      "label": "Com que frequência usa o PocketPal AI? (Opcional)",
+      "label": "Com que frequência usa o Crampon? (Opcional)",
       "options": {
         "daily": "Diariamente",
         "weekly": "Semanalmente",
@@ -540,7 +534,7 @@
     },
     "chatEmptyPlaceholder": {
       "noModelsTitle": "Nenhum Modelo Disponível",
-      "noModelsDescription": "Descarregue um modelo para começar a conversar com o PocketPal",
+      "noModelsDescription": "Descarregue um modelo para começar a conversar com o Crampon",
       "noModelsButton": "Descarregar Modelo",
       "activateModelTitle": "Ative um Modelo para Começar",
       "activateModelDescription": "Selecione o modelo e descarregue-o. Após a descarga, toque em Carregar ao lado do modelo e comece a conversar.",
@@ -552,7 +546,7 @@
     },
     "modelErrorReportSheet": {
       "title": "Denunciar Problema ao Carregar Modelo",
-      "privacyNote": "Ajude-nos a melhorar o PocketPal a partilhar pormenores sobre este erro. Revise abaixo o que será partilhado - pode desmarcar qualquer elemento que preferir não incluir.",
+      "privacyNote": "Ajude-nos a melhorar o Crampon a partilhar pormenores sobre este erro. Revise abaixo o que será partilhado - pode desmarcar qualquer elemento que preferir não incluir.",
       "errorMessage": "Mensagem de erro",
       "modelInfo": "Informações do Modelo",
       "modelName": "Nome",
@@ -570,7 +564,7 @@
       "submit": "Enviar Denúncia",
       "success": {
         "title": "Denúncia Enviada",
-        "message": "Obrigado por nos ajudar a melhorar o PocketPal. A sua denúncia ajudará-nos a corrigir este problema."
+        "message": "Obrigado por nos ajudar a melhorar o Crampon. A sua denúncia ajudará-nos a corrigir este problema."
       },
       "error": {
         "title": "Falha na Denúncia",
@@ -1045,13 +1039,13 @@
     "skip": "Ignorar",
     "skipForNow": "Ignorar por agora",
     "splash": {
-      "brand": "PocketPal"
+      "brand": "Crampon"
     },
     "screen1": {
       "title": "Conheça os seus pals.",
       "body": "Pequenos amigos inteligentes que vivem dentro do seu telemóvel.\nVamos ajudá-lo a configurar - vai levar só um minuto.",
       "cta": "Mostre-me Como Funciona",
-      "eyebrow": "Bem-vindo ao PocketPal",
+      "eyebrow": "Bem-vindo ao Crampon",
       "titleAccent": "pals."
     },
     "screen2": {

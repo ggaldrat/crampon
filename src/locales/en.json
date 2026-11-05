@@ -491,25 +491,23 @@
   },
   "about": {
     "screenTitle": "App Info",
-    "description": "An app that brings language models directly to your phone. Sits on the shoulders of llama.cpp and llama.rn.",
-    "supportProject": "Support the Project",
-    "supportProjectDescription": "If you enjoy using PocketPal AI, please consider supporting the project by:",
-    "githubButton": "Star on GitHub",
-    "orBy": "or by",
+    "description": "An app that brings language models directly to your phone, offline. Sits on the shoulders of llama.cpp and llama.rn.",
+    "openSource": "Open source",
+    "basedOn": "Crampon is based on PocketPal AI, © 2024 Asghar Ghorbani, MIT license.",
+    "sourceButton": "Crampon source code",
+    "pocketpalButton": "PocketPal AI",
     "versionCopiedTitle": "Version copied",
     "versionCopiedDescription": "Version information has been copied to clipboard",
     "tour": "Tour",
-    "tourDescription": "Replay the welcome screens to see what PocketPal AI offers.",
-    "showIntroButton": "Show intro again",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "tourDescription": "Replay the welcome screens to see what Crampon offers.",
+    "showIntroButton": "Show intro again"
   },
   "feedback": {
     "title": "Send Feedback",
-    "description": "Your voice matters! Tell us how PocketPal AI is helping you and what we can do to make it even more useful.",
+    "description": "Your voice matters! Tell us how Crampon is helping you and what we can do to make it even more useful.",
     "shareThoughtsButton": "Sharing your thoughts",
     "useCase": {
-      "label": "What are you using PocketPal AI for?",
+      "label": "What are you using Crampon for?",
       "placeholder": "e.g., summarization, roleplay, etc."
     },
     "featureRequests": {
@@ -521,7 +519,7 @@
       "placeholder": "Share any other thoughts you may have."
     },
     "usageFrequency": {
-      "label": "How often do you use PocketPal AI? (Optional)",
+      "label": "How often do you use Crampon? (Optional)",
       "options": {
         "daily": "Daily",
         "weekly": "Weekly",
@@ -579,7 +577,7 @@
     },
     "modelErrorReportSheet": {
       "title": "Report Model Loading Issue",
-      "privacyNote": "Help us improve PocketPal by sharing details about this error. Review below what will be shared - you can deselect any items you prefer not to include.",
+      "privacyNote": "Help us improve Crampon by sharing details about this error. Review below what will be shared - you can deselect any items you prefer not to include.",
       "errorMessage": "Error message",
       "modelInfo": "Model Information",
       "modelName": "Name",
@@ -597,7 +595,7 @@
       "submit": "Submit Report",
       "success": {
         "title": "Report Submitted",
-        "message": "Thank you for helping us improve PocketPal. Your report will help us fix this issue."
+        "message": "Thank you for helping us improve Crampon. Your report will help us fix this issue."
       },
       "error": {
         "title": "Report Failed",
@@ -742,7 +740,12 @@
         "total": "Total: ",
         "usage": "Usage: "
       },
-      "byteSizes": ["Bytes", "KB", "MB", "GB"]
+      "byteSizes": [
+        "Bytes",
+        "KB",
+        "MB",
+        "GB"
+      ]
     },
     "chatView": {
       "menuItems": {
@@ -1075,14 +1078,14 @@
     "skip": "Skip",
     "skipForNow": "Skip for now",
     "splash": {
-      "brand": "PocketPal"
+      "brand": "Crampon"
     },
     "screen1": {
       "title": "Meet your pals.",
       "titleAccent": "pals.",
       "body": "Smart little friends that live inside your phone.\nLet’s get you set up - it’ll take a minute.",
       "cta": "Show me Around",
-      "eyebrow": "Welcome to PocketPal"
+      "eyebrow": "Welcome to Crampon"
     },
     "screen2": {
       "title": "Anytime,\nAnywhere.",

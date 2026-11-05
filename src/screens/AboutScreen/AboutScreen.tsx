@@ -53,7 +53,7 @@ export const AboutScreen: React.FC = () => {
           <View style={styles.header}>
             <View style={styles.headerContent}>
               <Text variant="titleLarge" style={styles.title}>
-                PocketPal AI
+                Crampon
               </Text>
               <Text variant="bodyMedium" style={styles.description}>
                 {l10n.about.description}
@@ -80,35 +80,27 @@ export const AboutScreen: React.FC = () => {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{l10n.about.supportProject}</Text>
+            <Text style={styles.sectionTitle}>{l10n.about.openSource}</Text>
             <Text variant="bodyMedium" style={styles.description}>
-              {l10n.about.supportProjectDescription}
+              {l10n.about.basedOn}
             </Text>
             <Button
               mode="outlined"
               onPress={() =>
-                Linking.openURL('https://github.com/a-ghorbani/pocketpal-ai')
+                Linking.openURL('https://github.com/ggaldrat/crampon')
               }
               style={styles.actionButton}
               icon={GithubButtonIcon}>
-              {l10n.about.githubButton}
+              {l10n.about.sourceButton}
             </Button>
-          </View>
-
-          <View style={styles.legalRow}>
-            <Text
-              style={styles.legalLink}
+            <Button
+              mode="text"
               onPress={() =>
-                Linking.openURL('https://pocketpal.dev/privacy-policy')
-              }>
-              {l10n.about.privacyPolicy}
-            </Text>
-            <Text style={styles.legalSeparator}>·</Text>
-            <Text
-              style={styles.legalLink}
-              onPress={() => Linking.openURL('https://pocketpal.dev/terms')}>
-              {l10n.about.termsOfService}
-            </Text>
+                Linking.openURL('https://github.com/a-ghorbani/pocketpal-ai')
+              }
+              style={styles.actionButton}>
+              {l10n.about.pocketpalButton}
+            </Button>
           </View>
         </View>
       </ScrollView>

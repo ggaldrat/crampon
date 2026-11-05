@@ -541,7 +541,7 @@ describe('DownloadManager', () => {
     expect(RNFS.downloadFile).toHaveBeenCalledWith(
       expect.objectContaining({
         headers: expect.objectContaining({
-          'User-Agent': 'PocketPal/1.0.0 (ai.pocketpal)',
+          'User-Agent': 'Crampon/1.0.0 (github.com/ggaldrat/crampon)',
         }),
       }),
     );

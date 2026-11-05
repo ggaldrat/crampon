@@ -32,10 +32,9 @@ describe('AboutScreen', () => {
   it('renders correctly', () => {
     const {getByText} = render(<AboutScreen />);
 
-    expect(getByText('PocketPal AI')).toBeTruthy();
+    expect(getByText('Crampon')).toBeTruthy();
     expect(getByText('v1.0.0 (100)')).toBeTruthy();
-    expect(getByText(l10n.en.about.supportProject)).toBeTruthy();
-    expect(getByText(l10n.en.about.githubButton)).toBeTruthy();
+    expect(getByText(l10n.en.about.basedOn)).toBeTruthy();
   });
 
   it('copies version to clipboard when version button is pressed', () => {
@@ -49,14 +48,18 @@ describe('AboutScreen', () => {
     );
   });
 
-  it('opens GitHub URL when GitHub button is pressed', () => {
+  it.each([
+    [l10n.en.about.sourceButton, 'https://github.com/ggaldrat/crampon'],
+    [
+      l10n.en.about.pocketpalButton,
+      'https://github.com/a-ghorbani/pocketpal-ai',
+    ],
+  ])('opens %s', (label, url) => {
     const {getByText} = render(<AboutScreen />);
 
-    fireEvent.press(getByText('Star on GitHub'));
+    fireEvent.press(getByText(label));
 
-    expect(Linking.openURL).toHaveBeenCalledWith(
-      'https://github.com/a-ghorbani/pocketpal-ai',
-    );
+    expect(Linking.openURL).toHaveBeenCalledWith(url);
   });
 
   describe.each(['android', 'ios'] as const)('on %s', os => {
@@ -70,12 +73,12 @@ describe('AboutScreen', () => {
       Platform.OS = originalOS;
     });
 
-    it('shows no sponsorship option in the support section', () => {
+    it('shows no sponsorship option', () => {
       const {queryByText, getByText} = render(<AboutScreen />);
 
       expect(queryByText('Become a Sponsor')).toBeNull();
       expect(queryByText('or')).toBeNull();
-      expect(getByText(l10n.en.about.githubButton)).toBeTruthy();
+      expect(getByText(l10n.en.about.sourceButton)).toBeTruthy();
       expect(queryByText(l10n.en.feedback.shareThoughtsButton)).toBeNull();
     });
   });

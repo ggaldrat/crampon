@@ -91,7 +91,6 @@ jest.mock('../src/specs/NativeHardwareInfo', () => ({
       }),
     ),
     getChipset: jest.fn(() => Promise.resolve('Mock Chipset')),
-    isNetworkUnmetered: jest.fn(() => Promise.resolve(true)),
     getAvailableMemory: jest.fn(() => Promise.resolve(3 * 1000 * 1000 * 1000)), // 3GB
     writeMemorySnapshot: jest.fn((label: string) =>
       Promise.resolve({label, status: 'written'}),

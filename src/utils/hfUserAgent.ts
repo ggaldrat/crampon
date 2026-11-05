@@ -2,7 +2,7 @@ import DeviceInfo from 'react-native-device-info';
 
 /**
  * User-Agent for outbound Hugging Face requests (API + model downloads).
- * The `(ai.pocketpal)` token is a fixed attribution key on both platforms.
+ * Crampon names itself, not PocketPal: its downloads are not PocketPal's.
  */
 export const hfUserAgent = (): string =>
-  `PocketPal/${DeviceInfo.getVersion()} (ai.pocketpal)`;
+  `Crampon/${DeviceInfo.getVersion()} (github.com/ggaldrat/crampon)`;

@@ -466,24 +466,18 @@
   "about": {
     "screenTitle": "Información de la aplicación",
     "description": "Una aplicación que lleva los modelos de lenguaje directamente a tu teléfono. Se apoya en los hombros de llama.cpp y llama.rn.",
-    "supportProject": "Apoya el proyecto",
-    "supportProjectDescription": "Si disfrutas usando PocketPal AI, considera apoyar el proyecto mediante:",
-    "githubButton": "Dar una estrella en GitHub",
-    "orBy": "o mediante",
     "versionCopiedTitle": "Versión copiada",
     "versionCopiedDescription": "La información de la versión se ha copiado al portapapeles",
     "tour": "Recorrido",
-    "tourDescription": "Vuelve a ver las pantallas de bienvenida para descubrir lo que ofrece PocketPal AI.",
-    "showIntroButton": "Volver a mostrar la introducción",
-    "privacyPolicy": "Política de privacidad",
-    "termsOfService": "Términos de servicio"
+    "tourDescription": "Vuelve a ver las pantallas de bienvenida para descubrir lo que ofrece Crampon.",
+    "showIntroButton": "Volver a mostrar la introducción"
   },
   "feedback": {
     "title": "Enviar comentarios",
-    "description": "¡Tu voz importa! Cuéntanos cómo te está ayudando PocketPal AI y qué podemos hacer para que sea aún más útil.",
+    "description": "¡Tu voz importa! Cuéntanos cómo te está ayudando Crampon y qué podemos hacer para que sea aún más útil.",
     "shareThoughtsButton": "Compartir tus comentarios",
     "useCase": {
-      "label": "¿Para qué estás usando PocketPal AI?",
+      "label": "¿Para qué estás usando Crampon?",
       "placeholder": "p. ej., resumen, juego de rol, etc."
     },
     "featureRequests": {
@@ -495,7 +489,7 @@
       "placeholder": "Comparte cualquier otro comentario que tengas."
     },
     "usageFrequency": {
-      "label": "¿Con qué frecuencia usas PocketPal AI? (Opcional)",
+      "label": "¿Con qué frecuencia usas Crampon? (Opcional)",
       "options": {
         "daily": "Diariamente",
         "weekly": "Semanalmente",
@@ -540,7 +534,7 @@
     },
     "chatEmptyPlaceholder": {
       "noModelsTitle": "No hay modelos disponibles",
-      "noModelsDescription": "Descarga un modelo para empezar a chatear con PocketPal",
+      "noModelsDescription": "Descarga un modelo para empezar a chatear con Crampon",
       "noModelsButton": "Descargar modelo",
       "activateModelTitle": "Activa un modelo para empezar",
       "activateModelDescription": "Selecciona el modelo y descárgalo. Después de descargarlo, toca \"Cargar\" junto al modelo y empieza a chatear.",
@@ -552,7 +546,7 @@
     },
     "modelErrorReportSheet": {
       "title": "Reportar problema de carga del modelo",
-      "privacyNote": "Ayúdanos a mejorar PocketPal (tu amigo de bolsillo) compartiendo detalles sobre este error. Revisa a continuación lo que se compartirá; puedes deseleccionar cualquier elemento que prefieras no incluir.",
+      "privacyNote": "Ayúdanos a mejorar Crampon (tu amigo de bolsillo) compartiendo detalles sobre este error. Revisa a continuación lo que se compartirá; puedes deseleccionar cualquier elemento que prefieras no incluir.",
       "errorMessage": "Mensaje de error",
       "modelInfo": "Información del modelo",
       "modelName": "Nombre",
@@ -570,7 +564,7 @@
       "submit": "Enviar reporte",
       "success": {
         "title": "Reporte enviado",
-        "message": "Gracias por ayudarnos a mejorar PocketPal. Su informe nos ayudará a solucionar este problema."
+        "message": "Gracias por ayudarnos a mejorar Crampon. Su informe nos ayudará a solucionar este problema."
       },
       "error": {
         "title": "Error al enviar el reporte",
@@ -1045,14 +1039,14 @@
     "skip": "Omitir",
     "skipForNow": "Omitir por ahora",
     "splash": {
-      "brand": "PocketPal"
+      "brand": "Crampon"
     },
     "screen1": {
       "title": "Conoce a tus amigos (Pals).",
       "titleAccent": "amigos.",
       "body": "Pequeños amigos (pals) inteligentes que viven dentro de tu teléfono.\nVamos a configurarlo todo; solo te tomará un minuto.",
       "cta": "Muéstrame cómo funciona",
-      "eyebrow": "Te damos la bienvenida a PocketPal"
+      "eyebrow": "Te damos la bienvenida a Crampon"
     },
     "screen2": {
       "title": "En cualquier momento,\nEn cualquier lugar.",

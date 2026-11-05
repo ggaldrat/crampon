@@ -36,8 +36,6 @@ export interface Spec extends TurboModule {
   getCPUInfo(): Promise<CPUInfo>;
   getGPUInfo(): Promise<GPUInfo>;
   getChipset?(): Promise<string>; // Android only
-  /** Wi-Fi or another network that does not count data. Android only. */
-  isNetworkUnmetered?(): Promise<boolean>;
   /**
    * Get available memory in bytes from the operating system.
    * - Android: Uses ActivityManager.getMemoryInfo() to get availMem

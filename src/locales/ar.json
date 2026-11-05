@@ -466,24 +466,18 @@
   "about": {
     "screenTitle": "معلومات التطبيق",
     "description": "تطبيق يتيح لك تشغيل نماذج اللغة مباشرة على هاتفك. يعتمد على llama.cpp وllama.rn.",
-    "supportProject": "دعم المشروع",
-    "supportProjectDescription": "إذا أعجبك استخدام PocketPal AI، يُرجى دعم المشروع من خلال:",
-    "githubButton": "وضع نجمة على GitHub",
-    "orBy": "أو من خلال",
     "versionCopiedTitle": "تم نسخ الإصدار",
     "versionCopiedDescription": "تم نسخ معلومات الإصدار إلى الحافظة",
     "tour": "جولة",
-    "tourDescription": "إعادة عرض شاشات الترحيب للتعرّف على ما يقدمه PocketPal AI.",
-    "showIntroButton": "عرض المقدمة مرة أخرى",
-    "privacyPolicy": "سياسة الخصوصية",
-    "termsOfService": "شروط الخدمة"
+    "tourDescription": "إعادة عرض شاشات الترحيب للتعرّف على ما يقدمه Crampon.",
+    "showIntroButton": "عرض المقدمة مرة أخرى"
   },
   "feedback": {
     "title": "إرسال ملاحظات",
-    "description": "رأيك يهمنا! أخبرنا كيف يساعدك PocketPal AI وما الذي يمكننا تحسينه ليصبح أكثر فائدة لك.",
+    "description": "رأيك يهمنا! أخبرنا كيف يساعدك Crampon وما الذي يمكننا تحسينه ليصبح أكثر فائدة لك.",
     "shareThoughtsButton": "مشاركة أفكارك",
     "useCase": {
-      "label": "فيما تستخدم PocketPal AI؟",
+      "label": "فيما تستخدم Crampon؟",
       "placeholder": "مثل التلخيص، وتمثيل الأدوار، وغيرها."
     },
     "featureRequests": {
@@ -495,7 +489,7 @@
       "placeholder": "شاركنا أي أفكار أخرى لديك."
     },
     "usageFrequency": {
-      "label": "كم مرة تستخدم PocketPal AI؟ (اختياري)",
+      "label": "كم مرة تستخدم Crampon؟ (اختياري)",
       "options": {
         "daily": "يومياً",
         "weekly": "أسبوعياً",
@@ -540,7 +534,7 @@
     },
     "chatEmptyPlaceholder": {
       "noModelsTitle": "لا توجد نماذج متاحة",
-      "noModelsDescription": "نزّل نموذجًا لبدء الدردشة مع PocketPal",
+      "noModelsDescription": "نزّل نموذجًا لبدء الدردشة مع Crampon",
       "noModelsButton": "تنزيل النموذج",
       "activateModelTitle": "فعّل النموذج للبدء",
       "activateModelDescription": "اختر النموذج ونزّله. بعد التنزيل، اضغط على \"تحميل\" بجانب النموذج وابدأ الدردشة.",
@@ -552,7 +546,7 @@
     },
     "modelErrorReportSheet": {
       "title": "الإبلاغ عن مشكلة في تحميل النموذج",
-      "privacyNote": "ساعدنا في تحسين PocketPal من خلال مشاركة تفاصيل حول هذا الخطأ. راجع أدناه ما سيتم مشاركته - يمكنك إلغاء تحديد أي عناصر لا تفضّل تضمينها.",
+      "privacyNote": "ساعدنا في تحسين Crampon من خلال مشاركة تفاصيل حول هذا الخطأ. راجع أدناه ما سيتم مشاركته - يمكنك إلغاء تحديد أي عناصر لا تفضّل تضمينها.",
       "errorMessage": "رسالة الخطأ",
       "modelInfo": "‎معلومات النموذج",
       "modelName": "الاسم",
@@ -570,7 +564,7 @@
       "submit": "إرسال الإبلاغ",
       "success": {
         "title": "تم إرسال الإبلاغ",
-        "message": "شكرًا لمساعدتك في تحسين PocketPal. سيساعدنا إبلاغك في إصلاح هذه المشكلة."
+        "message": "شكرًا لمساعدتك في تحسين Crampon. سيساعدنا إبلاغك في إصلاح هذه المشكلة."
       },
       "error": {
         "title": "فشل الإبلاغ",
@@ -1045,14 +1039,14 @@
     "skip": "تخطى",
     "skipForNow": "تخطٍى الآن",
     "splash": {
-      "brand": "PocketPal"
+      "brand": "Crampon"
     },
     "screen1": {
       "title": "تعرّف على رفاقك.",
       "titleAccent": "الرفاق.",
       "body": "أصدقاء أذكياء صغار يعيشون داخل هاتفك.\nلنُجهّزك — سيستغرق الأمر دقيقة.",
       "cta": "أرِني الجولة",
-      "eyebrow": "مرحبًا بك في PocketPal"
+      "eyebrow": "مرحبًا بك في Crampon"
     },
     "screen2": {
       "title": "في أي وقت،\nوفي أي مكان.",
