@@ -42,6 +42,19 @@ jest.mock('../ChatSessionStore', () => ({
   chatSessionStore: mockChatSessionStore,
 }));
 jest.mock('../UIStore', () => ({uiStore: {hasCompletedOnboarding: false}}));
+// The phone's trial is tested in ModelTrialStore.test.ts: here it is over,
+// without a choice, so the tier's first preset is the target.
+const mockModelTrialStore: any = observable(
+  {
+    settled: true,
+    choice: undefined as string | undefined,
+    run: jest.fn(async () => {}),
+  },
+  {run: false},
+);
+jest.mock('../ModelTrialStore', () => ({
+  modelTrialStore: mockModelTrialStore,
+}));
 
 // Required after the mocks above exist (imports are hoisted).
 const {ModelUpdateStore} = require('../ModelUpdateStore');
@@ -70,6 +83,8 @@ describe('ModelUpdateStore', () => {
       mockModelStore.activeModelId = OLD;
       mockModelStore.downloadError = null;
       mockChatSessionStore.activeSessionId = null;
+      mockModelTrialStore.settled = true;
+      mockModelTrialStore.choice = undefined;
     });
     mockModelStore.isDownloading.mockImplementation(() => downloading);
     mockModelStore.checkSpaceAndDownload.mockImplementation(async () => {
@@ -111,6 +126,31 @@ describe('ModelUpdateStore', () => {
     );
     expect(store.pendingId).toBeNull();
     expect(store.failedIds).toEqual([]);
+  });
+
+  it("installs the phone's choice after its trial, not the tier's first preset", async () => {
+    const CHOSEN = 'org/chosen/chosen.gguf';
+    runInAction(() => {
+      mockModelStore.models.push({
+        id: CHOSEN,
+        origin: 'preset',
+        isDownloaded: true,
+      });
+      mockModelTrialStore.choice = CHOSEN;
+    });
+    const store = new ModelUpdateStore();
+    await store.trialThenRun();
+    expect(mockModelTrialStore.run).toHaveBeenCalled();
+    expect(mockModelStore.selectModel).toHaveBeenCalledWith(
+      expect.objectContaining({id: CHOSEN}),
+    );
+
+    // and nothing moves while the trial is not over
+    runInAction(() => {
+      mockModelTrialStore.choice = undefined;
+      mockModelTrialStore.settled = false;
+    });
+    expect(store.target).toBeUndefined();
   });
 
   it('waits for the conversation to close before swapping', async () => {

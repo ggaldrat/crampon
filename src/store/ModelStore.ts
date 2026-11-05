@@ -184,6 +184,14 @@ const llmPresetIds = (presets: Model[]): string[] =>
     )
     .map(m => m.id);
 
+// Crampon: the tier tried above the phone's own, and how many models of each.
+const TIER_ABOVE: Partial<Record<Tier, Tier>> = {
+  low: 'mid',
+  mid: 'high',
+  high: 'flagship',
+};
+const TRIAL_PER_TIER = 2;
+
 const pairedDraftModel = (config?: DraftConfig): Model | undefined =>
   config?.mode === 'paired' ? config.draftModel : undefined;
 
@@ -197,6 +205,9 @@ class ModelStore {
   // Crampon: ordered LLM preset ids of the current tier (first = the tier's
   // primary recommendation, auto-installed by onboarding). Not persisted.
   tierPresetIds: string[] = [];
+  // Crampon: models the phone tries before choosing one (ModelTrialStore):
+  // the first ones of its tier, then of the tier above. Not persisted.
+  trialCandidateIds: string[] = [];
   // Crampon: true once the online rules fetch has finished (success or not),
   // so onboarding can pick from the freshest rule set. Not persisted.
   rulesSettled: boolean = false;
@@ -964,12 +975,11 @@ class ModelStore {
   resolvePresetModels = (
     rules: DeviceRules,
     signals: DeviceSignals,
+    tierOverride?: Tier,
   ): Model[] => {
-    const tier = classify(
-      signals,
-      rules.classifier,
-      Platform.OS as ClassifyPlatform,
-    );
+    const tier =
+      tierOverride ??
+      classify(signals, rules.classifier, Platform.OS as ClassifyPlatform);
     const flat = rules.tiers[tier].models.flatMap(candidate => {
       const {hfModel, modelFile} = this.candidateToPair(candidate);
       const llm = hfAsModel(hfModel, modelFile);
@@ -1056,14 +1066,29 @@ class ModelStore {
         Platform.OS as ClassifyPlatform,
       );
       const presets = this.resolvePresetModels(fetched, signals);
+      // The phone tries the first models of its tier and of the tier above
+      // (ModelTrialStore) before settling on one.
+      const above = TIER_ABOVE[tier]
+        ? this.resolvePresetModels(fetched, signals, TIER_ABOVE[tier])
+        : [];
+      const trialIds = [
+        ...new Set([
+          ...llmPresetIds(presets).slice(0, TRIAL_PER_TIER),
+          ...llmPresetIds(above).slice(0, TRIAL_PER_TIER),
+        ]),
+      ];
       runInAction(() => {
         this.deviceTier = tier;
         this.rulesVersion = fetched.rulesVersion;
         this.rulesSignedAt = fetched.signedAt ?? this.rulesSignedAt;
         this.tierPresetIds = llmPresetIds(presets);
+        this.trialCandidateIds = trialIds;
         this.rulesFetched = true;
       });
-      this.reconcilePresets(presets);
+      this.reconcilePresets([
+        ...presets,
+        ...above.filter(m => trialIds.includes(m.id)),
+      ]);
       devReportStore.report('rules', {
         source: fetched.source,
         rulesVersion: fetched.rulesVersion,

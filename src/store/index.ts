@@ -12,3 +12,4 @@ export * from './ModelUpdateStore';
 export * from './AppUpdateStore';
 export * from './DevReportStore';
 export * from './VeilleStore';
+export * from './ModelTrialStore';

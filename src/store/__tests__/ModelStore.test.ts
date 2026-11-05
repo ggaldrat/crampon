@@ -1321,6 +1321,48 @@ describe('ModelStore', () => {
       expect(modelStore.rulesVersion).toBe('2999-01-01.1');
     });
 
+    it('lists the first models of the tier and of the tier above for the trial', async () => {
+      const candidate = (name: string) => ({
+        model: name,
+        hf_repo: `org/${name}-GGUF`,
+        hf_filename: `${name}.gguf`,
+        size_bytes: 500,
+      });
+      const fetchedRules = parseDeviceRules(
+        {
+          schema_version: '2.0.0',
+          platform: 'android',
+          rules_version: '2999-01-01.2',
+          classifier: {
+            ram_bands: [{id: 'all', max_bytes: null}],
+            tier_matrix: [{ram_band: 'all', soc_class: 'mid', tier: 'mid'}],
+            soc_model_to_class: {SM8850: 'mid'},
+          },
+          tiers: {
+            mid: {
+              candidates: [candidate('m1'), candidate('m2'), candidate('m3')],
+            },
+            high: {
+              candidates: [candidate('h1'), candidate('m1'), candidate('h3')],
+            },
+          },
+        },
+        '1.17.3',
+      );
+      (fetchRules as jest.Mock).mockResolvedValue(fetchedRules);
+
+      await (modelStore as any).upgradeToFetchedRules();
+
+      expect(modelStore.trialCandidateIds).toEqual([
+        'org/m1-GGUF/m1.gguf',
+        'org/m2-GGUF/m2.gguf',
+        'org/h1-GGUF/h1.gguf',
+      ]);
+      const ids = modelStore.models.map(m => m.id);
+      expect(ids).toContain('org/h1-GGUF/h1.gguf');
+      expect(ids).not.toContain('org/h3-GGUF/h3.gguf');
+    });
+
     it('leaves the bundled presets in place when the fetch returns null', async () => {
       modelStore.models = [
         {...presetModelFixture, origin: ModelOrigin.HF, isRulePreset: true},

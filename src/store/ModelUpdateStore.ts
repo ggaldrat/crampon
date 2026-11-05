@@ -5,13 +5,16 @@ import DeviceInfo from 'react-native-device-info';
 
 import {chatSessionStore} from './ChatSessionStore';
 import {devReportStore} from './DevReportStore';
+import {ensureDownloaded} from './ensureDownloaded';
 import {modelStore} from './ModelStore';
+import {modelTrialStore} from './ModelTrialStore';
 import {uiStore} from './UIStore';
 
 import {Model, ModelOrigin} from '../utils/types';
 
 /**
- * Crampon: keeps the installed model equal to the first recommendation of the
+ * Crampon: keeps the installed model equal to the phone's choice after trying
+ * the candidates (ModelTrialStore), or else the first recommendation of the
  * device's tier (online rules, refreshed at each launch). The newer model is
  * downloaded silently in the background, swapped in when no conversation is
  * open (launch or new chat), checked with a tiny completion, and only then is
@@ -48,7 +51,7 @@ export class ModelUpdateStore {
           modelStore.rulesSettled &&
           modelStore.launchReloadSettled &&
           uiStore.hasCompletedOnboarding,
-        () => this.run(),
+        () => this.trialThenRun(),
       );
     });
   }
@@ -56,7 +59,7 @@ export class ModelUpdateStore {
   setEnabled(value: boolean) {
     this.enabled = value;
     if (value) {
-      this.run();
+      this.trialThenRun();
     }
   }
 
@@ -72,8 +75,12 @@ export class ModelUpdateStore {
    */
   get target(): Model | undefined {
     const current = this.currentModel;
+    // the phone's own trial decides once over; until then, nothing moves
+    if (!modelTrialStore.settled) {
+      return undefined;
+    }
     const target = modelStore.models.find(
-      m => m.id === modelStore.tierPresetIds[0],
+      m => m.id === (modelTrialStore.choice ?? modelStore.tierPresetIds[0]),
     );
     if (
       !this.enabled ||
@@ -87,6 +94,15 @@ export class ModelUpdateStore {
       return undefined;
     }
     return target;
+  }
+
+  /** The phone tries the candidate models first, then installs its choice. */
+  async trialThenRun(): Promise<void> {
+    if (!this.enabled) {
+      return;
+    }
+    await modelTrialStore.run();
+    await this.run();
   }
 
   async run(): Promise<void> {
@@ -105,7 +121,7 @@ export class ModelUpdateStore {
       tier: modelStore.deviceTier,
     });
     try {
-      if (!(await this.download(target))) {
+      if (!(await ensureDownloaded(target))) {
         devReportStore.report('model_update_download_failed', {to: target.id});
         return;
       }
@@ -125,31 +141,6 @@ export class ModelUpdateStore {
         this.running = false;
       });
     }
-  }
-
-  private async download(target: Model): Promise<boolean> {
-    if (!target.isDownloaded) {
-      try {
-        if (!modelStore.isDownloading(target.id)) {
-          await modelStore.checkSpaceAndDownload(target.id);
-        }
-        await when(
-          () =>
-            !!modelStore.models.find(m => m.id === target.id)?.isDownloaded ||
-            modelStore.downloadError?.metadata?.modelId === target.id,
-        );
-      } catch {
-        // reported below through isDownloaded
-      }
-    }
-    if (modelStore.models.find(m => m.id === target.id)?.isDownloaded) {
-      return true;
-    }
-    // Network or storage trouble: silent, retried at next launch.
-    if (modelStore.downloadError?.metadata?.modelId === target.id) {
-      modelStore.clearDownloadError();
-    }
-    return false;
   }
 
   private async swap(target: Model): Promise<void> {
