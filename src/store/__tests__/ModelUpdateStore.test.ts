@@ -54,6 +54,7 @@ const mockModelTrialStore: any = observable(
 );
 jest.mock('../ModelTrialStore', () => ({
   modelTrialStore: mockModelTrialStore,
+  setTrialResumeHandler: jest.fn(),
 }));
 
 // Required after the mocks above exist (imports are hoisted).

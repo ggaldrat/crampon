@@ -1,15 +1,19 @@
+import type {ToolCall} from '../../utils/completionTypes';
+
 /**
  * Crampon: the questions a candidate model answers on the phone before it can
  * become the chat model (see ModelTrialStore). Each answer is checked
  * automatically: facts, arithmetic, following an instruction, a structured
- * answer, and plain French.
+ * answer, plain French, and calling the app's tools.
  */
 export type TrialQuestion = {
   id: string;
   prompt: string;
   /** Tokens allowed for the answer. */
   maxTokens: number;
-  check: (answer: string) => boolean;
+  /** Asked with the app's tools (calculate, datetime, wikipedia...) offered. */
+  tools?: boolean;
+  check: (answer: string, toolCalls: ToolCall[]) => boolean;
 };
 
 const has = (answer: string, ...patterns: RegExp[]) =>
@@ -112,7 +116,8 @@ export const TRIAL_QUESTIONS: TrialQuestion[] = [
     check: a => {
       const fr = a.match(FRENCH_WORDS)?.length ?? 0;
       const en = a.match(ENGLISH_WORDS)?.length ?? 0;
-      return fr >= 4 && fr > 2 * en && /(lumi[eè]re|diffus|soleil)/i.test(a);
+      // the right reason, not only the words of the question
+      return fr >= 4 && fr > 2 * en && /diffus/i.test(a);
     },
   },
   {
@@ -123,7 +128,63 @@ export const TRIAL_QUESTIONS: TrialQuestion[] = [
       /(dessin anim|s[ée]rie|personnage|cartoon)/i.test(a) &&
       /(gadget|d[ée]tective|inspecteur|policier)/i.test(a),
   },
+  // Asked as the chat asks them: the tools its router picks for the question,
+  // the system prompt and the tools' instructions (see runTrial).
+  {
+    id: 'outil-calcul',
+    prompt: 'Combien font 4817 × 2963 ?',
+    maxTokens: 96,
+    tools: true,
+    check: (_a, calls) =>
+      calls.some(
+        c =>
+          c.function.name === 'calculate' &&
+          /4817/.test(argument(c, 'expression')) &&
+          /2963/.test(argument(c, 'expression')),
+      ),
+  },
+  {
+    id: 'outil-heure',
+    prompt: 'Quelle heure est-il à Tokyo ?',
+    maxTokens: 96,
+    tools: true,
+    check: (_a, calls) =>
+      calls.some(
+        c =>
+          c.function.name === 'datetime' &&
+          /tokyo/i.test(argument(c, 'timezone')),
+      ),
+  },
+  {
+    id: 'outil-wikipedia',
+    prompt: 'Cherche sur Wikipédia : qui était Marie Curie ?',
+    maxTokens: 96,
+    tools: true,
+    check: (_a, calls) =>
+      calls.some(
+        c =>
+          c.function.name === 'wikipedia' &&
+          /curie/i.test(argument(c, 'query')),
+      ),
+  },
+  {
+    id: 'outil-aucun',
+    prompt: "Qu'est-ce que tu peux faire pour moi ? Réponds en une phrase.",
+    maxTokens: 80,
+    tools: true,
+    // the router offers wikipedia here, but no tool is needed
+    check: (a, calls) => calls.length === 0 && a.length > 10,
+  },
 ];
+
+/** One argument of a tool call; '' when the arguments are not valid JSON. */
+function argument(call: ToolCall, name: string): string {
+  try {
+    return String(JSON.parse(call.function.arguments)[name] ?? '');
+  } catch {
+    return '';
+  }
+}
 
 /** A long prompt for the speed test: about 400 tokens of French text. */
 export const SPEED_PROMPT = `Voici un texte. Résume-le en trois phrases.

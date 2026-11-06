@@ -7,7 +7,7 @@ import {chatSessionStore} from './ChatSessionStore';
 import {devReportStore} from './DevReportStore';
 import {ensureDownloaded} from './ensureDownloaded';
 import {modelStore} from './ModelStore';
-import {modelTrialStore} from './ModelTrialStore';
+import {modelTrialStore, setTrialResumeHandler} from './ModelTrialStore';
 import {uiStore} from './UIStore';
 
 import {Model, ModelOrigin} from '../utils/types';
@@ -54,6 +54,7 @@ export class ModelUpdateStore {
         () => this.trialThenRun(),
       );
     });
+    setTrialResumeHandler(() => this.trialThenRun());
   }
 
   setEnabled(value: boolean) {

@@ -16,6 +16,7 @@ import com.pocketpal.KeepAwakePackage
 import com.pocketpal.HardwareInfoPackage
 import com.pocketpal.download.DownloadPackage
 import com.pocketpal.update.AppUpdaterPackage
+import com.pocketpal.trial.ModelTrialServicePackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -29,6 +30,7 @@ class MainApplication : Application(), ReactApplication {
               add(HardwareInfoPackage())
               add(DownloadPackage())
               add(AppUpdaterPackage())
+              add(ModelTrialServicePackage())
             }
 
         override fun getJSMainModuleName(): String = "index"

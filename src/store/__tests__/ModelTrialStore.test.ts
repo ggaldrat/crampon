@@ -1,3 +1,4 @@
+import {AppState} from 'react-native';
 import {observable, runInAction} from 'mobx';
 
 const mockModelStore: any = observable(
@@ -18,6 +19,8 @@ const mockModelStore: any = observable(
     deleteModel: jest.fn(),
     clearDownloadError: jest.fn(),
     clearModelLoadError: jest.fn(),
+    disableAutoRelease: jest.fn(),
+    enableAutoRelease: jest.fn(),
   },
   {
     isDownloading: false,
@@ -27,6 +30,8 @@ const mockModelStore: any = observable(
     deleteModel: false,
     clearDownloadError: false,
     clearModelLoadError: false,
+    disableAutoRelease: false,
+    enableAutoRelease: false,
   },
 );
 const mockChatSessionStore: any = observable({
@@ -34,8 +39,13 @@ const mockChatSessionStore: any = observable({
   isGenerating: false,
 });
 const mockRunTrial = jest.fn();
+const mockTrialService = {start: jest.fn(), stop: jest.fn()};
 
 jest.mock('../ModelStore', () => ({modelStore: mockModelStore}));
+jest.mock('../../specs/NativeModelTrialService', () => ({
+  __esModule: true,
+  default: mockTrialService,
+}));
 jest.mock('../ChatSessionStore', () => ({
   chatSessionStore: mockChatSessionStore,
 }));
@@ -44,7 +54,20 @@ jest.mock('../../services/modelTrial/runTrial', () => ({
   runTrial: (...args: unknown[]) => mockRunTrial(...args),
 }));
 
-const {ModelTrialStore} = require('../ModelTrialStore');
+let appStateListener: (state: string) => void = () => {};
+jest.spyOn(AppState, 'addEventListener').mockImplementation(((
+  _type: string,
+  listener: (state: string) => void,
+) => {
+  appStateListener = listener;
+  return {remove: jest.fn()};
+}) as any);
+
+const {
+  ModelTrialStore,
+  TRIAL_VERSION,
+  setTrialResumeHandler,
+} = require('../ModelTrialStore');
 const {devReportStore} = require('../DevReportStore');
 const {TrialInterrupted} = jest.requireActual(
   '../../services/modelTrial/runTrial',
@@ -59,6 +82,8 @@ const measures = (score: number, decodeTps: number, promptTps = 40) => ({
   promptTps,
   score,
   total: 12,
+  toolScore: 0,
+  toolTotal: 4,
   answers: [{id: 'capitale', ok: true, answer: 'Canberra'}],
   ms: 1000,
 });
@@ -66,6 +91,7 @@ const measures = (score: number, decodeTps: number, promptTps = 40) => ({
 describe('ModelTrialStore', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    appStateListener('active');
     runInAction(() => {
       mockModelStore.models = [
         {id: SMALL, origin: 'hf', isDownloaded: true},
@@ -125,6 +151,21 @@ describe('ModelTrialStore', () => {
       'model_trial_choice',
       expect.objectContaining({choice: FAST}),
     );
+    expect(devReportStore.report).toHaveBeenCalledWith(
+      'model_trial_removed',
+      expect.objectContaining({model: SLOW, removed: true}),
+    );
+    // kept running screen off, the model kept loaded, then let go
+    expect(mockTrialService.start).toHaveBeenCalledWith(
+      expect.stringContaining('(3/3)'),
+    );
+    expect(mockTrialService.stop).toHaveBeenCalled();
+    expect(mockModelStore.disableAutoRelease).toHaveBeenCalledWith(
+      'model_trial',
+    );
+    expect(mockModelStore.enableAutoRelease).toHaveBeenCalledWith(
+      'model_trial',
+    );
 
     // tried once: a later run does nothing
     mockRunTrial.mockClear();
@@ -132,7 +173,7 @@ describe('ModelTrialStore', () => {
     expect(mockRunTrial).not.toHaveBeenCalled();
   });
 
-  it('waits for the conversation to close, and stops when the user comes back', async () => {
+  it('waits for the conversation to close, and tries the model again after an interruption', async () => {
     runInAction(() => {
       mockChatSessionStore.activeSessionId = 'session-1';
     });
@@ -146,9 +187,13 @@ describe('ModelTrialStore', () => {
       mockChatSessionStore.activeSessionId = null;
     });
     await done;
-    // interrupted on the first candidate: nothing recorded, the model is back
-    expect(store.results).toEqual({});
-    expect(store.settled).toBe(false);
+    // interrupted on the first candidate, which was tried again
+    expect(devReportStore.report).toHaveBeenCalledWith(
+      'model_trial_interrupted',
+      {model: SMALL},
+    );
+    expect(mockRunTrial).toHaveBeenCalledTimes(4);
+    expect(store.settled).toBe(true);
     expect(mockModelStore.activeModelId).toBe(SMALL);
   });
 
@@ -179,5 +224,46 @@ describe('ModelTrialStore', () => {
     expect(store.settled).toBe(true);
     expect(store.results[FAST].loaded).toBe(false);
     expect(store.choice).toBe(SMALL);
+  });
+
+  it('runs in the background even with a conversation left open', async () => {
+    runInAction(() => {
+      mockChatSessionStore.activeSessionId = 'session-1';
+    });
+    appStateListener('background');
+    const store = new ModelTrialStore();
+    await store.run();
+    expect(store.settled).toBe(true);
+  });
+
+  it('tries again the models tried with older questions', async () => {
+    const store = new ModelTrialStore();
+    runInAction(() => {
+      for (const id of [SMALL, FAST, SLOW]) {
+        store.results[id] = {
+          loaded: true,
+          decodeTps: 10,
+          promptTps: 40,
+          score: 12,
+          total: 12,
+          at: '2026-11-06T00:00:00Z',
+        };
+      }
+    });
+    expect(store.settled).toBe(false);
+    await store.run();
+    expect(mockRunTrial).toHaveBeenCalledTimes(3);
+    expect(store.results[FAST].version).toBe(TRIAL_VERSION);
+    expect(store.choice).toBe(FAST);
+  });
+
+  it('goes on with an unfinished trial when the app comes back', () => {
+    const resume = jest.fn();
+    setTrialResumeHandler(resume);
+    const store = new ModelTrialStore();
+    appStateListener('background');
+    appStateListener('active');
+    expect(resume).toHaveBeenCalled();
+    expect(store.settled).toBe(false);
   });
 });

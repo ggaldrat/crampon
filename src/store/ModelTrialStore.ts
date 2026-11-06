@@ -1,7 +1,9 @@
-import {makeAutoObservable, runInAction, when} from 'mobx';
+import {AppState} from 'react-native';
+import {makeAutoObservable, observable, runInAction, when} from 'mobx';
 import {makePersistable} from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import NativeModelTrialService from '../specs/NativeModelTrialService';
 import {
   runTrial,
   TrialAnswer,
@@ -21,6 +23,8 @@ export const MIN_DECODE_TPS = 6;
 const MAX_DOWNLOAD_FAILURES = 3;
 /** Below this, the app's usual prompt (about 400 tokens) takes over 20 s. */
 export const MIN_PROMPT_TPS = 20;
+/** Raised when the questions change: older results no longer count. */
+export const TRIAL_VERSION = 2;
 
 export type TrialResult = {
   loaded: boolean;
@@ -28,11 +32,21 @@ export type TrialResult = {
   promptTps: number;
   score: number;
   total: number;
+  toolScore?: number;
+  toolTotal?: number;
   at: string;
+  version?: number;
 };
 
+/** Observed, so that waiting for idle notices the app going to the background. */
+const appState = observable.box(AppState.currentState);
+
+/** On a conversation, in the app: the user may send a message any time. */
+const userInChat = () =>
+  appState.get() === 'active' && chatSessionStore.activeSessionId !== null;
+
 const idle = () =>
-  chatSessionStore.activeSessionId === null &&
+  !userInChat() &&
   !chatSessionStore.isGenerating &&
   !modelStore.isGenerationBusy;
 
@@ -40,9 +54,11 @@ const idle = () =>
  * Crampon: before the app settles on a model, the phone tries the first
  * models of its tier and of the tier above (ModelStore.trialCandidateIds):
  * speed, then questions checked automatically (services/modelTrial). Each one
- * is downloaded, loaded while no conversation is open, then the previous
- * model comes back. The choice is the best score among the models fast enough
- * on this phone; ModelUpdateStore then installs it and removes the others.
+ * is downloaded, loaded while the user is not on a conversation, then the
+ * previous model comes back. A foreground service keeps the trial going
+ * screen off or in the background. The choice is the best score among the
+ * models fast enough on this phone; ModelUpdateStore then installs it and
+ * removes the others.
  */
 export class ModelTrialStore {
   /** By model id; kept across launches, so a model is tried once. */
@@ -60,6 +76,24 @@ export class ModelTrialStore {
       properties: ['results', 'downloadedForTrial', 'downloadFailures'],
       storage: AsyncStorage,
     });
+    // back in the app: a trial cut short goes on without a restart
+    AppState.addEventListener('change', state => {
+      runInAction(() => appState.set(state));
+      if (
+        state === 'active' &&
+        !this.running &&
+        this.candidates.length &&
+        !this.settled
+      ) {
+        onResume?.();
+      }
+    });
+  }
+
+  /** The result of the current questions; older ones are tried again. */
+  private resultOf(id: string): TrialResult | undefined {
+    const r = this.results[id];
+    return r?.version === TRIAL_VERSION ? r : undefined;
   }
 
   get candidates(): string[] {
@@ -70,7 +104,7 @@ export class ModelTrialStore {
   get settled(): boolean {
     return (
       this.candidates.length > 0 &&
-      this.candidates.every(id => this.results[id])
+      this.candidates.every(id => this.resultOf(id))
     );
   }
 
@@ -81,7 +115,7 @@ export class ModelTrialStore {
     }
     let best: string | undefined;
     for (const id of this.candidates) {
-      const r = this.results[id];
+      const r = this.resultOf(id)!;
       if (
         !r.loaded ||
         r.decodeTps < MIN_DECODE_TPS ||
@@ -89,7 +123,7 @@ export class ModelTrialStore {
       ) {
         continue;
       }
-      const b = best ? this.results[best] : undefined;
+      const b = best ? this.resultOf(best) : undefined;
       if (
         !b ||
         r.score > b.score ||
@@ -107,13 +141,32 @@ export class ModelTrialStore {
       return;
     }
     this.running = true;
+    const todo = () => this.candidates.filter(id => !this.resultOf(id));
+    if (todo().length) {
+      // the trial goes on screen off or in the background: the model stays
+      // loaded and Android keeps the app running, a notification showing it
+      modelStore.disableAutoRelease('model_trial');
+    }
     try {
       for (const id of this.candidates) {
-        if (this.results[id]) {
+        if (this.resultOf(id)) {
           continue;
         }
         const model = modelStore.models.find(m => m.id === id);
-        if (!model || !(await this.tryModel(model))) {
+        const done = this.candidates.length - todo().length;
+        NativeModelTrialService?.start(
+          `${model?.name ?? id} (${done + 1}/${this.candidates.length})`,
+        );
+        if (!model) {
+          return;
+        }
+        let outcome = await this.tryModel(model);
+        while (outcome === 'interrupted') {
+          // the user is chatting: the same model again once they leave
+          await when(idle);
+          outcome = await this.tryModel(model);
+        }
+        if (!outcome) {
           return;
         }
       }
@@ -125,14 +178,19 @@ export class ModelTrialStore {
         await this.removeLosers();
       }
     } finally {
+      NativeModelTrialService?.stop();
+      modelStore.enableAutoRelease('model_trial');
       runInAction(() => {
         this.running = false;
       });
     }
   }
 
-  /** False when the trial must stop for now (download failed, interrupted). */
-  private async tryModel(model: Model): Promise<boolean> {
+  /**
+   * False when the trial must stop for now (a download failed, another model
+   * got loaded); 'interrupted' when the user came back to a conversation.
+   */
+  private async tryModel(model: Model): Promise<boolean | 'interrupted'> {
     if (!model.isDownloaded) {
       if (!(await ensureDownloaded(model))) {
         const failures = (this.downloadFailures[model.id] ?? 0) + 1;
@@ -180,7 +238,7 @@ export class ModelTrialStore {
       } catch (error) {
         if (error instanceof TrialInterrupted) {
           devReportStore.report('model_trial_interrupted', {model: model.id});
-          return false;
+          return 'interrupted';
         }
         this.record(model.id, {loaded: false}, []);
         devReportStore.reportError('model_trial_error', error, {
@@ -210,6 +268,7 @@ export class ModelTrialStore {
       total: 0,
       ...r,
       at: new Date().toISOString(),
+      version: TRIAL_VERSION,
     };
     runInAction(() => {
       this.results[id] = {
@@ -218,7 +277,10 @@ export class ModelTrialStore {
         promptTps: result.promptTps,
         score: result.score,
         total: result.total,
+        toolScore: result.toolScore,
+        toolTotal: result.toolTotal,
         at: result.at,
+        version: result.version,
       };
     });
     devReportStore.report('model_trial', {
@@ -246,7 +308,15 @@ export class ModelTrialStore {
         continue;
       }
       if (model?.isDownloaded && model.origin !== ModelOrigin.LOCAL) {
-        await modelStore.deleteModel(model).catch(() => {});
+        const removed = await modelStore
+          .deleteModel(model)
+          .then(() => true)
+          .catch(() => false);
+        devReportStore.report('model_trial_removed', {
+          model: id,
+          bytes: model.size,
+          removed,
+        });
       }
       runInAction(() => {
         this.downloadedForTrial = this.downloadedForTrial.filter(x => x !== id);
@@ -256,7 +326,12 @@ export class ModelTrialStore {
 }
 
 /** The trial's own generation keeps the engine busy: only the user's activity counts. */
-const idleExceptUs = () =>
-  chatSessionStore.activeSessionId === null && !chatSessionStore.isGenerating;
+const idleExceptUs = () => !userInChat() && !chatSessionStore.isGenerating;
+
+/** Set by ModelUpdateStore: tries the models, then installs the choice. */
+let onResume: (() => void) | undefined;
+export const setTrialResumeHandler = (handler: () => void) => {
+  onResume = handler;
+};
 
 export const modelTrialStore = new ModelTrialStore();
