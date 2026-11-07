@@ -101,6 +101,7 @@ google/madlad400-7b-mt-bt,google,google/madlad400-7b-mt-bt,,False,8.3,False,,apa
 unsloth/medgemma-1.5-4b-it-GGUF,unsloth,google/medgemma-1.5-4b-it,gemma3,True,3.88,True,131072,other,16406,2026-01-14,medgemma-1.5-4b-it-Q4_K_M.gguf,2.49,medgemma-1.5-4b-it-Q4_0.gguf,2.37,medgemma-1.5-4b-it-Q8_0.gguf,4.13
 lmstudio-community/medgemma-4b-it-GGUF,lmstudio-community,google/medgemma-4b-it,gemma3,True,3.88,True,131072,other,849,2025-05-28,medgemma-4b-it-Q4_K_M.gguf,2.49,,,medgemma-4b-it-Q8_0.gguf,4.13
 bartowski/gugujiji_novel-humanize-4b-GGUF,bartowski,gugujiji/novel-humanize-4b,qwen3,True,4.02,False,40960,apache-2.0,6756,2026-10-26,gugujiji_novel-humanize-4b-Q4_K_M.gguf,2.59,gugujiji_novel-humanize-4b-Q4_0.gguf,2.42,gugujiji_novel-humanize-4b-Q8_0.gguf,4.28
+bartowski/HarpiaIA_Acaua-Lite-GGUF,bartowski,HarpiaIA/Acaua-Lite,lfm3,True,1.73,False,262144,other,0,2026-11-07,HarpiaIA_Acaua-Lite-Q4_K_M.gguf,1.12,HarpiaIA_Acaua-Lite-Q4_0.gguf,1.06,HarpiaIA_Acaua-Lite-Q8_0.gguf,1.85
 HuggingFaceTB/smollm-1.7B-instruct-v0.2-Q8_0-GGUF,HuggingFaceTB,HuggingFaceTB/SmolLM-1.7B-Instruct-v0.2,llama,True,1.71,False,2048,apache-2.0,109,2024-08-17,,,,,smollm-1.7b-instruct-add-basics-q8_0.gguf,1.82
 HuggingFaceTB/smollm-135M-instruct-v0.2-Q8_0-GGUF,HuggingFaceTB,HuggingFaceTB/SmolLM-135M-Instruct,llama,True,0.13,False,2048,apache-2.0,3855,2024-08-14,,,,,smollm-135m-instruct-add-basics-q8_0.gguf,0.14
 HuggingFaceTB/smollm-360M-instruct-v0.2-Q8_0-GGUF,HuggingFaceTB,HuggingFaceTB/smollm-360M-instruct-add-basics,llama,True,0.36,False,2048,apache-2.0,792,2024-08-13,,,,,smollm-360m-instruct-add-basics-q8_0.gguf,0.39
@@ -259,6 +260,7 @@ microsoft/bitnet-b1.58-2B-4T-gguf,microsoft,microsoft/bitnet-b1.58-2B-4T-gguf,bi
 bartowski/Fara1.5-4B-GGUF,bartowski,microsoft/Fara1.5-4B,qwen35,True,4.21,True,262144,mit,8174,2026-07-22,Fara1.5-4B-Q4_K_M.gguf,2.88,Fara1.5-4B-Q4_0.gguf,2.65,Fara1.5-4B-Q8_0.gguf,4.49
 bartowski/Fara1.5-9B-GGUF,bartowski,microsoft/Fara1.5-9B,qwen35,True,8.95,True,262144,mit,9465,2026-07-22,Fara1.5-9B-Q4_K_M.gguf,5.91,Fara1.5-9B-Q4_0.gguf,5.48,Fara1.5-9B-Q8_0.gguf,9.55
 bartowski/FrogNano-4B-2609-GGUF,bartowski,microsoft/FrogNano-4B-2609,qwen35,True,4.33,True,262144,mit,29286,2026-10-02,FrogNano-4B-2609-Q4_K_M.gguf,2.8,FrogNano-4B-2609-Q4_0.gguf,2.72,FrogNano-4B-2609-Q8_0.gguf,4.62
+ggml-org/Mage-VL-Cowork-GGUF,ggml-org,microsoft/Mage-VL-Cowork,qwen3,True,4.41,True,262144,apache-2.0,0,2026-11-07,Mage-VL-Cowork-Q4_K_M.gguf,2.72,,,Mage-VL-Cowork-Q8_0.gguf,4.69
 microsoft/Phi-3-mini-4k-instruct-gguf,microsoft,microsoft/Phi-3-mini-4k-instruct-gguf,phi3,True,3.82,False,4096,mit,23346,2024-04-22,,,,,,
 lmstudio-community/Phi-4-mini-reasoning-GGUF,lmstudio-community,microsoft/Phi-4-mini-reasoning,phi3,True,3.84,False,131072,mit,8256,2025-05-01,Phi-4-mini-reasoning-Q4_K_M.gguf,2.49,,,Phi-4-mini-reasoning-Q8_0.gguf,4.08
 bartowski/UserRepGen-4B-GGUF,bartowski,microsoft/UserRepGen-4B,qwen35,True,4.21,False,262144,mit,3010,2026-10-14,UserRepGen-4B-Q4_K_M.gguf,2.73,UserRepGen-4B-Q4_0.gguf,2.65,UserRepGen-4B-Q8_0.gguf,4.49

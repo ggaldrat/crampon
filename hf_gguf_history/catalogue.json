@@ -13611,5 +13611,61 @@
   "vu_le": "2026-11-07",
   "supporte": true,
   "depuis_version": "1.19.1"
+ },
+ "bartowski/HarpiaIA_Acaua-Lite-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "HarpiaIA_Acaua-Lite-Q4_0.gguf",
+    1057972032
+   ],
+   "Q4_K_M": [
+    "HarpiaIA_Acaua-Lite-Q4_K_M.gguf",
+    1115637568
+   ],
+   "Q8_0": [
+    "HarpiaIA_Acaua-Lite-Q8_0.gguf",
+    1846239040
+   ]
+  },
+  "tailles_du": "2026-11-07T21:49:03.000Z",
+  "editeur": "bartowski",
+  "base_model": "HarpiaIA/Acaua-Lite",
+  "architecture": "lfm3",
+  "params": 1728801600,
+  "context": 262144,
+  "downloads": 0,
+  "lastModified": "2026-11-07T21:49:03.000Z",
+  "createdAt": "2026-11-07",
+  "license": "other",
+  "vision": false,
+  "vu_le": "2026-11-07",
+  "supporte": true,
+  "depuis_version": "1.22.0"
+ },
+ "ggml-org/Mage-VL-Cowork-GGUF": {
+  "tailles": {
+   "Q4_K_M": [
+    "Mage-VL-Cowork-Q4_K_M.gguf",
+    2716070080
+   ],
+   "Q8_0": [
+    "Mage-VL-Cowork-Q8_0.gguf",
+    4693672640
+   ]
+  },
+  "tailles_du": "2026-11-07T18:51:21.000Z",
+  "editeur": "ggml-org",
+  "base_model": "microsoft/Mage-VL-Cowork",
+  "architecture": "qwen3",
+  "params": 4411424256,
+  "context": 262144,
+  "downloads": 0,
+  "lastModified": "2026-11-07T18:51:21.000Z",
+  "createdAt": "2026-11-07",
+  "license": "apache-2.0",
+  "vision": true,
+  "vu_le": "2026-11-07",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }
