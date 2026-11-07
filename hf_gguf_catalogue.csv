@@ -175,6 +175,7 @@ bartowski/iselabvn_Tini-Cybersec-8B-A1B-GGUF,bartowski,iselabvn/Tini-Cybersec-8B
 ggml-org/Kev-0.8B-GGUF,ggml-org,jaredpalmer/kev-0.8b,qwen35,True,0.75,False,262144,apache-2.0,4971,2026-10-02,,,,,Kev-0.8B-Q8_0.gguf,0.81
 ggml-org/Kev-4B-GGUF,ggml-org,jaredpalmer/kev-4b,qwen35,True,4.21,False,262144,apache-2.0,50676,2026-10-01,Kev-4B-Q4_K_M.gguf,3.03,,,Kev-4B-Q8_0.gguf,4.48
 ggml-org/Kev-9B-GGUF,ggml-org,jaredpalmer/kev-9b,qwen35,True,8.96,False,262144,apache-2.0,4389,2026-10-02,Kev-9B-Q4_K_M.gguf,6.36,,,Kev-9B-Q8_0.gguf,9.53
+bartowski/JuneoAI_Laplace-1-Vector-GGUF,bartowski,JuneoAI/Laplace-1-Vector,spark2_5,True,4.11,False,1048576,apache-2.0,0,2026-11-06,JuneoAI_Laplace-1-Vector-Q4_K_M.gguf,2.62,JuneoAI_Laplace-1-Vector-Q4_0.gguf,2.41,JuneoAI_Laplace-1-Vector-Q8_0.gguf,4.38
 bartowski/junshim_When2Think-ThinkOnly-1.5B-GGUF,bartowski,junshim/When2Think-ThinkOnly-1.5B,qwen2,True,1.78,False,131072,mit,1397,2026-09-24,junshim_When2Think-ThinkOnly-1.5B-Q4_K_M.gguf,1.15,junshim_When2Think-ThinkOnly-1.5B-Q4_0.gguf,1.08,junshim_When2Think-ThinkOnly-1.5B-Q8_0.gguf,1.89
 bartowski/K-Ai-Official_MiRAI-4B-GGUF,bartowski,K-Ai-Official/MiRAI-4B,qwen3,True,4.02,False,40960,apache-2.0,1686,2026-11-02,K-Ai-Official_MiRAI-4B-Q4_K_M.gguf,2.59,K-Ai-Official_MiRAI-4B-Q4_0.gguf,2.42,K-Ai-Official_MiRAI-4B-Q8_0.gguf,4.28
 lmstudio-community/EXAONE-4.0-1.2B-GGUF,lmstudio-community,LGAI-EXAONE/EXAONE-4.0-1.2B,exaone4,True,1.28,False,65536,other,118,2025-07-18,EXAONE-4.0-1.2B-GGUF-Q4_K_M.gguf,0.81,,,EXAONE-4.0-1.2B-GGUF-Q8_0.gguf,1.36
@@ -249,6 +250,7 @@ lmstudio-community/gemma-3n-E4B-it-text-GGUF,lmstudio-community,lmstudio-communi
 lmstudio-community/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF,lmstudio-community,lmstudio-community/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF,gemma4,True,7.52,False,131072,,2723,2026-10-20,NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_K_M.gguf,6.18,,,NVIDIA-Nemotron-3.5-Bolt-E4B-Q8_0.gguf,8.03
 bartowski/Lythri_Lythri-4B-A2B-GGUF,bartowski,Lythri/Lythri-4B-A2B,gemma4,True,4.63,False,131072,apache-2.0,9355,2026-10-02,Lythri_Lythri-4B-A2B-Q4_K_M.gguf,3.17,Lythri_Lythri-4B-A2B-Q4_0.gguf,3.37,Lythri_Lythri-4B-A2B-Q8_0.gguf,4.95
 bartowski/Lythri_Lythri-Tada-4B-GGUF,bartowski,Lythri/Lythri-Tada-4B,gemma4,True,4.63,False,131072,apache-2.0,1324,2026-11-03,Lythri_Lythri-Tada-4B-Q4_K_M.gguf,3.17,Lythri_Lythri-Tada-4B-Q4_0.gguf,3.37,Lythri_Lythri-Tada-4B-Q8_0.gguf,4.95
+bartowski/maritaca-ai_S5-nano-GGUF,bartowski,maritaca-ai/S5-nano,qwen35,True,4.33,True,262144,apache-2.0,0,2026-11-06,maritaca-ai_S5-nano-Q4_K_M.gguf,2.8,maritaca-ai_S5-nano-Q4_0.gguf,2.72,maritaca-ai_S5-nano-Q8_0.gguf,4.62
 bartowski/Merlin-Research_Merlin-Agent-GGUF,bartowski,Merlin-Research/Merlin-Agent,qwen35,True,8.95,False,262144,apache-2.0,1811,2026-07-22,Merlin-Research_Merlin-Agent-Q4_K_M.gguf,5.91,Merlin-Research_Merlin-Agent-Q4_0.gguf,5.48,Merlin-Research_Merlin-Agent-Q8_0.gguf,9.55
 ggml-org/Llama-2-7B-GGUF,ggml-org,meta-llama/Llama-2-7b-hf,llama,True,6.74,False,4096,llama2,1019,2026-08-25,,,Llama-2-7B-Q4_0.gguf,3.79,Llama-2-7B-Q8_0.gguf,7.16
 unsloth/Llama-3.2-3B-Instruct-GGUF,unsloth,meta-llama/Llama-3.2-3B-Instruct,llama,True,3.21,False,131072,llama3.2,238081,2024-09-25,Llama-3.2-3B-Instruct-Q4_K_M.gguf,2.02,Llama-3.2-3B-Instruct-Q4_0.gguf,1.92,Llama-3.2-3B-Instruct-Q8_0.gguf,3.42
@@ -360,6 +362,7 @@ unsloth/Ornith-1.0-9B-GGUF,unsloth,ornith-ai/Ornith-1.0-9B,qwen35,True,8.95,Fals
 bartowski/deepreinforce-ai_Ornith-1.0-9B-GGUF,bartowski,ornith-ai/Ornith-1.0-9B,qwen35,True,8.95,True,262144,mit,4491,2026-06-25,deepreinforce-ai_Ornith-1.0-9B-Q4_K_M.gguf,5.91,deepreinforce-ai_Ornith-1.0-9B-Q4_0.gguf,5.48,deepreinforce-ai_Ornith-1.0-9B-Q8_0.gguf,9.55
 bartowski/Ornith-1.5-9B-GGUF,bartowski,ornith-ai/Ornith-1.5-9B,qwen35,True,8.95,True,262144,mit,23770,2026-08-19,Ornith-1.5-9B-Q4_K_M.gguf,5.91,Ornith-1.5-9B-Q4_0.gguf,5.48,Ornith-1.5-9B-Q8_0.gguf,9.55
 bartowski/OS-Copilot_OS-Shepherd-9B-GGUF,bartowski,OS-Copilot/OS-Shepherd-9B,qwen35,True,8.95,True,262144,apache-2.0,2238,2026-08-08,OS-Copilot_OS-Shepherd-9B-Q4_K_M.gguf,5.91,OS-Copilot_OS-Shepherd-9B-Q4_0.gguf,5.48,OS-Copilot_OS-Shepherd-9B-Q8_0.gguf,9.55
+bartowski/p-e-w_Oc-e-Non-v1-GGUF,bartowski,p-e-w/Oc-e-Non-v1,qwen3,True,4.02,False,262144,apache-2.0,0,2026-11-07,p-e-w_Oc-e-Non-v1-Q4_K_M.gguf,2.59,p-e-w_Oc-e-Non-v1-Q4_0.gguf,2.42,p-e-w_Oc-e-Non-v1-Q8_0.gguf,4.28
 prism-ml/Bonsai-1.7B-gguf,prism-ml,prism-ml/Bonsai-1.7B-unpacked,qwen3,True,1.72,False,32768,apache-2.0,141971,2026-03-29,,,,,,
 prism-ml/Bonsai-4B-gguf,prism-ml,prism-ml/Bonsai-4B-unpacked,qwen3,True,4.02,False,32768,apache-2.0,27517,2026-03-29,,,,,,
 prism-ml/Bonsai-8B-gguf,prism-ml,prism-ml/Bonsai-8B-unpacked,qwen3,True,8.19,False,65536,apache-2.0,90145,2026-03-18,,,,,,

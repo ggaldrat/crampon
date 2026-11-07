@@ -13521,5 +13521,95 @@
   "vu_le": "2026-11-06",
   "supporte": true,
   "depuis_version": "1.22.0"
+ },
+ "bartowski/p-e-w_Oc-e-Non-v1-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "p-e-w_Oc-e-Non-v1-Q4_0.gguf",
+    2424432480
+   ],
+   "Q4_K_M": [
+    "p-e-w_Oc-e-Non-v1-Q4_K_M.gguf",
+    2594498400
+   ],
+   "Q8_0": [
+    "p-e-w_Oc-e-Non-v1-Q8_0.gguf",
+    4280404320
+   ]
+  },
+  "tailles_du": "2026-11-07T02:52:25.000Z",
+  "editeur": "bartowski",
+  "base_model": "p-e-w/Oc-e-Non-v1",
+  "architecture": "qwen3",
+  "params": 4022468096,
+  "context": 262144,
+  "downloads": 0,
+  "lastModified": "2026-11-07T02:52:25.000Z",
+  "createdAt": "2026-11-07",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-07",
+  "supporte": true,
+  "depuis_version": "1.19.1"
+ },
+ "bartowski/JuneoAI_Laplace-1-Vector-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "JuneoAI_Laplace-1-Vector-Q4_0.gguf",
+    2412137984
+   ],
+   "Q4_K_M": [
+    "JuneoAI_Laplace-1-Vector-Q4_K_M.gguf",
+    2621105664
+   ],
+   "Q8_0": [
+    "JuneoAI_Laplace-1-Vector-Q8_0.gguf",
+    4375023104
+   ]
+  },
+  "tailles_du": "2026-11-06T19:35:43.000Z",
+  "editeur": "bartowski",
+  "base_model": "JuneoAI/Laplace-1-Vector",
+  "architecture": "spark2_5",
+  "params": 4112079360,
+  "context": 1048576,
+  "downloads": 0,
+  "lastModified": "2026-11-06T19:35:43.000Z",
+  "createdAt": "2026-11-06",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-07",
+  "supporte": true,
+  "depuis_version": "1.19.1"
+ },
+ "bartowski/maritaca-ai_S5-nano-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "maritaca-ai_S5-nano-Q4_0.gguf",
+    2715740096
+   ],
+   "Q4_K_M": [
+    "maritaca-ai_S5-nano-Q4_K_M.gguf",
+    2797526976
+   ],
+   "Q8_0": [
+    "maritaca-ai_S5-nano-Q8_0.gguf",
+    4622131136
+   ]
+  },
+  "tailles_du": "2026-11-06T19:31:13.000Z",
+  "editeur": "bartowski",
+  "base_model": "maritaca-ai/S5-nano",
+  "architecture": "qwen35",
+  "params": 4326350848,
+  "context": 262144,
+  "downloads": 0,
+  "lastModified": "2026-11-06T19:31:13.000Z",
+  "createdAt": "2026-11-06",
+  "license": "apache-2.0",
+  "vision": true,
+  "vu_le": "2026-11-07",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }
