@@ -1,8 +1,8 @@
 3 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-07
 
-p-e-w/Oc-e-Non-v1
-  4.0 Md param., archi qwen3 (supporte), licence=apache-2.0, depots : bartowski/p-e-w_Oc-e-Non-v1-GGUF
-JuneoAI/Laplace-1-Vector
-  4.1 Md param., archi spark2_5 (supporte), licence=apache-2.0, depots : bartowski/JuneoAI_Laplace-1-Vector-GGUF
 maritaca-ai/S5-nano
   4.3 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/maritaca-ai_S5-nano-GGUF
+JuneoAI/Laplace-1-Vector
+  4.1 Md param., archi spark2_5 (supporte), licence=apache-2.0, depots : bartowski/JuneoAI_Laplace-1-Vector-GGUF
+p-e-w/Oc-e-Non-v1
+  4.0 Md param., archi qwen3 (supporte), licence=apache-2.0, depots : bartowski/p-e-w_Oc-e-Non-v1-GGUF
