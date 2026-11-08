@@ -5892,7 +5892,7 @@
   "tailles": {
    "Q8_0": [
     "vllm-d3-nano-Q8_0.gguf",
-    2552358464
+    2552358496
    ]
   },
   "editeur": "ggml-org",
@@ -5901,13 +5901,13 @@
   "params": 2390384448,
   "context": 262144,
   "downloads": 13558,
-  "lastModified": "2026-10-19T15:41:47.000Z",
+  "lastModified": "2026-11-08T21:11:32.000Z",
   "createdAt": "2026-10-12",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T15:41:47.000Z",
+  "tailles_du": "2026-11-08T21:11:32.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/vllm-d3-mini-GGUF": {
@@ -5940,7 +5940,7 @@
   "tailles": {
    "Q8_0": [
     "vllm-d3-lite-Q8_0.gguf",
-    1082017344
+    1082017408
    ]
   },
   "editeur": "ggml-org",
@@ -5949,24 +5949,24 @@
   "params": 1006672704,
   "context": 262144,
   "downloads": 14851,
-  "lastModified": "2026-10-19T15:39:31.000Z",
+  "lastModified": "2026-11-08T21:10:44.000Z",
   "createdAt": "2026-10-12",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T15:39:31.000Z",
+  "tailles_du": "2026-11-08T21:10:44.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/vllm-d3-flash-GGUF": {
   "tailles": {
    "Q4_K_M": [
     "vllm-d3-flash-Q4_K_M.gguf",
-    6603024864
+    6603024896
    ],
    "Q8_0": [
     "vllm-d3-flash-Q8_0.gguf",
-    9527503328
+    9527503360
    ]
   },
   "editeur": "ggml-org",
@@ -5975,20 +5975,20 @@
   "params": 8953803264,
   "context": 262144,
   "downloads": 22389,
-  "lastModified": "2026-10-19T15:38:53.000Z",
+  "lastModified": "2026-11-08T21:10:09.000Z",
   "createdAt": "2026-10-12",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T15:38:53.000Z",
+  "tailles_du": "2026-11-08T21:10:09.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/vllm-d3-edge-GGUF": {
   "tailles": {
    "Q8_0": [
     "vllm-d3-edge-Q8_0.gguf",
-    806232448
+    806232480
    ]
   },
   "editeur": "ggml-org",
@@ -5997,13 +5997,13 @@
   "params": 748008384,
   "context": 262144,
   "downloads": 4588,
-  "lastModified": "2026-10-19T15:36:43.000Z",
+  "lastModified": "2026-11-08T21:07:59.000Z",
   "createdAt": "2026-10-12",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T15:36:43.000Z",
+  "tailles_du": "2026-11-08T21:07:59.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/SmolVLM2-256M-Video-Instruct-GGUF": {
