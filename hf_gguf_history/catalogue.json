@@ -5831,13 +5831,13 @@
   "params": 1728801600,
   "context": 128000,
   "downloads": 12799,
-  "lastModified": "2026-11-01T03:58:20.000Z",
+  "lastModified": "2026-11-08T04:02:51.000Z",
   "createdAt": "2026-10-28",
   "license": "other",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-11-01T03:58:20.000Z",
+  "tailles_du": "2026-11-08T04:02:51.000Z",
   "depuis_version": "1.22.0"
  },
  "ggml-org/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF": {
@@ -6306,7 +6306,7 @@
   "tailles": {
    "Q8_0": [
     "gemma-4-E4B-Q8_0.gguf",
-    8031223872
+    8031218528
    ]
   },
   "editeur": "ggml-org",
@@ -6315,13 +6315,13 @@
   "params": 7518069290,
   "context": 131072,
   "downloads": 1028,
-  "lastModified": "2026-10-19T10:58:31.000Z",
+  "lastModified": "2026-11-08T03:56:22.000Z",
   "createdAt": "2026-07-16",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T10:58:31.000Z",
+  "tailles_du": "2026-11-08T03:56:22.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/gemma-4-E4B-it-GGUF": {
@@ -6332,7 +6332,7 @@
    ],
    "Q8_0": [
     "gemma-4-E4B-it-Q8_0.gguf",
-    8031242688
+    8031237344
    ]
   },
   "editeur": "ggml-org",
@@ -6341,20 +6341,20 @@
   "params": 7518069290,
   "context": 131072,
   "downloads": 216070,
-  "lastModified": "2026-10-19T10:58:26.000Z",
+  "lastModified": "2026-11-08T03:54:47.000Z",
   "createdAt": "2026-04-01",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T10:58:26.000Z",
+  "tailles_du": "2026-11-08T03:54:47.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/gemma-4-E2B-GGUF": {
   "tailles": {
    "Q8_0": [
     "gemma-4-E2B-Q8_0.gguf",
-    4967478336
+    4967473184
    ]
   },
   "editeur": "ggml-org",
@@ -6363,13 +6363,13 @@
   "params": 4647450147,
   "context": 131072,
   "downloads": 1233,
-  "lastModified": "2026-10-19T10:58:20.000Z",
+  "lastModified": "2026-11-08T03:51:02.000Z",
   "createdAt": "2026-07-16",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T10:58:20.000Z",
+  "tailles_du": "2026-11-08T03:51:02.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/gemma-4-E2B-it-GGUF": {
@@ -6380,7 +6380,7 @@
    ],
    "Q8_0": [
     "gemma-4-E2B-it-Q8_0.gguf",
-    4967497152
+    4967491520
    ]
   },
   "editeur": "ggml-org",
@@ -6389,13 +6389,13 @@
   "params": 4647450147,
   "context": 131072,
   "downloads": 219386,
-  "lastModified": "2026-10-19T10:58:13.000Z",
+  "lastModified": "2026-11-08T03:49:50.000Z",
   "createdAt": "2026-04-01",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T10:58:13.000Z",
+  "tailles_du": "2026-11-08T03:49:50.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/Bespoke-Nimble-9B-v3-GGUF": {
@@ -13667,5 +13667,87 @@
   "vu_le": "2026-11-07",
   "supporte": true,
   "depuis_version": "1.19.1"
+ },
+ "bartowski/wesjos_Spark-x2.6-4B-HTML-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "wesjos_Spark-x2.6-4B-HTML-Q4_0.gguf",
+    2412138400
+   ],
+   "Q4_K_M": [
+    "wesjos_Spark-x2.6-4B-HTML-Q4_K_M.gguf",
+    2621106080
+   ],
+   "Q8_0": [
+    "wesjos_Spark-x2.6-4B-HTML-Q8_0.gguf",
+    4375023520
+   ]
+  },
+  "tailles_du": "2026-11-07T22:00:56.000Z",
+  "editeur": "bartowski",
+  "base_model": "wesjos/Spark-x2.6-4B-HTML",
+  "architecture": "spark2_5",
+  "params": 4112079360,
+  "context": 1048576,
+  "downloads": 0,
+  "lastModified": "2026-11-07T22:00:56.000Z",
+  "createdAt": "2026-11-07",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-08",
+  "supporte": true,
+  "depuis_version": "1.19.1"
+ },
+ "bartowski/FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-Q4_0.gguf",
+    2412137536
+   ],
+   "Q4_K_M": [
+    "FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-Q4_K_M.gguf",
+    2621105216
+   ],
+   "Q8_0": [
+    "FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-Q8_0.gguf",
+    4375022656
+   ]
+  },
+  "tailles_du": "2026-11-07T21:53:26.000Z",
+  "editeur": "bartowski",
+  "base_model": "FrostWolfAI/Frost-Cyber-Mini-Uncensored-v1.1",
+  "architecture": "spark2_5",
+  "params": 4112079360,
+  "context": 1048576,
+  "downloads": 0,
+  "lastModified": "2026-11-07T21:53:26.000Z",
+  "createdAt": "2026-11-07",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-08",
+  "supporte": true,
+  "depuis_version": "1.19.1"
+ },
+ "ggml-org/d1-Omni-2B-GGUF": {
+  "tailles": {
+   "Q8_0": [
+    "d1-Omni-2B-Q8_0.gguf",
+    1846241408
+   ]
+  },
+  "tailles_du": "2026-11-08T03:46:41.000Z",
+  "editeur": "ggml-org",
+  "base_model": "LiquidAI/d1-Omni-2B",
+  "architecture": "lfm3",
+  "params": 1728801600,
+  "context": 128000,
+  "downloads": 0,
+  "lastModified": "2026-11-08T03:46:41.000Z",
+  "createdAt": "2026-11-08",
+  "license": "other",
+  "vision": false,
+  "vu_le": "2026-11-08",
+  "supporte": true,
+  "depuis_version": "1.22.0"
  }
 }

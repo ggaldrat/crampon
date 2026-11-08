@@ -50,6 +50,7 @@ bartowski/FINAL-Bench_Darwin-4B-Chimera-GGUF,bartowski,FINAL-Bench/Darwin-4B-Chi
 ggml-org/ultravox-v0_5-llama-3_2-1b-GGUF,ggml-org,fixie-ai/ultravox-v0_5-llama-3_2-1b,llama,True,1.24,False,131072,mit,6970,2025-05-21,Llama-3.2-1B-Instruct-Q4_K_M.gguf,0.81,,,Llama-3.2-1B-Instruct-Q8_0.gguf,1.32
 bartowski/frontier-infra_jebadiah-9b-v2-GGUF,bartowski,frontier-infra/jebadiah-9b-v2,qwen35,True,9.2,True,262144,apache-2.0,6260,2026-09-27,frontier-infra_jebadiah-9b-v2-Q4_K_M.gguf,5.98,frontier-infra_jebadiah-9b-v2-Q4_0.gguf,5.62,frontier-infra_jebadiah-9b-v2-Q8_0.gguf,9.8
 bartowski/frontier-infra_jebadiah-9b-v2-1-GGUF,bartowski,frontier-infra/jebadiah-9b-v2-1,qwen35,True,9.2,True,262144,apache-2.0,2607,2026-10-16,frontier-infra_jebadiah-9b-v2-1-Q4_K_M.gguf,5.98,frontier-infra_jebadiah-9b-v2-1-Q4_0.gguf,5.62,frontier-infra_jebadiah-9b-v2-1-Q8_0.gguf,9.8
+bartowski/FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-GGUF,bartowski,FrostWolfAI/Frost-Cyber-Mini-Uncensored-v1.1,spark2_5,True,4.11,False,1048576,apache-2.0,0,2026-11-07,FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-Q4_K_M.gguf,2.62,FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-Q4_0.gguf,2.41,FrostWolfAI_Frost-Cyber-Mini-Uncensored-v1.1-Q8_0.gguf,4.38
 ggml-org/DeepSeek-OCR-GGUF,ggml-org,ggml-org/DeepSeek-OCR-GGUF,deepseek2-ocr,True,2.93,False,8192,,7619,2026-03-25,,,,,DeepSeek-OCR-Q8_0.gguf,3.13
 ggml-org/gemma-3-1b-it-qat-GGUF,ggml-org,ggml-org/gemma-3-1b-it-qat-GGUF,gemma3,True,1.0,False,32768,,3369,2025-08-27,,,gemma-3-1b-it-qat-Q4_0.gguf,0.72,,
 ggml-org/gemma-3-1b-pt-GGUF,ggml-org,ggml-org/gemma-3-1b-pt-GGUF,gemma3,True,1.0,False,32768,,209,2025-09-21,,,,,,
@@ -184,6 +185,7 @@ ggml-org/LightOnOCR-1B-1025-GGUF,ggml-org,lightonai/LightOnOCR-1B-1025,qwen3,Tru
 LiquidAI/d1-2B-GGUF,LiquidAI,LiquidAI/d1-2B,lfm3,True,1.73,True,128000,other,26021,2026-10-27,d1-2B-Q4_K_M.gguf,1.1,d1-2B-Q4_0.gguf,1.05,d1-2B-Q8_0.gguf,1.85
 LiquidAI/d1-3B-GGUF,LiquidAI,LiquidAI/d1-3B,lfm2,True,2.7,True,32768,other,47355,2026-10-06,d1-3B-Q4_K_M.gguf,1.67,,,d1-3B-Q8_0.gguf,2.87
 LiquidAI/d1-Omni-2B-GGUF,LiquidAI,LiquidAI/d1-Omni-2B,lfm3,True,1.73,False,128000,other,37570,2026-10-27,,,,,d1-Omni-2B-Q8_0.gguf,1.85
+ggml-org/d1-Omni-2B-GGUF,ggml-org,LiquidAI/d1-Omni-2B,lfm3,True,1.73,False,128000,other,0,2026-11-08,,,,,d1-Omni-2B-Q8_0.gguf,1.85
 LiquidAI/d1-omni-600M-GGUF,LiquidAI,LiquidAI/d1-omni-600M,lfm2,True,0.38,True,128000,other,16050,2026-10-06,,,,,d1-omni-600M-Q8_0.gguf,0.41
 unsloth/LFM2-1.2B-GGUF,unsloth,LiquidAI/LFM2-1.2B,lfm2,True,1.17,False,32768,other,2085,2025-07-11,LFM2-1.2B-Q4_K_M.gguf,0.73,LFM2-1.2B-Q4_0.gguf,0.7,LFM2-1.2B-Q8_0.gguf,1.25
 LiquidAI/LFM2-1.2B-GGUF,LiquidAI,LiquidAI/LFM2-1.2B,lfm2,True,1.17,False,128000,other,13354,2025-07-12,LFM2-1.2B-Q4_K_M.gguf,0.73,LFM2-1.2B-Q4_0.gguf,0.7,LFM2-1.2B-Q8_0.gguf,1.25
@@ -505,6 +507,7 @@ ggml-org/vllm-d3-nano-GGUF,ggml-org,vllm-sr/d3-nano,qwen35,True,2.39,True,262144
 bartowski/Vortecks_LFM3-1.7B-Heretic-Abliterated-GGUF,bartowski,Vortecks/LFM3-1.7B-Heretic-Abliterated,lfm3,True,1.73,False,262144,other,2532,2026-11-02,Vortecks_LFM3-1.7B-Heretic-Abliterated-Q4_K_M.gguf,1.12,Vortecks_LFM3-1.7B-Heretic-Abliterated-Q4_0.gguf,1.06,Vortecks_LFM3-1.7B-Heretic-Abliterated-Q8_0.gguf,1.85
 unsloth/Wan2.2-TI2V-5B-GGUF,unsloth,Wan-AI/Wan2.2-TI2V-5B,wan,False,5.0,False,,apache-2.0,397082,2026-08-06,Wan2.2-TI2V-5B-Q4_K_M.gguf,3.43,Wan2.2-TI2V-5B-Q4_0.gguf,3.03,Wan2.2-TI2V-5B-Q8_0.gguf,5.4
 bartowski/wesjos_mario-html-v2-9B-GGUF,bartowski,wesjos/mario-html-v2-9B,qwen35,True,9.2,True,262144,apache-2.0,4367,2026-10-21,wesjos_mario-html-v2-9B-Q4_K_M.gguf,5.98,wesjos_mario-html-v2-9B-Q4_0.gguf,5.63,wesjos_mario-html-v2-9B-Q8_0.gguf,9.8
+bartowski/wesjos_Spark-x2.6-4B-HTML-GGUF,bartowski,wesjos/Spark-x2.6-4B-HTML,spark2_5,True,4.11,False,1048576,apache-2.0,0,2026-11-07,wesjos_Spark-x2.6-4B-HTML-Q4_K_M.gguf,2.62,wesjos_Spark-x2.6-4B-HTML-Q4_0.gguf,2.41,wesjos_Spark-x2.6-4B-HTML-Q8_0.gguf,4.38
 bartowski/Spark-X2.6-1.7B-GGUF,bartowski,XHToken/Spark-X2.6-1.7B,spark2_5,True,1.71,False,1048576,apache-2.0,2829,2026-10-31,Spark-X2.6-1.7B-Q4_K_M.gguf,1.09,Spark-X2.6-1.7B-Q4_0.gguf,1.04,Spark-X2.6-1.7B-Q8_0.gguf,1.82
 bartowski/Spark-X2.6-4B-GGUF,bartowski,XHToken/Spark-X2.6-4B,spark2_5,True,4.11,False,1048576,apache-2.0,23996,2026-10-20,Spark-X2.6-4B-Q4_K_M.gguf,2.62,Spark-X2.6-4B-Q4_0.gguf,2.41,Spark-X2.6-4B-Q8_0.gguf,4.38
 bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF,bartowski,XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B,qwen35,True,8.95,True,262144,,989262,2026-09-21,MiMo-V2.6-Distill-Qwen-9B-Q4_K_M.gguf,5.84,MiMo-V2.6-Distill-Qwen-9B-Q4_0.gguf,5.48,MiMo-V2.6-Distill-Qwen-9B-Q8_0.gguf,9.55
