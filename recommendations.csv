@@ -50,6 +50,6 @@ flagship,piste veille GGUF,2,allenai/Olmo-3-7B-Think,lmstudio-community/Olmo-3-7
 flagship,piste veille GGUF,3,Nanbeige/Nanbeige4.2-3B,bartowski/Nanbeige_Nanbeige4.2-3B-GGUF,Nanbeige_Nanbeige4.2-3B-Q4_K_M.gguf,2.68,4.2,estimee,63,71.4,False,non teste
 flagship,piste veille GGUF,4,tiiuae/Falcon-H1R-7B,unsloth/Falcon-H1R-7B-GGUF,Falcon-H1R-7B-Q4_K_M.gguf,4.6,6.7,estimee,59,60.1,False,non teste
 flagship,piste veille GGUF,5,ibm-granite/granite-4.1-8b,lmstudio-community/granite-4.1-8b-GGUF,granite-4.1-8b-Q4_K_M.gguf,5.35,7.7,estimee,49,69.7,False,non teste
-flagship,piste veille GGUF,6,microsoft/Mage-VL-Cowork,ggml-org/Mage-VL-Cowork-GGUF,Mage-VL-Cowork-Q4_K_M.gguf,2.72,4.2,estimee,,,False,non teste
-flagship,piste veille GGUF,7,inclusionAI/ZwZ2-4B,bartowski/ZwZ2-4B-GGUF,ZwZ2-4B-Q4_K_M.gguf,2.73,4.2,estimee,,,False,non teste
-flagship,piste veille GGUF,8,microsoft/UserRepGen-4B,bartowski/UserRepGen-4B-GGUF,UserRepGen-4B-Q4_K_M.gguf,2.73,4.2,estimee,,,False,non teste
+flagship,piste veille GGUF,6,inclusionAI/ZoomGain-4B,bartowski/ZoomGain-4B-GGUF,ZoomGain-4B-Q4_K_M.gguf,2.73,4.2,estimee,,,False,non teste
+flagship,piste veille GGUF,7,microsoft/Mage-VL-Cowork,ggml-org/Mage-VL-Cowork-GGUF,Mage-VL-Cowork-Q4_K_M.gguf,2.72,4.2,estimee,,,False,non teste
+flagship,piste veille GGUF,8,inclusionAI/ZwZ2-4B,bartowski/ZwZ2-4B-GGUF,ZwZ2-4B-Q4_K_M.gguf,2.73,4.2,estimee,,,False,non teste
