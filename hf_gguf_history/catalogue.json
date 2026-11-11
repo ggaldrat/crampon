@@ -2143,13 +2143,13 @@
   "params": 5082308624,
   "context": null,
   "downloads": 46902,
-  "lastModified": "2026-10-22T08:41:20.000Z",
+  "lastModified": "2026-11-11T04:53:20.000Z",
   "createdAt": "2026-10-22",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": false,
-  "tailles_du": "2026-10-22T08:41:20.000Z",
+  "tailles_du": "2026-11-11T04:53:20.000Z",
   "depuis_version": null
  },
  "unsloth/MOSS-Image-SFT-GGUF": {
@@ -2169,13 +2169,13 @@
   "params": 5082308624,
   "context": null,
   "downloads": 141623,
-  "lastModified": "2026-10-22T08:41:19.000Z",
+  "lastModified": "2026-11-11T04:53:20.000Z",
   "createdAt": "2026-10-22",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": false,
-  "tailles_du": "2026-10-22T08:41:19.000Z",
+  "tailles_du": "2026-11-11T04:53:20.000Z",
   "depuis_version": null
  },
  "unsloth/flux-3-image-klein-GGUF": {
@@ -2208,7 +2208,7 @@
   "tailles": {
    "Q4_K_M": [
     "flux-3-image-klein-pup-Q4_K_M.gguf",
-    5629109472
+    5629109248
    ],
    "Q8_0": [
     "flux-3-image-klein-pup-Q8_0.gguf",
@@ -2221,13 +2221,13 @@
   "params": 8953803264,
   "context": 262144,
   "downloads": 28315,
-  "lastModified": "2026-10-19T03:05:12.000Z",
+  "lastModified": "2026-11-11T04:53:19.000Z",
   "createdAt": "2026-10-17",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T03:05:12.000Z",
+  "tailles_du": "2026-11-11T04:53:19.000Z",
   "depuis_version": "1.19.1"
  },
  "unsloth/flux-3-image-klein-base-GGUF": {
@@ -2273,13 +2273,13 @@
   "params": 7115124736,
   "context": null,
   "downloads": 1355718,
-  "lastModified": "2026-10-10T05:34:23.000Z",
+  "lastModified": "2026-11-11T04:53:20.000Z",
   "createdAt": "2026-10-10",
   "license": "other",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": false,
-  "tailles_du": "2026-10-10T05:34:23.000Z",
+  "tailles_du": "2026-11-11T04:53:20.000Z",
   "depuis_version": null
  },
  "unsloth/Qwen-Image-2.1-GGUF": {
@@ -11818,13 +11818,13 @@
   "params": 1006209856,
   "context": 262144,
   "downloads": 170001,
-  "lastModified": "2026-10-26T10:35:48.000Z",
+  "lastModified": "2026-11-11T03:36:07.000Z",
   "createdAt": "2026-10-06",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-26T10:35:48.000Z",
+  "tailles_du": "2026-11-11T03:36:07.000Z",
   "depuis_version": "1.19.1"
  },
  "openbmb/MiniCPM5-2B-GGUF": {
@@ -11844,13 +11844,13 @@
   "params": 2516756480,
   "context": 131072,
   "downloads": 460054,
-  "lastModified": "2026-11-09T08:13:57.000Z",
+  "lastModified": "2026-11-11T03:36:23.000Z",
   "createdAt": "2026-09-05",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-11-09T08:13:57.000Z",
+  "tailles_du": "2026-11-11T03:36:23.000Z",
   "depuis_version": "1.19.1"
  },
  "openbmb/MiniCPM-o-2_6-gguf": {
@@ -12024,13 +12024,13 @@
   "params": 752161600,
   "context": 262144,
   "downloads": 14133,
-  "lastModified": "2026-11-09T08:12:21.000Z",
+  "lastModified": "2026-11-11T03:36:15.000Z",
   "createdAt": "2026-05-08",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-11-09T08:12:21.000Z",
+  "tailles_du": "2026-11-11T03:36:15.000Z",
   "depuis_version": "1.19.1"
  },
  "openbmb/MiniCPM5-1B-GGUF": {
@@ -12050,13 +12050,13 @@
   "params": 1080632832,
   "context": 131072,
   "downloads": 37960,
-  "lastModified": "2026-11-09T08:13:27.000Z",
+  "lastModified": "2026-11-11T03:36:26.000Z",
   "createdAt": "2026-05-24",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-11-09T08:13:27.000Z",
+  "tailles_du": "2026-11-11T03:36:26.000Z",
   "depuis_version": "1.19.1"
  },
  "openbmb/BitCPM-CANN-8B-gguf": {
