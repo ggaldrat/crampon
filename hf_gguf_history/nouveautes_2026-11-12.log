@@ -1,4 +1,8 @@
-1 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-12
+3 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-12
 
 fastino/GLiDE-9B
   9.0 Md param., archi qwen35 (supporte), licence=other, depots : bartowski/fastino_GLiDE-9B-GGUF
+Danielbrdz/Barcenas-LFM3-1.7B
+  1.7 Md param., archi lfm3 (supporte), licence=other, depots : bartowski/Danielbrdz_Barcenas-LFM3-1.7B-GGUF
+moganai/MoganOCR-TR
+  1.9 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/moganai_MoganOCR-TR-GGUF
