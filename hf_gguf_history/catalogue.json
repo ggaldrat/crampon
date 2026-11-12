@@ -13839,5 +13839,35 @@
   "vu_le": "2026-11-11",
   "supporte": true,
   "depuis_version": "1.19.1"
+ },
+ "bartowski/fastino_GLiDE-9B-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "fastino_GLiDE-9B-Q4_0.gguf",
+    5482835648
+   ],
+   "Q4_K_M": [
+    "fastino_GLiDE-9B-Q4_K_M.gguf",
+    5841055424
+   ],
+   "Q8_0": [
+    "fastino_GLiDE-9B-Q8_0.gguf",
+    9545985728
+   ]
+  },
+  "tailles_du": "2026-11-12T06:17:34.000Z",
+  "editeur": "bartowski",
+  "base_model": "fastino/GLiDE-9B",
+  "architecture": "qwen35",
+  "params": 8953803264,
+  "context": 262144,
+  "downloads": 0,
+  "lastModified": "2026-11-12T06:17:34.000Z",
+  "createdAt": "2026-11-12",
+  "license": "other",
+  "vision": false,
+  "vu_le": "2026-11-12",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }
