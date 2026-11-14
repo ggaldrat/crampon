@@ -13955,5 +13955,35 @@
   "vu_le": "2026-11-12",
   "supporte": true,
   "depuis_version": "1.19.1"
+ },
+ "bartowski/xtools-at_Qwensploit-V2-9B-CyberSecurity-Qwen3.5-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "xtools-at_Qwensploit-V2-9B-CyberSecurity-Qwen3.5-Q4_0.gguf",
+    5619760000
+   ],
+   "Q4_K_M": [
+    "xtools-at_Qwensploit-V2-9B-CyberSecurity-Qwen3.5-Q4_K_M.gguf",
+    5977979776
+   ],
+   "Q8_0": [
+    "xtools-at_Qwensploit-V2-9B-CyberSecurity-Qwen3.5-Q8_0.gguf",
+    9804544896
+   ]
+  },
+  "tailles_du": "2026-11-14T19:24:49.000Z",
+  "editeur": "bartowski",
+  "base_model": "xtools-at/Qwensploit-V2-9B-CyberSecurity-Qwen3.5",
+  "architecture": "qwen35",
+  "params": 9197093888,
+  "context": 1048576,
+  "downloads": 0,
+  "lastModified": "2026-11-14T19:24:49.000Z",
+  "createdAt": "2026-11-14",
+  "license": "other",
+  "vision": true,
+  "vu_le": "2026-11-14",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }
