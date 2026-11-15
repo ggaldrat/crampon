@@ -6010,11 +6010,11 @@
   "tailles": {
    "Q4_K_M": [
     "SmolVLM2-256M-Video-Instruct-Q4_K_M.gguf",
-    131234176
+    131234304
    ],
    "Q8_0": [
     "SmolVLM2-256M-Video-Instruct-Q8_0.gguf",
-    175056256
+    175056384
    ]
   },
   "editeur": "ggml-org",
@@ -6023,13 +6023,13 @@
   "params": 162974016,
   "context": 8192,
   "downloads": 7580,
-  "lastModified": "2026-10-19T15:36:02.000Z",
+  "lastModified": "2026-11-15T04:13:54.000Z",
   "createdAt": "2025-04-21",
   "license": "apache-2.0",
   "vision": true,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-10-19T15:36:02.000Z",
+  "tailles_du": "2026-11-15T04:13:54.000Z",
   "depuis_version": "1.19.1"
  },
  "ggml-org/SmolLM2-135M-GGUF": {
@@ -13735,14 +13735,14 @@
     1846241408
    ]
   },
-  "tailles_du": "2026-11-08T03:46:41.000Z",
+  "tailles_du": "2026-11-15T04:12:06.000Z",
   "editeur": "ggml-org",
   "base_model": "LiquidAI/d1-Omni-2B",
   "architecture": "lfm3",
   "params": 1728801600,
   "context": 128000,
   "downloads": 577,
-  "lastModified": "2026-11-08T03:46:41.000Z",
+  "lastModified": "2026-11-15T04:12:06.000Z",
   "createdAt": "2026-11-08",
   "license": "other",
   "vision": false,
