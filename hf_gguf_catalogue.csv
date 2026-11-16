@@ -43,6 +43,7 @@ lmstudio-community/Ornith-1.0-9B-GGUF,lmstudio-community,deepreinforce-ai/Ornith
 lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF,lmstudio-community,deepseek-ai/DeepSeek-R1-0528-Qwen3-8B,qwen3,True,8.19,False,131072,mit,74302,2025-05-29,DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf,5.03,,,DeepSeek-R1-0528-Qwen3-8B-Q8_0.gguf,8.71
 ggml-org/DeepSeek-R1-Distill-Qwen-1.5B-Q4_0-GGUF,ggml-org,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,qwen2,True,1.78,False,131072,,687,2025-01-20,,,deepseek-r1-distill-qwen-1.5b-q4_0.gguf,1.07,,
 bartowski/EddyLuo_FoodGuard-4B-GGUF,bartowski,EddyLuo/FoodGuard-4B,qwen3,True,4.41,False,32768,apache-2.0,1315,2026-10-14,EddyLuo_FoodGuard-4B-Q4_K_M.gguf,2.81,EddyLuo_FoodGuard-4B-Q4_0.gguf,2.64,EddyLuo_FoodGuard-4B-Q8_0.gguf,4.69
+ggml-org/Soprano-1.1-80M-GGUF,ggml-org,ekwek/Soprano-1.1-80M,qwen3,True,0.08,False,1024,apache-2.0,0,2026-11-16,,,,,Soprano-1.1-80M-Q8_0.gguf,0.08
 bartowski/empero-ai_Qwythos-9B-v2-GGUF,bartowski,empero-ai/Qwythos-9B-v2,qwen35,True,9.2,False,1048576,apache-2.0,3473,2026-07-19,empero-ai_Qwythos-9B-v2-Q4_K_M.gguf,6.05,empero-ai_Qwythos-9B-v2-Q4_0.gguf,5.62,empero-ai_Qwythos-9B-v2-Q8_0.gguf,9.8
 lmstudio-community/rnj-1-instruct-GGUF,lmstudio-community,EssentialAI/rnj-1-instruct,gemma3,True,8.31,False,32768,apache-2.0,5164,2025-12-09,rnj-1-instruct-Q4_K_M.gguf,5.11,,,rnj-1-instruct-Q8_0.gguf,8.84
 unsloth/rnj-1-instruct-GGUF,unsloth,EssentialAI/rnj-1-instruct,gemma3,True,8.31,False,32768,apache-2.0,2062,2025-12-16,rnj-1-instruct-Q4_K_M.gguf,5.11,rnj-1-instruct-Q4_0.gguf,4.84,rnj-1-instruct-Q8_0.gguf,8.84
@@ -529,4 +530,5 @@ unsloth/GLM-4.6V-Flash-GGUF,unsloth,zai-org/GLM-4.6V-Flash,glm4,True,9.4,True,13
 ggml-org/GLM-4.6V-Flash-GGUF,ggml-org,zai-org/GLM-4.6V-Flash,glm4,True,9.4,False,131072,,12505,2025-12-16,GLM-4.6V-Flash-Q4_K_M.gguf,6.17,,,GLM-4.6V-Flash-Q8_0.gguf,10.0
 ggml-org/GLM-OCR-GGUF,ggml-org,zai-org/GLM-OCR,glm4,True,0.89,False,131072,,82188,2026-02-17,,,,,GLM-OCR-Q8_0.gguf,0.95
 bartowski/zime-ai_dwight-4b-GGUF,bartowski,zime-ai/dwight-4b,qwen3,True,4.02,False,262144,apache-2.0,2745,2026-10-13,zime-ai_dwight-4b-Q4_K_M.gguf,2.59,zime-ai_dwight-4b-Q4_0.gguf,2.42,zime-ai_dwight-4b-Q8_0.gguf,4.28
+ggml-org/ZONOS3-Mini-GGUF,ggml-org,Zyphra/ZONOS3-Mini,zonos3,False,0.8,False,32768,apache-2.0,0,2026-11-16,,,,,ZONOS3-Mini-Q8_0.gguf,0.85
 bartowski/zzzekryo_Oprius-3.0-1.1B-GGUF,bartowski,zzzekryo/Oprius-3.0-1.1B,llama,True,1.1,False,2048,apache-2.0,995,2026-10-31,zzzekryo_Oprius-3.0-1.1B-Q4_K_M.gguf,0.7,zzzekryo_Oprius-3.0-1.1B-Q4_0.gguf,0.65,zzzekryo_Oprius-3.0-1.1B-Q8_0.gguf,1.17

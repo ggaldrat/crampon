@@ -13985,5 +13985,49 @@
   "vu_le": "2026-11-14",
   "supporte": true,
   "depuis_version": "1.19.1"
+ },
+ "ggml-org/ZONOS3-Mini-GGUF": {
+  "tailles": {
+   "Q8_0": [
+    "ZONOS3-Mini-Q8_0.gguf",
+    854726208
+   ]
+  },
+  "tailles_du": "2026-11-16T00:31:39.000Z",
+  "editeur": "ggml-org",
+  "base_model": "Zyphra/ZONOS3-Mini",
+  "architecture": "zonos3",
+  "params": 802038600,
+  "context": 32768,
+  "downloads": 0,
+  "lastModified": "2026-11-16T00:31:39.000Z",
+  "createdAt": "2026-11-16",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-16",
+  "supporte": false,
+  "depuis_version": null
+ },
+ "ggml-org/Soprano-1.1-80M-GGUF": {
+  "tailles": {
+   "Q8_0": [
+    "Soprano-1.1-80M-Q8_0.gguf",
+    84921216
+   ]
+  },
+  "tailles_du": "2026-11-16T00:28:15.000Z",
+  "editeur": "ggml-org",
+  "base_model": "ekwek/Soprano-1.1-80M",
+  "architecture": "qwen3",
+  "params": 79714048,
+  "context": 1024,
+  "downloads": 0,
+  "lastModified": "2026-11-16T00:28:15.000Z",
+  "createdAt": "2026-11-16",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-16",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }

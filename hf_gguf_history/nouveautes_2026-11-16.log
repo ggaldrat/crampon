@@ -1,0 +1,6 @@
+2 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-16
+
+Zyphra/ZONOS3-Mini
+  0.8 Md param., archi zonos3 (PAS supporte par le llama.cpp de l'appli), licence=apache-2.0, depots : ggml-org/ZONOS3-Mini-GGUF
+ekwek/Soprano-1.1-80M
+  0.1 Md param., archi qwen3 (supporte), licence=apache-2.0, depots : ggml-org/Soprano-1.1-80M-GGUF
