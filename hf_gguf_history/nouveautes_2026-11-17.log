@@ -1,0 +1,12 @@
+5 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-17
+
+KORMo-VL/KORMo-Web-4B
+  4.8 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/KORMo-VL_KORMo-Web-4B-GGUF
+Lythri/Lythri-Wink-2B
+  2.5 Md param., archi gemma4 (supporte), licence=apache-2.0, depots : bartowski/Lythri_Lythri-Wink-2B-GGUF
+m-a-p/YuE2-3B
+  2.2 Md param., archi qwen3 (supporte), licence=cc-by-nc-4.0, depots : ggml-org/YuE2-3B-GGUF
+fishaudio/s2-pro
+  4.0 Md param., archi qwen3 (supporte), licence=other, depots : ggml-org/s2-pro-GGUF
+MiniMaxAI/MiniMax-Music3
+  8.6 Md param., archi qwen3 (supporte), licence=other, depots : ggml-org/MiniMax-Music3-GGUF
