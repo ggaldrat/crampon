@@ -14155,5 +14155,39 @@
   "vu_le": "2026-11-17",
   "supporte": true,
   "depuis_version": "1.19.1"
+ },
+ "ggml-org/tiny-voca-GGUF": {
+  "tailles": {},
+  "tailles_du": "2026-11-18T01:26:50.000Z",
+  "editeur": "ggml-org",
+  "base_model": "n4ze3m/tiny-voca",
+  "architecture": "tiny-voca",
+  "params": 1603456,
+  "context": 512,
+  "downloads": 0,
+  "lastModified": "2026-11-18T01:26:50.000Z",
+  "createdAt": "2026-11-18",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-18",
+  "supporte": false,
+  "depuis_version": null
+ },
+ "ggml-org/Kokoro-82M-GGUF": {
+  "tailles": {},
+  "tailles_du": "2026-11-18T01:26:32.000Z",
+  "editeur": "ggml-org",
+  "base_model": "hexgrad/Kokoro-82M",
+  "architecture": "kokoro",
+  "params": 5815552,
+  "context": 512,
+  "downloads": 0,
+  "lastModified": "2026-11-18T01:26:32.000Z",
+  "createdAt": "2026-11-18",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-18",
+  "supporte": false,
+  "depuis_version": null
  }
 }

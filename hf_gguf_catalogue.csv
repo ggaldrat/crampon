@@ -107,6 +107,7 @@ unsloth/medgemma-1.5-4b-it-GGUF,unsloth,google/medgemma-1.5-4b-it,gemma3,True,3.
 lmstudio-community/medgemma-4b-it-GGUF,lmstudio-community,google/medgemma-4b-it,gemma3,True,3.88,True,131072,other,909,2025-05-28,medgemma-4b-it-Q4_K_M.gguf,2.49,,,medgemma-4b-it-Q8_0.gguf,4.13
 bartowski/gugujiji_novel-humanize-4b-GGUF,bartowski,gugujiji/novel-humanize-4b,qwen3,True,4.02,False,40960,apache-2.0,8243,2026-10-26,gugujiji_novel-humanize-4b-Q4_K_M.gguf,2.59,gugujiji_novel-humanize-4b-Q4_0.gguf,2.42,gugujiji_novel-humanize-4b-Q8_0.gguf,4.28
 bartowski/HarpiaIA_Acaua-Lite-GGUF,bartowski,HarpiaIA/Acaua-Lite,lfm3,True,1.73,False,262144,other,1498,2026-11-07,HarpiaIA_Acaua-Lite-Q4_K_M.gguf,1.12,HarpiaIA_Acaua-Lite-Q4_0.gguf,1.06,HarpiaIA_Acaua-Lite-Q8_0.gguf,1.85
+ggml-org/Kokoro-82M-GGUF,ggml-org,hexgrad/Kokoro-82M,kokoro,False,0.01,False,512,apache-2.0,0,2026-11-18,,,,,,
 HuggingFaceTB/smollm-1.7B-instruct-v0.2-Q8_0-GGUF,HuggingFaceTB,HuggingFaceTB/SmolLM-1.7B-Instruct-v0.2,llama,True,1.71,False,2048,apache-2.0,98,2024-08-17,,,,,smollm-1.7b-instruct-add-basics-q8_0.gguf,1.82
 HuggingFaceTB/smollm-135M-instruct-v0.2-Q8_0-GGUF,HuggingFaceTB,HuggingFaceTB/SmolLM-135M-Instruct,llama,True,0.13,False,2048,apache-2.0,3699,2024-08-14,,,,,smollm-135m-instruct-add-basics-q8_0.gguf,0.14
 HuggingFaceTB/smollm-360M-instruct-v0.2-Q8_0-GGUF,HuggingFaceTB,HuggingFaceTB/smollm-360M-instruct-add-basics,llama,True,0.36,False,2048,apache-2.0,785,2024-08-13,,,,,smollm-360m-instruct-add-basics-q8_0.gguf,0.39
@@ -298,6 +299,7 @@ mistralai/Ministral-3-8B-Reasoning-2512-GGUF,mistralai,mistralai/Ministral-3-8B-
 bartowski/moganai_MoganOCR-TR-GGUF,bartowski,moganai/MoganOCR-TR,qwen35,True,1.88,True,262144,apache-2.0,2813,2026-11-12,moganai_MoganOCR-TR-Q4_K_M.gguf,1.24,moganai_MoganOCR-TR-Q4_0.gguf,1.23,moganai_MoganOCR-TR-Q8_0.gguf,2.02
 bartowski/morriszjm_Tacit-1.7B-GGUF,bartowski,morriszjm/Tacit-1.7B,qwen3,True,1.72,False,40960,apache-2.0,928,2026-10-14,morriszjm_Tacit-1.7B-Q4_K_M.gguf,1.1,morriszjm_Tacit-1.7B-Q4_0.gguf,1.07,morriszjm_Tacit-1.7B-Q8_0.gguf,1.83
 bartowski/mulkzz_RuBio-4B-GGUF,bartowski,mulkzz/RuBio-4B,qwen35,True,4.33,True,262144,apache-2.0,1510,2026-11-03,mulkzz_RuBio-4B-Q4_K_M.gguf,2.8,mulkzz_RuBio-4B-Q4_0.gguf,2.72,mulkzz_RuBio-4B-Q8_0.gguf,4.62
+ggml-org/tiny-voca-GGUF,ggml-org,n4ze3m/tiny-voca,tiny-voca,False,0.0,False,512,apache-2.0,0,2026-11-18,,,,,,
 bartowski/NadevA23_Kronumos-Kairos-v2-GGUF,bartowski,NadevA23/Kronumos-Kairos-v2,qwen2,True,7.62,False,32768,apache-2.0,1114,2026-09-30,NadevA23_Kronumos-Kairos-v2-Q4_K_M.gguf,4.78,NadevA23_Kronumos-Kairos-v2-Q4_0.gguf,4.49,NadevA23_Kronumos-Kairos-v2-Q8_0.gguf,8.1
 bartowski/Nanbeige_Nanbeige4.2-3B-GGUF,bartowski,Nanbeige/Nanbeige4.2-3B,nanbeige,True,4.17,False,262144,apache-2.0,23355,2026-07-28,Nanbeige_Nanbeige4.2-3B-Q4_K_M.gguf,2.68,Nanbeige_Nanbeige4.2-3B-Q4_0.gguf,2.54,Nanbeige_Nanbeige4.2-3B-Q8_0.gguf,4.43
 ggml-org/LoRA-llama-3-70B-Instruct-abliterated-F16-GGUF,ggml-org,ngxson/LoRA-llama-3-70B-Instruct-abliterated,llama,True,0.42,False,,,181,2025-01-22,,,,,,
