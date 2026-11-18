@@ -1,6 +1,6 @@
 2 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-18
 
-n4ze3m/tiny-voca
-  0.0 Md param., archi tiny-voca (PAS supporte par le llama.cpp de l'appli), licence=apache-2.0, depots : ggml-org/tiny-voca-GGUF
 hexgrad/Kokoro-82M
   0.0 Md param., archi kokoro (PAS supporte par le llama.cpp de l'appli), licence=apache-2.0, depots : ggml-org/Kokoro-82M-GGUF
+n4ze3m/tiny-voca
+  0.0 Md param., archi tiny-voca (PAS supporte par le llama.cpp de l'appli), licence=apache-2.0, depots : ggml-org/tiny-voca-GGUF
