@@ -10136,26 +10136,26 @@
   "tailles": {
    "Q4_K_M": [
     "granite-vision-4.1-4b-Q4_K_M.gguf",
-    2099510240
+    2099509216
    ],
    "Q8_0": [
     "granite-vision-4.1-4b-Q8_0.gguf",
-    3619700288
+    3619698656
    ]
   },
   "editeur": "ibm-granite",
   "base_model": "ibm-granite/granite-vision-4.1-4b",
   "architecture": "granite",
-  "params": 3402839040,
+  "params": 3402836480,
   "context": 131072,
   "downloads": 8697,
-  "lastModified": "2026-06-24T17:40:40.000Z",
+  "lastModified": "2026-11-21T02:46:26.000Z",
   "createdAt": "2026-06-18",
   "license": "apache-2.0",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-06-24T17:40:40.000Z",
+  "tailles_du": "2026-11-21T02:46:26.000Z",
   "depuis_version": "1.19.1"
  },
  "ibm-granite/granite-guardian-4.1-8b-GGUF": {
@@ -14215,5 +14215,35 @@
   "vu_le": "2026-11-18",
   "supporte": true,
   "depuis_version": "1.22.0"
+ },
+ "bartowski/haruuuuu-1256_aoi-gemma-4-E4B-it-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "haruuuuu-1256_aoi-gemma-4-E4B-it-Q4_0.gguf",
+    5223855680
+   ],
+   "Q4_K_M": [
+    "haruuuuu-1256_aoi-gemma-4-E4B-it-Q4_K_M.gguf",
+    5162284608
+   ],
+   "Q8_0": [
+    "haruuuuu-1256_aoi-gemma-4-E4B-it-Q8_0.gguf",
+    8031237696
+   ]
+  },
+  "tailles_du": "2026-11-21T06:23:24.000Z",
+  "editeur": "bartowski",
+  "base_model": "haruuuuu-1256/aoi-gemma-4-E4B-it",
+  "architecture": "gemma4",
+  "params": 7518069290,
+  "context": 131072,
+  "downloads": 0,
+  "lastModified": "2026-11-21T06:23:24.000Z",
+  "createdAt": "2026-11-21",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-21",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }
