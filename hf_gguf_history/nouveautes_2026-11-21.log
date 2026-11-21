@@ -1,4 +1,14 @@
-1 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-21
+6 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-21
 
 haruuuuu-1256/aoi-gemma-4-E4B-it
   7.5 Md param., archi gemma4 (supporte), licence=apache-2.0, depots : bartowski/haruuuuu-1256_aoi-gemma-4-E4B-it-GGUF
+Saathimed/AxonMed-7B-Thinking
+  7.6 Md param., archi qwen2 (supporte), licence=apache-2.0, depots : bartowski/Saathimed_AxonMed-7B-Thinking-GGUF
+KORMo-VL/KORMo-Web-9B
+  9.0 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/KORMo-VL_KORMo-Web-9B-GGUF
+openbmb/VoxCPM2
+  1.5 Md param., archi minicpm (supporte), licence=apache-2.0, depots : ggml-org/VoxCPM2-GGUF
+kyutai/hibiki-2b-pytorch-bf16
+  2.2 Md param., archi moshi (PAS supporte par le llama.cpp de l'appli), licence=cc-by-4.0, depots : ggml-org/hibiki-2b-GGUF
+kyutai/hibiki-1b-pytorch-bf16
+  1.0 Md param., archi moshi (PAS supporte par le llama.cpp de l'appli), licence=cc-by-4.0, depots : ggml-org/hibiki-1b-GGUF
