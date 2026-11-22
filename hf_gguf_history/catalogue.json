@@ -5831,13 +5831,13 @@
   "params": 1728801600,
   "context": 128000,
   "downloads": 38852,
-  "lastModified": "2026-11-12T09:58:41.000Z",
+  "lastModified": "2026-11-22T04:31:28.000Z",
   "createdAt": "2026-10-28",
   "license": "other",
   "vision": false,
   "vu_le": "2026-10-31",
   "supporte": true,
-  "tailles_du": "2026-11-12T09:58:41.000Z",
+  "tailles_du": "2026-11-22T04:31:28.000Z",
   "depuis_version": "1.22.0"
  },
  "ggml-org/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF": {
@@ -13993,14 +13993,14 @@
     854726208
    ]
   },
-  "tailles_du": "2026-11-16T00:31:39.000Z",
+  "tailles_du": "2026-11-22T05:57:32.000Z",
   "editeur": "ggml-org",
   "base_model": "Zyphra/ZONOS3-Mini",
   "architecture": "zonos3",
   "params": 802038600,
   "context": 32768,
   "downloads": 2577,
-  "lastModified": "2026-11-16T00:31:39.000Z",
+  "lastModified": "2026-11-22T05:57:32.000Z",
   "createdAt": "2026-11-16",
   "license": "apache-2.0",
   "vision": false,
@@ -14158,14 +14158,14 @@
  },
  "ggml-org/tiny-voca-GGUF": {
   "tailles": {},
-  "tailles_du": "2026-11-18T01:26:50.000Z",
+  "tailles_du": "2026-11-22T05:56:22.000Z",
   "editeur": "ggml-org",
   "base_model": "n4ze3m/tiny-voca",
   "architecture": "tiny-voca",
   "params": 1603456,
   "context": 512,
   "downloads": 546,
-  "lastModified": "2026-11-18T01:26:50.000Z",
+  "lastModified": "2026-11-22T05:56:22.000Z",
   "createdAt": "2026-11-18",
   "license": "apache-2.0",
   "vision": false,
@@ -14201,14 +14201,14 @@
     1846238464
    ]
   },
-  "tailles_du": "2026-11-18T15:27:51.000Z",
+  "tailles_du": "2026-11-22T04:30:37.000Z",
   "editeur": "ggml-org",
   "base_model": "LiquidAI/LFM3-1.7B",
   "architecture": "lfm3",
   "params": 1728801600,
   "context": 262144,
   "downloads": 971,
-  "lastModified": "2026-11-18T15:27:51.000Z",
+  "lastModified": "2026-11-22T04:30:37.000Z",
   "createdAt": "2026-11-18",
   "license": "other",
   "vision": false,
@@ -14371,5 +14371,35 @@
   "vu_le": "2026-11-21",
   "supporte": false,
   "depuis_version": null
+ },
+ "bartowski/Saathimed_AxonMed-7B-Flash-GGUF": {
+  "tailles": {
+   "Q4_0": [
+    "Saathimed_AxonMed-7B-Flash-Q4_0.gguf",
+    4490485280
+   ],
+   "Q4_K_M": [
+    "Saathimed_AxonMed-7B-Flash-Q4_K_M.gguf",
+    4780817952
+   ],
+   "Q8_0": [
+    "Saathimed_AxonMed-7B-Flash-Q8_0.gguf",
+    8098526752
+   ]
+  },
+  "tailles_du": "2026-11-21T23:27:18.000Z",
+  "editeur": "bartowski",
+  "base_model": "Saathimed/AxonMed-7B-Flash",
+  "architecture": "qwen2",
+  "params": 7615616512,
+  "context": 32768,
+  "downloads": 0,
+  "lastModified": "2026-11-21T23:27:18.000Z",
+  "createdAt": "2026-11-21",
+  "license": "apache-2.0",
+  "vision": false,
+  "vu_le": "2026-11-22",
+  "supporte": true,
+  "depuis_version": "1.19.1"
  }
 }
