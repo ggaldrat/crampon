@@ -1,4 +1,6 @@
-1 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-23
+2 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-23
 
 Spellguard/Spellguard-1.0-8B
   8.2 Md param., archi qwen3 (supporte), licence=apache-2.0, depots : bartowski/Spellguard_Spellguard-1.0-8B-GGUF
+2Beyes/Aurum-4B-Uncensored
+  4.3 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/2Beyes_Aurum-4B-Uncensored-GGUF
