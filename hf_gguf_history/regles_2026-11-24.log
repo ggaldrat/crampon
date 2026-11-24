@@ -1,0 +1,5 @@
+Regles PocketPal : 2026-11-04.1 -> 2026-11-06.1 (2026-11-24)
+  low : + ['lfm2.5-vl-450m', 'qwen3.5-0.8b']  - ['bonsai-1.7b', 'qwen3-0.6b']
+  mid : + ['lfm2.5-2.6b', 'lfm3-1.7b', 'lfm3-vl-2b', 'qwen3.5-2b', 'ternary-bonsai-2-2b']  - ['bonsai-8b', 'lfm2-2.6b', 'lfm2-vl-1.6b', 'lfm2.5-1.2b', 'qwen3-1.7b', 'spark-x2.5-1.7b']
+  high : + ['granite-4.2-3b', 'lfm3-1.7b', 'lfm3-vl-2b', 'qwen3.5-2b', 'ternary-bonsai-2-2b', 'tiny-aya-global']  - ['bonsai-4b', 'bonsai-8b', 'spark-x2.5-1.7b']
+  flagship : + ['granite-4.2-3b', 'lfm3-1.7b', 'lfm3-vl-2b', 'ling-3.0-tiny', 'ternary-bonsai-2-4b', 'tiny-aya-global']  - ['spark-x2.5-4b']

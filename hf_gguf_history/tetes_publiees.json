@@ -3,12 +3,12 @@
   "publie": "openbmb/MiniCPM5-1B-GGUF/MiniCPM5-1B-Q4_K_M.gguf"
  },
  "mid": {
-  "publie": "lmstudio-community/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf"
+  "publie": "bartowski/HuggingFaceTB_SmolLM3-3B-GGUF/HuggingFaceTB_SmolLM3-3B-Q4_0.gguf"
  },
  "high": {
-  "publie": "lmstudio-community/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf"
+  "publie": "bartowski/ai9stars_G9v3-3B-GGUF/ai9stars_G9v3-3B-Q4_K_M.gguf"
  },
  "flagship": {
-  "publie": "lmstudio-community/LFM2.5-2.6B-GGUF/LFM2.5-2.6B-Q4_K_M.gguf"
+  "publie": "unsloth/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q4_0.gguf"
  }
 }

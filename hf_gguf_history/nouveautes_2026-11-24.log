@@ -1,0 +1,6 @@
+2 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-24
+
+tencent/WeMM-Ecom-0.8B
+  0.8 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/WeMM-Ecom-0.8B-GGUF
+moganai/MoganOCR-TR-1.5
+  1.9 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/moganai_MoganOCR-TR-1.5-GGUF
