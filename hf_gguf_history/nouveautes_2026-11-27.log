@@ -1,4 +1,6 @@
-1 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-27
+2 nouveau(x) modele(s) GGUF detecte(s) le 2026-11-27
 
 Akahsizrr/voltron-1.1-mini
   2.0 Md param., archi lfm3 (supporte), licence=other, depots : bartowski/Akahsizrr_voltron-1.1-mini-GGUF
+AminiTech/Soma-1X-lite
+  1.9 Md param., archi qwen35 (supporte), licence=apache-2.0, vision, depots : bartowski/AminiTech_Soma-1X-lite-GGUF
